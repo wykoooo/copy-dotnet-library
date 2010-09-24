@@ -1,0 +1,7 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\Silmoon.Web.Properties.Resources.resources
+obj\Debug\Silmoon.Web.csproj.GenerateResource.Cache
+bin\Debug\Silmoon.Web.dll
+bin\Debug\Silmoon.Web.pdb
+obj\Debug\Silmoon.Web.dll
+obj\Debug\Silmoon.Web.pdb

@@ -1,0 +1,16 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\Silmoon.Media.Video.Player.Form1.resources
+obj\Debug\Silmoon.Media.PlayerApp.Properties.Resources.resources
+obj\Debug\Silmoon.Media.PlayerApp.csproj.GenerateResource.Cache
+bin\Debug\Silmoon.Media.PlayerApp.exe
+bin\Debug\Silmoon.Media.PlayerApp.pdb
+bin\Debug\Silmoon.Windows.dll
+bin\Debug\Silmoon.Windows.pdb
+obj\Debug\Silmoon.Media.PlayerApp.exe
+obj\Debug\Silmoon.Media.PlayerApp.pdb
+bin\Debug\Silmoon.Media.dll
+bin\Debug\Silmoon.Media.pdb
+bin\Debug\Microsoft.DirectX.AudioVideoPlayback.dll
+bin\Debug\Microsoft.DirectX.dll
+bin\Debug\Interop.WMPLib.dll
+bin\Debug\Silmoon.Windows.xml

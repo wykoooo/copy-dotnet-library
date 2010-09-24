@@ -1,0 +1,16 @@
+obj\Debug\ResolveAssemblyReference.cache
+bin\Debug\Silmoon.Media.dll
+bin\Debug\Silmoon.Media.pdb
+obj\Debug\Silmoon.Media.dll
+obj\Debug\Silmoon.Media.pdb
+bin\Debug\Silmoon.dll
+bin\Debug\Silmoon.pdb
+bin\Debug\Silmoon.xml
+bin\Debug\Interop.WMPLib.dll
+obj\Debug\Silmoon.Media.Controls.VideoControl.resources
+obj\Debug\Silmoon.Media.csproj.GenerateResource.Cache
+bin\Debug\Silmoon.Windows.dll
+bin\Debug\Silmoon.Windows.pdb
+bin\Debug\Microsoft.DirectX.AudioVideoPlayback.dll
+bin\Debug\Microsoft.DirectX.dll
+bin\Debug\Silmoon.Windows.xml

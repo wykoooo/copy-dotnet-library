@@ -1,0 +1,8 @@
+obj\Debug\ResolveAssemblyReference.cache
+bin\Debug\Silmoon.Windows.Server.dll
+bin\Debug\Silmoon.Windows.Server.pdb
+bin\Debug\Silmoon.dll
+bin\Debug\Silmoon.pdb
+bin\Debug\Silmoon.xml
+obj\Debug\Silmoon.Windows.Server.dll
+obj\Debug\Silmoon.Windows.Server.pdb

@@ -76,8 +76,6 @@ namespace Silmoon.Utility
             _user_agent = user_agent;
         }
 
-
-        public string s1 = "Unknown";
         /// <summary>
         /// 向服务器发送POST请求
         /// </summary>
@@ -86,30 +84,30 @@ namespace Silmoon.Utility
         /// <returns>服务器返回的数据</returns>
         public string GetDNSPodServerXml(string apiField, string data)
         {
-            using (WebClient _wclit = new WebClient())
+            WebClient _wclit = new WebClient();
+            try
+            {
+                _wclit.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+                _wclit.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+                foreach (string s in APIHeaders)
+                    _wclit.Headers.Add(s);
+                _wclit.Headers.Add("User-Agent", "(SM)" + _user_agent);
+                byte[] bytes = _wclit.UploadData(new Uri(_baseAPIUri + "API/" + apiField), Encoding.UTF8.GetBytes(data));
+                _result = Encoding.UTF8.GetString(bytes);
+                _wclit.Dispose();
+                return Encoding.UTF8.GetString(bytes);
+            }
+            catch (WebException ex)
             {
                 try
                 {
-                    _wclit.Headers.Add("Content-Type: application/x-www-form-urlencoded");
-                    foreach (string s in APIHeaders)
-                        _wclit.Headers.Add(s);
-                    _wclit.Headers.Add("User-Agent: (SM)" + _user_agent);
-                    byte[] bytes = _wclit.UploadData(new Uri(_baseAPIUri + "API/" + apiField + "?rnd=" + Guid.NewGuid()), Encoding.UTF8.GetBytes(data));
-                    _result = Encoding.UTF8.GetString(bytes);
-                    s1 = _result;
-                    return Encoding.UTF8.GetString(bytes);
+                    File.WriteAllText(@"C:\DNSPodClientErrXmlString.xml.txt", DateTime.Now + "\r\n\r\n" + ex + "\r\n\r\n");
+                    if (ex.Response != null)
+                        File.AppendAllText(@"C:\DNSPodClientErrXmlString.xml.txt", new StreamReader(ex.Response.GetResponseStream()).ReadToEnd());
                 }
-                catch (WebException ex)
-                {
-                    try
-                    {
-                        File.WriteAllText(@"C:\DNSPodClientErrXmlString.xml.txt", DateTime.Now + "\r\n\r\n" + ex + "\r\n\r\n");
-                        if (ex.Response != null)
-                            File.AppendAllText(@"C:\DNSPodClientErrXmlString.xml.txt", new StreamReader(ex.Response.GetResponseStream()).ReadToEnd());
-                    }
-                    catch { }
-                    return "!" + ex.ToString();
-                }
+                catch { }
+                _wclit.Dispose();
+                return "!" + ex.ToString();
             }
         }
 
@@ -155,7 +153,7 @@ namespace Silmoon.Utility
             }
             else
             {
-                LoadXml(ref resultXml, ref _xml);
+                LoadXml(ref resultXml,ref _xml);
                 string iresult = _xml.GetElementsByTagName("code")[0].InnerText;
                 if (iresult == "1")
                 {
@@ -577,7 +575,7 @@ namespace Silmoon.Utility
         /// </summary>
         /// <param name="xmlString">string</param>
         /// <param name="xmlDoc">xml object</param>
-        void LoadXml(ref string xmlString, ref XmlDocument xmlDoc)
+        public void LoadXml(ref string xmlString, ref XmlDocument xmlDoc)
         {
             try
             {
@@ -586,11 +584,13 @@ namespace Silmoon.Utility
             catch (Exception ex)
             {
                 throw ex;
+                
             }
         }
 
         public static ISP StringToISP(string isp)
         {
+            
             switch (isp.ToLower())
             {
                 case "tel":

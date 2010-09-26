@@ -84,5 +84,12 @@ namespace NetTest
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            byte[] b1 = { 1, 2, 3, 4 };
+            byte[] b2 = { 5, 6, 7, 8 };
+            Memory.MemCpy(ref b1, ref b2);
+        }
     }
 }

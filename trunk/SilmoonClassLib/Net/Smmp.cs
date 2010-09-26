@@ -1,12 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Collections.Specialized;
 using System.Collections;
-using System.Net.Sockets;
-using System.Threading;
-using Silmoon.Net.SmProtocol;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+using Silmoon.Memory;
+using Silmoon.Net.SmProtocol;
 using Silmoon.Threading;
 
 namespace Silmoon.Net
@@ -911,6 +912,19 @@ namespace Silmoon.Net
 
             return (byte[])Data.ToArray(typeof(byte));
         }
+
+        /// <summary>
+        /// 从接受到的SMMP数据包创建新的响应数据包。
+        /// </summary>
+        /// <param name="fromRecv">接受到的数据包</param>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public static SmmpPacket CreateNew(SmmpPacket fromRecv, int ID = -1)
+        {
+            if (ID == -1) ID = new Random().Next(0, 99999);
+            SmmpPacket packet = new SmmpPacket(ID, fromRecv.MessageID);
+            return packet;
+        }
     }
 
     /// <summary>
@@ -933,7 +947,7 @@ namespace Silmoon.Net
         /// <summary>
         /// 获取SM协议头结构数据
         /// </summary>
-        /// <param name="packectBuffer">数据</param>
+        /// <param name="packetBuffer">数据</param>
         /// <returns></returns>
         public SmmpProtocalHeader IsProtocolHeader(ref ArrayList packetBuffer)
         {
@@ -986,8 +1000,8 @@ namespace Silmoon.Net
         /// <summary>
         /// 根据SM协议头保存的状态读取数据
         /// </summary>
-        /// <param name="status">SM协议装状态数据</param>
-        /// <param name="byteData">数据</param>
+        /// <param name="packetBuffer">在状态缓存中的数据</param>
+        /// <param name="headerInfo">协议头信息</param>
         /// <returns></returns>
         public SmmpPacket ReadFormSmProtocol(ref ArrayList packetBuffer, ref SmmpProtocalHeader headerInfo)
         {
@@ -995,8 +1009,7 @@ namespace Silmoon.Net
             if (bytes.Length >= headerInfo.MessagesBytes && contentLength == 0)
             {
                 byte[] headerMessageBytes = new byte[headerInfo.MessagesBytes];
-                for (int i = 0; i < headerMessageBytes.Length; i++)
-                    headerMessageBytes[i] = bytes[i];
+                Memory.Memory.MemCpy(ref headerMessageBytes, ref bytes);
 
                 string[] messageLines = Encoding.Default.GetString(headerMessageBytes).Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 

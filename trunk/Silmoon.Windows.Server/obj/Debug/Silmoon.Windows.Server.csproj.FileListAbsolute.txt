@@ -49,3 +49,12 @@ E:\DotNet\SilmoonClassLib\Silmoon.Windows.Server\bin\Debug\Silmoon.xml
 E:\DotNet\SilmoonClassLib\Silmoon.Windows.Server\obj\Debug\ResolveAssemblyReference.cache
 E:\DotNet\SilmoonClassLib\Silmoon.Windows.Server\obj\Debug\Silmoon.Windows.Server.dll
 E:\DotNet\SilmoonClassLib\Silmoon.Windows.Server\obj\Debug\Silmoon.Windows.Server.pdb
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.Windows.Server.dll
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.Windows.Server.pdb
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.dll
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.xml
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\ResolveAssemblyReference.cache
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\Silmoon.Windows.Server.dll
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\Silmoon.Windows.Server.pdb
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.pdb
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.Windows.Server.XML

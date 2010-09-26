@@ -45,7 +45,7 @@ namespace Silmoon.Memory
 
         }
 
-        public static void Copy(ref ArrayList dArray1, ref ArrayList sArray2)
+        public static void MemCat(ref ArrayList dArray1, ref ArrayList sArray2)
         {
             if (dArray1 == null || dArray1.Count == 0) return;
             if (sArray2 == null || sArray2.Count == 0) return;
@@ -59,7 +59,7 @@ namespace Silmoon.Memory
 
             dArray1 = array;
         }
-        public static void Copy(ref string[] dArray1, ref string[] sArray2)
+        public static void MemCat(ref string[] dArray1, ref string[] sArray2)
         {
             if (dArray1 == null || dArray1.Length == 0) return;
             if (sArray2 == null || sArray2.Length == 0) return;
@@ -73,7 +73,7 @@ namespace Silmoon.Memory
 
             dArray1 = (string[])array.ToArray(typeof(string));
         }
-        public static void Copy(ref object[] dArray1, ref object[] sArray2)
+        public static void MemCat(ref object[] dArray1, ref object[] sArray2)
         {
             if (dArray1 == null || dArray1.Length == 0) return;
             if (sArray2 == null || sArray2.Length == 0) return;
@@ -87,6 +87,31 @@ namespace Silmoon.Memory
 
             dArray1 = (string[])array.ToArray(typeof(string));
         }
+        public static void MemCat(ref byte[] dArray1, ref byte[] sArray2)
+        {
+            if (dArray1 == null || dArray1.Length == 0) return;
+            if (sArray2 == null || sArray2.Length == 0) return;
+
+            ArrayList array = new ArrayList();
+            for (int i = 0; i < dArray1.Length; i++)
+                array.Add(dArray1.GetValue(i));
+
+            for (int i = 0; i < sArray2.Length; i++)
+                array.Add(sArray2.GetValue(i));
+
+            dArray1 = (byte[])array.ToArray(typeof(byte));
+        }
+
+
+        public static void MemCpy(ref byte[] dArray1, ref byte[] sArray2)
+        {
+            if (dArray1 == null || dArray1.Length == 0) return;
+            if (sArray2 == null || sArray2.Length == 0) return;
+
+            for (int i = 0; i < dArray1.Length; i++)
+                dArray1[i] = sArray2[i];
+        }
+        
 
         public static int Find(ref ArrayList dArray1, ref object fObject)
         {

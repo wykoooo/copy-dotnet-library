@@ -926,7 +926,7 @@ namespace Silmoon.Net
         public static SmmpPacket CreateNew(SmmpPacket fromRecv, int ID = -1)
         {
             if (ID == -1) ID = new Random().Next(0, 99999);
-            SmmpPacket packet = new SmmpPacket(ID, fromRecv.MessageID);
+            SmmpPacket packet = new SmmpPacket(ID, fromRecv.MessageID, true);
             return packet;
         }
     }

@@ -821,8 +821,11 @@ namespace Silmoon.Net
         public SmmpPacket()
         {
         }
-        public SmmpPacket(int messageID, int responseID)
+        public SmmpPacket(int messageID = -1, int responseID = -1)
         {
+            if (MessageID == -1) MessageID = new Random().Next(0, 99999);
+            if (ResponseID == -1) ResponseID = new Random().Next(0, 99999);
+
             MessageID = messageID;
             ResponseID = responseID;
             Messages = new NameValueCollection();

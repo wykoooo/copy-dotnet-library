@@ -816,13 +816,6 @@
             <param name="s"></param>
             <returns></returns>
         </member>
-        <member name="M:Silmoon.SmString.FixNullString(System.String)">
-            <summary>
-            如果字符串为NULL，则把字符串变成零长度的字符串。
-            </summary>
-            <param name="s">字符串</param>
-            <returns></returns>
-        </member>
         <member name="M:Silmoon.SmString.FixNullString(System.Object)">
             <summary>
             如果字符串为NULL，则把字符串变成零长度的字符串。

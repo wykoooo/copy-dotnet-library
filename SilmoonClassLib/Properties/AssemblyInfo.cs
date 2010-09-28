@@ -8,7 +8,7 @@ using System.Security;
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Silmoon")]
-[assembly: AssemblyDescription("Build 100729")]
+[assembly: AssemblyDescription("Build 100928")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Silmoon Inc.")]
 [assembly: AssemblyProduct("银月(SILMOON)通用类型库")]
@@ -35,6 +35,6 @@ using System.Security;
 //
 // 可以指定所有这些值，也可以使用“修订号”和“内部版本号”的默认值，
 // 方法是按如下所示使用“*”:
-[assembly: AssemblyVersion("0.0.0.60")]
-[assembly: AssemblyFileVersion("0.0.4.0")]
+[assembly: AssemblyVersion("0.0.0.70")]
+[assembly: AssemblyFileVersion("0.0.4.5")]
 [assembly: NeutralResourcesLanguageAttribute("zh-CHS")]

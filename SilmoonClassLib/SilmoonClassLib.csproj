@@ -138,7 +138,7 @@
     <Compile Include="Data\SqlUtility\MySQLHelper.cs" />
     <Compile Include="Data\SmOleDbSource.cs" />
     <Compile Include="Data\SqlClient\SmMSSQLClientSource.cs" />
-    <Compile Include="appliaction.cs" />
+    <Compile Include="ExecProc.cs" />
     <Compile Include="SmEnvironment.cs" />
     <Compile Include="SmSystem.cs" />
     <Compile Include="Reflection\ReflectionXml.cs" />

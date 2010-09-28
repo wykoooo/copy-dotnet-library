@@ -97,3 +97,4 @@ E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.write.1.tlog
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.dll
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.XML

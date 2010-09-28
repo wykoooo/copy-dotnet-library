@@ -72,8 +72,7 @@ namespace Silmoon
         /// <returns></returns>
         public static string FixNullString(string s)
         {
-            if (s == null) return "";
-            else return s;
+            return FixNullString(s);
         }
         /// <summary>
         /// 如果字符串为NULL，则把字符串变成零长度的字符串。
@@ -82,7 +81,17 @@ namespace Silmoon
         /// <returns></returns>
         public static string FixNullString(object s)
         {
-            if (s == null) return "";
+            return FixNullString(s.ToString());
+        }
+        /// <summary>
+        /// 如果字符串为NULL，则把字符串变成零长度的字符串。
+        /// </summary>
+        /// <param name="s">字符串</param>
+        /// <param name="onNullReturn">当字符串为NULL返回字符串</param>
+        /// <returns></returns>
+        public static string FixNullString(string s, string onNullReturn = "")
+        {
+            if (s == null) return onNullReturn;
             else return s.ToString();
         }
         /// <summary>
@@ -402,23 +411,6 @@ namespace Silmoon
             if (b) return 1;
             else return 0;
         }
-    }
-    public class StringConvertFormat
-    {
-        /// <summary>
-        /// 将可能是日期和时间的字符串转换成标准的时间表示方式。
-        /// </summary>
-        /// <param name="dateTimeString">要分析和转换的日期时间字符串</param>
-        /// <returns></returns>
-        public static string ConvertStringToStandardDateTimeString(string dateTimeString)
-        {
-            return DateTime.Parse(dateTimeString).ToString("yyyy-MM-dd HH:mm:ss");
-        }
-    }
-
-    public class ClassPtr
-    {
-        public object Object;
     }
 
     public sealed class ConsoleEx
@@ -772,45 +764,5 @@ namespace Silmoon
             set { _objects = value; }
         }
 
-    }
-
-    public sealed class SilmoonKey
-    {
-        string _k1;
-        string _k2;
-        string _k3;
-        public string GeyKeyString
-        {
-            get { return _k1 + _k2 + _k3; }
-        }
-        public SilmoonKey(string k1, string k2, string k3)
-        {
-            _k1 = k1;
-            _k2 = k2;
-            _k3 = k3;
-        }
-        public static void ValidateKey(SilmoonKey k)
-        {
-            if (k.GeyKeyString != Copyright.Author.Split(new string[] { " " }, StringSplitOptions.None)[0] + "s" + Copyright.CopyUsingString)
-            { throw new SilmoonKeyException("类库密码错误！", k.GeyKeyString); }
-        }
-    }
-    public sealed class SilmoonKeyException : Exception
-    {
-        string _message;
-        string _keyString;
-        public override string Message
-        {
-            get { return _message; }
-        }
-        public SilmoonKeyException()
-        {
-
-        }
-        public SilmoonKeyException(string message, string keyString)
-        {
-            _message = message;
-            _keyString = keyString;
-        }
     }
 }

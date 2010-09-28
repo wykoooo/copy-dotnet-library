@@ -20,13 +20,12 @@ namespace Silmoon.MySilmoon
         /// 
         /// </summary>
         /// <param name="named"></param>
-        /// <param name="webaction"></param>
+        /// <param name="webAction"></param>
         /// <returns></returns>
-        public static string ConnectionSilmoon(string named, string webaction, SilmoonKey k)
+        public static string ConnectionSilmoon(string named, string webAction)
         {
-            SilmoonKey.ValidateKey(k);
             WebClient _wclit = new WebClient();
-            string uri = "http://www.silmoon.com/System/Interface/Receive.aspx?Action=" + webaction + "&FieldText=" + named + "&ShowTip=true";
+            string uri = "http://www.silmoon.com/System/Interface/Receive.aspx?Action=" + webAction + "&FieldText=" + named + "&ShowTip=true";
             string result = _wclit.DownloadString(uri);
             _wclit.Dispose();
             return result;

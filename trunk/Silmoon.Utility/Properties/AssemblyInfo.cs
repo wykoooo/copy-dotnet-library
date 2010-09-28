@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Silmoon.Utility")]
-[assembly: AssemblyDescription("Build 100729")]
+[assembly: AssemblyDescription("Build 100928")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Silmoon Inc.")]
 [assembly: AssemblyProduct("银月(SILMOON)通用类型库")]
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      内部版本号
 //      修订号
 //
-[assembly: AssemblyVersion("0.0.0.6")]
-[assembly: AssemblyFileVersion("0.0.3.4")]
+[assembly: AssemblyVersion("0.0.0.11")]
+[assembly: AssemblyFileVersion("0.0.4.5")]

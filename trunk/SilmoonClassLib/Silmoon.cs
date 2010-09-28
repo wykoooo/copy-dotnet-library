@@ -70,15 +70,6 @@ namespace Silmoon
         /// </summary>
         /// <param name="s">字符串</param>
         /// <returns></returns>
-        public static string FixNullString(string s)
-        {
-            return FixNullString(s);
-        }
-        /// <summary>
-        /// 如果字符串为NULL，则把字符串变成零长度的字符串。
-        /// </summary>
-        /// <param name="s">字符串</param>
-        /// <returns></returns>
         public static string FixNullString(object s)
         {
             return FixNullString(s.ToString());

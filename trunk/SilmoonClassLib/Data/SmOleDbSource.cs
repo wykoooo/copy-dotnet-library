@@ -43,7 +43,7 @@ namespace Silmoon.Data
         /// <param name="conStr">指定连接数据库的数据库连接字符串</param>
         public void InitData(bool open, string conStr)
         {
-            _ssc = new SmOleDb(conStr, new SilmoonKey("so", "ng", "share"));
+            _ssc = new SmOleDb(conStr);
             if (open) { _ssc.Open(); }
         }
 

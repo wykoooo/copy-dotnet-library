@@ -20,9 +20,9 @@ namespace Silmoon.SmSystem
             get { return st; }
             set { st = value; }
         }
-        public SmTime(SilmoonKey k)
+        public SmTime()
         {
-            SilmoonKey.ValidateKey(k);
+
         }
 
         public void SetSystemTime(short Year, short Month, short Day, short Hour, short Minute, short Second)

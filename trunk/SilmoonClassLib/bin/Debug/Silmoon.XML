@@ -178,7 +178,7 @@
             获取SQL地连接状态
             </summary>
         </member>
-        <member name="M:Silmoon.Data.SqlClient.SmOleDb.#ctor(System.String,Silmoon.SilmoonKey)">
+        <member name="M:Silmoon.Data.SqlClient.SmOleDb.#ctor(System.String)">
             <summary>
             类的构造函数
             </summary>
@@ -830,6 +830,14 @@
             <param name="s">字符串</param>
             <returns></returns>
         </member>
+        <member name="M:Silmoon.SmString.FixNullString(System.String,System.String)">
+            <summary>
+            如果字符串为NULL，则把字符串变成零长度的字符串。
+            </summary>
+            <param name="s">字符串</param>
+            <param name="onNullReturn">当字符串为NULL返回字符串</param>
+            <returns></returns>
+        </member>
         <member name="M:Silmoon.SmString.StringToBool(System.String)">
             <summary>
             将一个字符串转化成BOOL类型
@@ -921,13 +929,6 @@
             <param name="array"></param>
             <returns></returns>
         </member>
-        <member name="M:Silmoon.StringConvertFormat.ConvertStringToStandardDateTimeString(System.String)">
-            <summary>
-            将可能是日期和时间的字符串转换成标准的时间表示方式。
-            </summary>
-            <param name="dateTimeString">要分析和转换的日期时间字符串</param>
-            <returns></returns>
-        </member>
         <member name="T:Silmoon.Net.NetworkAddressFormat">
             <summary>
             提供格式化网络地址的静态方法
@@ -952,12 +953,12 @@
             
             </summary>
         </member>
-        <member name="M:Silmoon.MySilmoon.ConnSilmoon.ConnectionSilmoon(System.String,System.String,Silmoon.SilmoonKey)">
+        <member name="M:Silmoon.MySilmoon.ConnSilmoon.ConnectionSilmoon(System.String,System.String)">
             <summary>
             
             </summary>
             <param name="named"></param>
-            <param name="webaction"></param>
+            <param name="webAction"></param>
             <returns></returns>
         </member>
         <member name="M:Silmoon.MySilmoon.ConnSilmoon.AsyncConnectionSilmoon(System.String,System.String,Silmoon.MySilmoon.WebConnectionHander)">

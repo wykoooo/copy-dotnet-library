@@ -20,5 +20,9 @@ namespace Silmoon
             time = startTime.AddSeconds(d);
             return time;
         }
+        public static string ConvertStringToStandardDateTimeString(string dateTimeString)
+        {
+            return DateTime.Parse(dateTimeString).ToString("yyyy-MM-dd HH:mm:ss");
+        }
     }
 }

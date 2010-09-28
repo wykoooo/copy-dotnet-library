@@ -288,9 +288,8 @@ namespace Silmoon.Data.SqlClient
         /// <summary>
         /// 类的构造函数
         /// </summary>
-        public SmOleDb(string constr, SilmoonKey k)
+        public SmOleDb(string constr)
         {
-            SilmoonKey.ValidateKey(k);
             isConnect = false;
             conStr = constr;
             InitClass();

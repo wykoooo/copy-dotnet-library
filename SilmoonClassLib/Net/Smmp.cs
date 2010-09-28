@@ -818,17 +818,18 @@ namespace Silmoon.Net
         public NameValueCollection Messages;
 
         public byte[] ContentBuffer;
-        public SmmpPacket()
+        public SmmpPacket(bool initMessages = false)
         {
+            if (initMessages) Messages = new NameValueCollection();
         }
-        public SmmpPacket(int messageID = -1, int responseID = -1)
+        public SmmpPacket(int messageID = -1, int responseID = -1, bool initMessages = false)
         {
             if (MessageID == -1) MessageID = new Random().Next(0, 99999);
             if (ResponseID == -1) ResponseID = new Random().Next(0, 99999);
 
             MessageID = messageID;
             ResponseID = responseID;
-            Messages = new NameValueCollection();
+            if (initMessages) Messages = new NameValueCollection();
         }
         public byte[] MakeByteData(int messageID, int responseID)
         {

@@ -180,19 +180,9 @@ namespace Silmoon
         /// </summary>
         /// <param name="array">字符串数组</param>
         /// <param name="index">索引号</param>
-        /// <returns></returns>
-        public static string FormArrayGetString(string[] array, int index)
-        {
-            return FormArrayGetString(array, index, false);
-        }
-        /// <summary>
-        /// 从一个字符串中获取一个指定索引号的元素的字符串。
-        /// </summary>
-        /// <param name="array">字符串数组</param>
-        /// <param name="index">索引号</param>
         /// <param name="outIndexReturnNull">如果超出索引，是否返回null</param>
         /// <returns></returns>
-        public static string FormArrayGetString(string[] array, int index, bool outIndexReturnNull)
+        public static string FormArrayGetString(string[] array, int index, bool outIndexReturnNull = false)
         {
             if (array.Length < (index + 1))
             {

@@ -110,6 +110,10 @@ namespace Silmoon
                     return true;
                 case "no":
                     return false;
+                case "on":
+                    return true;
+                case "off":
+                    return false;
                 case "ÊÇ":
                     return true;
                 case "·ñ":

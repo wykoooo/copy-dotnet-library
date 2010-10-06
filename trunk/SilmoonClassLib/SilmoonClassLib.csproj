@@ -13,7 +13,7 @@
     <SignAssembly>true</SignAssembly>
     <StartupObject>
     </StartupObject>
-    <AssemblyOriginatorKeyFile>Silmoon.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>sn.pfx</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -100,7 +100,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Silmoon.pfx" />
     <Compile Include="Configure\NameValueReader.cs" />
     <Compile Include="Data\ConnectionStringMaker.cs" />
     <Compile Include="Data\Odbc\SmOdbcClientInternal.cs" />
@@ -144,6 +143,7 @@
     <Compile Include="Reflection\ReflectionXml.cs" />
     <Compile Include="SpecialConverter.cs" />
     <Compile Include="Threading\Threads.cs" />
+    <None Include="sn.pfx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="base.resx">

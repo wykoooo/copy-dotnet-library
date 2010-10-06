@@ -13,7 +13,7 @@
     <StartupObject>
     </StartupObject>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Silmoon.Web.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>sn.pfx</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -80,7 +80,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Silmoon.Web.pfx" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -92,6 +91,7 @@
     </Compile>
     <Compile Include="UI\WebForms.cs" />
     <Compile Include="Controls\SingleUserLoginSessionControl.cs" />
+    <None Include="sn.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISmPage.cs" />

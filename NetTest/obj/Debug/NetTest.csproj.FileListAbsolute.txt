@@ -106,3 +106,15 @@ I:\svn\silmoon-dotnet-library\NetTest\obj\Debug\ResGen.read.1.tlog
 I:\svn\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.write.1.tlog
 I:\svn\silmoon-dotnet-library\NetTest\obj\Debug\ResGen.write.1.tlog
 I:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.pdb
+K:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.exe
+K:\svn\silmoon-dotnet-library\NetTest\bin\Debug\NetTest.exe
+K:\svn\silmoon-dotnet-library\NetTest\bin\Debug\NetTest.pdb
+K:\svn\silmoon-dotnet-library\NetTest\bin\Debug\Silmoon.dll
+K:\svn\silmoon-dotnet-library\NetTest\bin\Debug\Silmoon.xml
+K:\svn\silmoon-dotnet-library\NetTest\obj\Debug\ResolveAssemblyReference.cache
+K:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.Form1.resources
+K:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.Properties.Resources.resources
+K:\svn\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.read.1.tlog
+K:\svn\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.write.1.tlog
+K:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.pdb
+K:\svn\silmoon-dotnet-library\NetTest\bin\Debug\Silmoon.pdb

@@ -13,7 +13,7 @@
     <StartupObject>
     </StartupObject>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>sn.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>sn.snk</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -91,7 +91,7 @@
     </Compile>
     <Compile Include="UI\WebForms.cs" />
     <Compile Include="Controls\SingleUserLoginSessionControl.cs" />
-    <None Include="sn.pfx" />
+    <None Include="sn.snk" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISmPage.cs" />

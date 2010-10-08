@@ -13,7 +13,7 @@
     <SignAssembly>true</SignAssembly>
     <StartupObject>
     </StartupObject>
-    <AssemblyOriginatorKeyFile>sn.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>sn.snk</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -143,7 +143,7 @@
     <Compile Include="Reflection\ReflectionXml.cs" />
     <Compile Include="SpecialConverter.cs" />
     <Compile Include="Threading\Threads.cs" />
-    <None Include="sn.pfx" />
+    <None Include="sn.snk" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="base.resx">

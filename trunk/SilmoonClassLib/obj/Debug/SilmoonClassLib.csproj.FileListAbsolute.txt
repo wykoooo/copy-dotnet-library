@@ -94,9 +94,7 @@ I:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResolveAssemblyReference
 I:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.Base.SmBase.resources
 I:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.Properties.Resources.resources
 I:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.read.1.tlog
-I:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.read.1.tlog
 I:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.write.1.tlog
-I:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.write.1.tlog
 I:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.dll
 I:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.pdb
 K:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResolveAssemblyReference.cache

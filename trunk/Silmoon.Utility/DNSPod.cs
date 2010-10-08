@@ -19,6 +19,7 @@ namespace Silmoon.Utility
         bool _isLogin = false;
         string _user_agent = "Unknown_SilmoonAssembly/0.0.0.0";
         public string _result = "";
+        public int UserID = 0;
         public ArrayList APIHeaders = new ArrayList();
 
         /// <summary>
@@ -155,6 +156,7 @@ namespace Silmoon.Utility
             {
                 LoadXml(ref resultXml,ref _xml);
                 string iresult = _xml.GetElementsByTagName("code")[0].InnerText;
+                UserID = int.Parse(_xml["dnspod"]["user"]["id"].InnerText);
                 if (iresult == "1")
                 {
                     _isLogin = true;

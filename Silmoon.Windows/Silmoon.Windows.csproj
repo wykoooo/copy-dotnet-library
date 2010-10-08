@@ -11,7 +11,7 @@
     <RootNamespace>Silmoon.Windows</RootNamespace>
     <AssemblyName>Silmoon.Windows</AssemblyName>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>sn.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>sn.snk</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -154,7 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resource\SmTrackBarBottionImage1.png" />
-    <None Include="sn.pfx" />
+    <None Include="sn.snk" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resource\SmTrackBarBottionImage.png" />

@@ -109,9 +109,7 @@ I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Properti
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls.SmTrackBar.resources
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.WindowsResource.resources
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.read.1.tlog
-I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.read.1.tlog
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.write.1.tlog
-I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.write.1.tlog
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb
 K:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResolveAssemblyReference.cache

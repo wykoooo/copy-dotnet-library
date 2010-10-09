@@ -565,7 +565,6 @@ namespace Silmoon.Utility
                     userInfo.LoginOK = false;
                     IsLogin = false;
                 }
-                IsLogin = true;
             }
 
             return userInfo;

@@ -181,6 +181,7 @@ namespace Silmoon.Utility
         /// <param name="validate">是否验证TOKEN</param>
         public UserInfo BlackCaseLogin(int userID, string token, bool validate = false)
         {
+            BlackCase = true;
             UserID = userID;
             Token = token;
             if (validate)
@@ -197,7 +198,7 @@ namespace Silmoon.Utility
         /// <param name="login">是否设置为已经登录</param>
         public void SetBlackLoginState(int userID, string token, bool login)
         {
-            BlackCase = false;
+            BlackCase = true;
             UserID = userID;
             Token = token;
             _isLogin = login;
@@ -223,24 +224,20 @@ namespace Silmoon.Utility
             string resultXml = GetDNSPodServerXml("Domain.List", AuthConnection() + "&type=" + type.ToString());
             if (resultXml == "") return null;
 
-            LoadXml(ref resultXml,ref _xml);
+            LoadXml(ref resultXml, ref _xml);
             ArrayList binfoArr = new ArrayList();
-            int unitCount = _xml.GetElementsByTagName("domain").Count;
-            for (int i = 0; i < unitCount; i++)
+            XmlNode domainsNode = _xml["dnspod"]["domains"];
+
+            foreach (XmlNode node in domainsNode)
             {
                 DomainInfo newInfo = new DomainInfo();
-                newInfo.DomainName = _xml.GetElementsByTagName("name")[i].InnerText;
-                string s = _xml.GetElementsByTagName("status")[i].InnerText;
-                if (_xml.GetElementsByTagName("status")[i + 1].InnerText == "enable")
-                    newInfo.State = true;
-                else
-                    newInfo.State = false;
-
-                newInfo.Records = int.Parse(_xml.GetElementsByTagName("records")[i].InnerText);
-                newInfo.ID = int.Parse(_xml.GetElementsByTagName("id")[i].InnerText);
-                newInfo.Grade = StringToGrade(_xml.GetElementsByTagName("grade")[i].InnerText);
-                if (_xml.GetElementsByTagName("shared_from").Count == 1)
-                    newInfo.ShardForm = _xml.GetElementsByTagName("shared_from")[0].InnerText;
+                newInfo.DomainName = node["name"].InnerText;
+                newInfo.State = SmString.StringToBool(node["status"].InnerText);
+                newInfo.Records = int.Parse(node["records"].InnerText);
+                newInfo.ID = int.Parse(node["id"].InnerText);
+                newInfo.Grade = StringToGrade(node["grade"].InnerText);
+                if (node["shared_from"] != null)
+                    newInfo.ShardForm = node["shared_from"].InnerText;
                 newInfo.Validate = DNSPodUnitValidate.FromDNSPod;
                 binfoArr.Add(newInfo);
             }
@@ -254,32 +251,31 @@ namespace Silmoon.Utility
         public RecordInfo[] GetRecords(int domainID)
         {
             XmlDocument _xml = new XmlDocument();
+            ArrayList array = new ArrayList();
 
             string resultXml = GetDNSPodServerXml("Record.List", AuthConnection() + "&domain_id=" + domainID);
             if (resultXml == "") return null;
-            LoadXml(ref resultXml,ref _xml);
+            LoadXml(ref resultXml, ref _xml);
 
             if (_xml.GetElementsByTagName("code")[0].InnerText == "1" || _xml.GetElementsByTagName("code")[0].InnerText == "7")
             {
-                ArrayList array = new ArrayList();
-                int unitCount = _xml.GetElementsByTagName("record").Count;
-                for (int i = 0; i < unitCount; i++)
+                XmlNode recordsNode = _xml["dnspod"]["records"];
+                foreach (XmlNode node in recordsNode)
                 {
                     RecordInfo newRecord = new RecordInfo();
-                    newRecord.Enable = SmString.StringToBool(_xml.GetElementsByTagName("enabled")[i].InnerText);
-                    newRecord.ID = int.Parse(_xml.GetElementsByTagName("id")[i].InnerText);
-                    newRecord.Isp = DNSPod.StringToISP(_xml.GetElementsByTagName("line")[i].InnerText);
-                    newRecord.MXLevel = int.Parse(_xml.GetElementsByTagName("mx")[i].InnerText);
-                    newRecord.Subname = _xml.GetElementsByTagName("name")[i].InnerText;
-                    newRecord.TTL = int.Parse(_xml.GetElementsByTagName("ttl")[i].InnerText);
-                    newRecord.Type = DNSPod.StringToRecordType(_xml.GetElementsByTagName("type")[i].InnerText);
-                    newRecord.Value = _xml.GetElementsByTagName("value")[i].InnerText;
+                    newRecord.Enable = SmString.StringToBool(node["enabled"].InnerText);
+                    newRecord.ID = int.Parse(node["id"].InnerText);
+                    newRecord.Isp = DNSPod.StringToISP(node["line"].InnerText);
+                    newRecord.MXLevel = int.Parse(node["mx"].InnerText);
+                    newRecord.Subname = node["name"].InnerText;
+                    newRecord.TTL = int.Parse(node["ttl"].InnerText);
+                    newRecord.Type = DNSPod.StringToRecordType(node["type"].InnerText);
+                    newRecord.Value = node["value"].InnerText;
                     newRecord.Validate = DNSPodUnitValidate.FromDNSPod;
                     array.Add(newRecord);
                 }
-                return (RecordInfo[])array.ToArray(typeof(RecordInfo));
             }
-            else return null;
+            return (RecordInfo[])array.ToArray(typeof(RecordInfo));
         }
         /// <summary>
         /// 设置域名状态
@@ -302,7 +298,7 @@ namespace Silmoon.Utility
                 result.Message = "server error";
                 return result;
             }
-            LoadXml(ref resultXml,ref _xml);
+            LoadXml(ref resultXml, ref _xml);
             result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
             if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
             result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
@@ -326,7 +322,7 @@ namespace Silmoon.Utility
                 result.Message = "server error";
                 return result;
             }
-            LoadXml(ref resultXml,ref _xml);
+            LoadXml(ref resultXml, ref _xml);
             result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
             if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
             result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
@@ -350,7 +346,7 @@ namespace Silmoon.Utility
                 result.Message = "server error";
                 return result;
             }
-            LoadXml(ref resultXml,ref _xml);
+            LoadXml(ref resultXml, ref _xml);
             result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
             if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
             result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
@@ -383,7 +379,7 @@ namespace Silmoon.Utility
                 result.Message = "server error";
                 return result;
             }
-            LoadXml(ref resultXml,ref _xml);
+            LoadXml(ref resultXml, ref _xml);
             if (_xml.GetElementsByTagName("id").Count == 0)
                 result.ID = 0;
             else
@@ -422,7 +418,7 @@ namespace Silmoon.Utility
                 result.Message = "server error";
                 return result;
             }
-            LoadXml(ref resultXml,ref _xml);
+            LoadXml(ref resultXml, ref _xml);
             result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
             if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
             result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
@@ -448,7 +444,7 @@ namespace Silmoon.Utility
                 return result;
             }
 
-            LoadXml(ref resultXml,ref _xml);
+            LoadXml(ref resultXml, ref _xml);
             result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
             if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
             result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
@@ -469,7 +465,7 @@ namespace Silmoon.Utility
             string enableArgs = "";
             if (enable) enableArgs = "enable"; else enableArgs = "disable";
             string resultXml = GetDNSPodServerXml("Record.Status", AuthConnection() + "&record_id=" + recordID + "&domain_id=" + domainID + "&status=" + enableArgs);
-            LoadXml(ref resultXml,ref _xml);
+            LoadXml(ref resultXml, ref _xml);
             result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
             if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
             result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
@@ -549,7 +545,7 @@ namespace Silmoon.Utility
                 userInfo.StateCode = -99;
             else
             {
-                LoadXml(ref resultXml,ref _xml);
+                LoadXml(ref resultXml, ref _xml);
                 userInfo.StateCode = int.Parse(_xml["dnspod"]["status"]["code"].InnerText);
                 userInfo.Message = _xml["dnspod"]["status"]["message"].InnerText;
                 if (userInfo.StateCode == 1)
@@ -578,7 +574,7 @@ namespace Silmoon.Utility
             XmlDocument _xml = new XmlDocument();
 
             string resultXml = GetDNSPodServerXml("Login.Key", AuthConnection());
-            LoadXml(ref resultXml,ref _xml);
+            LoadXml(ref resultXml, ref _xml);
             if (_xml.GetElementsByTagName("code")[0].InnerText == "1")
             {
                 return _xml.GetElementsByTagName("key")[0].InnerText;
@@ -598,13 +594,13 @@ namespace Silmoon.Utility
             catch (Exception ex)
             {
                 throw ex;
-                
+
             }
         }
 
         public static ISP StringToISP(string isp)
         {
-            
+
             switch (isp.ToLower())
             {
                 case "tel":
@@ -975,7 +971,7 @@ namespace Silmoon.Utility
 
         public enum DomainListType
         {
-            all,share,mine
+            all, share, mine
         }
     }
     public class DomainInfo
@@ -1026,11 +1022,11 @@ namespace Silmoon.Utility
     }
     public enum AgentGrade
     {
-        unknown=0,
-        bronze=1,
-        silver=2,
-        gold=3,
-        diamond=4,
+        unknown = 0,
+        bronze = 1,
+        silver = 2,
+        gold = 3,
+        diamond = 4,
     }
     public enum ISP
     {
@@ -1107,7 +1103,7 @@ namespace Silmoon.Utility
         zhejiang_tel = 164,
         zhejiang_cnc = 165,
     }
-    
+
     public enum RecordType
     {
         A = 1,

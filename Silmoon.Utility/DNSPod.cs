@@ -16,10 +16,12 @@ namespace Silmoon.Utility
         protected internal string _baseAPIUri = "https://www.dnspod.com/";
         string _username;
         string _password;
+        string _token;
         bool _isLogin = false;
         string _user_agent = "Unknown_SilmoonAssembly/0.0.0.0";
         public string _result = "";
-        public int UserID = 0;
+        int _userID = 0;
+        public bool BlackCase = false;
         public ArrayList APIHeaders = new ArrayList();
 
         /// <summary>
@@ -28,6 +30,7 @@ namespace Silmoon.Utility
         public bool IsLogin
         {
             get { return _isLogin; }
+            private set { _isLogin = value; }
         }
         /// <summary>
         /// 获取或设置当前用户名
@@ -46,6 +49,14 @@ namespace Silmoon.Utility
             set { _password = value; }
         }
         /// <summary>
+        /// 设置暗箱操作使用的Token
+        /// </summary>
+        public string Token
+        {
+            get { return _token; }
+            private set { _token = value; }
+        }
+        /// <summary>
         /// 获取或设置DNSPod API路径
         /// </summary>
         public string BaseAPIUri
@@ -59,6 +70,14 @@ namespace Silmoon.Utility
         public string User_Agent
         {
             get { return _user_agent; }
+        }
+        /// <summary>
+        /// 获取用户ID
+        /// </summary>
+        public int UserID
+        {
+            get { return _userID; }
+            set { _userID = value; }
         }
 
         /// <summary>
@@ -134,43 +153,13 @@ namespace Silmoon.Utility
         /// <param name="username">用户名</param>
         /// <param name="password">密码</param>
         /// <returns></returns>
-        public StateFlag Login(string username, string password)
+        public UserInfo Login(string username, string password)
         {
-            XmlDocument _xml = new XmlDocument();
+            BlackCase = false;
 
-            StateFlag result = new StateFlag();
             _username = username;
             _password = password;
-            string resultXml = GetDNSPodServerXml("User.Info", accountConntionString());
-            if (resultXml == "" || resultXml[0].ToString() == "!")
-            {
-                _isLogin = false;
-                result.DoubleStateFlag = false;
-                result.IntStateFlag = -99;
-                if (resultXml == "")
-                    result.Message = "server error";
-                else result.Message = resultXml;
-                return result;
-            }
-            else
-            {
-                LoadXml(ref resultXml,ref _xml);
-                string iresult = _xml.GetElementsByTagName("code")[0].InnerText;
-                UserID = int.Parse(_xml["dnspod"]["user"]["id"].InnerText);
-                if (iresult == "1")
-                {
-                    _isLogin = true;
-                    result.DoubleStateFlag = true;
-                }
-                else
-                {
-                    _isLogin = false;
-                    result.DoubleStateFlag = false;
-                }
-                result.IntStateFlag = int.Parse(iresult);
-                result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
-                return result;
-            }
+            return GetUserInfo();
         }
         /// <summary>
         /// 设置登录状态
@@ -180,10 +169,40 @@ namespace Silmoon.Utility
         /// <param name="login">是否设置为已经登录</param>
         public void SetLoginState(string username, string password, bool login)
         {
+            BlackCase = false;
             _username = username;
             _password = password;
             _isLogin = login;
         }
+        /// <summary>
+        /// 黑箱操作登录
+        /// </summary>
+        /// <param name="token">TOKEN</param>
+        /// <param name="validate">是否验证TOKEN</param>
+        public UserInfo BlackCaseLogin(int userID, string token, bool validate = false)
+        {
+            UserID = userID;
+            Token = token;
+            if (validate)
+            {
+                return GetUserInfo();
+            }
+            return null;
+        }
+        /// <summary>
+        /// 设置登录状态
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <param name="password">密码</param>
+        /// <param name="login">是否设置为已经登录</param>
+        public void SetBlackLoginState(int userID, string token, bool login)
+        {
+            BlackCase = false;
+            UserID = userID;
+            Token = token;
+            _isLogin = login;
+        }
+
         /// <summary>
         /// 获取用户的所有域名
         /// </summary>
@@ -201,7 +220,7 @@ namespace Silmoon.Utility
         {
             XmlDocument _xml = new XmlDocument();
 
-            string resultXml = GetDNSPodServerXml("Domain.List", accountConntionString() + "&type=" + type.ToString());
+            string resultXml = GetDNSPodServerXml("Domain.List", AuthConnection() + "&type=" + type.ToString());
             if (resultXml == "") return null;
 
             LoadXml(ref resultXml,ref _xml);
@@ -236,7 +255,7 @@ namespace Silmoon.Utility
         {
             XmlDocument _xml = new XmlDocument();
 
-            string resultXml = GetDNSPodServerXml("Record.List", accountConntionString() + "&domain_id=" + domainID);
+            string resultXml = GetDNSPodServerXml("Record.List", AuthConnection() + "&domain_id=" + domainID);
             if (resultXml == "") return null;
             LoadXml(ref resultXml,ref _xml);
 
@@ -275,7 +294,7 @@ namespace Silmoon.Utility
             StateFlag result = new StateFlag();
             string enableArgs = "";
             if (enable) enableArgs = "enable"; else enableArgs = "disable";
-            string resultXml = GetDNSPodServerXml("Domain.Status", accountConntionString() + "&domain_id=" + domainID + "&status=" + enableArgs);
+            string resultXml = GetDNSPodServerXml("Domain.Status", AuthConnection() + "&domain_id=" + domainID + "&status=" + enableArgs);
             if (resultXml == "")
             {
                 result.DoubleStateFlag = false;
@@ -299,7 +318,7 @@ namespace Silmoon.Utility
             XmlDocument _xml = new XmlDocument();
 
             StateFlag result = new StateFlag();
-            string resultXml = GetDNSPodServerXml("Domain.Create", accountConntionString() + "&domain=" + domain);
+            string resultXml = GetDNSPodServerXml("Domain.Create", AuthConnection() + "&domain=" + domain);
             if (resultXml == "")
             {
                 result.DoubleStateFlag = false;
@@ -323,7 +342,7 @@ namespace Silmoon.Utility
             XmlDocument _xml = new XmlDocument();
 
             StateFlag result = new StateFlag();
-            string resultXml = GetDNSPodServerXml("Domain.Remove", accountConntionString() + "&domain_id=" + domainID);
+            string resultXml = GetDNSPodServerXml("Domain.Remove", AuthConnection() + "&domain_id=" + domainID);
             if (resultXml == "")
             {
                 result.DoubleStateFlag = false;
@@ -348,7 +367,7 @@ namespace Silmoon.Utility
             XmlDocument _xml = new XmlDocument();
 
             StateFlag result = new StateFlag();
-            string urlArgs = accountConntionString();
+            string urlArgs = AuthConnection();
             urlArgs += "&domain_id=" + domainID;
             urlArgs += "&sub_domain=" + record.Subname;
             urlArgs += "&record_type=" + record.Type.ToString();
@@ -386,7 +405,7 @@ namespace Silmoon.Utility
             XmlDocument _xml = new XmlDocument();
 
             StateFlag result = new StateFlag();
-            string urlArgs = accountConntionString();
+            string urlArgs = AuthConnection();
             urlArgs += "&domain_id=" + domainID;
             urlArgs += "&record_id=" + record.ID;
             urlArgs += "&sub_domain=" + record.Subname;
@@ -420,7 +439,7 @@ namespace Silmoon.Utility
             XmlDocument _xml = new XmlDocument();
 
             StateFlag result = new StateFlag();
-            string resultXml = GetDNSPodServerXml("Record.Remove", accountConntionString() + "&record_id=" + recordID + "&domain_id=" + domainID);
+            string resultXml = GetDNSPodServerXml("Record.Remove", AuthConnection() + "&record_id=" + recordID + "&domain_id=" + domainID);
             if (resultXml == "")
             {
                 result.DoubleStateFlag = false;
@@ -449,7 +468,7 @@ namespace Silmoon.Utility
             StateFlag result = new StateFlag();
             string enableArgs = "";
             if (enable) enableArgs = "enable"; else enableArgs = "disable";
-            string resultXml = GetDNSPodServerXml("Record.Status", accountConntionString() + "&record_id=" + recordID + "&domain_id=" + domainID + "&status=" + enableArgs);
+            string resultXml = GetDNSPodServerXml("Record.Status", AuthConnection() + "&record_id=" + recordID + "&domain_id=" + domainID + "&status=" + enableArgs);
             LoadXml(ref resultXml,ref _xml);
             result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
             if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
@@ -525,7 +544,7 @@ namespace Silmoon.Utility
             XmlDocument _xml = new XmlDocument();
 
             UserInfo userInfo = new UserInfo();
-            string resultXml = GetDNSPodServerXml("User.Info", accountConntionString());
+            string resultXml = GetDNSPodServerXml("User.Info", AuthConnection());
             if (resultXml == "")
                 userInfo.StateCode = -99;
             else
@@ -534,25 +553,14 @@ namespace Silmoon.Utility
                 userInfo.StateCode = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
                 if (userInfo.StateCode == 1)
                 {
-                    userInfo.Email = Username; ;
-                    userInfo.Telephone = _xml.GetElementsByTagName("telephone")[0].InnerText;
-                    userInfo.IM = _xml.GetElementsByTagName("im")[0].InnerText;
-                    userInfo.Name = _xml.GetElementsByTagName("name")[0].InnerText;
-
-                    if (_xml.GetElementsByTagName("balance")[0].InnerText != "")
-                        userInfo.Balance = int.Parse(_xml.GetElementsByTagName("balance")[0].InnerText);
-
-                    if (_xml.GetElementsByTagName("fetion")[0].InnerText != "")
-                        userInfo.Fetion = int.Parse(_xml.GetElementsByTagName("fetion")[0].InnerText);
-
-                    userInfo.Website = _xml.GetElementsByTagName("website")[0].InnerText;
-                    if (_xml.GetElementsByTagName("agent").Count != 0)
-                    {
-                        userInfo.AgentID = int.Parse(_xml.GetElementsByTagName("id")[0].InnerText);
-                        userInfo.AgentGrade = UserInfo.StringToAgentGrade(_xml.GetElementsByTagName("grade")[0].InnerText);
-                        userInfo.Points = int.Parse(_xml.GetElementsByTagName("points")[0].InnerText);
-                    }
+                    userInfo.LoginOK = true;
+                    IsLogin = true;
+                    userInfo.UserID = int.Parse(_xml["dnspod"]["user"]["id"].InnerText);
+                    userInfo.Username = _xml["dnspod"]["user"]["email"].InnerText;
+                    Username = userInfo.Username;
                 }
+                userInfo.LoginOK = false;
+                IsLogin = true;
             }
 
             return userInfo;
@@ -565,7 +573,7 @@ namespace Silmoon.Utility
         {
             XmlDocument _xml = new XmlDocument();
 
-            string resultXml = GetDNSPodServerXml("Login.Key", accountConntionString());
+            string resultXml = GetDNSPodServerXml("Login.Key", AuthConnection());
             LoadXml(ref resultXml,ref _xml);
             if (_xml.GetElementsByTagName("code")[0].InnerText == "1")
             {
@@ -949,9 +957,16 @@ namespace Silmoon.Utility
             }
         }
 
-        public string accountConntionString()
+        public string AuthConnection()
         {
-            return "login_email=" + HttpUtility.UrlEncode(_username) + "&login_password=" + HttpUtility.UrlEncode(_password) + "&format=xml";
+            if (BlackCase)
+            {
+                return "login_id=" + UserID + "&login_token=" + Token + "&format=xml";
+            }
+            else
+            {
+                return "login_email=" + HttpUtility.UrlEncode(_username) + "&login_password=" + HttpUtility.UrlEncode(_password) + "&format=xml";
+            }
         }
 
         public enum DomainListType
@@ -999,35 +1014,11 @@ namespace Silmoon.Utility
     }
     public class UserInfo
     {
+        public string Username;
+        public int UserID;
         public int StateCode = -99;
-        public string Email;
-        public string Name;
-        public string Telephone;
-        public string IM;
-        public string Website;
-        public int Fetion;
-        public int Balance;
+        public bool LoginOK = false;
 
-        public int AgentID = 0;
-        public AgentGrade AgentGrade = AgentGrade.unknown;
-        public int Points;
-
-        public static AgentGrade StringToAgentGrade(string agentGrade)
-        {
-            switch (agentGrade.ToLower())
-            {
-                case "bronze":
-                    return AgentGrade.bronze;
-                case "silver":
-                    return AgentGrade.silver;
-                case "gold":
-                    return AgentGrade.gold;
-                case "diamond":
-                    return AgentGrade.diamond;
-                default:
-                    return AgentGrade.unknown;
-            }
-        }
     }
     public enum AgentGrade
     {

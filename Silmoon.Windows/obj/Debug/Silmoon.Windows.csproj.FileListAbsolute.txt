@@ -127,3 +127,4 @@ K:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.pdb
 K:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.dll
 K:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb
 K:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.XML
+I:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.XML

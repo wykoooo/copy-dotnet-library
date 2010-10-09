@@ -198,16 +198,6 @@ namespace Silmoon
         /// 把字符串数组中的所有字符全部合并。
         /// </summary>
         /// <param name="array">字符串数组。</param>
-        /// <param name="SplitString">分隔符</param>
-        /// <returns></returns>
-        public static string MergeStringArray(string[] array, string SplitString)
-        {
-            return MergeStringArray(array, SplitString);
-        }
-        /// <summary>
-        /// 把字符串数组中的所有字符全部合并。
-        /// </summary>
-        /// <param name="array">字符串数组。</param>
         /// <param name="perfixString">每个元素的前缀</param>
         /// <param name="suffixString">每个元素的后缀</param>
         /// <param name="SplitString">分隔符</param>

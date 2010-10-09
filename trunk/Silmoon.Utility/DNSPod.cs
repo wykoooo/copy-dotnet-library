@@ -550,7 +550,8 @@ namespace Silmoon.Utility
             else
             {
                 LoadXml(ref resultXml,ref _xml);
-                userInfo.StateCode = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
+                userInfo.StateCode = int.Parse(_xml["dnspod"]["status"]["code"].InnerText);
+                userInfo.Message = _xml["dnspod"]["status"]["message"].InnerText;
                 if (userInfo.StateCode == 1)
                 {
                     userInfo.LoginOK = true;
@@ -559,7 +560,11 @@ namespace Silmoon.Utility
                     userInfo.Username = _xml["dnspod"]["user"]["email"].InnerText;
                     Username = userInfo.Username;
                 }
-                userInfo.LoginOK = false;
+                else
+                {
+                    userInfo.LoginOK = false;
+                    IsLogin = false;
+                }
                 IsLogin = true;
             }
 
@@ -1018,7 +1023,7 @@ namespace Silmoon.Utility
         public int UserID;
         public int StateCode = -99;
         public bool LoginOK = false;
-
+        public string Message;
     }
     public enum AgentGrade
     {

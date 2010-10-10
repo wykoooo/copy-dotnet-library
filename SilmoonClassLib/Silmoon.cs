@@ -152,7 +152,7 @@ namespace Silmoon
         /// <param name="sArr">×Ö·û´®Êý×é</param>
         /// <param name="findString">×Ö·û´®</param>
         /// <returns></returns>
-        public static bool FindFormStringArray(string[] sArr,string findString)
+        public static bool FindFormStringArray(string[] sArr, string findString)
         {
             foreach (string s in sArr)
             {
@@ -208,7 +208,7 @@ namespace Silmoon
             string result = "";
             if (array == null || array.Length == 0) return result;
             foreach (string s in array)
-                result += s + SplitString;
+                result += perfixString + s + suffixString + SplitString;
             if (RemoveLastSplitString)
                 result = result.Substring(0, result.Length - SplitString.Length);
             return result;

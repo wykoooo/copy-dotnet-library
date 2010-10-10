@@ -1022,7 +1022,7 @@ namespace Silmoon.Net
 
                 foreach (string messageLine in messageLines)
                 {
-                    string[] messageSplited = messageLine.Split(new string[] { ":" }, StringSplitOptions.None);
+                    string[] messageSplited = messageLine.Split(new string[] { ":" }, 2, StringSplitOptions.None);
                     if (messageSplited.Length == 2)
                         packet.Messages.Add(messageSplited[0], messageSplited[1]);
                 }

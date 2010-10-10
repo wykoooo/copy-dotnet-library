@@ -265,7 +265,7 @@ namespace Silmoon.Utility
                     RecordInfo newRecord = new RecordInfo();
                     newRecord.Enable = SmString.StringToBool(node["enabled"].InnerText);
                     newRecord.ID = int.Parse(node["id"].InnerText);
-                    newRecord.Isp = DNSPod.StringToISP(node["line"].InnerText);
+                    newRecord.Isp = node["line"].InnerText;
                     newRecord.MXLevel = int.Parse(node["mx"].InnerText);
                     newRecord.Subname = node["name"].InnerText;
                     newRecord.TTL = int.Parse(node["ttl"].InnerText);
@@ -555,6 +555,7 @@ namespace Silmoon.Utility
                     userInfo.UserID = int.Parse(_xml["dnspod"]["user"]["id"].InnerText);
                     userInfo.Username = _xml["dnspod"]["user"]["email"].InnerText;
                     Username = userInfo.Username;
+                    UserID = userInfo.UserID;
                 }
                 else
                 {
@@ -581,6 +582,28 @@ namespace Silmoon.Utility
             } return "";
         }
         /// <summary>
+        /// 获取域名的可用线路
+        /// </summary>
+        /// <param name="domainInfo">域名信息</param>
+        /// <returns></returns>
+        public string[] GetDomainNetworkType(DomainInfo domainInfo)
+        {
+            string s = GetDNSPodServerXml("Record.Line", AuthConnection() + "&domain_grade=" + domainInfo.Grade);
+            XmlDocument xml = new XmlDocument();
+            ArrayList array = new ArrayList();
+
+            LoadXml(ref s, ref xml);
+            if (xml["dnspod"]["status"]["code"].InnerText == "1")
+            {
+                XmlNode xmlNode = xml["dnspod"]["lines"];
+                foreach (XmlNode item in xmlNode)
+                {
+                    array.Add(item.InnerText);
+                }
+            }
+            return (string[])array.ToArray(typeof(string));
+        }
+        /// <summary>
         /// Load Xml from string
         /// </summary>
         /// <param name="xmlString">string</param>
@@ -598,171 +621,6 @@ namespace Silmoon.Utility
             }
         }
 
-        public static ISP StringToISP(string isp)
-        {
-
-            switch (isp.ToLower())
-            {
-                case "tel":
-                    return ISP.TEL;
-                case "cnc":
-                    return ISP.CNC;
-                case "cuc":
-                    return ISP.CNC;
-                case "edu":
-                    return ISP.EDU;
-                case "cmc":
-                    return ISP.CMC;
-                case "foreign":
-                    return ISP.FOREIGN;
-                case "for":
-                    return ISP.FOREIGN;
-                case "电信":
-                    return ISP.TEL;
-                case "联通":
-                    return ISP.CNC;
-                case "网通":
-                    return ISP.CNC;
-                case "教育":
-                    return ISP.EDU;
-                case "移动":
-                    return ISP.CMC;
-                case "海外":
-                    return ISP.FOREIGN;
-                case "anhui_tel":
-                    return ISP.anhui_tel;
-                case "anhui_cnc":
-                    return ISP.anhui_cnc;
-                case "aomen":
-                    return ISP.aomen;
-                case "beijing_tel":
-                    return ISP.beijing_tel;
-                case "beijing_cnc":
-                    return ISP.beijing_cnc;
-                case "chongqing_tel":
-                    return ISP.chongqing_tel;
-                case "chongqing_cnc":
-                    return ISP.chongqing_cnc;
-                case "fujian_tel":
-                    return ISP.fujian_tel;
-                case "fujian_cnc":
-                    return ISP.fujian_cnc;
-                case "gansu_tel":
-                    return ISP.gansu_tel;
-                case "gansu_cnc":
-                    return ISP.gansu_cnc;
-                case "guangdong_tel":
-                    return ISP.guangdong_tel;
-                case "guangdong_cnc":
-                    return ISP.guangdong_cnc;
-                case "guangxi_tel":
-                    return ISP.guangxi_tel;
-                case "guangxi_cnc":
-                    return ISP.guangxi_cnc;
-                case "guizhou_tel":
-                    return ISP.guizhou_tel;
-                case "guizhou_cnc":
-                    return ISP.guizhou_cnc;
-                case "hainan_tel":
-                    return ISP.hainan_tel;
-                case "hainan_cnc":
-                    return ISP.hainan_cnc;
-                case "hebei_tel":
-                    return ISP.hebei_tel;
-                case "hebei_cnc":
-                    return ISP.hebei_cnc;
-                case "henan_tel":
-                    return ISP.henan_tel;
-                case "henan_cnc":
-                    return ISP.henan_cnc;
-                case "heilongjiang_tel":
-                    return ISP.heilongjiang_tel;
-                case "heilongjiang_cnc":
-                    return ISP.heilongjiang_cnc;
-                case "hubei_tel":
-                    return ISP.hubei_tel;
-                case "hubei_cnc":
-                    return ISP.hubei_cnc;
-                case "hunan_tel":
-                    return ISP.hunan_tel;
-                case "hunan_cnc":
-                    return ISP.hunan_cnc;
-                case "jilin_tel":
-                    return ISP.jilin_tel;
-                case "jilin_cnc":
-                    return ISP.jilin_cnc;
-                case "jiangsu_tel":
-                    return ISP.jiangsu_tel;
-                case "jiangsu_cnc":
-                    return ISP.jiangsu_cnc;
-                case "jiangxi_tel":
-                    return ISP.jiangxi_tel;
-                case "jiangxi_cnc":
-                    return ISP.jiangxi_cnc;
-                case "liaoning_tel":
-                    return ISP.liaoning_tel;
-                case "liaoning_cnc":
-                    return ISP.liaoning_cnc;
-                case "neimeng_tel":
-                    return ISP.neimeng_tel;
-                case "neimeng_cnc":
-                    return ISP.neimeng_cnc;
-                case "ningxia_tel":
-                    return ISP.ningxia_tel;
-                case "ningxia_cnc":
-                    return ISP.ningxia_cnc;
-                case "qinghai_tel":
-                    return ISP.qinghai_tel;
-                case "qinghai_cnc":
-                    return ISP.qinghai_cnc;
-                case "shandong_tel":
-                    return ISP.shandong_tel;
-                case "shandong_cnc":
-                    return ISP.shandong_cnc;
-                case "shanxi_tel":
-                    return ISP.shanxi_tel;
-                case "shanxi_cnc":
-                    return ISP.shanxi_cnc;
-                case "shaanxi_tel":
-                    return ISP.shaanxi_tel;
-                case "shaanxi_cnc":
-                    return ISP.shaanxi_cnc;
-                case "shanghai_tel":
-                    return ISP.shanghai_tel;
-                case "shanghai_cnc":
-                    return ISP.shanghai_cnc;
-                case "sichuan_tel":
-                    return ISP.sichuan_tel;
-                case "sichuan_cnc":
-                    return ISP.sichuan_cnc;
-                case "taiwan":
-                    return ISP.taiwan;
-                case "tianjin_tel":
-                    return ISP.tianjin_tel;
-                case "tianjin_cnc":
-                    return ISP.tianjin_cnc;
-                case "xizang_tel":
-                    return ISP.xizang_tel;
-                case "xizang_cnc":
-                    return ISP.xizang_cnc;
-                case "xianggang":
-                    return ISP.xianggang;
-                case "xinjiang_tel":
-                    return ISP.xinjiang_tel;
-                case "xinjiang_cnc":
-                    return ISP.xinjiang_cnc;
-                case "yunnan_tel":
-                    return ISP.yunnan_tel;
-                case "yunnan_cnc":
-                    return ISP.yunnan_cnc;
-                case "zhejiang_tel":
-                    return ISP.zhejiang_tel;
-                case "zhejiang_cnc":
-                    return ISP.zhejiang_cnc;
-                default:
-                    return ISP.DEFAULT;
-            }
-        }
         public static RecordType StringToRecordType(string type)
         {
             switch (type.ToLower())
@@ -794,166 +652,15 @@ namespace Silmoon.Utility
             switch (grade)
             {
                 case "Free":
-                    return DomainGrade.Free;
+                    return DomainGrade.D_Free;
                 case "Express":
-                    return DomainGrade.Express;
+                    return DomainGrade.D_Express;
                 case "Extra":
-                    return DomainGrade.Extra;
+                    return DomainGrade.D_Extra;
                 case "Ultra":
-                    return DomainGrade.Ultra;
+                    return DomainGrade.D_Ultra;
                 default:
-                    return DomainGrade.Free;
-            }
-        }
-
-        public static string ISPToText(ISP isp)
-        {
-            switch (isp)
-            {
-                case ISP.DEFAULT:
-                    return "";
-                case ISP.TEL:
-                    return "电信";
-                case ISP.CNC:
-                    return "联通";
-                case ISP.EDU:
-                    return "教育";
-                case ISP.CMC:
-                    return "移动";
-                case ISP.FOREIGN:
-                    return "海外";
-                case ISP.anhui_tel:
-                    return "安徽电信";
-                case ISP.anhui_cnc:
-                    return "安徽网通";
-                case ISP.aomen:
-                    return "澳门";
-                case ISP.beijing_tel:
-                    return "北京电信";
-                case ISP.beijing_cnc:
-                    return "北京网通";
-                case ISP.chongqing_tel:
-                    return "重庆电信";
-                case ISP.chongqing_cnc:
-                    return "重庆网通";
-                case ISP.fujian_tel:
-                    return "福建电信";
-                case ISP.fujian_cnc:
-                    return "福建网通";
-                case ISP.gansu_tel:
-                    return "甘肃电信";
-                case ISP.gansu_cnc:
-                    return "甘肃网通";
-                case ISP.guangdong_tel:
-                    return "广东电信";
-                case ISP.guangdong_cnc:
-                    return "广东网通";
-                case ISP.guangxi_tel:
-                    return "广西电信";
-                case ISP.guangxi_cnc:
-                    return "广西网通";
-                case ISP.guizhou_tel:
-                    return "贵州电信";
-                case ISP.guizhou_cnc:
-                    return "贵州网通";
-                case ISP.hainan_tel:
-                    return "海南电信";
-                case ISP.hainan_cnc:
-                    return "海南网通";
-                case ISP.hebei_tel:
-                    return "河北电信";
-                case ISP.hebei_cnc:
-                    return "河北网通";
-                case ISP.henan_tel:
-                    return "河南电信";
-                case ISP.henan_cnc:
-                    return "河南网通";
-                case ISP.heilongjiang_tel:
-                    return "黑龙江电信";
-                case ISP.heilongjiang_cnc:
-                    return "黑龙江网通";
-                case ISP.hubei_tel:
-                    return "湖北电信";
-                case ISP.hubei_cnc:
-                    return "湖北网通";
-                case ISP.hunan_tel:
-                    return "湖南电信";
-                case ISP.hunan_cnc:
-                    return "湖南网通";
-                case ISP.jilin_tel:
-                    return "吉林电信";
-                case ISP.jilin_cnc:
-                    return "吉林网通";
-                case ISP.jiangsu_tel:
-                    return "江苏电信";
-                case ISP.jiangsu_cnc:
-                    return "江苏网通";
-                case ISP.jiangxi_tel:
-                    return "江西电信";
-                case ISP.jiangxi_cnc:
-                    return "江西网通";
-                case ISP.liaoning_tel:
-                    return "辽宁电信";
-                case ISP.liaoning_cnc:
-                    return "辽宁网通";
-                case ISP.neimeng_tel:
-                    return "内蒙电信";
-                case ISP.neimeng_cnc:
-                    return "内蒙网通";
-                case ISP.ningxia_tel:
-                    return "宁夏电信";
-                case ISP.ningxia_cnc:
-                    return "宁夏网通";
-                case ISP.qinghai_tel:
-                    return "青海电信";
-                case ISP.qinghai_cnc:
-                    return "青海网通";
-                case ISP.shandong_tel:
-                    return "山东电信";
-                case ISP.shandong_cnc:
-                    return "山东网通";
-                case ISP.shanxi_tel:
-                    return "山西电信";
-                case ISP.shanxi_cnc:
-                    return "山西网通";
-                case ISP.shaanxi_tel:
-                    return "陕西电信";
-                case ISP.shaanxi_cnc:
-                    return "陕西网通";
-                case ISP.shanghai_tel:
-                    return "上海电信";
-                case ISP.shanghai_cnc:
-                    return "上海网通";
-                case ISP.sichuan_tel:
-                    return "四川电信";
-                case ISP.sichuan_cnc:
-                    return "四川网通";
-                case ISP.taiwan:
-                    return "台湾";
-                case ISP.tianjin_tel:
-                    return "天津电信";
-                case ISP.tianjin_cnc:
-                    return "天津网通";
-                case ISP.xizang_tel:
-                    return "西藏电信";
-                case ISP.xizang_cnc:
-                    return "西藏网通";
-                case ISP.xianggang:
-                    return "香港";
-                case ISP.xinjiang_tel:
-                    return "新疆电信";
-                case ISP.xinjiang_cnc:
-                    return "新疆网通";
-                case ISP.yunnan_tel:
-                    return "云南电信";
-                case ISP.yunnan_cnc:
-                    return "云南网通";
-                case ISP.zhejiang_tel:
-                    return "浙江电信";
-                case ISP.zhejiang_cnc:
-                    return "浙江网通";
-                default:
-                    return isp.ToString();
+                    return DomainGrade.D_Free;
             }
         }
 
@@ -986,16 +693,18 @@ namespace Silmoon.Utility
     }
     public enum DomainGrade
     {
-        Free = 0,
-        Express = 1,
-        Extra = 2,
-        Ultra = 3
+        D_Free = 0,
+        D_Express = 1,
+        D_Plus = 2,
+        D_Extra = 3,
+        D_Expert = 4,
+        D_Ultra = 5
     }
     public class RecordInfo
     {
         public int ID;
         public string Subname;
-        public ISP Isp = ISP.DEFAULT;
+        public string Isp = "默认";
         public RecordType Type;
         public int TTL = 3600;
         public string Value;
@@ -1004,7 +713,7 @@ namespace Silmoon.Utility
         public DNSPodUnitValidate Validate = DNSPodUnitValidate.New;
         public string Note;
         public RecordInfo() { }
-        public RecordInfo(string subname, ISP isp, RecordType type, string value)
+        public RecordInfo(string subname, string isp, RecordType type, string value)
         {
             Subname = subname;
             Isp = isp;
@@ -1027,81 +736,6 @@ namespace Silmoon.Utility
         silver = 2,
         gold = 3,
         diamond = 4,
-    }
-    public enum ISP
-    {
-        DEFAULT = 1,
-        TEL = 2,
-        CNC = 3,
-        EDU = 4,
-        CMC = 5,
-        FOREIGN = 6,
-
-        anhui_tel = 101,
-        anhui_cnc = 102,
-        aomen = 103,
-        beijing_tel = 104,
-        beijing_cnc = 105,
-        chongqing_tel = 106,
-        chongqing_cnc = 107,
-        fujian_tel = 108,
-        fujian_cnc = 109,
-        gansu_tel = 110,
-        gansu_cnc = 111,
-        guangdong_tel = 112,
-        guangdong_cnc = 113,
-        guangxi_tel = 114,
-        guangxi_cnc = 115,
-        guizhou_tel = 116,
-        guizhou_cnc = 117,
-        hainan_tel = 118,
-        hainan_cnc = 119,
-        hebei_tel = 120,
-        hebei_cnc = 121,
-        henan_tel = 122,
-        henan_cnc = 123,
-        heilongjiang_tel = 124,
-        heilongjiang_cnc = 125,
-        hubei_tel = 126,
-        hubei_cnc = 127,
-        hunan_tel = 128,
-        hunan_cnc = 129,
-        jilin_tel = 130,
-        jilin_cnc = 131,
-        jiangsu_tel = 132,
-        jiangsu_cnc = 133,
-        jiangxi_tel = 134,
-        jiangxi_cnc = 135,
-        liaoning_tel = 136,
-        liaoning_cnc = 137,
-        neimeng_tel = 138,
-        neimeng_cnc = 139,
-        ningxia_tel = 140,
-        ningxia_cnc = 141,
-        qinghai_tel = 142,
-        qinghai_cnc = 143,
-        shandong_tel = 144,
-        shandong_cnc = 145,
-        shanxi_tel = 146,
-        shanxi_cnc = 147,
-        shaanxi_tel = 148,
-        shaanxi_cnc = 149,
-        shanghai_tel = 150,
-        shanghai_cnc = 151,
-        sichuan_tel = 152,
-        sichuan_cnc = 153,
-        taiwan = 154,
-        tianjin_tel = 155,
-        tianjin_cnc = 156,
-        xizang_tel = 157,
-        xizang_cnc = 158,
-        xianggang = 159,
-        xinjiang_tel = 160,
-        xinjiang_cnc = 161,
-        yunnan_tel = 162,
-        yunnan_cnc = 163,
-        zhejiang_tel = 164,
-        zhejiang_cnc = 165,
     }
 
     public enum RecordType

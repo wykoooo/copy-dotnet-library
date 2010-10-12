@@ -649,15 +649,19 @@ namespace Silmoon.Utility
         }
         public static DomainGrade StringToGrade(string grade)
         {
-            switch (grade)
+            switch (grade.ToLower())
             {
-                case "Free":
+                case "d_free":
                     return DomainGrade.D_Free;
-                case "Express":
+                case "d_express":
                     return DomainGrade.D_Express;
-                case "Extra":
+                case "d_plus":
+                    return DomainGrade.D_Plus;
+                case "d_extra":
                     return DomainGrade.D_Extra;
-                case "Ultra":
+                case "d_expert":
+                    return DomainGrade.D_Expert;
+                case "d_ultra":
                     return DomainGrade.D_Ultra;
                 default:
                     return DomainGrade.D_Free;

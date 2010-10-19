@@ -14,11 +14,11 @@ namespace Silmoon.Threading
             _th.Start();
             return _th;
         }
-        public static Thread ExecAsync(ParameterizedThreadStart start)
+        public static Thread ExecAsync(ParameterizedThreadStart start, object state)
         {
             Thread _th = new Thread(start);
             _th.IsBackground = true;
-            _th.Start();
+            _th.Start(state);
             return _th;
         }
         public static Thread ExecAsync(ThreadStart start, ThreadExceptionEventHandler onExceptionCallback)
@@ -32,7 +32,7 @@ namespace Silmoon.Threading
         public static Thread ExecAsync(ParameterizedThreadStart start, object state, ThreadExceptionEventHandler onExceptionCallback)
         {
             internalProtectExecuteClass executeClass = new internalProtectExecuteClass(start, state, onExceptionCallback);
-            Thread _th = new Thread(executeClass.Execute);
+            Thread _th = new Thread(executeClass.Execute2);
             _th.IsBackground = true;
             _th.Start();
             return _th;

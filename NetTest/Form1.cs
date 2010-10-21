@@ -9,6 +9,7 @@ using Silmoon.Net;
 using System.Net;
 using Silmoon.Memory;
 using System.Collections;
+using Silmoon;
 
 namespace NetTest
 {
@@ -84,12 +85,19 @@ namespace NetTest
         {
 
         }
-
+         
         private void button4_Click(object sender, EventArgs e)
         {
             byte[] b1 = { 1, 2, 3, 4 };
             byte[] b2 = { 5, 6, 7, 8 };
             Memory.MemCpy(ref b1, ref b2);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string[] s1 = new string[] { "a", "c", "d", "e", "g" };
+            string[] s2 = new string[] { "a", "b", "c", "d", "g" };
+            string[] result = SmString.MissedItems(s1, s2);
         }
     }
 }

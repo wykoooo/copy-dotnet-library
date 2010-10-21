@@ -139,6 +139,7 @@
     <Compile Include="Data\SqlClient\SmMSSQLClientSource.cs" />
     <Compile Include="ExecProc.cs" />
     <Compile Include="SmEnvironment.cs" />
+    <Compile Include="SmString.cs" />
     <Compile Include="SmSystem.cs" />
     <Compile Include="Reflection\ReflectionXml.cs" />
     <Compile Include="SpecialConverter.cs" />

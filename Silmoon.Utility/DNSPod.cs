@@ -278,6 +278,34 @@ namespace Silmoon.Utility
             return (RecordInfo[])array.ToArray(typeof(RecordInfo));
         }
         /// <summary>
+        /// 从域名ID和记录ID获取记录信息
+        /// </summary>
+        /// <param name="domainID">域名ID</param>
+        /// <param name="recordID">记录ID</param>
+        /// <returns></returns>
+        public RecordInfo GetRecord(int domainID, int recordID)
+        {
+            string s = GetDNSPodServerXml("Record.Info", AuthConnection() + "&domain_id=" + domainID + "&recordid=" + recordID);
+            XmlDocument xml = new XmlDocument();
+            LoadXml(ref s, ref xml);
+            RecordInfo result = null;
+            if (xml["dnspod"]["status"]["code"].InnerText == "1")
+            {
+                XmlNode node = xml["dnspod"]["record"];
+                result = new RecordInfo();
+                result.Enable = SmString.StringToBool(node["enabled"].InnerText);
+                result.ID = int.Parse(node["id"].InnerText);
+                result.Subname = node["sub_domain"].InnerText;
+                result.Isp = node["record_line"].InnerText;
+                result.Type = DNSPod.StringToRecordType(node["record_type"].InnerText);
+                result.Validate = DNSPodUnitValidate.FromDNSPod;
+                result.Value = node["value"].InnerText;
+                result.MXLevel = int.Parse(node["mx"].InnerText);
+                result.TTL = int.Parse(node["ttl"].InnerText);
+            }
+            return result;
+        }
+        /// <summary>
         /// 设置域名状态
         /// </summary>
         /// <param name="domainID">域名ID</param>

@@ -306,6 +306,21 @@ namespace Silmoon.Utility
             return result;
         }
         /// <summary>
+        /// 从记录数组中获取一个记录的信息。
+        /// </summary>
+        /// <param name="records">记录数组</param>
+        /// <param name="recordID">记录ID</param>
+        /// <returns></returns>
+        public RecordInfo GetRecord(RecordInfo[] records, int recordID)
+        {
+            foreach (RecordInfo record in records)
+            {
+                if (record.ID == recordID)
+                    return record;
+            }
+            return null;
+        }
+        /// <summary>
         /// 设置域名状态
         /// </summary>
         /// <param name="domainID">域名ID</param>

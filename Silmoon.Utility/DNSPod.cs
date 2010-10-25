@@ -285,7 +285,7 @@ namespace Silmoon.Utility
         /// <returns></returns>
         public RecordInfo GetRecord(int domainID, int recordID)
         {
-            string s = GetDNSPodServerXml("Record.Info", AuthConnection() + "&domain_id=" + domainID + "&recordid=" + recordID);
+            string s = GetDNSPodServerXml("Record.Info", AuthConnection() + "&domain_id=" + domainID + "&record_id=" + recordID);
             XmlDocument xml = new XmlDocument();
             LoadXml(ref s, ref xml);
             RecordInfo result = null;

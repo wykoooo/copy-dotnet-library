@@ -29,7 +29,6 @@ namespace Silmoon.Media.Video.Player
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.smTraceBar1 = new Silmoon.Windows.Controls.SmTrackBar();
             this.ToolMenu = new System.Windows.Forms.ToolStrip();
             this.Tool_WMPOpenButton = new System.Windows.Forms.ToolStripButton();
@@ -55,7 +54,7 @@ namespace Silmoon.Media.Video.Player
             this.smTraceBar1.ProgressPercentage = 0;
             this.smTraceBar1.Size = new System.Drawing.Size(585, 11);
             this.smTraceBar1.TabIndex = 1;
-            this.smTraceBar1.Value = 0;
+            this.smTraceBar1.Value = 0D;
             // 
             // ToolMenu
             // 
@@ -85,7 +84,7 @@ namespace Silmoon.Media.Video.Player
             // 
             this.Menu_ProcLabel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.Menu_ProcLabel.Name = "Menu_ProcLabel";
-            this.Menu_ProcLabel.Size = new System.Drawing.Size(17, 22);
+            this.Menu_ProcLabel.Size = new System.Drawing.Size(26, 22);
             this.Menu_ProcLabel.Text = "0%";
             // 
             // TopMenu
@@ -96,7 +95,7 @@ namespace Silmoon.Media.Video.Player
             this.TopMenu.Location = new System.Drawing.Point(0, 0);
             this.TopMenu.Name = "TopMenu";
             this.TopMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.TopMenu.Size = new System.Drawing.Size(585, 24);
+            this.TopMenu.Size = new System.Drawing.Size(585, 25);
             this.TopMenu.TabIndex = 3;
             this.TopMenu.Text = "menuStrip1";
             // 
@@ -107,13 +106,13 @@ namespace Silmoon.Media.Video.Player
             this.使用WindowsMediaPlayer打开WToolStripMenuItem1,
             this.退出XToolStripMenuItem1});
             this.文件FToolStripMenuItem.Name = "文件FToolStripMenuItem";
-            this.文件FToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.文件FToolStripMenuItem.Size = new System.Drawing.Size(58, 21);
             this.文件FToolStripMenuItem.Text = "文件(&F)";
             // 
             // 打开OToolStripMenuItem
             // 
             this.打开OToolStripMenuItem.Name = "打开OToolStripMenuItem";
-            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(277, 22);
             this.打开OToolStripMenuItem.Text = "打开(&O)";
             this.打开OToolStripMenuItem.Click += new System.EventHandler(this.打开OToolStripMenuItem_Click);
             // 
@@ -121,14 +120,14 @@ namespace Silmoon.Media.Video.Player
             // 
             this.使用WindowsMediaPlayer打开WToolStripMenuItem1.Image = global::Silmoon.Media.PlayerApp.Properties.Resources.wmp_1;
             this.使用WindowsMediaPlayer打开WToolStripMenuItem1.Name = "使用WindowsMediaPlayer打开WToolStripMenuItem1";
-            this.使用WindowsMediaPlayer打开WToolStripMenuItem1.Size = new System.Drawing.Size(256, 22);
+            this.使用WindowsMediaPlayer打开WToolStripMenuItem1.Size = new System.Drawing.Size(277, 22);
             this.使用WindowsMediaPlayer打开WToolStripMenuItem1.Text = "使用Windows Media Player打开(&W)";
             this.使用WindowsMediaPlayer打开WToolStripMenuItem1.Click += new System.EventHandler(this.使用WindowsMediaPlayer打开WToolStripMenuItem1_Click);
             // 
             // 退出XToolStripMenuItem1
             // 
             this.退出XToolStripMenuItem1.Name = "退出XToolStripMenuItem1";
-            this.退出XToolStripMenuItem1.Size = new System.Drawing.Size(256, 22);
+            this.退出XToolStripMenuItem1.Size = new System.Drawing.Size(277, 22);
             this.退出XToolStripMenuItem1.Text = "退出(&X)";
             // 
             // 视图VToolStripMenuItem
@@ -136,13 +135,13 @@ namespace Silmoon.Media.Video.Player
             this.视图VToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.工具栏ToolStripMenuItem});
             this.视图VToolStripMenuItem.Name = "视图VToolStripMenuItem";
-            this.视图VToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.视图VToolStripMenuItem.Size = new System.Drawing.Size(60, 21);
             this.视图VToolStripMenuItem.Text = "视图(&V)";
             // 
             // 工具栏ToolStripMenuItem
             // 
             this.工具栏ToolStripMenuItem.Name = "工具栏ToolStripMenuItem";
-            this.工具栏ToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.工具栏ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.工具栏ToolStripMenuItem.Text = "工具栏";
             this.工具栏ToolStripMenuItem.Click += new System.EventHandler(this.工具栏ToolStripMenuItem_Click);
             // 
@@ -150,12 +149,13 @@ namespace Silmoon.Media.Video.Player
             // 
             this.playerControl1.A = null;
             this.playerControl1.BackColor = System.Drawing.SystemColors.ControlText;
-            this.playerControl1.CurrentPosition = 0;
+            this.playerControl1.CurrentPosition = 0D;
             this.playerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playerControl1.FilePath = null;
-            this.playerControl1.Location = new System.Drawing.Point(0, 24);
+            this.playerControl1.Location = new System.Drawing.Point(0, 25);
             this.playerControl1.Name = "playerControl1";
-            this.playerControl1.Size = new System.Drawing.Size(585, 361);
+            this.playerControl1.ShowTrackBar = true;
+            this.playerControl1.Size = new System.Drawing.Size(585, 360);
             this.playerControl1.TabIndex = 0;
             this.playerControl1.V = null;
             this.playerControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.playerControl1_Paint);

@@ -22,6 +22,7 @@ namespace Silmoon.Utility
         public string _result = "";
         int _userID = 0;
         public bool BlackCase = false;
+        public string ValidateFrom = "";
         public ArrayList APIHeaders = new ArrayList();
 
         /// <summary>
@@ -453,6 +454,7 @@ namespace Silmoon.Utility
             urlArgs += "&value=" + HttpUtility.UrlEncode(record.Value);
             urlArgs += "&mx=" + record.MXLevel;
             urlArgs += "&ttl=" + record.TTL;
+            urlArgs += "&from=" + ValidateFrom;
             string resultXml = GetDNSPodServerXml("Record.Modify", urlArgs);
             if (resultXml == "")
             {

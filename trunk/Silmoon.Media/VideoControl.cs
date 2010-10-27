@@ -100,8 +100,7 @@ namespace Silmoon.Media.Controls
         public string FilePath
         {
             get { return _filePath; }
-            set
-            { _filePath = value; }
+            set { _filePath = value; }
         }
         public VideoControl()
         {

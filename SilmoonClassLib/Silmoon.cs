@@ -1,12 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Silmoon.Base;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using System.Collections;
-using System.Collections.Specialized;
-using Silmoon.Reflection;
+using System.Text;
 
 namespace Silmoon
 {
@@ -426,65 +420,4 @@ namespace Silmoon
         public static extern int FreeConsole();
     }
 
-    public class StateFlag
-    {
-        int _id = -1;
-        bool _doubleStateFlag = false;
-        int _intStateFlag = -1;
-        object _objectRef = null;
-        string _message = string.Empty;
-        string _stringFlag = string.Empty;
-        ArrayList _objectArray = new ArrayList();
-        NameValueCollection _parameters = new NameValueCollection();
-        NameObjectCollection _objects = new NameObjectCollection();
-
-
-
-        public int ID
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-        public bool DoubleStateFlag
-        {
-            get { return _doubleStateFlag; }
-            set { _doubleStateFlag = value; }
-        }
-        public int IntStateFlag
-        {
-            get { return _intStateFlag; }
-            set { _intStateFlag = value; }
-        }
-        public object ObjectRef
-        {
-            get { return _objectRef; }
-            set { _objectRef = value; }
-        }
-        public string Message
-        {
-            get { return _message; }
-            set { _message = value; }
-        }
-        public string StringFlag
-        {
-            get { return _stringFlag; }
-            set { _stringFlag = value; }
-        }
-        public ArrayList ObjectArray
-        {
-            get { return _objectArray; }
-            set { _objectArray = value; }
-        }
-        public NameValueCollection Parameters
-        {
-            get { return _parameters; }
-            set { _parameters = value; }
-        }
-        public NameObjectCollection Objects
-        {
-            get { return _objects; }
-            set { _objects = value; }
-        }
-
-    }
 }

@@ -19,12 +19,17 @@ namespace Silmoon.Utility
         string _token;
         bool _isLogin = false;
         string _user_agent = "Unknown_SilmoonAssembly/0.0.0.0";
-        public string _result = "";
+        public string LastServerResult = "";
         int _userID = 0;
-        public bool BlackCase = false;
+        public bool _blackCase = false;
         public string ValidateFrom = "";
         public ArrayList APIHeaders = new ArrayList();
 
+        public bool BlackCase
+        {
+            get { return _blackCase; }
+            set { _blackCase = value; }
+        }
         /// <summary>
         /// 获取状态是否是已经登录
         /// </summary>
@@ -103,7 +108,7 @@ namespace Silmoon.Utility
         /// <param name="apiField">API字段</param>
         /// <param name="data">POST数据</param>
         /// <returns>服务器返回的数据</returns>
-        public string GetDNSPodServerXml(string apiField, string data)
+        public string GetXml(string apiField, string data)
         {
             WebClient _wclit = new WebClient();
             try
@@ -113,8 +118,10 @@ namespace Silmoon.Utility
                 foreach (string s in APIHeaders)
                     _wclit.Headers.Add(s);
                 _wclit.Headers.Add("User-Agent", "(SM)" + _user_agent);
-                byte[] bytes = _wclit.UploadData(new Uri(_baseAPIUri + "API/" + apiField), Encoding.UTF8.GetBytes(data));
-                _result = Encoding.UTF8.GetString(bytes);
+
+                Uri uri = new Uri(_baseAPIUri + "API/" + apiField);
+                byte[] bytes = _wclit.UploadData(uri, Encoding.UTF8.GetBytes(data));
+                LastServerResult = Encoding.UTF8.GetString(bytes);
                 _wclit.Dispose();
                 return Encoding.UTF8.GetString(bytes);
             }
@@ -122,9 +129,9 @@ namespace Silmoon.Utility
             {
                 try
                 {
-                    File.WriteAllText(@"C:\DNSPodClientErrXmlString.xml.txt", DateTime.Now + "\r\n\r\n" + ex + "\r\n\r\n");
+                    File.WriteAllText(@"C:\DNSPod_Network_Error.xml.txt", DateTime.Now + "\r\n\r\n" + ex + "\r\n\r\n");
                     if (ex.Response != null)
-                        File.AppendAllText(@"C:\DNSPodClientErrXmlString.xml.txt", new StreamReader(ex.Response.GetResponseStream()).ReadToEnd());
+                        File.AppendAllText(@"C:\DNSPod_Network_Error.xml.txt", new StreamReader(ex.Response.GetResponseStream()).ReadToEnd());
                 }
                 catch { }
                 _wclit.Dispose();
@@ -154,7 +161,7 @@ namespace Silmoon.Utility
         /// <param name="username">用户名</param>
         /// <param name="password">密码</param>
         /// <returns></returns>
-        public UserInfo Login(string username, string password)
+        public UserResult Login(string username, string password)
         {
             BlackCase = false;
 
@@ -180,7 +187,7 @@ namespace Silmoon.Utility
         /// </summary>
         /// <param name="token">TOKEN</param>
         /// <param name="validate">是否验证TOKEN</param>
-        public UserInfo BlackCaseLogin(int userID, string token, bool validate = false)
+        public UserResult BlackCaseLogin(int userID, string token, bool validate = false)
         {
             BlackCase = true;
             UserID = userID;
@@ -206,77 +213,78 @@ namespace Silmoon.Utility
         }
 
         /// <summary>
-        /// 获取用户的所有域名
-        /// </summary>
-        /// <returns></returns>
-        public DomainInfo[] GetDomains()
-        {
-            return GetDomains(DomainListType.all);
-        }
-        /// <summary>
         /// 获取用户指定类型的域名
         /// </summary>
         /// <param name="type">域名所属类型</param>
         /// <returns></returns>
-        public DomainInfo[] GetDomains(DomainListType type)
+        public DomainsResult GetDomains(DomainListType type = DomainListType.all)
         {
-            XmlDocument _xml = new XmlDocument();
+            DomainsResult result = new DomainsResult();
+            XmlDocument xmlDoc = new XmlDocument();
 
-            string resultXml = GetDNSPodServerXml("Domain.List", AuthConnection() + "&type=" + type.ToString());
-            if (resultXml == "") return null;
+            string resultXml = GetXml("Domain.List", AuthConnection() + "&type=" + type.ToString());
 
-            LoadXml(ref resultXml, ref _xml);
-            ArrayList binfoArr = new ArrayList();
-            XmlNode domainsNode = _xml["dnspod"]["domains"];
-
-            foreach (XmlNode node in domainsNode)
+            if (LoadXml(ref resultXml, result, ref xmlDoc))
             {
-                DomainInfo newInfo = new DomainInfo();
-                newInfo.DomainName = node["name"].InnerText;
-                newInfo.State = SmString.StringToBool(node["status"].InnerText);
-                newInfo.Records = int.Parse(node["records"].InnerText);
-                newInfo.ID = int.Parse(node["id"].InnerText);
-                newInfo.Grade = StringToGrade(node["grade"].InnerText);
-                if (node["shared_from"] != null)
-                    newInfo.ShardForm = node["shared_from"].InnerText;
-                newInfo.Validate = DNSPodUnitValidate.FromDNSPod;
-                binfoArr.Add(newInfo);
+                ProcessBaseXml(result, ref xmlDoc, new int[] { 1, 9 });
+                ArrayList binfoArr = new ArrayList();
+                XmlNode domainsNode = xmlDoc["dnspod"]["domains"];
+                if (domainsNode != null)
+                {
+                    foreach (XmlNode node in domainsNode)
+                    {
+                        Domain newInfo = new Domain();
+                        newInfo.DomainName = node["name"].InnerText;
+                        newInfo.State = SmString.StringToBool(node["status"].InnerText);
+                        newInfo.Records = int.Parse(node["records"].InnerText);
+                        newInfo.ID = int.Parse(node["id"].InnerText);
+                        newInfo.Grade = StringToGrade(node["grade"].InnerText);
+                        if (node["shared_from"] != null)
+                            newInfo.ShardForm = node["shared_from"].InnerText;
+                        newInfo.Validate = DNSPodValidateInfo.FromDNSPod;
+                        binfoArr.Add(newInfo);
+                    }
+                }
+                result.Domains = (Domain[])binfoArr.ToArray(typeof(Domain));
             }
-            return (DomainInfo[])binfoArr.ToArray(typeof(DomainInfo));
+            return result;
         }
         /// <summary>
         /// 获取用户域名记录
         /// </summary>
         /// <param name="domainID">域名ID</param>
         /// <returns>域名记录数组</returns>
-        public RecordInfo[] GetRecords(int domainID)
+        public RecordsResult GetRecords(int domainID)
         {
-            XmlDocument _xml = new XmlDocument();
-            ArrayList array = new ArrayList();
+            XmlDocument xmlDoc = new XmlDocument();
+            RecordsResult result = new RecordsResult();
+            string resultXml = GetXml("Record.List", AuthConnection() + "&domain_id=" + domainID);
 
-            string resultXml = GetDNSPodServerXml("Record.List", AuthConnection() + "&domain_id=" + domainID);
-            if (resultXml == "") return null;
-            LoadXml(ref resultXml, ref _xml);
-
-            if (_xml.GetElementsByTagName("code")[0].InnerText == "1" || _xml.GetElementsByTagName("code")[0].InnerText == "7")
+            if (LoadXml(ref resultXml, result, ref xmlDoc))
             {
-                XmlNode recordsNode = _xml["dnspod"]["records"];
-                foreach (XmlNode node in recordsNode)
+                ProcessBaseXml(result, ref xmlDoc, new int[] { 1, 10 });
+                ArrayList array = new ArrayList();
+                XmlNode recordsNode = xmlDoc["dnspod"]["records"];
+                if (recordsNode != null)
                 {
-                    RecordInfo newRecord = new RecordInfo();
-                    newRecord.Enable = SmString.StringToBool(node["enabled"].InnerText);
-                    newRecord.ID = int.Parse(node["id"].InnerText);
-                    newRecord.Isp = node["line"].InnerText;
-                    newRecord.MXLevel = int.Parse(node["mx"].InnerText);
-                    newRecord.Subname = node["name"].InnerText;
-                    newRecord.TTL = int.Parse(node["ttl"].InnerText);
-                    newRecord.Type = DNSPod.StringToRecordType(node["type"].InnerText);
-                    newRecord.Value = node["value"].InnerText;
-                    newRecord.Validate = DNSPodUnitValidate.FromDNSPod;
-                    array.Add(newRecord);
+                    foreach (XmlNode node in recordsNode)
+                    {
+                        Record newRecord = new Record();
+                        newRecord.Enable = SmString.StringToBool(node["enabled"].InnerText);
+                        newRecord.ID = int.Parse(node["id"].InnerText);
+                        newRecord.Isp = node["line"].InnerText;
+                        newRecord.MXLevel = int.Parse(node["mx"].InnerText);
+                        newRecord.Subname = node["name"].InnerText;
+                        newRecord.TTL = int.Parse(node["ttl"].InnerText);
+                        newRecord.Type = DNSPod.StringToRecordType(node["type"].InnerText);
+                        newRecord.Value = node["value"].InnerText;
+                        newRecord.Validate = DNSPodValidateInfo.FromDNSPod;
+                        array.Add(newRecord);
+                    }
                 }
+                result.Records = (Record[])array.ToArray(typeof(Record));
             }
-            return (RecordInfo[])array.ToArray(typeof(RecordInfo));
+            return result;
         }
         /// <summary>
         /// 从域名ID和记录ID获取记录信息
@@ -284,25 +292,27 @@ namespace Silmoon.Utility
         /// <param name="domainID">域名ID</param>
         /// <param name="recordID">记录ID</param>
         /// <returns></returns>
-        public RecordInfo GetRecord(int domainID, int recordID)
+        public RecordResult GetRecord(int domainID, int recordID)
         {
-            string s = GetDNSPodServerXml("Record.Info", AuthConnection() + "&domain_id=" + domainID + "&record_id=" + recordID);
-            XmlDocument xml = new XmlDocument();
-            LoadXml(ref s, ref xml);
-            RecordInfo result = null;
-            if (xml["dnspod"]["status"]["code"].InnerText == "1")
+            XmlDocument xmlDoc = new XmlDocument();
+            RecordResult result = new RecordResult();
+            string resultXml = GetXml("Record.Info", AuthConnection() + "&domain_id=" + domainID + "&record_id=" + recordID);
+
+            if (LoadXml(ref resultXml, result, ref xmlDoc))
             {
-                XmlNode node = xml["dnspod"]["record"];
-                result = new RecordInfo();
-                result.Enable = SmString.StringToBool(node["enabled"].InnerText);
-                result.ID = int.Parse(node["id"].InnerText);
-                result.Subname = node["sub_domain"].InnerText;
-                result.Isp = node["record_line"].InnerText;
-                result.Type = DNSPod.StringToRecordType(node["record_type"].InnerText);
-                result.Validate = DNSPodUnitValidate.FromDNSPod;
-                result.Value = node["value"].InnerText;
-                result.MXLevel = int.Parse(node["mx"].InnerText);
-                result.TTL = int.Parse(node["ttl"].InnerText);
+                ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
+
+                XmlNode node = xmlDoc["dnspod"]["record"];
+                result.Record = new Record();
+                result.Record.Enable = SmString.StringToBool(node["enabled"].InnerText);
+                result.Record.ID = int.Parse(node["id"].InnerText);
+                result.Record.Subname = node["sub_domain"].InnerText;
+                result.Record.Isp = node["record_line"].InnerText;
+                result.Record.Type = DNSPod.StringToRecordType(node["record_type"].InnerText);
+                result.Record.Validate = DNSPodValidateInfo.FromDNSPod;
+                result.Record.Value = node["value"].InnerText;
+                result.Record.MXLevel = int.Parse(node["mx"].InnerText);
+                result.Record.TTL = int.Parse(node["ttl"].InnerText);
             }
             return result;
         }
@@ -312,9 +322,9 @@ namespace Silmoon.Utility
         /// <param name="records">记录数组</param>
         /// <param name="recordID">记录ID</param>
         /// <returns></returns>
-        public RecordInfo GetRecord(RecordInfo[] records, int recordID)
+        public Record GetRecord(Record[] records, int recordID)
         {
-            foreach (RecordInfo record in records)
+            foreach (Record record in records)
             {
                 if (record.ID == recordID)
                     return record;
@@ -327,25 +337,17 @@ namespace Silmoon.Utility
         /// <param name="domainID">域名ID</param>
         /// <param name="enable">是否启用</param>
         /// <returns></returns>
-        public StateFlag SetDomainState(int domainID, bool enable)
+        public DNSPodResult SetDomainState(int domainID, bool enable)
         {
-            XmlDocument _xml = new XmlDocument();
-
-            StateFlag result = new StateFlag();
+            XmlDocument xmlDoc = new XmlDocument();
+            DNSPodResult result = new DNSPodResult();
             string enableArgs = "";
             if (enable) enableArgs = "enable"; else enableArgs = "disable";
-            string resultXml = GetDNSPodServerXml("Domain.Status", AuthConnection() + "&domain_id=" + domainID + "&status=" + enableArgs);
-            if (resultXml == "")
-            {
-                result.DoubleStateFlag = false;
-                result.IntStateFlag = -99;
-                result.Message = "server error";
-                return result;
-            }
-            LoadXml(ref resultXml, ref _xml);
-            result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
-            if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
-            result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
+            string resultXml = GetXml("Domain.Status", AuthConnection() + "&domain_id=" + domainID + "&status=" + enableArgs);
+
+            LoadXml(ref resultXml, result, ref xmlDoc);
+            ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
+            result.Message = xmlDoc.GetElementsByTagName("message")[0].InnerText;
             return result;
         }
         /// <summary>
@@ -353,23 +355,15 @@ namespace Silmoon.Utility
         /// </summary>
         /// <param name="domain">要添加的域名</param>
         /// <returns></returns>
-        public StateFlag CreateDomain(string domain)
+        public DNSPodResult CreateDomain(string domain)
         {
-            XmlDocument _xml = new XmlDocument();
-
-            StateFlag result = new StateFlag();
-            string resultXml = GetDNSPodServerXml("Domain.Create", AuthConnection() + "&domain=" + domain);
-            if (resultXml == "")
-            {
-                result.DoubleStateFlag = false;
-                result.IntStateFlag = -99;
-                result.Message = "server error";
-                return result;
-            }
-            LoadXml(ref resultXml, ref _xml);
-            result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
-            if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
-            result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
+            XmlDocument xmlDoc = new XmlDocument();
+            DNSPodResult result = new DNSPodResult();
+            string resultXml = GetXml("Domain.Create", AuthConnection() + "&domain=" + domain);
+            LoadXml(ref resultXml, result, ref xmlDoc);
+            ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
+            if (!result.Error)
+                result.Data = int.Parse(xmlDoc["dnspod"]["domain"]["id"].InnerText);
             return result;
         }
         /// <summary>
@@ -377,23 +371,13 @@ namespace Silmoon.Utility
         /// </summary>
         /// <param name="domainID">要删除的域名ID</param>
         /// <returns></returns>
-        public StateFlag RemoveDomain(int domainID)
+        public DNSPodResult RemoveDomain(int domainID)
         {
-            XmlDocument _xml = new XmlDocument();
-
-            StateFlag result = new StateFlag();
-            string resultXml = GetDNSPodServerXml("Domain.Remove", AuthConnection() + "&domain_id=" + domainID);
-            if (resultXml == "")
-            {
-                result.DoubleStateFlag = false;
-                result.IntStateFlag = -99;
-                result.Message = "server error";
-                return result;
-            }
-            LoadXml(ref resultXml, ref _xml);
-            result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
-            if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
-            result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
+            XmlDocument xmlDoc = new XmlDocument();
+            DNSPodResult result = new DNSPodResult();
+            string resultXml = GetXml("Domain.Remove", AuthConnection() + "&domain_id=" + domainID);
+            LoadXml(ref resultXml, result, ref xmlDoc);
+            ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
             return result;
         }
         /// <summary>
@@ -402,11 +386,10 @@ namespace Silmoon.Utility
         /// <param name="record">域名记录信息</param>
         /// <param name="domainID">域名ID</param>
         /// <returns>状态集</returns>
-        public StateFlag CreateRecord(RecordInfo record, int domainID)
+        public DNSPodResult CreateRecord(Record record, int domainID)
         {
-            XmlDocument _xml = new XmlDocument();
-
-            StateFlag result = new StateFlag();
+            XmlDocument xmlDoc = new XmlDocument();
+            DNSPodResult result = new DNSPodResult();
             string urlArgs = AuthConnection();
             urlArgs += "&domain_id=" + domainID;
             urlArgs += "&sub_domain=" + record.Subname;
@@ -415,23 +398,11 @@ namespace Silmoon.Utility
             urlArgs += "&value=" + HttpUtility.UrlEncode(record.Value);
             urlArgs += "&mx=" + record.MXLevel;
             urlArgs += "&ttl=" + record.TTL;
-            string resultXml = GetDNSPodServerXml("Record.Create", urlArgs);
-            if (resultXml == "")
-            {
-                result.DoubleStateFlag = false;
-                result.IntStateFlag = -99;
-                result.Message = "server error";
-                return result;
-            }
-            LoadXml(ref resultXml, ref _xml);
-            if (_xml.GetElementsByTagName("id").Count == 0)
-                result.ID = 0;
-            else
-                result.ID = int.Parse(_xml.GetElementsByTagName("id")[0].InnerText);
-
-            result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
-            if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
-            result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
+            string resultXml = GetXml("Record.Create", urlArgs);
+            LoadXml(ref resultXml, result, ref xmlDoc);
+            ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
+            if (!result.Error)
+                result.Data = xmlDoc["dnspod"]["record"]["id"].InnerText;
             return result;
         }
         /// <summary>
@@ -440,11 +411,10 @@ namespace Silmoon.Utility
         /// <param name="record">域名记录信息</param>
         /// <param name="domainID">域名ID</param>
         /// <returns>状态集</returns>
-        public StateFlag ModifyRecord(RecordInfo record, int domainID)
+        public DNSPodResult ModifyRecord(Record record, int domainID)
         {
-            XmlDocument _xml = new XmlDocument();
-
-            StateFlag result = new StateFlag();
+            XmlDocument xmlDoc = new XmlDocument();
+            DNSPodResult result = new DNSPodResult();
             string urlArgs = AuthConnection();
             urlArgs += "&domain_id=" + domainID;
             urlArgs += "&record_id=" + record.ID;
@@ -455,18 +425,9 @@ namespace Silmoon.Utility
             urlArgs += "&mx=" + record.MXLevel;
             urlArgs += "&ttl=" + record.TTL;
             urlArgs += "&from=" + ValidateFrom;
-            string resultXml = GetDNSPodServerXml("Record.Modify", urlArgs);
-            if (resultXml == "")
-            {
-                result.DoubleStateFlag = false;
-                result.IntStateFlag = -99;
-                result.Message = "server error";
-                return result;
-            }
-            LoadXml(ref resultXml, ref _xml);
-            result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
-            if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
-            result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
+            string resultXml = GetXml("Record.Modify", urlArgs);
+            LoadXml(ref resultXml, result, ref xmlDoc);
+            ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
             return result;
         }
         /// <summary>
@@ -475,24 +436,13 @@ namespace Silmoon.Utility
         /// <param name="domainID">域名ID</param>
         /// <param name="recordID">记录ID</param>
         /// <returns>结果集</returns>
-        public StateFlag RemoveRecord(int domainID, int recordID)
+        public DNSPodResult RemoveRecord(int domainID, int recordID)
         {
-            XmlDocument _xml = new XmlDocument();
-
-            StateFlag result = new StateFlag();
-            string resultXml = GetDNSPodServerXml("Record.Remove", AuthConnection() + "&record_id=" + recordID + "&domain_id=" + domainID);
-            if (resultXml == "")
-            {
-                result.DoubleStateFlag = false;
-                result.IntStateFlag = -99;
-                result.Message = "server error";
-                return result;
-            }
-
-            LoadXml(ref resultXml, ref _xml);
-            result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
-            if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
-            result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
+            XmlDocument xmlDoc = new XmlDocument();
+            DNSPodResult result = new DNSPodResult();
+            string resultXml = GetXml("Record.Remove", AuthConnection() + "&record_id=" + recordID + "&domain_id=" + domainID);
+            LoadXml(ref resultXml, result, ref xmlDoc);
+            ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
             return result;
         }
         /// <summary>
@@ -502,44 +452,49 @@ namespace Silmoon.Utility
         /// <param name="recordID">记录ID</param>
         /// <param name="enable">是否启用</param>
         /// <returns>结果集</returns>
-        public StateFlag SetRecordState(int domainID, int recordID, bool enable)
+        public DNSPodResult SetRecordState(int domainID, int recordID, bool enable)
         {
-            XmlDocument _xml = new XmlDocument();
-
-            StateFlag result = new StateFlag();
+            XmlDocument xmlDoc = new XmlDocument();
+            DNSPodResult result = new DNSPodResult();
             string enableArgs = "";
             if (enable) enableArgs = "enable"; else enableArgs = "disable";
-            string resultXml = GetDNSPodServerXml("Record.Status", AuthConnection() + "&record_id=" + recordID + "&domain_id=" + domainID + "&status=" + enableArgs);
-            LoadXml(ref resultXml, ref _xml);
-            result.IntStateFlag = int.Parse(_xml.GetElementsByTagName("code")[0].InnerText);
-            if (result.IntStateFlag == 1) result.DoubleStateFlag = true;
-            result.Message = _xml.GetElementsByTagName("message")[0].InnerText;
+            string resultXml = GetXml("Record.Status", AuthConnection() + "&record_id=" + recordID + "&domain_id=" + domainID + "&status=" + enableArgs);
+            LoadXml(ref resultXml, result, ref xmlDoc);
+            ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
+            return result;
+        }
+
+        /// <summary>
+        /// 获取域名信息
+        /// </summary>
+        /// <param name="domainID">域名ID</param>
+        /// <returns>域名信息</returns>
+        public DomainResult GetDomainInfo(int domainID)
+        {
+            DomainResult result = new DomainResult();
+            DomainsResult domains = GetDomains();
+            result.IntFlag = domains.IntFlag;
+            result.Message = domains.Message;
+            result.XML = domains.XML;
+            result.Error = domains.Error;
+
+            if (domains.Error) return result;
+            foreach (Domain domain in domains.Domains)
+            {
+                if (domain.ID == domainID)
+                    result.Domain = domain;
+            }
             return result;
         }
         /// <summary>
-        /// 获取域名信息
-        /// </summary>
-        /// <param name="domainID">域名ID</param>
-        /// <returns>域名信息</returns>
-        public DomainInfo GetDomainInfo(int domainID)
-        {
-            DomainInfo[] domains = GetDomains();
-            foreach (DomainInfo domain in domains)
-            {
-                if (domain.ID == domainID)
-                    return domain;
-            }
-            return null;
-        }
-        /// <summary>
         /// 获取域名信息从域名信息数组中
         /// </summary>
         /// <param name="domainID">域名ID</param>
         /// <param name="domains">域名信息数组</param>
         /// <returns>域名信息</returns>
-        public DomainInfo GetDomainInfo(int domainID, DomainInfo[] domains)
+        public Domain GetDomainInfo(int domainID, Domain[] domains)
         {
-            foreach (DomainInfo domain in domains)
+            foreach (Domain domain in domains)
             {
                 if (domain.ID == domainID)
                     return domain;
@@ -551,15 +506,22 @@ namespace Silmoon.Utility
         /// </summary>
         /// <param name="domain">域名</param>
         /// <returns>域名信息</returns>
-        public DomainInfo GetDomainInfo(string domain)
+        public DomainResult GetDomainInfo(string domain)
         {
-            DomainInfo[] domains = GetDomains();
-            foreach (DomainInfo domainInfo in domains)
+            DomainResult result = new DomainResult();
+            DomainsResult domains = GetDomains();
+            result.IntFlag = domains.IntFlag;
+            result.Message = domains.Message;
+            result.XML = domains.XML;
+            result.Error = domains.Error;
+
+            if (domains.Error) return result;
+            foreach (Domain domainInfo in domains.Domains)
             {
                 if (domainInfo.DomainName.ToLower() == domain.ToLower())
-                    return domainInfo;
+                    result.Domain = domainInfo;
             }
-            return null;
+            return result;
         }
         /// <summary>
         /// 获取域名信息从域名信息数组中
@@ -567,102 +529,159 @@ namespace Silmoon.Utility
         /// <param name="domain">域名</param>
         /// <param name="domains">域名信息数组</param>
         /// <returns>域名信息</returns>
-        public DomainInfo GetDomainInfo(string domain, DomainInfo[] domains)
+        public Domain GetDomainInfo(string domain, Domain[] domains)
         {
-            foreach (DomainInfo domainInfo in domains)
+            foreach (Domain domainInfo in domains)
             {
                 if (domainInfo.DomainName.ToLower() == domain.ToLower())
                     return domainInfo;
             }
             return null;
         }
+
         /// <summary>
         /// 获取用户信息
         /// </summary>
         /// <returns></returns>
-        public UserInfo GetUserInfo()
+        public UserResult GetUserInfo()
         {
-            XmlDocument _xml = new XmlDocument();
-
-            UserInfo userInfo = new UserInfo();
-            string resultXml = GetDNSPodServerXml("User.Info", AuthConnection());
-            if (resultXml == "")
-                userInfo.StateCode = -99;
-            else
+            XmlDocument xmlDoc = new XmlDocument();
+            UserResult result = new UserResult();
+            string resultXml = GetXml("User.Info", AuthConnection());
+            if (LoadXml(ref resultXml, result, ref xmlDoc))
             {
-                LoadXml(ref resultXml, ref _xml);
-                userInfo.StateCode = int.Parse(_xml["dnspod"]["status"]["code"].InnerText);
-                userInfo.Message = _xml["dnspod"]["status"]["message"].InnerText;
-                if (userInfo.StateCode == 1)
+                result.User = new DNSPodUser();
+
+                ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
+                if (result.IntFlag == 1)
                 {
-                    userInfo.LoginOK = true;
+                    result.User.LoginOK = true;
                     IsLogin = true;
-                    userInfo.UserID = int.Parse(_xml["dnspod"]["user"]["id"].InnerText);
-                    userInfo.Username = _xml["dnspod"]["user"]["email"].InnerText;
-                    Username = userInfo.Username;
-                    UserID = userInfo.UserID;
+                    result.User.UserID = int.Parse(xmlDoc["dnspod"]["user"]["id"].InnerText);
+                    result.User.Username = xmlDoc["dnspod"]["user"]["email"].InnerText;
+                    Username = result.User.Username;
+                    UserID = result.User.UserID;
                 }
                 else
                 {
-                    userInfo.LoginOK = false;
+                    result.User.LoginOK = false;
                     IsLogin = false;
                 }
             }
 
-            return userInfo;
+            return result;
+        }
+        /// <summary>
+        /// 获取用户TOKEN
+        /// </summary>
+        /// <param name="userID">如果是管理员模式，可以获取任意用户的TOKEN，选填此项</param>
+        /// <returns></returns>
+        public DNSPodResult GetUserToken(int userID = 0)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            DNSPodResult result = new DNSPodResult();
+            string resultXml = GetXml("User.Token", AuthConnection());
+            if (LoadXml(ref resultXml, result, ref xmlDoc))
+            {
+                ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
+                result.Data = xmlDoc["dnspod"]["user"]["login_token"].InnerText;
+                _token = result.Data.ToString();
+            }
+            return result;
         }
         /// <summary>
         /// 获取DNSPod一次性密码
         /// </summary>
         /// <returns>一次性密码</returns>
-        public string GetOncePassword()
+        public DNSPodResult GetOncePassword()
         {
-            XmlDocument _xml = new XmlDocument();
-
-            string resultXml = GetDNSPodServerXml("Login.Key", AuthConnection());
-            LoadXml(ref resultXml, ref _xml);
-            if (_xml.GetElementsByTagName("code")[0].InnerText == "1")
+            XmlDocument xmlDoc = new XmlDocument();
+            DNSPodResult result = new DNSPodResult();
+            string resultXml = GetXml("Login.Key", AuthConnection());
+            if (LoadXml(ref resultXml, result, ref xmlDoc))
             {
-                return _xml.GetElementsByTagName("key")[0].InnerText;
-            } return "";
+                ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
+                result.Data = xmlDoc.GetElementsByTagName("key")[0].InnerText;
+            }
+            return result;
         }
         /// <summary>
         /// 获取域名的可用线路
         /// </summary>
         /// <param name="domainInfo">域名信息</param>
         /// <returns></returns>
-        public string[] GetDomainNetworkType(DomainInfo domainInfo)
+        public DNSPodResult GetDomainNetworkType(Domain domainInfo)
         {
-            string s = GetDNSPodServerXml("Record.Line", AuthConnection() + "&domain_grade=" + domainInfo.Grade);
-            XmlDocument xml = new XmlDocument();
-            ArrayList array = new ArrayList();
+            string resultXml = GetXml("Record.Line", AuthConnection() + "&domain_grade=" + domainInfo.Grade);
+            XmlDocument xmlDoc = new XmlDocument();
+            DNSPodResult result = new DNSPodResult();
 
-            LoadXml(ref s, ref xml);
-            if (xml["dnspod"]["status"]["code"].InnerText == "1")
+            if (LoadXml(ref resultXml, result, ref xmlDoc))
             {
-                XmlNode xmlNode = xml["dnspod"]["lines"];
+                ArrayList array = new ArrayList();
+                ProcessBaseXml(result, ref xmlDoc, new int[] { 1 });
+                XmlNode xmlNode = xmlDoc["dnspod"]["lines"];
                 foreach (XmlNode item in xmlNode)
                 {
                     array.Add(item.InnerText);
                 }
+                result.Data = (string[])array.ToArray(typeof(string));
             }
-            return (string[])array.ToArray(typeof(string));
+            return result;
         }
         /// <summary>
         /// Load Xml from string
         /// </summary>
         /// <param name="xmlString">string</param>
         /// <param name="xmlDoc">xml object</param>
-        public void LoadXml(ref string xmlString, ref XmlDocument xmlDoc)
+        public bool LoadXml(ref string xmlString, DNSPodResult result, ref XmlDocument xmlDoc)
         {
+            bool success = false;
             try
             {
                 xmlDoc.LoadXml(xmlString);
+                success = true;
+                result.XML = xmlString;
             }
             catch (Exception ex)
             {
-                throw ex;
-
+                result.Error = true;
+                result.IntFlag = -9999;
+                result.Message = ex.ToString();
+                result.ObjectReferer = ex;
+                success = false;
+            }
+            return success;
+        }
+        /// <summary>
+        /// 处理DNSPod返回的基础数据
+        /// </summary>
+        /// <param name="result">状态引用</param>
+        /// <param name="xmlDoc">XML对象</param>
+        /// <param name="noWaringCode">无错的状态数字数组</param>
+        /// <returns></returns>
+        public bool ProcessBaseXml(DNSPodResult result, ref XmlDocument xmlDoc, int[] noWaringCode)
+        {
+            result.Error = true;
+            try
+            {
+                result.IntFlag = int.Parse(xmlDoc["dnspod"]["status"]["code"].InnerText);
+                result.Message = xmlDoc["dnspod"]["status"]["message"].InnerText;
+                if (result.IntFlag == 1) result.Error = false;
+                foreach (int item in noWaringCode)
+                {
+                    if (result.IntFlag == item)
+                    {
+                        result.Error = false;
+                        break;
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                result.Error = true;
+                return false;
             }
         }
 
@@ -730,7 +749,7 @@ namespace Silmoon.Utility
             all, share, mine
         }
     }
-    public class DomainInfo
+    public class Domain
     {
         public string DomainName;
         public bool State;
@@ -738,8 +757,17 @@ namespace Silmoon.Utility
         public DomainGrade Grade;
         public int ID;
         public string ShardForm;
-        public DNSPodUnitValidate Validate = DNSPodUnitValidate.New;
+        public DNSPodValidateInfo Validate = DNSPodValidateInfo.New;
     }
+    public class DomainsResult : DNSPodResult
+    {
+        public Domain[] Domains;
+    }
+    public class DomainResult : DNSPodResult
+    {
+        public Domain Domain;
+    }
+
     public enum DomainGrade
     {
         D_Free = 0,
@@ -749,7 +777,8 @@ namespace Silmoon.Utility
         D_Expert = 4,
         D_Ultra = 5
     }
-    public class RecordInfo
+
+    public class Record
     {
         public int ID;
         public string Subname;
@@ -759,10 +788,10 @@ namespace Silmoon.Utility
         public string Value;
         public int MXLevel = 5;
         public bool Enable = true;
-        public DNSPodUnitValidate Validate = DNSPodUnitValidate.New;
+        public DNSPodValidateInfo Validate = DNSPodValidateInfo.New;
         public string Note;
-        public RecordInfo() { }
-        public RecordInfo(string subname, string isp, RecordType type, string value)
+        public Record() { }
+        public Record(string subname, string isp, RecordType type, string value)
         {
             Subname = subname;
             Isp = isp;
@@ -770,14 +799,28 @@ namespace Silmoon.Utility
             Value = value;
         }
     }
-    public class UserInfo
+    public class RecordsResult : DNSPodResult
+    {
+        public Record[] Records;
+    }
+    public class RecordResult : DNSPodResult
+    {
+        public Record Record;
+    }
+
+    public class DNSPodUser
     {
         public string Username;
         public int UserID;
-        public int StateCode = -99;
+        public string UserToken;
         public bool LoginOK = false;
         public string Message;
     }
+    public class UserResult : DNSPodResult
+    {
+        public DNSPodUser User;
+    }
+
     public enum AgentGrade
     {
         unknown = 0,
@@ -797,10 +840,72 @@ namespace Silmoon.Utility
         TXT = 6,
         AAAA = 7,
     }
-    public enum DNSPodUnitValidate
+    public enum DNSPodValidateInfo
     {
         FromDNSPod,
         Invalid,
         New,
+    }
+
+    public class DNSPodResult : IStateFlag
+    {
+        bool _error = false;
+        int _intFlag = -9999;
+        string _message = "message not defined";
+        object _objectReferer = null;
+        public string XML = "";
+        public object Data;
+
+        #region IStateFlag 成员
+
+        public bool Error
+        {
+            get
+            {
+                return _error;
+            }
+            set
+            {
+                _error = value;
+            }
+        }
+
+        public int IntFlag
+        {
+            get
+            {
+                return _intFlag;
+            }
+            set
+            {
+                _intFlag = value;
+            }
+        }
+
+        public string Message
+        {
+            get
+            {
+                return _message;
+            }
+            set
+            {
+                _message = value;
+            }
+        }
+
+        public object ObjectReferer
+        {
+            get
+            {
+                return _objectReferer;
+            }
+            set
+            {
+                _objectReferer = value;
+            }
+        }
+
+        #endregion
     }
 }

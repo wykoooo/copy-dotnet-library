@@ -215,7 +215,7 @@ namespace Silmoon
         /// <returns></returns>
         public static ArrayList SortArray(ArrayList array)
         {
-            Comparer c = new Comparer(System.Globalization.CultureInfo.CurrentCulture);
+            //Comparer c = new Comparer(System.Globalization.CultureInfo.CurrentCulture);
             array.Sort();
             return array;
         }

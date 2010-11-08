@@ -385,7 +385,8 @@ namespace Silmoon.Net
                 {
                     TcpClient _tc = _tl.AcceptTcpClient();
                     __listen__readSmtcp reader = new __listen__readSmtcp(this, ref _tc, _protocol);
-                    _tcp_Reader_Array.Add(reader);
+                    lock (_tcp_Reader_Array)
+                        _tcp_Reader_Array.Add(reader);
                     Threads.ExecAsync(reader.Start);
                 }
                 catch { }
@@ -539,7 +540,8 @@ namespace Silmoon.Net
                     if (obj == null) continue;
                     if (((__listen__readSmtcp)obj).ClientID == clientID)
                     {
-                        _tcp_Reader_Array.Remove(obj);
+                        lock (_tcp_Reader_Array)
+                            _tcp_Reader_Array.Remove(obj);
                         break;
                     }
                 }

@@ -527,18 +527,12 @@
             从Smmp中的监听循环获取处理
             </summary>
         </member>
-        <member name="M:Silmoon.Net.__listen__readSmmp.SendData(Silmoon.Net.SmmpPacket)">
-            <summary>
-            向对方发送数据
-            </summary>
-            <param name="byteData">数据内容</param>
-        </member>
+        <!-- 对于成员“M:Silmoon.Net.__listen__readSmmp.SendData(Silmoon.Net.SmmpPacket)”忽略有格式错误的 XML 注释 -->
         <member name="M:Silmoon.Net.__listen__readSmmp.SendData(System.String)">
             <summary>
             向对方发送数据
             </summary>
-            <param name="byteData">数据内容</param>
-            <param name="clientID">连接标识</param>
+            <param name="stringData">数据内容</param>
         </member>
         <member name="M:Silmoon.Net.__listen__readSmmp.SendData(System.Byte[])">
             <summary>

@@ -9,6 +9,7 @@ using System.Threading;
 using Silmoon.Memory;
 using Silmoon.Net.SmProtocol;
 using Silmoon.Threading;
+using System.Runtime.InteropServices;
 
 namespace Silmoon.Net
 {
@@ -400,7 +401,7 @@ namespace Silmoon.Net
                 try
                 {
                     TcpClient _tc = _tl.AcceptTcpClient();
-                    __listen__readSmmp reader = new __listen__readSmmp(this, ref _tc, _protocol);
+                    __listen__readSmmp reader = new __listen__readSmmp(this, ref _tc);
                     lock (_tcp_Reader_Array)
                         _tcp_Reader_Array.Add(reader);
                     Threads.ExecAsync(reader.Start);
@@ -666,13 +667,16 @@ namespace Silmoon.Net
         TcpClient _tc;
         TcpStruct _remoteTcpStruct;
         NetworkStream _ns;
-        SmmpPackectProtocol _protocol;
+        SmmpPackectProtocol _protocol = new SmmpPackectProtocol();
         StateFlag _objectFlag = new StateFlag();
 
         public event SmmpReceiveDataEventHander OnReceivedData;
         int _clientID;
         ArrayList _byteCache = new ArrayList();
+
+
         SmmpProtocalHeader _savedHeaderInfo;
+
 
         public int ClientID
         {
@@ -690,15 +694,16 @@ namespace Silmoon.Net
             set { _objectFlag = value; }
         }
 
-        public __listen__readSmmp(Smmp tcp, ref TcpClient tc, SmmpPackectProtocol protocol)
+        public __listen__readSmmp(Smmp tcp, ref TcpClient tc)
         {
             _clientID = new Random().Next(1, 1024000);
             _tc = tc;
             _tcp = tcp;
-            _protocol = protocol;
         }
         internal void Start()
         {
+            int count = 1;
+
             try
             {
                 _ns = _tc.GetStream();
@@ -714,23 +719,28 @@ namespace Silmoon.Net
                 }
 
                 int bit = 0;
-                while ((bit = _ns.ReadByte()) != -1) DataLoop((byte)bit, _clientID);
+                while ((bit = _ns.ReadByte()) != -1)
+                {
+                    DataLoop((byte)bit, _clientID);
+                    count++;
+                }
                 close();
             }
-            catch { close(); }
+            catch
+            { close(); }
         }
-        private void DataLoop(byte data, int clientID)
+        private unsafe void DataLoop(byte data, int clientID)
         {
             _byteCache.Add(data);
 
             if (!_protocol.Received)
             {
-                SmmpProtocalHeader pheader = _protocol.IsProtocolHeader(ref _byteCache);
-                if (pheader != null)
+                _savedHeaderInfo = _protocol.IsProtocolHeader(ref _byteCache);
+                if (_savedHeaderInfo != null)
                 {
-                    _savedHeaderInfo = pheader;
                     _protocol.Received = true;
                 }
+                else _protocol.Received = false;
             }
             else if (_protocol.Received)
             {
@@ -746,7 +756,7 @@ namespace Silmoon.Net
         /// <summary>
         /// 向对方发送数据
         /// </summary>
-        /// <param name="byteData">数据内容</param>
+        /// <SmmpPacket name="byteData">数据内容</param>
         public void SendData(SmmpPacket packet)
         {
             if (!_tc.Connected) { _tcp.onError(_tcp._localTcpStruct, _remoteTcpStruct, TcpError.TcpClientNotConnected, null, TcpOptionType.SendData, this); return; }
@@ -756,8 +766,7 @@ namespace Silmoon.Net
         /// <summary>
         /// 向对方发送数据
         /// </summary>
-        /// <param name="byteData">数据内容</param>
-        /// <param name="clientID">连接标识</param>
+        /// <param name="stringData">数据内容</param>
         public void SendData(string stringData)
         {
             SendData(_tcp.DataEncoding.GetBytes(stringData));
@@ -1051,7 +1060,6 @@ namespace Silmoon.Net
                 contentLength = 0;
                 return packet;
             }
-
             return null;
         }
         /// <summary>

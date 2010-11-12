@@ -384,7 +384,7 @@ namespace Silmoon.Net
                 try
                 {
                     TcpClient _tc = _tl.AcceptTcpClient();
-                    __listen__readSmtcp reader = new __listen__readSmtcp(this, ref _tc, _protocol);
+                    __listen__readSmtcp reader = new __listen__readSmtcp(this, ref _tc);
                     lock (_tcp_Reader_Array)
                         _tcp_Reader_Array.Add(reader);
                     Threads.ExecAsync(reader.Start);
@@ -677,12 +677,11 @@ namespace Silmoon.Net
             set { _objectFlag = value; }
         }
 
-        public __listen__readSmtcp(SmTcp tcp, ref TcpClient tc, SmPackectProtocol protocol)
+        public __listen__readSmtcp(SmTcp tcp, ref TcpClient tc)
         {
             _clientID = new Random().Next(1, 1024000);
             _tc = tc;
             _tcp = tcp;
-            _protocol = protocol;
         }
         internal void Start()
         {

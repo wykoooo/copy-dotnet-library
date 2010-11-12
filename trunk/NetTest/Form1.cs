@@ -32,16 +32,15 @@ namespace NetTest
         private void button1_Click(object sender, EventArgs e)
         {
             Threads.ExecAsync(t);
-
         }
         void t()
         {
             listBox1.Items.Add("thread " + Thread.CurrentThread.ManagedThreadId + " start." + DateTime.Now);
-            //lock (arraylist)
-            //{
+            lock (arraylist)
+            {
                 arraylist.Add(DateTime.Now.ToString());
                 Thread.Sleep(3000);
-            //}
+            }
             listBox1.Items.Add("thread " + Thread.CurrentThread.ManagedThreadId + " end." + DateTime.Now);
         }
     }

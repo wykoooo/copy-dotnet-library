@@ -121,18 +121,15 @@ I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Media.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Interop.WMPLib.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Microsoft.DirectX.AudioVideoPlayback.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Microsoft.DirectX.dll
-I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Windows.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Windows.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Windows.xml
-I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.xml
 I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResolveAssemblyReference.cache
 I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.Controls.VideoControl.resources
 I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\GenerateResource-ResGen.read.1.tlog
 I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\GenerateResource-ResGen.write.1.tlog
 I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.pdb
-I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.pdb
 K:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResolveAssemblyReference.cache
 K:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.Controls.VideoControl.resources
 K:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\GenerateResource-ResGen.read.1.tlog
@@ -150,3 +147,6 @@ K:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Windows.xml
 K:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.xml
 K:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.pdb
 K:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.pdb
+I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.dll
+I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.pdb
+I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.xml

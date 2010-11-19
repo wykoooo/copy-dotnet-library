@@ -548,14 +548,16 @@ namespace Silmoon.Net
             }
             else if (_tcpMode == TcpMode.Server)
             {
-                foreach (object obj in _tcp_Reader_Array)
+                lock (_tcp_Reader_Array)
                 {
-                    if (obj == null) continue;
-                    if (((__listen__readSmmp)obj).ClientID == clientID)
+                    foreach (object obj in _tcp_Reader_Array)
                     {
-                        lock (_tcp_Reader_Array)
+                        if (obj == null) continue;
+                        if (((__listen__readSmmp)obj).ClientID == clientID)
+                        {
                             _tcp_Reader_Array.Remove(obj);
-                        break;
+                            break;
+                        }
                     }
                 }
             }

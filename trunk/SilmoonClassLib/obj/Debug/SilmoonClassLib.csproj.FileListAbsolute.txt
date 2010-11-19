@@ -110,4 +110,3 @@ K:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.Windows.pdb
 K:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.Windows.xml
 K:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.pdb
 K:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.XML
-I:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.XML

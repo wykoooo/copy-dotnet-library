@@ -43,5 +43,13 @@ namespace NetTest
             }
             listBox1.Items.Add("thread " + Thread.CurrentThread.ManagedThreadId + " end." + DateTime.Now);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string[] items1 = new string[] { "1", "2", "3", "4", "5" };
+            string[] items2 = new string[] { "1", "3", "4" };
+            string[] missedItems = SmString.MissedItems(items1, items2);
+
+        }
     }
 }

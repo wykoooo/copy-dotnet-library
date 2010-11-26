@@ -10,28 +10,23 @@ namespace Silmoon.Windows.Desktops
         [StructLayout(LayoutKind.Sequential)]
         public struct MARGINS
         {
-            public int cxLeftWidth;
-            public int cxRightWidth;
-            public int cyTopHeight;
-            public int cyBottomHeight;
+            public int Left;
+            public int Right;
+            public int Top;
+            public int Bottom;
         };
 
         [DllImport("DwmApi.dll")]
         public static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, ref MARGINS pMarInset);
+        [DllImport("dwmapi.dll", EntryPoint = "DwmEnableComposition")]
+        public extern static uint Win32DwmEnableComposition(uint uCompositionAction);
+        [DllImport("dwmapi.dll", PreserveSig = false)]
+        public extern static bool DwmIsCompositionEnabled();
 
-        public static bool SetAreoArea(IntPtr ptr)
+        public static bool SetAreoArea(IntPtr ptr, ref MARGINS margins)
         {
             try
             {
-                // 设置Margins
-                MARGINS margins = new MARGINS();
-
-                // 扩展Aero Glass
-                margins.cxLeftWidth = -1;
-                margins.cxRightWidth = -1;
-                margins.cyTopHeight = -1;
-                margins.cyBottomHeight = -1;
-
                 int hr = DwmExtendFrameIntoClientArea(ptr, ref margins);
                 if (hr < 0)
                 {
@@ -44,5 +39,6 @@ namespace Silmoon.Windows.Desktops
             }
             return true;
         }
+
     }
 }

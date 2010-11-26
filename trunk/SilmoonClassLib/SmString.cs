@@ -279,12 +279,12 @@ namespace Silmoon
         /// <summary>
         /// 第一个参数的数组元素做比对，获取出第二个参数元素缺少的元素。
         /// </summary>
-        /// <param name="array1">作为比对的数组</param>
+        /// <param name="array1">作为比对的数组的范例</param>
         /// <param name="array2">要比对的数组</param>
         /// <returns></returns>
         public static string[] MissedItems(string[] array1, string[] array2)
         {
-            ComparisonArrayed result = new ComparisonArrayed();
+            //ComparisonArrayed result = new ComparisonArrayed();
             ArrayList list2 = new ArrayList();
 
             foreach (string item in array1)

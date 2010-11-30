@@ -84,7 +84,7 @@ namespace Silmoon
         {
             if (sint < min || sint > max) return false; else return true;
         }
-        public static int ControlIntValue(int sint, int min, int max, bool throwException)
+        public static int CheckIntValue(int sint, int min, int max, bool throwException)
         {
             if (sint < min)
             {
@@ -98,13 +98,13 @@ namespace Silmoon
             }
             return sint;
         }
-        public static int ControlIntValueMin(int sint, int min)
+        public static int CheckIntValueMin(int sint, int min)
         {
             int reint = sint;
             if (sint < min) { reint = min; }
             return reint;
         }
-        public static int ControlIntValueMax(int sint, int max)
+        public static int CheckIntValueMax(int sint, int max)
         {
             int reint = sint;
             if (sint > max) { reint = max; }

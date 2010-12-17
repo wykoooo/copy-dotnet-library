@@ -13,6 +13,13 @@ namespace Silmoon.Web.Controls
         int _userLevel = -1;
         LoginState _state;
         UserLimit _userLimit;
+        int _sessionTimeout = 10;
+
+        public int SessionTimeout
+        {
+            get { return _sessionTimeout; }
+            set { _sessionTimeout = value; }
+        }
         public event EventHandler UserLogin;
         public event EventHandler UserLogout;
 
@@ -115,10 +122,10 @@ namespace Silmoon.Web.Controls
         }
         public void DoLogin(string username, string password, int userLevel)
         {
+            HttpContext.Current.Session.Timeout = _sessionTimeout;
             _userName = username;
             _password = password;
             _userLevel = userLevel;
-
             HttpContext.Current.Session["SmUserName"] = username;
             HttpContext.Current.Session["SmPassword"] = password;
             HttpContext.Current.Session["SmUserLevel"] = userLevel;

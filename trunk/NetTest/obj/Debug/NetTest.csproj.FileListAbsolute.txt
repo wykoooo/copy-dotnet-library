@@ -116,3 +116,5 @@ K:\svn\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.read.1.t
 K:\svn\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.write.1.tlog
 K:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.pdb
 K:\svn\silmoon-dotnet-library\NetTest\bin\Debug\Silmoon.pdb
+J:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.exe
+J:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.pdb

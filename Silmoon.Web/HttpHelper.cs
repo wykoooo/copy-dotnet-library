@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web;
 using System.IO;
+using System.Net;
 
 namespace Silmoon.Web
 {
@@ -34,7 +35,21 @@ namespace Silmoon.Web
         {
             get { return HttpRuntime.AppDomainAppPath; }
         }
+        public static IPAddress GetClientIPAddress()
+        {
+            IPAddress result = null;
 
+            if (!string.IsNullOrEmpty(HttpContext.Current.Request.ServerVariables["X-FORWARDED-FOR"]))
+                return IPAddress.Parse(HttpContext.Current.Request.ServerVariables["X-FORWARDED-FOR"]);
+
+            if (!string.IsNullOrEmpty(HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"]))
+                return IPAddress.Parse(HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"]);
+
+            if (!string.IsNullOrEmpty(HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]))
+                return IPAddress.Parse(HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+
+            return result;
+        }
 
         internal static string UrlEncodeSpaces(string str)
         {

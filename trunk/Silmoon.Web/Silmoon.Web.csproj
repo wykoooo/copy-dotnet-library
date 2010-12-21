@@ -96,7 +96,7 @@
   <ItemGroup>
     <Compile Include="ISmPage.cs" />
     <Compile Include="SmHTML.cs" />
-    <Compile Include="SmHttpUtility.cs" />
+    <Compile Include="HttpHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

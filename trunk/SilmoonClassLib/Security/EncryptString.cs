@@ -7,7 +7,7 @@ namespace Silmoon.Security
 {
     public class EncryptString
     {
-        public static string EncryptSilmoonBinry(string s)
+        public static string EncryptSilmoonBinary(string s)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(s);
             string restring = "";
@@ -17,7 +17,7 @@ namespace Silmoon.Security
             }
             return restring;
         }
-        public static string DiscryptSilmoonBinry(string s)
+        public static string DiscryptSilmoonBinary(string s)
         {
             string[] str = s.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
             byte[] rebytes = new byte[str.Length];

@@ -83,3 +83,4 @@ J:\svn\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.xml
 J:\svn\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\ResolveAssemblyReference.cache
 J:\svn\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\Silmoon.Windows.Server.dll
 J:\svn\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\Silmoon.Windows.Server.pdb
+J:\svn\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.Windows.Server.XML

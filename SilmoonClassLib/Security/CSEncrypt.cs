@@ -9,7 +9,7 @@ namespace Silmoon.Security
     /// <summary>   
     /// 对称加密算法类   
     /// </summary>   
-    public class CSEncrypt:IDisposable
+    public class CSEncrypt : IDisposable
     {
         private SymmetricAlgorithm mobjCryptoService;
         private string Key;
@@ -20,6 +20,11 @@ namespace Silmoon.Security
         {
             mobjCryptoService = new RijndaelManaged();
             Key = "8UFCy76G7jH7yuBI0456lhj!y6&(*jkP8FtmaTuz(%&hj9H$ilJ$75&fvHx*h%(H";
+        }
+        public CSEncrypt(string hashKey)
+        {
+            mobjCryptoService = new RijndaelManaged();
+            Key = hashKey;
         }
         /// <summary>   
         /// 获得密钥   
@@ -58,7 +63,7 @@ namespace Silmoon.Security
         /// </summary>   
         /// <param name="Source">待加密的串</param>   
         /// <returns>经过加密的串</returns>   
-        public string Encrypto(string Source)
+        public string EncryptoByte(string Source)
         {
             if (Source == "") return "";
             byte[] bytIn = UTF8Encoding.UTF8.GetBytes(Source);
@@ -71,19 +76,60 @@ namespace Silmoon.Security
             cs.FlushFinalBlock();
             ms.Close();
             byte[] bytOut = ms.ToArray();
-            return EncryptString.EncryptSilmoonBinry(Convert.ToBase64String(bytOut));
+            return EncryptString.EncryptSilmoonBinary(Convert.ToBase64String(bytOut));
         }
         /// <summary>   
         /// 解密方法   
         /// </summary>   
         /// <param name="Source">待解密的串</param>   
         /// <returns>经过解密的串</returns>   
-        public string Decrypto(string Source)
+        public string DecryptoByte(string Source)
         {
             try
             {
-                if (EncryptString.DiscryptSilmoonBinry(Source) == "") return "";
-                byte[] bytIn = Convert.FromBase64String(EncryptString.DiscryptSilmoonBinry(Source));
+                if (EncryptString.DiscryptSilmoonBinary(Source) == "") return "";
+                byte[] bytIn = Convert.FromBase64String(EncryptString.DiscryptSilmoonBinary(Source));
+                MemoryStream ms = new MemoryStream(bytIn, 0, bytIn.Length);
+                mobjCryptoService.Key = GetLegalKey();
+                mobjCryptoService.IV = GetLegalIV();
+                ICryptoTransform encrypto = mobjCryptoService.CreateDecryptor();
+                CryptoStream cs = new CryptoStream(ms, encrypto, CryptoStreamMode.Read);
+                StreamReader sr = new StreamReader(cs);
+                return sr.ReadToEnd();
+            }
+            catch { return ""; }
+        }
+        /// <summary>   
+        /// 加密方法   
+        /// </summary>   
+        /// <param name="Source">待加密的串</param>   
+        /// <returns>经过加密的串</returns>   
+        public string Encrypt(string Source)
+        {
+            if (Source == "") return "";
+            byte[] bytIn = UTF8Encoding.UTF8.GetBytes(Source);
+            MemoryStream ms = new MemoryStream();
+            mobjCryptoService.Key = GetLegalKey();
+            mobjCryptoService.IV = GetLegalIV();
+            ICryptoTransform encrypto = mobjCryptoService.CreateEncryptor();
+            CryptoStream cs = new CryptoStream(ms, encrypto, CryptoStreamMode.Write);
+            cs.Write(bytIn, 0, bytIn.Length);
+            cs.FlushFinalBlock();
+            ms.Close();
+            byte[] bytOut = ms.ToArray();
+            return Convert.ToBase64String(bytOut);
+        }
+        /// <summary>   
+        /// 解密方法   
+        /// </summary>   
+        /// <param name="Source">待解密的串</param>   
+        /// <returns>经过解密的串</returns>   
+        public string Decrypt(string Source)
+        {
+            try
+            {
+                if (EncryptString.DiscryptSilmoonBinary(Source) == "") return "";
+                byte[] bytIn = Convert.FromBase64String(Source);
                 MemoryStream ms = new MemoryStream(bytIn, 0, bytIn.Length);
                 mobjCryptoService.Key = GetLegalKey();
                 mobjCryptoService.IV = GetLegalIV();
@@ -95,6 +141,33 @@ namespace Silmoon.Security
             catch { return ""; }
         }
 
+        /// <summary>
+        /// 将已经加密过的字符串再次加密字节
+        /// </summary>
+        /// <param name="encryptString">已经加密过的字符串</param>
+        /// <returns></returns>
+        public byte[] EncryptoBinary(string encryptString)
+        {
+            string[] sinta = encryptString.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+
+            byte[] data = new byte[sinta.Length];
+
+            for (int i = 0; i < data.Length; i++)
+                data[i] = (byte)int.Parse(sinta[i]);
+            return data;
+        }
+        /// <summary>
+        /// 将已经加密成字节的字符串解密成曾经加密成的字符串
+        /// </summary>
+        /// <param name="encryptBytes">加密后的字节</param>
+        /// <returns></returns>
+        public string DecryptoString(byte[] encryptBytes)
+        {
+            string s = "";
+            foreach (byte item in encryptBytes)
+                s += ((int)item).ToString();
+            return s;
+        }
 
         #region IDisposable 成员
 

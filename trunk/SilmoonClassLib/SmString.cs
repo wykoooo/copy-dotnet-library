@@ -277,10 +277,10 @@ namespace Silmoon
             return listString.ToArray();
         }
         /// <summary>
-        /// 第一个参数的数组元素做比对，获取出第二个参数元素缺少的元素。
+        /// 根据第一个数组，找出第二个数组缺少的项目
         /// </summary>
         /// <param name="array1">作为比对的数组的范例</param>
-        /// <param name="array2">要比对的数组</param>
+        /// <param name="array2">需要找出缺少项目的数组</param>
         /// <returns></returns>
         public static string[] MissedItems(string[] array1, string[] array2)
         {

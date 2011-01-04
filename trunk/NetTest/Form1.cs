@@ -51,5 +51,17 @@ namespace NetTest
             string[] missedItems = SmString.MissedItems(items1, items2);
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SmTcp tcp = new SmTcp();
+            tcp.AsyncStartListen(IPAddress.Any, 8889);
+            tcp.OnReceivedData += new TcpReceiveDataEventHander(tcp_OnReceivedData);
+        }
+
+        void tcp_OnReceivedData(TcpStruct localTcpInfo, TcpStruct remoteTcpInfo, byte[] data, ITcpReader tcpReader)
+        {
+            MessageBox.Show(System.Text.Encoding.Default.GetString(data));
+        }
     }
 }

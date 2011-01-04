@@ -384,7 +384,7 @@ namespace Silmoon.Net
                 try
                 {
                     TcpClient _tc = _tl.AcceptTcpClient();
-                    __listen__readSmtcp reader = new __listen__readSmtcp(this, ref _tc);
+                    __listen__readSmtcp reader = new __listen__readSmtcp(this, ref _tc, _protocol);
                     lock (_tcp_Reader_Array)
                         _tcp_Reader_Array.Add(reader);
                     Threads.ExecAsync(reader.Start);
@@ -679,8 +679,9 @@ namespace Silmoon.Net
             set { _objectFlag = value; }
         }
 
-        public __listen__readSmtcp(SmTcp tcp, ref TcpClient tc)
+        public __listen__readSmtcp(SmTcp tcp, ref TcpClient tc, SmPackectProtocol protocal)
         {
+            _protocol = protocal;
             _clientID = new Random().Next(1, 1024000);
             _tc = tc;
             _tcp = tcp;
@@ -709,31 +710,31 @@ namespace Silmoon.Net
         }
         private void DataLoop(byte data, int clientID)
         {
-            _byteCache.Add(data);
-            byte[] byteData = (byte[])_byteCache.ToArray(typeof(byte));
+                _byteCache.Add(data);
+                byte[] byteData = (byte[])_byteCache.ToArray(typeof(byte));
 
-            ProtocalHeader pheader = _protocol.IsProtocolHeader(byteData);
-            if (pheader.IsSmProtocol && !_netStatusInfo.Received)
-            {
-                if (pheader.PackectLength == 0)
-                    _byteCache.Clear();
-                else
+                ProtocalHeader pheader = _protocol.IsProtocolHeader(byteData);
+                if (pheader.IsSmProtocol && !_netStatusInfo.Received)
                 {
-                    _netStatusInfo.PackectLength = pheader.PackectLength;
-                    _netStatusInfo.Received = true;
-                    _byteCache.Clear();
+                    if (pheader.PackectLength == 0)
+                        _byteCache.Clear();
+                    else
+                    {
+                        _netStatusInfo.PackectLength = pheader.PackectLength;
+                        _netStatusInfo.Received = true;
+                        _byteCache.Clear();
+                    }
                 }
-            }
-            else if (_netStatusInfo.Received)
-            {
-                byte[] b = _protocol.ReadFormSmProtocol(ref _netStatusInfo, byteData);
-                if (b != null)
+                else if (_netStatusInfo.Received)
                 {
-                    onReceivedData(_tcp._localTcpStruct, _remoteTcpStruct, b);
-                    _netStatusInfo.Received = false;
-                    _byteCache.Clear();
+                    byte[] b = _protocol.ReadFormSmProtocol(ref _netStatusInfo, byteData);
+                    if (b != null)
+                    {
+                        onReceivedData(_tcp._localTcpStruct, _remoteTcpStruct, b);
+                        _netStatusInfo.Received = false;
+                        _byteCache.Clear();
+                    }
                 }
-            }
         }
         /// <summary>
         /// 向对方发送数据

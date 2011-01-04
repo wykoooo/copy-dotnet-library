@@ -122,4 +122,3 @@ J:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.
 J:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.write.1.tlog
 J:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.dll
 J:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.pdb
-J:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.XML

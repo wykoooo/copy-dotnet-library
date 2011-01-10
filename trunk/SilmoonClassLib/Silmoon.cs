@@ -1,13 +1,14 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Collections;
 
 namespace Silmoon
 {
     public class Copyright
     {
-        public static string CopyUsingString = "hare";
-        public static string Author = "song weibin";
+        public static string CopyUsingString = "Nothing";
+        public static string Author = "Silmoon Sone";
     }
 
     public class SmType
@@ -238,6 +239,39 @@ namespace Silmoon
             //FreeConsole();
         }
 
+        public static string PasswordInput()
+        {
+            Console.ForegroundColor = System.ConsoleColor.Red;
+            ArrayList passArray = new ArrayList();
+            ConsoleKeyInfo cki = Console.ReadKey(true);
+            string look = "~!@#$%^&*()/\\[]{}<>`";
+            //int lookc = 0;
+            while (cki.KeyChar != 13 && cki.KeyChar != 10)
+            {
+                if (cki.KeyChar == 8 || cki.KeyChar == 0)
+                {
+                    if (passArray.Count != 0)
+                    {
+                        passArray.RemoveAt(passArray.Count - 1);
+                        Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                        Console.Write("\0");
+                        Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                    }
+                }
+                else
+                {
+                    passArray.Add(cki.KeyChar);
+                    //if(lookc == look.Length)lookc = 0;
+                    Console.Write(look[new Random(DateTime.Now.Millisecond).Next(0, look.Length - 1)]);
+                    //Console.WriteLine ((int)cki.KeyChar);
+                    //lookc++;
+                }
+                cki = Console.ReadKey(true);
+            }
+            Console.ResetColor();
+            Console.WriteLine();
+            return new string((char[])passArray.ToArray(typeof(char)), 0, passArray.Count);
+        }
         public void SetMode(InputMode mode)
         {
             int i = 0;

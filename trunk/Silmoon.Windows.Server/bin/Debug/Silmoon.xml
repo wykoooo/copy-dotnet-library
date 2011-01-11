@@ -4,6 +4,29 @@
         <name>Silmoon</name>
     </assembly>
     <members>
+        <member name="M:Silmoon.Security.SmHash.Get32MD5(System.String)">
+            <summary> 
+            进行MD5的32位加密
+            </summary> 
+            <param name="strSource">需要加密的明文</param> 
+            <returns>返回32位加密结果</returns> 
+        </member>
+        <member name="M:Silmoon.Security.SmHash.GenerateCheckCodeNum(System.Int32,System.Int32)">
+            <summary>
+            生成随机数字字符串
+            </summary>
+            <param name="codeCount">待生成的位数</param>
+            <param name="seed">随机种子</param>
+            <returns>生成的数字字符串</returns>
+        </member>
+        <member name="M:Silmoon.Security.SmHash.GenerateCheckCode(System.Int32,System.Int32)">
+            <summary>
+            生成随机字母字符串(数字字母混和)
+            </summary>
+            <param name="codeCount">待生成的位数</param>
+            <param name="seed">随机种子</param>
+            <returns>生成的字母字符串</returns>
+        </member>
         <member name="T:Silmoon.Data.SqlClient.SmSQLClientSource">
             <summary>
             用于自己创建引用类型使用SmSqlClient数据源的控制与引用。
@@ -591,7 +614,6 @@
             获取程序集是否已经被实例化
             </summary>
         </member>
-        <!-- 对于成员“M:Silmoon.Security.SmHash.Get32MD5(System.String)”忽略有格式错误的 XML 注释 -->
         <member name="T:Silmoon.Net.Monitor">
             <summary>
             Monitor 的摘要说明。

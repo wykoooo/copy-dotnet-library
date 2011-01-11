@@ -91,7 +91,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Security.cs" />
+    <Compile Include="Security\SmHash.cs" />
     <Compile Include="Service\ServiceControl.cs" />
     <Compile Include="Data\SqlClient\SmMSSQLClient.cs">
     </Compile>

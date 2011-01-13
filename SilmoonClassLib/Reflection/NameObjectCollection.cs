@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 
 namespace Silmoon.Reflection
 {
+    [Serializable]
     public class NameObjectCollection : NameObjectCollectionBase
     {
         public void Add(string name, object value)

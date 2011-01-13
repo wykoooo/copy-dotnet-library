@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Specialized;
 using Silmoon.Reflection;
+using System;
 
 namespace Silmoon
 {
+    [Serializable]
     public class StateFlag : IStateFlag
     {
         int _id = -1;

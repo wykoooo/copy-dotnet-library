@@ -161,6 +161,7 @@ namespace Silmoon.Web.Controls
             HttpContext.Current.Session.Remove("SmUserObject");
         }
     }
+    [Serializable]
     public enum LoginState
     {
         Null=0,
@@ -168,6 +169,7 @@ namespace Silmoon.Web.Controls
         Login=2,
         Logout=3,
     }
+    [Serializable]
     public class UserLimit
     {
         string _userLevelString;

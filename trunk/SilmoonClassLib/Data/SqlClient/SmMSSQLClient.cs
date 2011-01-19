@@ -16,6 +16,16 @@ namespace Silmoon.Data.SqlClient
         SqlConnection con = new SqlConnection();
         string conStr;
         bool isConnect;
+        int selectCommandTimeout = 30;
+
+        /// <summary>
+        /// 在使用数据适配器的时候，执行SELECT查询的超时时间。
+        /// </summary>
+        public int SelectCommandTimeout
+        {
+            get { return selectCommandTimeout; }
+            set { selectCommandTimeout = value; }
+        }
 
         /// <summary>
         /// 获取SQL地连接状态
@@ -132,6 +142,7 @@ namespace Silmoon.Data.SqlClient
         {
             DataTable dt = new DataTable();
             SqlDataAdapter da = (SqlDataAdapter)GetDataAdapter(sqlcommand);
+            da.SelectCommand.CommandTimeout = selectCommandTimeout;
             da.Fill(dt);
             da.Dispose();
             return dt;

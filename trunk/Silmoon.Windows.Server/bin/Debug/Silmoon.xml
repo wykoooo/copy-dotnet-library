@@ -320,6 +320,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:Silmoon.Data.SqlClient.SmMSSQLClient.SelectCommandTimeout">
+            <summary>
+            在使用数据适配器的时候，执行SELECT查询的超时时间。
+            </summary>
+        </member>
         <member name="P:Silmoon.Data.SqlClient.SmMSSQLClient.State">
             <summary>
             获取SQL地连接状态

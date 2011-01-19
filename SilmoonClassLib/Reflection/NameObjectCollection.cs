@@ -8,6 +8,10 @@ namespace Silmoon.Reflection
     [Serializable]
     public class NameObjectCollection : NameObjectCollectionBase
     {
+        public NameObjectCollection()
+        {
+
+        }
         public void Add(string name, object value)
         {
             base.BaseAdd(name, value);

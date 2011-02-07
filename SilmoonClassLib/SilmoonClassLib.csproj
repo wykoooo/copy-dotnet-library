@@ -93,8 +93,6 @@
     </Compile>
     <Compile Include="Security\SmHash.cs" />
     <Compile Include="Service\ServiceControl.cs" />
-    <Compile Include="Data\SqlClient\SmMSSQLClient.cs">
-    </Compile>
     <Compile Include="Configure\IniFile.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -103,11 +101,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Configure\NameValueReader.cs" />
-    <Compile Include="Data\ConnectionStringMaker.cs" />
-    <Compile Include="Data\Odbc\SmOdbcClientInternal.cs" />
-    <Compile Include="Data\Odbc\SmOdbcClientSource.cs" />
-    <Compile Include="Data\SqlTemplate.cs" />
-    <Compile Include="Data\SqlUtility\MSSQLHelper.cs" />
     <Compile Include="IO\FileWatcher.cs" />
     <Compile Include="IO\SmFile\ACL.cs" />
     <Compile Include="IO\SmFile\Searcher.cs" />
@@ -133,12 +126,6 @@
     <Compile Include="Security\IdentityAuthInfo.cs" />
     <Compile Include="Security\EncryptString.cs" />
     <Compile Include="Service\Service.SystemService.cs" />
-    <Compile Include="Data\ISMSQL.cs" />
-    <Compile Include="Data\Odbc\SmOdbcClient.cs" />
-    <Compile Include="Data\SqlClient\SmMSSQLClientInternal.cs" />
-    <Compile Include="Data\SqlUtility\MySQLHelper.cs" />
-    <Compile Include="Data\SmOleDbSource.cs" />
-    <Compile Include="Data\SqlClient\SmMSSQLClientSource.cs" />
     <Compile Include="ExecProc.cs" />
     <Compile Include="SmEnvironment.cs" />
     <Compile Include="SmString.cs" />

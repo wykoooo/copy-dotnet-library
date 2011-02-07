@@ -1,0 +1,7 @@
+H:\svn\silmoon-dotnet-library\Silmoon.Data\bin\Debug\Silmoon.Data.dll
+H:\svn\silmoon-dotnet-library\Silmoon.Data\bin\Debug\Silmoon.Data.pdb
+H:\svn\silmoon-dotnet-library\Silmoon.Data\obj\Debug\ResolveAssemblyReference.cache
+H:\svn\silmoon-dotnet-library\Silmoon.Data\obj\Debug\Silmoon.Data.dll
+H:\svn\silmoon-dotnet-library\Silmoon.Data\obj\Debug\Silmoon.Data.pdb
+H:\svn\silmoon-dotnet-library\Silmoon.Data\bin\Debug\Silmoon.dll
+H:\svn\silmoon-dotnet-library\Silmoon.Data\bin\Debug\MySql.Data.dll

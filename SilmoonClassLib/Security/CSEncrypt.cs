@@ -128,7 +128,7 @@ namespace Silmoon.Security
         {
             try
             {
-                if (EncryptString.DiscryptSilmoonBinary(Source) == "") return "";
+                if (Source == "") return "";
                 byte[] bytIn = Convert.FromBase64String(Source);
                 MemoryStream ms = new MemoryStream(bytIn, 0, bytIn.Length);
                 mobjCryptoService.Key = GetLegalKey();

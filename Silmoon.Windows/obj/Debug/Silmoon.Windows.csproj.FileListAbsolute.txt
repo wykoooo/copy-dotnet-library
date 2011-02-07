@@ -155,3 +155,4 @@ H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.
 H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.write.1.tlog
 H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.dll
 H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb
+H:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.XML

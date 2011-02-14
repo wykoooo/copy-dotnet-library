@@ -1,32 +1,29 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Silmoon.Data.SqlClient
 {
-    /// <summary>
-    /// ÓÃÓÚ×Ô¼º´´½¨ÒıÓÃÀàĞÍÊ¹ÓÃSmSqlClientÊı¾İÔ´µÄ¿ØÖÆÓëÒıÓÃ¡£
-    /// </summary>
-    public class SmSQLClientSource : IDisposable
+    public class SmMySqlClientSource
     {
-        SmMSSQLClient _ssc;
+        SmMySqlClient _ssc;
         /// <summary>
-        /// ÉèÖÃ»ò»ñÈ¡Êı¾İÔ´
+        /// è®¾ç½®æˆ–è·å–æ•°æ®æº
         /// </summary>
-        public SmMSSQLClient DataSource
+        public SmMySqlClient DataSource
         {
             get { return _ssc; }
             set { _ssc = value; }
         }
         /// <summary>
-        /// ¹Ø±ÕÊı¾İÁ¬½Ó
+        /// å…³é—­æ•°æ®è¿æ¥
         /// </summary>
         public void Close()
         {
             _ssc.Close();
         }
 
-        #region IDisposable ³ÉÔ±
+        #region IDisposable æˆå‘˜
 
         public void Dispose()
         {
@@ -36,13 +33,13 @@ namespace Silmoon.Data.SqlClient
         #endregion
 
         /// <summary>
-        /// ÊµÀı»¯Êı¾İÀàĞÍºÍÊı¾İÔ´
+        /// å®ä¾‹åŒ–æ•°æ®ç±»å‹å’Œæ•°æ®æº
         /// </summary>
-        /// <param name="open">ÊÇ·ñÔÚÊµÀıµÄÊ±ºò´ò¿ªÊı¾İ¿â</param>
-        /// <param name="conStr">Ö¸¶¨Á¬½ÓÊı¾İ¿âµÄÊı¾İ¿âÁ¬½Ó×Ö·û´®</param>
+        /// <param name="open">æ˜¯å¦åœ¨å®ä¾‹çš„æ—¶å€™æ‰“å¼€æ•°æ®åº“</param>
+        /// <param name="conStr">æŒ‡å®šè¿æ¥æ•°æ®åº“çš„æ•°æ®åº“è¿æ¥å­—ç¬¦ä¸²</param>
         public void InitData(bool open, string conStr)
         {
-            _ssc = new SmMSSQLClient(conStr);
+            _ssc = new SmMySqlClient(conStr);
             if (open) { _ssc.Open(); }
         }
     }

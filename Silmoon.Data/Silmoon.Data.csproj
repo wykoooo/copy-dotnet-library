@@ -59,7 +59,9 @@
     <Compile Include="SqlClient\SmMSSQLClient.cs" />
     <Compile Include="SqlClient\SmMSSQLClientInternal.cs" />
     <Compile Include="SqlClient\SmMSSQLClientSource.cs" />
-    <Compile Include="SqlClient\SmMySQLClient.cs" />
+    <Compile Include="SqlClient\SmMySqlClient.cs" />
+    <Compile Include="SqlClient\SmMySqlClientInternal.cs" />
+    <Compile Include="SqlClient\SmMySqlClientSource.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="DbStateException.cs" />
     <Compile Include="SqlTemplate.cs" />

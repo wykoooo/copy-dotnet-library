@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Silmoon.Data.SqlClient
 {
-    public class SmMySQLClient : SqlCommonTemplate, IDisposable, ISMSQL
+    public class SmMySqlClient : SqlCommonTemplate, IDisposable, ISMSQL
     {
         MySqlConnection con = new MySqlConnection();
 
@@ -24,7 +24,7 @@ namespace Silmoon.Data.SqlClient
             set { selectCommandTimeout = value; }
         }
 
-        public SmMySQLClient(string conStr)
+        public SmMySqlClient(string conStr)
         {
             isConnect = false;
             this.conStr = conStr;

@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Silmoon.Data.SqlClient
 {
-    public class SmMSSQLClientInternal : SqlCommonTemplate
+    public class SmMySqlClientInternal
     {
-        SmMSSQLClient _dataSource;
-        public SmMSSQLClient DataSource
+        SmMySqlClient _dataSource;
+        public SmMySqlClient DataSource
         {
             get { return _dataSource; }
             set { _dataSource = value; }

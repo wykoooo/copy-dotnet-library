@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Silmoon.Data.SqlClient
 {
-    public class SmMySqlClientSource
+    public class SmMySqlClientSource : IDisposable
     {
         SmMySqlClient _ssc;
         /// <summary>

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Silmoon.Data.SqlClient
 {
-    public class SmMySqlClientInternal
+    public class SmMySqlClientInternal : SqlCommonTemplate
     {
         SmMySqlClient _dataSource;
         public SmMySqlClient DataSource

@@ -845,8 +845,12 @@ namespace Silmoon.Net
     /// </summary>
     public struct TcpStruct
     {
-        public IPAddress IP;
+        public IPAddress IP; 
         public int Port;
+        public override string ToString()
+        {
+            return IP.ToString() + ":" + Port.ToString();
+        }
     }
     /// <summary>
     /// TCP操作结果类型枚举

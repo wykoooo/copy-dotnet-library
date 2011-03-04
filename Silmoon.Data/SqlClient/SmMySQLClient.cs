@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Silmoon.Data.SqlClient
 {
-    public class SmMySqlClient : SqlCommonTemplate, IDisposable, ISMSQL
+    public sealed class SmMySqlClient : SqlCommonTemplate, IDisposable, ISMSQL
     {
         MySqlConnection con = new MySqlConnection();
 

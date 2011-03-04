@@ -7,7 +7,7 @@ namespace Silmoon.Data.SqlClient
     /// <summary>
     /// 用于自己创建引用类型使用SmSqlClient数据源的控制与引用。
     /// </summary>
-    public class SmSQLClientSource : IDisposable
+    public class SmMSSQLClientSource : IDisposable
     {
         SmMSSQLClient _ssc;
         /// <summary>

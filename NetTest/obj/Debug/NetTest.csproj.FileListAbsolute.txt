@@ -152,3 +152,15 @@ L:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.Form1.resources
 L:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.Properties.Resources.resources
 L:\svn\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.read.1.tlog
 L:\svn\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.write.1.tlog
+F:\ServerCodes\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.exe
+F:\ServerCodes\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.pdb
+F:\ServerCodes\silmoon-dotnet-library\NetTest\bin\Debug\NetTest.exe
+F:\ServerCodes\silmoon-dotnet-library\NetTest\bin\Debug\NetTest.pdb
+F:\ServerCodes\silmoon-dotnet-library\NetTest\bin\Debug\Silmoon.dll
+F:\ServerCodes\silmoon-dotnet-library\NetTest\bin\Debug\Silmoon.pdb
+F:\ServerCodes\silmoon-dotnet-library\NetTest\bin\Debug\Silmoon.xml
+F:\ServerCodes\silmoon-dotnet-library\NetTest\obj\Debug\ResolveAssemblyReference.cache
+F:\ServerCodes\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.Form1.resources
+F:\ServerCodes\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.Properties.Resources.resources
+F:\ServerCodes\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.read.1.tlog
+F:\ServerCodes\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.write.1.tlog

@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Management;
 using System.Collections;
+using System.IO;
 
 namespace Silmoon.Windows.Systems
 {
@@ -17,7 +18,7 @@ namespace Silmoon.Windows.Systems
         static extern void GetSystemInfo(ref CPU_INFO cpuinfo);
         [DllImport("kernel32")]
         static extern void GlobalMemoryStatus(ref MEMORY_INFO meminfo);
-        //PerformanceCounter cpuTimePc;
+        PerformanceCounter cpuTimePc;
         ManagementObjectSearcher searcher;
 
 
@@ -71,19 +72,18 @@ namespace Silmoon.Windows.Systems
         {
             get
             {
-                int cpucount = 0;
-                int cputotalload = 0;
-                //if (cpuTimePc == null) cpuTimePc = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-                //try { return cpuTimePc.NextValue(); }
-                //catch { return 0; }
-                if (searcher == null) searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_Processor");
-                foreach (ManagementObject queryObj in searcher.Get())
+                if (File.Exists("/proc/stat"))
                 {
-                    cpucount++;
-                    cputotalload += int.Parse(queryObj["LoadPercentage"].ToString());
+                    return 0;
                 }
-                int result = cputotalload / cpucount;
-                return result;
+                if (cpuTimePc == null)
+                {
+                    cpuTimePc = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+                    cpuTimePc.NextValue();
+                }
+                try { return (int)cpuTimePc.NextValue(); }
+                catch { return 0; }
+
             }
         }
 

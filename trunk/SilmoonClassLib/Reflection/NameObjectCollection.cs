@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Collections.Specialized;
+using System.Collections;
 
 namespace Silmoon.Reflection
 {
     [Serializable]
     public class NameObjectCollection : NameObjectCollectionBase
     {
+        DataCacheGetEnumerator ie = null;
         public NameObjectCollection()
         {
-
+            ie = new DataCacheGetEnumerator(this);
         }
         public void Add(string name, object value)
         {
@@ -86,6 +88,47 @@ namespace Silmoon.Reflection
             {
                 base.BaseSet(name, value);
             }
+        }
+        public override IEnumerator GetEnumerator()
+        {
+            return ie;
+        }
+        class DataCacheGetEnumerator : IEnumerator
+        {
+            #region IEnumerator 成员
+            NameObjectCollection domainArray;
+            int _current = -1;
+            public DataCacheGetEnumerator(NameObjectCollection array)
+            {
+                domainArray = array;
+            }
+            public object Current
+            {
+                get
+                {
+                    try
+                    {
+                        return domainArray[_current];
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        throw new InvalidOperationException();
+                    }
+                }
+            }
+
+            public bool MoveNext()
+            {
+                _current++;
+                return (_current < domainArray.Count);
+            }
+
+            public void Reset()
+            {
+                _current = -1;
+            }
+
+            #endregion
         }
     }
 }

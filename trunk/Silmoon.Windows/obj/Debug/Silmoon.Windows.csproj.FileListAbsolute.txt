@@ -170,3 +170,17 @@ L:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.
 L:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.dll
 L:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb
 L:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.XML
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.dll
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.pdb
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.dll
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResolveAssemblyReference.cache
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls.ProcessWaitingBar.resources
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.OkConfirmDialog.resources
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.ScrollForm.resources
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Properties.Resources.resources
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls.SmTrackBar.resources
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.WindowsResource.resources
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.read.1.tlog
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.write.1.tlog
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.dll
+F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb

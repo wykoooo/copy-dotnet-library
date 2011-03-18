@@ -837,8 +837,10 @@ namespace Silmoon.Net
         }
         public SmmpPacket(int messageID = -1, int responseID = -1, bool initMessages = false)
         {
-            if (MessageID == -1) MessageID = new Random().Next(0, 99999);
-            if (ResponseID == -1) ResponseID = new Random().Next(0, 99999);
+            if (messageID == -1)
+                messageID = new Random().Next(0, 99999);
+            if (responseID == -1)
+                responseID = new Random().Next(0, 99999);
 
             MessageID = messageID;
             ResponseID = responseID;

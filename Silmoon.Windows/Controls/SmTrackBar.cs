@@ -90,7 +90,7 @@ namespace Silmoon.Windows.Controls
         {
             Button.BackgroundImage = WindowsResource.SmTrackBarBottionImage;
         }
-
+        
         private void S_Click(object sender, EventArgs e)
         {
         }

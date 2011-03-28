@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Silmoon.Arrays;
 
 namespace Silmoon.Threading
 {
     /// <summary>
     /// 控制一个动作或者行为在一定的时间内可以执行几次。
     /// </summary>
-    public class TimeLimit
+    public class TimeLimit : IID
     {
         int iD = 0;
         ulong resetMilliseconds = 1000;
@@ -87,6 +88,10 @@ namespace Silmoon.Threading
         public TimeLimit()
         {
 
+        }
+        public override string ToString()
+        {
+            return "TimeLimit(" + iD + ")" + resetMilliseconds + "/" + limitTimes + "(" + countTimes + ")";
         }
     }
 }

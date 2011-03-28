@@ -159,4 +159,3 @@ F:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource
 F:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.dll
 F:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.pdb
 F:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.Windows.pdb
-F:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.XML

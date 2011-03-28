@@ -646,6 +646,17 @@
             产品发布序号
             </summary>
         </member>
+        <member name="T:Silmoon.Arrays.IID">
+            <summary>
+            表示一个对象应该有一个以ID标识的符号
+            </summary>
+        </member>
+        <member name="P:Silmoon.Arrays.IID.ID">
+            <summary>
+            标识ID
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Silmoon.Net.Smmp">
             <summary>
             对于TCP网络提供SMMP(银月消息协议)协议类型的通讯功能！
@@ -1341,17 +1352,6 @@
             控制一个动作或者行为在一定的时间内可以执行几次。
             </summary>
         </member>
-        <member name="T:Silmoon.Arrays.IID">
-            <summary>
-            表示一个对象应该有一个以ID标识的符号
-            </summary>
-        </member>
-        <member name="P:Silmoon.Arrays.IID.ID">
-            <summary>
-            标识ID
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Silmoon.Threading.TimeLimit.#ctor(System.Int32)">
             <summary>
             以一个id号开始的新实例TimeLimit
@@ -1696,6 +1696,19 @@
             WEB客户端实用工具
             </summary>
         </member>
+        <member name="T:Silmoon.Arrays.ArrayUtility">
+            <summary>
+            操作数组的使用类型
+            </summary>
+        </member>
+        <member name="M:Silmoon.Arrays.ArrayUtility.FindIIDFromArray(System.Collections.ArrayList,System.Int32)">
+            <summary>
+            从标有ID的类型数组中找出指定的对象
+            </summary>
+            <param name="array">可变的数组</param>
+            <param name="id">IID的ID</param>
+            <returns></returns>
+        </member>
         <member name="T:Silmoon.IO.SmFile.Searcher">
             <summary>
             目录文件搜索器
@@ -1725,19 +1738,6 @@
             <param name="fullPath">完整路径</param>
             <param name="name">文件或者文件夹名</param>
             <param name="type"></param>
-        </member>
-        <member name="T:Silmoon.Arrays.ArrayUtility">
-            <summary>
-            操作数组的使用类型
-            </summary>
-        </member>
-        <member name="M:Silmoon.Arrays.ArrayUtility.FindIIDFromArray(System.Collections.ArrayList,System.Int32)">
-            <summary>
-            从标有ID的类型数组中找出指定的对象
-            </summary>
-            <param name="array">可变的数组</param>
-            <param name="id">IID的ID</param>
-            <returns></returns>
         </member>
     </members>
 </doc>

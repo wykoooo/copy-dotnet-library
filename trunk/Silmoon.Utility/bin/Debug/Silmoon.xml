@@ -1674,5 +1674,46 @@
             <param name="name">文件或者文件夹名</param>
             <param name="type"></param>
         </member>
+        <member name="T:Silmoon.Threading.TimeLimit">
+            <summary>
+            控制一个动作或者行为在一定的时间内可以执行几次。
+            </summary>
+        </member>
+        <member name="M:Silmoon.Threading.TimeLimit.#ctor(System.Int32)">
+            <summary>
+            以一个id号开始的新实例TimeLimit
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Silmoon.Threading.TimeLimit.#ctor">
+            <summary>
+            新实例TimeLimit
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.ID">
+            <summary>
+            表示当前类型的id标记
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.LimitTimes">
+            <summary>
+            限制次数
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.CanDo">
+            <summary>
+            查询是否可以继续，查询一次次数加一
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.ResetMilliseconds">
+            <summary>
+            控制的时间范围，以毫秒为单位的设置
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.ResetTimespan">
+            <summary>
+            控制的时间范围，以时间间隔为单位的设置
+            </summary>
+        </member>
     </members>
 </doc>

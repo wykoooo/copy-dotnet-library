@@ -18,10 +18,20 @@ namespace NetTest
     public partial class Form1 : Form
     {
         ArrayList arraylist = new ArrayList();
+        System.Windows.Forms.Timer tmr = new System.Windows.Forms.Timer();
+        TimeLimit tl = null;
         public Form1()
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
+            tmr.Interval = 1000;
+            tmr.Tick += new EventHandler(tmr_Tick);
+            tmr.Start();
+        }
+
+        void tmr_Tick(object sender, EventArgs e)
+        {
+            label1.Text = DateTime.Now.ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -62,6 +72,21 @@ namespace NetTest
         void tcp_OnReceivedData(TcpStruct localTcpInfo, TcpStruct remoteTcpInfo, byte[] data, ITcpReader tcpReader)
         {
             MessageBox.Show(System.Text.Encoding.Default.GetString(data));
+        }
+
+        private void ctlDoButton_Click(object sender, EventArgs e)
+        {
+            if (tl == null)
+            {
+                tl = new TimeLimit();
+                tl.LimitTimes = 2;
+                tl.ResetMilliseconds = 10000;
+                listBox1.Items.Insert(0, DateTime.Now.ToString());
+            }
+            else if (tl.CanDo)
+                listBox1.Items.Insert(0, DateTime.Now.ToString());
+            else
+                listBox1.Items.Insert(0, "NO");
         }
     }
 }

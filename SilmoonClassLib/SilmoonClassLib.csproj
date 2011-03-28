@@ -94,6 +94,7 @@
     <Compile Include="Security\SmHash.cs" />
     <Compile Include="Service\ServiceControl.cs" />
     <Compile Include="Configure\IniFile.cs" />
+    <Compile Include="Threading\TimeLimit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">

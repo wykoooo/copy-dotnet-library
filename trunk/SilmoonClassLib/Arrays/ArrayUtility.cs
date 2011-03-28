@@ -23,7 +23,7 @@ namespace Silmoon.Arrays
             {
                 foreach (object item in array)
                 {
-                    if (item.GetType() == typeof(IID))
+                    if (item != null && item.GetType() == typeof(IID))
                     {
                         IID iID = item as IID;
                         if (iID.ID == id)

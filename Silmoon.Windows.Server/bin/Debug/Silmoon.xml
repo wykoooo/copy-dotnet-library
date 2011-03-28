@@ -1336,6 +1336,58 @@
             已经挂起
             </summary>
         </member>
+        <member name="T:Silmoon.Threading.TimeLimit">
+            <summary>
+            控制一个动作或者行为在一定的时间内可以执行几次。
+            </summary>
+        </member>
+        <member name="T:Silmoon.Arrays.IID">
+            <summary>
+            表示一个对象应该有一个以ID标识的符号
+            </summary>
+        </member>
+        <member name="P:Silmoon.Arrays.IID.ID">
+            <summary>
+            标识ID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Threading.TimeLimit.#ctor(System.Int32)">
+            <summary>
+            以一个id号开始的新实例TimeLimit
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Silmoon.Threading.TimeLimit.#ctor">
+            <summary>
+            新实例TimeLimit
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.ID">
+            <summary>
+            表示当前类型的id标记
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.LimitTimes">
+            <summary>
+            限制次数
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.CanDo">
+            <summary>
+            查询是否可以继续，查询一次次数加一
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.ResetMilliseconds">
+            <summary>
+            控制的时间范围，以毫秒为单位的设置
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.ResetTimespan">
+            <summary>
+            控制的时间范围，以时间间隔为单位的设置
+            </summary>
+        </member>
         <member name="T:Silmoon.Reflection.AssemblyLoader">
             <summary>
             管理加载和卸载程序集
@@ -1674,46 +1726,18 @@
             <param name="name">文件或者文件夹名</param>
             <param name="type"></param>
         </member>
-        <member name="T:Silmoon.Threading.TimeLimit">
+        <member name="T:Silmoon.Arrays.ArrayUtility">
             <summary>
-            控制一个动作或者行为在一定的时间内可以执行几次。
+            操作数组的使用类型
             </summary>
         </member>
-        <member name="M:Silmoon.Threading.TimeLimit.#ctor(System.Int32)">
+        <member name="M:Silmoon.Arrays.ArrayUtility.FindIIDFromArray(System.Collections.ArrayList,System.Int32)">
             <summary>
-            以一个id号开始的新实例TimeLimit
+            从标有ID的类型数组中找出指定的对象
             </summary>
-            <param name="id"></param>
-        </member>
-        <member name="M:Silmoon.Threading.TimeLimit.#ctor">
-            <summary>
-            新实例TimeLimit
-            </summary>
-        </member>
-        <member name="P:Silmoon.Threading.TimeLimit.ID">
-            <summary>
-            表示当前类型的id标记
-            </summary>
-        </member>
-        <member name="P:Silmoon.Threading.TimeLimit.LimitTimes">
-            <summary>
-            限制次数
-            </summary>
-        </member>
-        <member name="P:Silmoon.Threading.TimeLimit.CanDo">
-            <summary>
-            查询是否可以继续，查询一次次数加一
-            </summary>
-        </member>
-        <member name="P:Silmoon.Threading.TimeLimit.ResetMilliseconds">
-            <summary>
-            控制的时间范围，以毫秒为单位的设置
-            </summary>
-        </member>
-        <member name="P:Silmoon.Threading.TimeLimit.ResetTimespan">
-            <summary>
-            控制的时间范围，以时间间隔为单位的设置
-            </summary>
+            <param name="array">可变的数组</param>
+            <param name="id">IID的ID</param>
+            <returns></returns>
         </member>
     </members>
 </doc>

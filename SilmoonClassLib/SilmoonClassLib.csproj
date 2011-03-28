@@ -72,6 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arrays\ArrayUtility.cs" />
+    <Compile Include="Arrays\IID.cs" />
     <Compile Include="base.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -156,7 +158,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Net\IpWatchHelper\" />
-    <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

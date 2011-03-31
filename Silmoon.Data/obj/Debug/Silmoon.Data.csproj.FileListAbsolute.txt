@@ -19,3 +19,10 @@ F:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\bin\Debug\Silmoon.dll
 F:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\obj\Debug\ResolveAssemblyReference.cache
 F:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\obj\Debug\Silmoon.Data.dll
 F:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\obj\Debug\Silmoon.Data.pdb
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\bin\Debug\Silmoon.Data.dll
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\bin\Debug\Silmoon.Data.pdb
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\bin\Debug\MySql.Data.dll
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\bin\Debug\Silmoon.dll
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\obj\Debug\ResolveAssemblyReference.cache
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\obj\Debug\Silmoon.Data.dll
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\obj\Debug\Silmoon.Data.pdb

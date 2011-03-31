@@ -23,15 +23,19 @@ namespace Silmoon.Arrays
             {
                 foreach (object item in array)
                 {
-                    if (item != null && item.GetType() == typeof(IID))
+                    if (item != null)
                     {
                         IID iID = item as IID;
-                        if (iID.ID == id)
+                        if (iID != null)
                         {
-                            o = iID;
-                            break;
+                            if (iID.ID == id)
+                            {
+                                o = iID;
+                                break;
+                            }
                         }
                     }
+                    Console.WriteLine(item.GetType().ToString());
                 }
             }
             return o;

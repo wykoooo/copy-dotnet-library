@@ -108,4 +108,11 @@ F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.x
 F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\ResolveAssemblyReference.cache
 F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\Silmoon.Windows.Server.dll
 F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\Silmoon.Windows.Server.pdb
-F:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.Windows.Server.XML
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.Windows.Server.dll
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.Windows.Server.pdb
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.dll
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.pdb
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.xml
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\ResolveAssemblyReference.cache
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\Silmoon.Windows.Server.dll
+D:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\Silmoon.Windows.Server.pdb

@@ -35,7 +35,6 @@ namespace Silmoon.Arrays
                             }
                         }
                     }
-                    Console.WriteLine(item.GetType().ToString());
                 }
             }
             return o;

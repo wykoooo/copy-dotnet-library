@@ -4,14 +4,21 @@
         <name>Silmoon.Windows</name>
     </assembly>
     <members>
-        <member name="P:Silmoon.Windows.Systems.Processes.ProcessCount">
-            <summary>
-            获取进程数量
+        <member name="F:Silmoon.Windows.Controls.SmTrackBar.components">
+            <summary> 
+            必需的设计器变量。
             </summary>
         </member>
-        <member name="T:Silmoon.Windows.Systems.ProcessInfoUnit">
-            <summary>
-            进程信息单元
+        <member name="M:Silmoon.Windows.Controls.SmTrackBar.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:Silmoon.Windows.Controls.SmTrackBar.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
             </summary>
         </member>
         <member name="T:Silmoon.Windows.SAM">
@@ -108,109 +115,46 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:Silmoon.Windows.Win32.Hooking.GlobalKeyBoardHook">
-            <summary> 
-            这个类可以让你得到一个在运行中程序的所有键盘事件 
-            并且引发一个带KeyEventArgs和MouseEventArgs参数的.NET事件以便你很容易使用这些信息 
-            </summary> 
-        </member>
-        <member name="M:Silmoon.Windows.Win32.Hooking.GlobalKeyBoardHook.#ctor">
-            <summary> 
-            墨认的构造函数构造当前类的实例并自动的运行起来. 
-            </summary> 
-        </member>
-        <member name="F:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.ColumnToSort">
+        <member name="T:Silmoon.Windows.Systems.SystemInfo">
             <summary>
-            Specifies the column to be sorted
+            系统信息
             </summary>
         </member>
-        <member name="F:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.OrderOfSort">
+        <member name="P:Silmoon.Windows.Systems.SystemInfo.GetMemoryInfo">
             <summary>
-            Specifies the order in which to sort (i.e. 'Ascending').
+            获取内存信息
             </summary>
         </member>
-        <member name="F:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.ObjectCompare">
+        <member name="P:Silmoon.Windows.Systems.SystemInfo.GetCPUInfo">
             <summary>
-            Case insensitive comparer object
+            返回CPU信息
             </summary>
         </member>
-        <member name="F:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.ReplaceString">
+        <member name="P:Silmoon.Windows.Systems.SystemInfo.CPUsLoadPercentage">
             <summary>
-            在排序时需要忽略的排序字符
+            获取当前多个CPU时间百分比数组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.SystemInfo.CPULoadPercentage">
+            <summary>
+            获取当前CPU时间百分比
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.SystemInfo.SystemAddressWidth">
+            <summary>
+            获取系统地址宽度位数
             </summary>
         </member>
-        <member name="M:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.#ctor">
+        <member name="T:Silmoon.Windows.Systems.CPU_INFO">
             <summary>
-            Class constructor.  Initializes various elements
+            CPU信息结构
             </summary>
         </member>
-        <member name="M:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.Compare(System.Object,System.Object)">
+        <member name="T:Silmoon.Windows.Systems.MEMORY_INFO">
             <summary>
-            This method is inherited from the IComparer interface.  It compares the two objects passed using a case insensitive comparison.
-            </summary>
-            <param name="x">First object to be compared</param>
-            <param name="y">Second object to be compared</param>
-            <returns>The result of the comparison. "0" if equal, negative if 'x' is less than 'y' and positive if 'x' is greater than 'y'</returns>
-        </member>
-        <member name="P:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.SortColumn">
-            <summary>
-            Gets or sets the number of the column to which to apply the sorting operation (Defaults to '0').
-            </summary>
-        </member>
-        <member name="P:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.Order">
-            <summary>
-            Gets or sets the order of sorting to apply (for example, 'Ascending' or 'Descending').
-            </summary>
-        </member>
-        <member name="F:Silmoon.Windows.Forms.OkConfirmDialog.components">
-            <summary>
-            必需的设计器变量。
-            </summary>
-        </member>
-        <member name="M:Silmoon.Windows.Forms.OkConfirmDialog.Dispose(System.Boolean)">
-            <summary>
-            清理所有正在使用的资源。
-            </summary>
-            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-        </member>
-        <member name="M:Silmoon.Windows.Forms.OkConfirmDialog.InitializeComponent">
-            <summary>
-            设计器支持所需的方法 - 不要
-            使用代码编辑器修改此方法的内容。
-            </summary>
-        </member>
-        <member name="F:Silmoon.Windows.Controls.ProcessWaitingBar.components">
-            <summary>
-            必需的设计器变量。
-            </summary>
-        </member>
-        <member name="M:Silmoon.Windows.Controls.ProcessWaitingBar.Dispose(System.Boolean)">
-            <summary>
-            清理所有正在使用的资源。
-            </summary>
-            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-        </member>
-        <member name="M:Silmoon.Windows.Controls.ProcessWaitingBar.InitializeComponent">
-            <summary>
-            设计器支持所需的方法 - 不要
-            使用代码编辑器修改此方法的内容。
-            </summary>
-        </member>
-        <member name="F:Silmoon.Windows.Forms.OpenForm.components">
-            <summary>
-            必需的设计器变量。
-            </summary>
-        </member>
-        <member name="M:Silmoon.Windows.Forms.OpenForm.Dispose(System.Boolean)">
-            <summary>
-            清理所有正在使用的资源。
-            </summary>
-            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-        </member>
-        <member name="M:Silmoon.Windows.Forms.OpenForm.InitializeComponent">
-            <summary>
-            设计器支持所需的方法 - 不要
-            使用代码编辑器修改此方法的内容。
+            内存信息结构
             </summary>
         </member>
         <member name="M:Silmoon.Windows.Win32.API.USER32.setWindowTextW(System.IntPtr,System.String)">
@@ -268,63 +212,97 @@
             <param name="LParam">参数2</param>
             <returns></returns>
         </member>
-        <member name="F:Silmoon.Windows.Controls.SmTrackBar.components">
-            <summary> 
+        <member name="F:Silmoon.Windows.Forms.OkConfirmDialog.components">
+            <summary>
             必需的设计器变量。
             </summary>
         </member>
-        <member name="M:Silmoon.Windows.Controls.SmTrackBar.Dispose(System.Boolean)">
-            <summary> 
+        <member name="M:Silmoon.Windows.Forms.OkConfirmDialog.Dispose(System.Boolean)">
+            <summary>
             清理所有正在使用的资源。
             </summary>
             <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
         </member>
-        <member name="M:Silmoon.Windows.Controls.SmTrackBar.InitializeComponent">
-            <summary> 
+        <member name="M:Silmoon.Windows.Forms.OkConfirmDialog.InitializeComponent">
+            <summary>
             设计器支持所需的方法 - 不要
             使用代码编辑器修改此方法的内容。
             </summary>
         </member>
-        <member name="T:Silmoon.Windows.Systems.SystemInfo">
+        <member name="F:Silmoon.Windows.Controls.ProcessWaitingBar.components">
             <summary>
-            系统信息
+            必需的设计器变量。
             </summary>
         </member>
-        <member name="P:Silmoon.Windows.Systems.SystemInfo.GetMemoryInfo">
+        <member name="M:Silmoon.Windows.Controls.ProcessWaitingBar.Dispose(System.Boolean)">
             <summary>
-            获取内存信息
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:Silmoon.Windows.Controls.ProcessWaitingBar.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
             </summary>
         </member>
-        <member name="P:Silmoon.Windows.Systems.SystemInfo.GetCPUInfo">
+        <member name="F:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.ColumnToSort">
             <summary>
-            返回CPU信息
+            Specifies the column to be sorted
             </summary>
         </member>
-        <member name="P:Silmoon.Windows.Systems.SystemInfo.CPUsLoadPercentage">
+        <member name="F:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.OrderOfSort">
             <summary>
-            获取当前多个CPU时间百分比数组
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Silmoon.Windows.Systems.SystemInfo.CPULoadPercentage">
-            <summary>
-            获取当前CPU时间百分比
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Silmoon.Windows.Systems.SystemInfo.SystemAddressWidth">
-            <summary>
-            获取系统地址宽度位数
+            Specifies the order in which to sort (i.e. 'Ascending').
             </summary>
         </member>
-        <member name="T:Silmoon.Windows.Systems.CPU_INFO">
+        <member name="F:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.ObjectCompare">
             <summary>
-            CPU信息结构
+            Case insensitive comparer object
             </summary>
         </member>
-        <member name="T:Silmoon.Windows.Systems.MEMORY_INFO">
+        <member name="F:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.ReplaceString">
             <summary>
-            内存信息结构
+            在排序时需要忽略的排序字符
+            </summary>
+        </member>
+        <member name="M:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.#ctor">
+            <summary>
+            Class constructor.  Initializes various elements
+            </summary>
+        </member>
+        <member name="M:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.Compare(System.Object,System.Object)">
+            <summary>
+            This method is inherited from the IComparer interface.  It compares the two objects passed using a case insensitive comparison.
+            </summary>
+            <param name="x">First object to be compared</param>
+            <param name="y">Second object to be compared</param>
+            <returns>The result of the comparison. "0" if equal, negative if 'x' is less than 'y' and positive if 'x' is greater than 'y'</returns>
+        </member>
+        <member name="P:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.SortColumn">
+            <summary>
+            Gets or sets the number of the column to which to apply the sorting operation (Defaults to '0').
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.Order">
+            <summary>
+            Gets or sets the order of sorting to apply (for example, 'Ascending' or 'Descending').
+            </summary>
+        </member>
+        <member name="T:Silmoon.Windows.WindowsResource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.WindowsResource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.WindowsResource.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
             </summary>
         </member>
         <member name="T:Silmoon.Windows.Properties.Resources">
@@ -343,20 +321,42 @@
               重写当前线程的 CurrentUICulture 属性。
             </summary>
         </member>
-        <member name="T:Silmoon.Windows.WindowsResource">
+        <member name="T:Silmoon.Windows.Win32.Hooking.GlobalKeyBoardHook">
+            <summary> 
+            这个类可以让你得到一个在运行中程序的所有键盘事件 
+            并且引发一个带KeyEventArgs和MouseEventArgs参数的.NET事件以便你很容易使用这些信息 
+            </summary> 
+        </member>
+        <member name="M:Silmoon.Windows.Win32.Hooking.GlobalKeyBoardHook.#ctor">
+            <summary> 
+            墨认的构造函数构造当前类的实例并自动的运行起来. 
+            </summary> 
+        </member>
+        <member name="P:Silmoon.Windows.Systems.Processes.ProcessCount">
             <summary>
-              一个强类型的资源类，用于查找本地化的字符串等。
+            获取进程数量
             </summary>
         </member>
-        <member name="P:Silmoon.Windows.WindowsResource.ResourceManager">
+        <member name="T:Silmoon.Windows.Systems.ProcessInfoUnit">
             <summary>
-              返回此类使用的缓存的 ResourceManager 实例。
+            进程信息单元
             </summary>
         </member>
-        <member name="P:Silmoon.Windows.WindowsResource.Culture">
+        <member name="F:Silmoon.Windows.Forms.OpenForm.components">
             <summary>
-              使用此强类型资源类，为所有资源查找
-              重写当前线程的 CurrentUICulture 属性。
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:Silmoon.Windows.Forms.OpenForm.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:Silmoon.Windows.Forms.OpenForm.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
             </summary>
         </member>
         <member name="T:Silmoon.Windows.Controls.DoubleBufferListView">

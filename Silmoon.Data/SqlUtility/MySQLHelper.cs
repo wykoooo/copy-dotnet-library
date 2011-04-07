@@ -5,6 +5,7 @@ using System.Data;
 using System.Collections;
 using Silmoon.Data;
 using Silmoon.Data.Odbc;
+using Silmoon.Data.SqlClient;
 
 namespace Silmoon.Data.SqlUtility
 {
@@ -13,12 +14,12 @@ namespace Silmoon.Data.SqlUtility
     /// </summary>
     public class MySQLHelper
     {
-        SmOdbcClient _odbc;
+        SmMySqlClient _odbc;
         /// <summary>
         /// 使用指定的ODBC数据连接创建MYSQL实用工具
         /// </summary>
         /// <param name="odbc">指定一个已经可以使用的ODBC连接</param>
-        public MySQLHelper(SmOdbcClient odbc)
+        public MySQLHelper(SmMySqlClient odbc)
         {
             _odbc = odbc;
         }
@@ -211,14 +212,19 @@ namespace Silmoon.Data.SqlUtility
         /// <summary>
         /// 创建一个连接MySQL ODBC 3.51驱动所连接数据源的连接字符串
         /// </summary>
-        /// <param name="hostname">主机名</param>
-        /// <param name="username">用户名</param>
+        /// <param name="server">主机名</param>
+        /// <param name="userID">用户名</param>
         /// <param name="password">密码</param>
         /// <param name="database">数据库</param>
         /// <returns></returns>
-        public static string MakeConnectionString(string hostname, string username, string password, string database)
+        public static string MakeConnectionString(string server, string userID, string password, string database)
         {
-            return "DRIVER={MySQL ODBC 3.51 Driver};SERVER=" + hostname + ";DATABASE=" + database + ";UID=" + username + ";PASSWORD=" + password + ";";
+            MySql.Data.MySqlClient.MySqlConnectionStringBuilder builder = new MySql.Data.MySqlClient.MySqlConnectionStringBuilder();
+            builder.Server = server;
+            builder.UserID = userID;
+            builder.Password = password;
+            builder.Database = database;
+            return builder.GetConnectionString(true);
         }
         /// <summary>
         /// 创建一个连接MySQL ODBC 3.51驱动所连接数据源的连接字符串

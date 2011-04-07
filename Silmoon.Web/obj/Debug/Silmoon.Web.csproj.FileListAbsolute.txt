@@ -173,3 +173,5 @@ D:\ServerCodes\silmoon-dotnet-library\Silmoon.Web\obj\Debug\GenerateResource-Res
 D:\ServerCodes\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResGen.write.1.tlog
 D:\ServerCodes\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.dll
 D:\ServerCodes\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.pdb
+L:\DotNet工程1\SilmoonClassLib\Silmoon.Web\bin\Debug\Resources\SecureException.html
+L:\DotNet工程1\SilmoonClassLib\Silmoon.Web\bin\Debug\Resources\SessionTimeout.html

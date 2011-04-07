@@ -57,7 +57,6 @@ I:\DotNet工程1\SilmoonClassLib\SilmoonClassLib\obj\Debug\GenerateResource-ResG
 I:\DotNet工程1\SilmoonClassLib\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.write.1.tlog
 L:\DotNet工程1\SilmoonClassLib\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.read.1.tlog
 L:\DotNet工程1\SilmoonClassLib\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.write.1.tlog
-L:\DotNet工程1\SilmoonClassLib\SilmoonClassLib\bin\Debug\Silmoon.XML
 E:\DotNet\SilmoonClassLib\SilmoonClassLib\bin\Debug\Silmoon.dll
 E:\DotNet\SilmoonClassLib\SilmoonClassLib\bin\Debug\Silmoon.pdb
 E:\DotNet\SilmoonClassLib\SilmoonClassLib\bin\Debug\Silmoon.Windows.dll

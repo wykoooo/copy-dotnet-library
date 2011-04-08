@@ -89,6 +89,16 @@ namespace Silmoon.Threading
         {
 
         }
+        public TimeLimit(ulong resetMillisecounds, int limitTimes)
+        {
+            ResetMilliseconds = resetMilliseconds;
+            LimitTimes = limitTimes;
+        }
+        public TimeLimit(TimeSpan resetTimespan, int limitTimes)
+        {
+            ResetTimespan = resetTimespan;
+            LimitTimes = limitTimes;
+        }
         public override string ToString()
         {
             return "TimeLimit(" + iD + ")" + resetMilliseconds + "/" + limitTimes + "(" + countTimes + ")";

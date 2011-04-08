@@ -145,7 +145,6 @@ L:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.
 L:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.write.1.tlog
 L:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.dll
 L:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.pdb
-L:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.XML
 F:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.dll
 F:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.pdb
 F:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.Windows.dll
@@ -172,3 +171,4 @@ D:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource
 D:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.write.1.tlog
 D:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.dll
 D:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.pdb
+L:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.XML

@@ -88,7 +88,7 @@ namespace Silmoon.Threading
         /// 添加一个时间限制规则
         /// </summary>
         /// <param name="timelimit"></param>
-        public void AddTImeLimit(TimeLimit timelimit)
+        public void AddTimeLimit(TimeLimit timelimit)
         {
             timesLimit.Add(timelimit);
         }
@@ -96,7 +96,7 @@ namespace Silmoon.Threading
         /// 添加一个时间段限制规则
         /// </summary>
         /// <param name="timesection"></param>
-        public void AddTImeSection(TimeSection timesection)
+        public void AddTimeSection(TimeSection timesection)
         {
             timesLimit.Add(timesection);
         }
@@ -105,7 +105,7 @@ namespace Silmoon.Threading
         {
             get
             {
-                return false;
+                return timesLimitPass() && timeSectionPass();
             }
         }
 

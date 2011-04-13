@@ -33,7 +33,11 @@ namespace Silmoon.Types
         /// </summary>
         public DateTime EndTime
         {
-            get { return Index.Add(Length); }
+            get
+            {
+                DateTime dt = Index.Add(Length);
+                return dt;
+            }
             set { Length = ((TimeSpan)(EndTime - Index)); }
         }
         public TimeSection()

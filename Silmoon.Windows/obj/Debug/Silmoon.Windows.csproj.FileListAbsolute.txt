@@ -91,12 +91,9 @@ E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls.SmTrackBar.resources
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.WindowsResource.resources
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.read.1.tlog
-E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.read.1.tlog
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.write.1.tlog
-E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.write.1.tlog
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.dll
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb
-E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.XML
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.dll

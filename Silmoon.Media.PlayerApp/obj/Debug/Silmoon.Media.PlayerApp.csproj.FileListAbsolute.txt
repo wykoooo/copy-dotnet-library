@@ -111,9 +111,7 @@ E:\ServerCodes\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\ResolveA
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\Silmoon.Media.Video.Player.Form1.resources
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\Silmoon.Media.PlayerApp.Properties.Resources.resources
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\GenerateResource-ResGen.read.1.tlog
-E:\ServerCodes\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\ResGen.read.1.tlog
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\GenerateResource-ResGen.write.1.tlog
-E:\ServerCodes\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\ResGen.write.1.tlog
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\Silmoon.Media.PlayerApp.exe
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\Silmoon.Media.PlayerApp.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\bin\Debug\Silmoon.Media.PlayerApp.exe

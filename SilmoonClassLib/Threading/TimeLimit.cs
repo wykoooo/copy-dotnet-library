@@ -13,7 +13,7 @@ namespace Silmoon.Threading
         int iD = 0;
         ulong resetMilliseconds = 1000;
         int limitTimes = 1;
-        int countTimes = 1;
+        int countTimes = 0;
         DateTime startTime = DateTime.Now;
 
         /// <summary>
@@ -33,27 +33,53 @@ namespace Silmoon.Threading
             set { limitTimes = value; }
         }
         /// <summary>
+        /// 查询是否可以继续
+        /// </summary>
+        public bool CanDo()
+        {
+
+            if ((DateTime.Now - startTime).TotalMilliseconds < resetMilliseconds)
+            {
+                if (countTimes >= limitTimes)
+                    return false;
+                else
+                {
+                    countTimes++;
+                    return true;
+                }
+            }
+            startTime = DateTime.Now;
+            countTimes = 0;
+            return true;
+        } 
+        /// <summary>
         /// 查询是否可以继续，查询一次次数加一
         /// </summary>
-        public bool CanDo
+        public bool CanDo(bool addTimes)
         {
-            get
-            {
-                if ((DateTime.Now - startTime).TotalMilliseconds < resetMilliseconds)
-                {
-                    if (countTimes >= limitTimes)
-                        return false;
-                    else
-                    {
-                        countTimes++;
-                        return true;
-                    }
-                }
-                startTime = DateTime.Now;
-                countTimes = 1;
-                return true;
 
+            if ((DateTime.Now - startTime).TotalMilliseconds < resetMilliseconds)
+            {
+                if (countTimes >= limitTimes)
+                    return false;
+                else
+                {
+                    if (addTimes)
+                        countTimes++;
+                    return true;
+                }
             }
+            startTime = DateTime.Now;
+            countTimes = 0;
+            return true;
+        }
+        /// <summary>
+        /// 添加动作次数
+        /// </summary>
+        /// <param name="times">次数</param>
+        public void AddTimes(int times)
+        {
+            countTimes = countTimes + times;
         }
         /// <summary>
         /// 控制的时间范围，以毫秒为单位的设置

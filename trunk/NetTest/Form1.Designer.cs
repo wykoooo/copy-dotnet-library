@@ -43,12 +43,12 @@
             this.listBox1.ItemHeight = 12;
             this.listBox1.Location = new System.Drawing.Point(12, 12);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(249, 148);
+            this.listBox1.Size = new System.Drawing.Size(249, 208);
             this.listBox1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 166);
+            this.button1.Location = new System.Drawing.Point(12, 233);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -96,7 +96,7 @@
             // 
             // ctlDoButton
             // 
-            this.ctlDoButton.Location = new System.Drawing.Point(12, 195);
+            this.ctlDoButton.Location = new System.Drawing.Point(12, 262);
             this.ctlDoButton.Name = "ctlDoButton";
             this.ctlDoButton.Size = new System.Drawing.Size(75, 23);
             this.ctlDoButton.TabIndex = 6;

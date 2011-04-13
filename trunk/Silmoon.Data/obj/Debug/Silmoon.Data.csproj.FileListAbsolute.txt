@@ -33,3 +33,10 @@ L:\DotNet工程1\SilmoonClassLib\Silmoon.Data\bin\Debug\Silmoon.dll
 L:\DotNet工程1\SilmoonClassLib\Silmoon.Data\obj\Debug\ResolveAssemblyReference.cache
 L:\DotNet工程1\SilmoonClassLib\Silmoon.Data\obj\Debug\Silmoon.Data.dll
 L:\DotNet工程1\SilmoonClassLib\Silmoon.Data\obj\Debug\Silmoon.Data.pdb
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\bin\Debug\Silmoon.Data.dll
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\bin\Debug\Silmoon.Data.pdb
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\bin\Debug\MySql.Data.dll
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\bin\Debug\Silmoon.dll
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\obj\Debug\ResolveAssemblyReference.cache
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\obj\Debug\Silmoon.Data.dll
+E:\ServerCodes\silmoon-dotnet-library\Silmoon.Data\obj\Debug\Silmoon.Data.pdb

@@ -19,7 +19,7 @@ namespace NetTest
     {
         ArrayList arraylist = new ArrayList();
         System.Windows.Forms.Timer tmr = new System.Windows.Forms.Timer();
-        TimeLimit tl = null;
+        ActionLimit tl = null;
         public Form1()
         {
             CheckForIllegalCrossThreadCalls = false;
@@ -78,12 +78,13 @@ namespace NetTest
         {
             if (tl == null)
             {
-                tl = new TimeLimit();
-                tl.LimitTimes = 2;
-                tl.ResetMilliseconds = 10000;
-                listBox1.Items.Insert(0, DateTime.Now.ToString());
+                tl = new ActionLimit();
+                tl.AddTimeLimit(new TimeLimit(new TimeSpan(0, 0, 0, 1), 1));
+                tl.AddTimeLimit(new TimeLimit(new TimeSpan(0, 0, 0, 10), 5));
+                tl.AddTimeSection(new Silmoon.Types.TimeSection(new DateTime(1990, 1, 1, 16, 0, 0), new TimeSpan(2, 0, 0)));
             }
-            else if (tl.CanDo)
+
+            if (tl.Pass)
                 listBox1.Items.Insert(0, DateTime.Now.ToString());
             else
                 listBox1.Items.Insert(0, "NO");

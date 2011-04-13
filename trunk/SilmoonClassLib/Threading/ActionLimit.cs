@@ -98,14 +98,14 @@ namespace Silmoon.Threading
         /// <param name="timesection"></param>
         public void AddTimeSection(TimeSection timesection)
         {
-            timesLimit.Add(timesection);
+            timeSectionLimit.Add(timesection);
         }
 
         public bool Pass
         {
             get
             {
-                return timesLimitPass() && timeSectionPass();
+                return timeSectionPass() && timesLimitPass();
             }
         }
 
@@ -113,7 +113,14 @@ namespace Silmoon.Threading
         {
             int passCount = 0;
             foreach (TimeLimit item in TimeLimits)
-                if (item.CanDo) passCount++;
+            {
+                if (item.CanDo(false))
+                    passCount++;
+            }
+
+            if (passCount == TimeLimits.Length)
+                foreach (TimeLimit item in TimeLimits)
+                    item.AddTimes(1);
 
             if (passCount == 0)
                 return false;
@@ -126,7 +133,7 @@ namespace Silmoon.Threading
         {
             int inTimeCount = 0;
             DateTime now = DateTime.Now;
-            if (ignoreDate) now = new DateTime(0, 0, 0, now.Hour, now.Minute, now.Second, now.Millisecond);
+            if (ignoreDate) now = new DateTime(0001, 1, 1, now.Hour, now.Minute, now.Second, now.Millisecond);
 
             foreach (TimeSection item in TimeSections)
             {
@@ -134,10 +141,10 @@ namespace Silmoon.Threading
                 DateTime endTime = item.EndTime;
                 if (ignoreDate)
                 {
-                    startTime = new DateTime(0, 0, 0, startTime.Hour, startTime.Minute, startTime.Second, startTime.Millisecond);
-                    endTime = new DateTime(0, 0, 0, startTime.Hour, endTime.Minute, endTime.Second, endTime.Millisecond);
+                    startTime = new DateTime(0001, 1, 1, startTime.Hour, startTime.Minute, startTime.Second, startTime.Millisecond);
+                    endTime = new DateTime(0001, 1, 1, endTime.Hour, endTime.Minute, endTime.Second, endTime.Millisecond);
                 }
-
+                //Console.WriteLine("startTime(" + startTime + ");now(" + now + ");endTime(" + endTime + ")");
                 if (startTime < now && now < endTime)
                     inTimeCount++;
             }

@@ -4,6 +4,271 @@
         <name>Silmoon</name>
     </assembly>
     <members>
+        <member name="M:Silmoon.SmString.CutString(System.String,System.Int32)">
+            <summary>
+            剪裁字符串
+            </summary>
+            <param name="s">要处理的字符串</param>
+            <param name="c">保留长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.CutString(System.String,System.Int32,System.String)">
+            <summary>
+            剪裁字符串，并对多出的字符做处理。
+            </summary>
+            <param name="s">要处理的字符串</param>
+            <param name="c">保留长度</param>
+            <param name="output">多出来的字符替换成的字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.CheckEmpty(System.String)">
+            <summary>
+            检查字段是否为空，如果不是，返回字段，否则抛出异常。
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.FixNullString(System.Object)">
+            <summary>
+            如果字符串为NULL，则把字符串变成零长度的字符串。
+            </summary>
+            <param name="s">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.FixNullString(System.String,System.String)">
+            <summary>
+            如果字符串为NULL，则把字符串变成零长度的字符串。
+            </summary>
+            <param name="s">字符串</param>
+            <param name="onNullReturn">当字符串为NULL返回字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.StringToBool(System.String)">
+            <summary>
+            将一个字符串转化成BOOL类型
+            </summary>
+            <param name="s">源字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.FindFormStringArray(System.String[],System.String)">
+            <summary>
+            在一个字符串数组里面寻找一个字符串
+            </summary>
+            <param name="sArr">字符串数组</param>
+            <param name="findString">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.KeepStringLenght(System.String,System.Int32,System.String)">
+            <summary>
+            保持一个字符串的长度
+            </summary>
+            <param name="s">原字符串</param>
+            <param name="maxlen">最大长度</param>
+            <param name="str">衔接字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.FormArrayGetString(System.String[],System.Int32,System.Boolean)">
+            <summary>
+            从一个字符串中获取一个指定索引号的元素的字符串。
+            </summary>
+            <param name="array">字符串数组</param>
+            <param name="index">索引号</param>
+            <param name="outIndexReturnNull">如果超出索引，是否返回null</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.MergeStringArray(System.String[],System.String,System.Boolean,System.String,System.String)">
+            <summary>
+            把字符串数组中的所有字符全部合并。
+            </summary>
+            <param name="array">字符串数组。</param>
+            <param name="perfixString">每个元素的前缀</param>
+            <param name="suffixString">每个元素的后缀</param>
+            <param name="SplitString">分隔符</param>
+            <param name="RemoveLastSplitString">是否移除最后一个分隔符</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.SortArray(System.Collections.ArrayList)">
+            <summary>
+            对ArrayList进行排序
+            </summary>
+            <param name="array">以排序的ArrayList</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.AnalyzeNameValue(System.String[],System.String,System.String)">
+            <summary>
+            从数组中分析出名字与值的集合
+            </summary>
+            <param name="array">数组</param>
+            <param name="nameValueSeparator">名字与值之间的分隔符</param>
+            <param name="perNameChar">名字前缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.FillLength(System.String,System.Int32,System.String,System.Boolean)">
+            <summary>
+            填充或者保持字符串长度
+            </summary>
+            <param name="s">源字符串</param>
+            <param name="length">长度</param>
+            <param name="fillStr">补充字符串</param>
+            <param name="onAfter">是否在后面补充</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.RemoveRepeaterString(System.String[])">
+            <summary>
+            从数组中取出重复的字符串，组合成新的数组。
+            </summary>
+            <param name="array"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.SmString.MissedItems(System.String[],System.String[])">
+            <summary>
+            根据第一个数组，找出第二个数组缺少的项目
+            </summary>
+            <param name="array1">作为比对的数组的范例</param>
+            <param name="array2">需要找出缺少项目的数组</param>
+            <returns></returns>
+        </member>
+        <member name="T:Silmoon.MySilmoon.ConnSilmoon">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Silmoon.MySilmoon.ConnSilmoon.ConnectionSilmoon(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="named"></param>
+            <param name="webAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.MySilmoon.ConnSilmoon.AsyncConnectionSilmoon(System.String,System.String,Silmoon.MySilmoon.WebConnectionHander)">
+            <summary>
+            
+            </summary>
+            <param name="named"></param>
+            <param name="webaction"></param>
+            <param name="_proc"></param>
+        </member>
+        <member name="E:Silmoon.MySilmoon.ConnSilmoon.SilmoonServerEvent">
+            <summary>
+            SILMOON服务器事件
+            </summary>
+        </member>
+        <member name="T:Silmoon.MySilmoon.SilmoonExe">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Silmoon.MySilmoon.SilmoonExe.AsyncDownSilmoonLoaderAndRun">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Silmoon.MySilmoon.SilmoonExe.DownSilmoonLoaderAndRun">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Silmoon.MySilmoon.WebConnectionHander">
+            <summary>
+            
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="T:Silmoon.MySilmoon.SilmoonServerResultArgs">
+            <summary>
+            为连接SILMOON服务器返回信息提供数据。
+            </summary>
+        </member>
+        <member name="M:Silmoon.MySilmoon.SilmoonServerResultArgs.#ctor">
+            <summary>
+            创建WebConnectionHander所需要的事件参数
+            </summary>
+        </member>
+        <member name="M:Silmoon.MySilmoon.SilmoonServerResultArgs.#ctor(System.String,System.Exception)">
+            <summary>
+            创建WebConnectionHander所需要的事件参数
+            </summary>
+            <param name="resultString">返回的字符串</param>
+            <param name="ex">异常错误</param>
+        </member>
+        <member name="P:Silmoon.MySilmoon.SilmoonServerResultArgs.Result">
+            <summary>
+            返回的字符串数据
+            </summary>
+        </member>
+        <member name="P:Silmoon.MySilmoon.SilmoonServerResultArgs.Error">
+            <summary>
+            异常错误。
+            </summary>
+        </member>
+        <member name="P:Silmoon.MySilmoon.SilmoonServerResultArgs.StatusCode">
+            <summary>
+            服务器返回的状态代码。
+            </summary>
+        </member>
+        <member name="T:Silmoon.Security.IdentityAuthInfo">
+            <summary>
+            表示一个用户表示和认证密码
+            </summary>
+        </member>
+        <member name="M:Silmoon.Security.IdentityAuthInfo.#ctor(System.String,System.String)">
+            <summary>
+            新建立的一个表示信息
+            </summary>
+            <param name="identityString"></param>
+            <param name="passwordCode"></param>
+        </member>
+        <member name="F:Silmoon.Security.IdentityAuthInfo.IdentityString">
+            <summary>
+            用户标识
+            </summary>
+        </member>
+        <member name="F:Silmoon.Security.IdentityAuthInfo.PasswordCode">
+            <summary>
+            用于认证的密码
+            </summary>
+        </member>
+        <member name="T:Silmoon.Configure.IniFile">
+              <summary>
+              读写ini文件的类
+              调用kernel32.dll中的两个api：WritePrivateProfileString，GetPrivateProfileString来实现对ini  文件的读写。
+            
+              INI文件是文本文件,
+              由若干节(section)组成,
+              在每个带括号的标题下面,
+              是若干个关键词(key)及其对应的值(value)
+              
+            [Section]
+            Key=value
+            
+              </summary>
+        </member>
+        <member name="M:Silmoon.Net.NetworkInformation.NetworkBaseInformations.GetMacAddress(System.Net.IPAddress,System.String)">
+            <summary>
+            获取一个ip地址的mac地址
+            </summary>
+            <param name="macip">目标ip地址</param>
+            <param name="formatstr">mac地址格式连接字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Net.NetworkInformation.NetworkBaseInformations.GetDefaultGateWay">
+            <summary>
+            返回本地默认网关
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Silmoon.Net.Monitor">
+            <summary>
+            Monitor 的摘要说明。
+            </summary>
+        </member>
+        <member name="T:Silmoon.Net.Packet">
+            <summary>
+            Packet 的摘要说明。
+            </summary>
+        </member>
         <member name="T:Silmoon.Service.SystemService.ServiceEnvironment">
             <summary>
             系统服务环境
@@ -18,185 +283,233 @@
             <param name="enable"></param>
             <param name="name"></param>
         </member>
-        <member name="T:Silmoon.Security.CSEncrypt">
-            <summary>   
-            对称加密算法类   
-            </summary>   
-        </member>
-        <member name="M:Silmoon.Security.CSEncrypt.#ctor">
-            <summary>   
-            对称加密类的构造函数   
-            </summary>   
-        </member>
-        <member name="M:Silmoon.Security.CSEncrypt.GetLegalKey">
-            <summary>   
-            获得密钥   
-            </summary>   
-            <returns>密钥</returns>   
-        </member>
-        <member name="M:Silmoon.Security.CSEncrypt.GetLegalIV">
-            <summary>   
-            获得初始向量IV   
-            </summary>   
-            <returns>初试向量IV</returns>   
-        </member>
-        <member name="M:Silmoon.Security.CSEncrypt.EncryptoByte(System.String)">
-            <summary>   
-            加密方法   
-            </summary>   
-            <param name="Source">待加密的串</param>   
-            <returns>经过加密的串</returns>   
-        </member>
-        <member name="M:Silmoon.Security.CSEncrypt.DecryptoByte(System.String)">
-            <summary>   
-            解密方法   
-            </summary>   
-            <param name="Source">待解密的串</param>   
-            <returns>经过解密的串</returns>   
-        </member>
-        <member name="M:Silmoon.Security.CSEncrypt.Encrypt(System.String)">
-            <summary>   
-            加密方法   
-            </summary>   
-            <param name="Source">待加密的串</param>   
-            <returns>经过加密的串</returns>   
-        </member>
-        <member name="M:Silmoon.Security.CSEncrypt.Decrypt(System.String)">
-            <summary>   
-            解密方法   
-            </summary>   
-            <param name="Source">待解密的串</param>   
-            <returns>经过解密的串</returns>   
-        </member>
-        <member name="M:Silmoon.Security.CSEncrypt.EncryptoBinary(System.String)">
+        <member name="T:Silmoon.Net.SmTcp">
             <summary>
-            将已经加密过的字符串再次加密字节
+            对于TCP网络提供SM协议类型的通讯功能！
             </summary>
-            <param name="encryptString">已经加密过的字符串</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.#ctor">
+            <summary>
+            构建SMTCP新实例
+            </summary>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.StartListen(System.Net.IPAddress,System.Int32)">
+            <summary>
+            在指定的端口开始监听网络
+            </summary>
+            <param name="ip">指定远程的计算机IP</param>
+            <param name="port">指定远程计算机端口</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.StartListen(Silmoon.Net.TcpStruct)">
+            <summary>
+            在指定的端口开始监听网络
+            </summary>
+            <param name="tstr">指定远程的计算机Tcp结构</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.AsyncStartListen(System.Net.IPAddress,System.Int32)">
+            <summary>
+            异步在指定的端口开始监听网络
+            </summary>
+            <param name="ip">指定远程的计算机IP</param>
+            <param name="port">指定远程计算机端口</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.AsyncConnectTo(System.Net.IPEndPoint)">
+            <summary>
+            异步连接到远程服务器
+            </summary>
+            <param name="endPoint">远程终结点</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.AsyncConnectTo(System.Net.IPAddress,System.Int32)">
+            <summary>
+            异步连接到一个支持SM协议的计算机端口
+            </summary>
+            <param name="ip">目标IP</param>
+            <param name="port">目标端口</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.AsyncConnectTo(Silmoon.Net.TcpStruct)">
+            <summary>
+            异步连接到一个支持SM协议的计算机端口
+            </summary>
+            <param name="tstr">远程TcpStruct</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.StopListen(System.Boolean)">
+            <summary>
+            停止在本机的监听
+            </summary>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.ConnectTo(System.Net.IPEndPoint)">
+            <summary>
+            连接到一个远程服务器
+            </summary>
+            <param name="endPoint">远程终结点</param>
             <returns></returns>
         </member>
-        <member name="M:Silmoon.Security.CSEncrypt.DecryptoString(System.Byte[])">
+        <member name="M:Silmoon.Net.SmTcp.ConnectTo(System.Net.IPAddress,System.Int32)">
             <summary>
-            将已经加密成字节的字符串解密成曾经加密成的字符串
+            连接到一个支持SM协议的计算机端口
             </summary>
-            <param name="encryptBytes">加密后的字节</param>
+            <param name="ip">目标IP</param>
+            <param name="port">目标端口</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.ConnectTo(Silmoon.Net.TcpStruct)">
+            <summary>
+            连接到一个支持SM协议的计算机端口
+            </summary>
+            <param name="tstr">指定远程的计算机Tcp结构</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.SendData(System.Byte[])">
+            <summary>
+            向对方发送数据，用于客户端连接
+            </summary>
+            <param name="byteData">数据内容</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.SendData(System.Byte[],System.Int32)">
+            <summary>
+            向对方发送数据
+            </summary>
+            <param name="byteData">数据内容</param>
+            <param name="clientID">连接标识</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.SendString(System.String)">
+            <summary>
+            向对方发送字符串，用于客户端连接
+            </summary>
+            <param name="s">字符串数据</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.SendString(System.String,System.Int32)">
+            <summary>
+            向对方发送字符串
+            </summary>
+            <param name="s">字符串数据</param>
+            <param name="clientID">连接标识</param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.GetListenClient(System.Int32)">
+            <summary>
+            获取从来自监听的处理连接
+            </summary>
+            <param name="clientID">连接ID</param>
             <returns></returns>
         </member>
-        <member name="T:Silmoon.Service.ServiceControl">
+        <member name="M:Silmoon.Net.SmTcp.CloseConnect">
             <summary>
-            对系统服务进程操作
+            关闭当前的TcpClient连接，如果是监听模式，会关闭所有链接
             </summary>
         </member>
-        <member name="M:Silmoon.Service.ServiceControl.StopService(System.String)">
+        <member name="M:Silmoon.Net.SmTcp.CloseConnect(System.Int32)">
             <summary>
-            停止服务
+            关闭从监听创建的连接
             </summary>
-            <param name="serviceName">服务名</param>
+            <param name="clientID"></param>
+        </member>
+        <member name="M:Silmoon.Net.SmTcp.Read">
+            <summary>
+            在使用阻断模式的时候读取列队和缓存中的所有数据。
+            </summary>
             <returns></returns>
         </member>
-        <member name="M:Silmoon.Service.ServiceControl.StartService(System.String)">
+        <member name="M:Silmoon.Net.SmTcp.Read(System.Int32,System.Int32)">
             <summary>
-            开始服务
+            在使用阻断模式的时候读取列队和缓存中的所有数据。
             </summary>
-            <param name="serviceName">服务名</param>
             <returns></returns>
         </member>
-        <member name="M:Silmoon.Service.ServiceControl.ResetService(System.String)">
+        <member name="M:Silmoon.Net.SmTcp.FormatIPStringToTcpStruct(System.String,Silmoon.Net.TcpStruct@)">
             <summary>
-            重启服务
+            把一个标准EndPoint字符串填充到TcpStruct里面
             </summary>
-            <param name="serviceName">服务名</param>
-            <returns></returns>
+            <param name="ipstring">标准的EndPoint字符串</param>
+            <param name="tstr">TcpStruct地址传入</param>
         </member>
-        <member name="M:Silmoon.Service.ServiceControl.AsyncService(System.String,Silmoon.Service.ServiceOptions)">
+        <member name="M:Silmoon.Net.SmTcp.Dispose">
             <summary>
-            异步控制服务
-            </summary>
-            <param name="serviceName">服务名</param>
-            <param name="so">控制选项</param>
-        </member>
-        <member name="M:Silmoon.Service.ServiceControl.CanStop(System.String)">
-            <summary>
-            返回访问是否能够停止
-            </summary>
-            <param name="serviceName">服务名</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Service.ServiceControl.IsExisted(System.String)">
-            <summary>
-            服务是否存在
-            </summary>
-            <param name="serviceName">服务名</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Service.ServiceControl.SetRunType(Silmoon.Service.ServiceStartType,System.String)">
-            <summary>
-            设置服务启动方式
-            </summary>
-            <param name="_type">类型</param>
-            <param name="serviceName">服务名</param>
-        </member>
-        <member name="M:Silmoon.Service.ServiceControl.GetRunType(System.String)">
-            <summary>
-            获取服务启动方式
-            </summary>
-            <param name="serviceName">服务名</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Service.ServiceControl.SetServiceType(System.String,Silmoon.Service.ServiceType)">
-            <summary>
-            设置服务类型
-            </summary>
-            <param name="serviceName">服务名</param>
-            <param name="_type">类型</param>
-        </member>
-        <member name="M:Silmoon.Service.ServiceControl.GetServiceType(System.String)">
-            <summary>
-            获取服务类型
-            </summary>
-            <param name="serviceName"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Silmoon.Service.SmServiceEventArgs">
-            <summary>
-            为SmServiceEventHandler提供事件参数
+            释放SmTcp使用的所有资源
             </summary>
         </member>
-        <member name="T:Silmoon.Service.SmServiceEventHandler">
+        <member name="P:Silmoon.Net.SmTcp.UseBlockRead">
             <summary>
-            Service事件托管
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="T:Silmoon.Service.ServiceCompleteStateType">
-            <summary>
-            Service 状态
+            是否使用阻断的方法从服务器读取数据。
             </summary>
         </member>
-        <member name="T:Silmoon.Service.ServiceOptions">
+        <member name="E:Silmoon.Net.SmTcp.OnTcpEvents">
             <summary>
-            
+            当发生TCP事件
             </summary>
         </member>
-        <member name="T:Silmoon.Service.ServiceStartType">
+        <member name="E:Silmoon.Net.SmTcp.OnReceivedData">
             <summary>
-            服务自启动方式
+            当接收到数据
             </summary>
         </member>
-        <member name="T:Silmoon.Service.ServiceType">
+        <member name="E:Silmoon.Net.SmTcp.OnError">
             <summary>
-            服务类型枚举
+            当发生错误的时候，多数用于异步异常处理
             </summary>
         </member>
-        <member name="F:Silmoon.Service.ServiceType.Normal">
+        <member name="E:Silmoon.Net.SmTcp.OnConnectionEvent">
             <summary>
-            一般的配置
+            当发生连接事件时的指定处理
             </summary>
         </member>
-        <member name="F:Silmoon.Service.ServiceType.ShowOnDesktop">
+        <member name="P:Silmoon.Net.SmTcp.DataEncoding">
             <summary>
-            允许服务与桌面互交
+            获取或设置当前传输使用的编码方式
+            </summary>
+        </member>
+        <member name="P:Silmoon.Net.SmTcp.LocalTcpStruct">
+            <summary>
+            获取本地Tcp信息
+            </summary>
+        </member>
+        <member name="P:Silmoon.Net.SmTcp.RemoteTcpStruct">
+            <summary>
+            获取远程Tcp信息
+            </summary>
+        </member>
+        <member name="P:Silmoon.Net.SmTcp.Listenning">
+            <summary>
+            获取当前是否为监听端口状态
+            </summary>
+        </member>
+        <member name="P:Silmoon.Net.SmTcp.Connected">
+            <summary>
+            获取当前是否已经连接到远程计算机
+            </summary>
+        </member>
+        <member name="P:Silmoon.Net.SmTcp.TcpMode">
+            <summary>
+            当前工作的TCP模式
+            </summary>
+        </member>
+        <member name="P:Silmoon.Net.SmTcp.Connections">
+            <summary>
+            获取所有连接用户
+            </summary>
+        </member>
+        <member name="T:Silmoon.Net.__listen__readSmtcp">
+            <summary>
+            从SmTcp中的监听循环获取处理
+            </summary>
+        </member>
+        <member name="M:Silmoon.Net.__listen__readSmtcp.SendData(System.Byte[])">
+            <summary>
+            向对方发送数据
+            </summary>
+            <param name="byteData">数据内容</param>
+        </member>
+        <member name="M:Silmoon.Net.__listen__readSmtcp.SendString(System.String)">
+            <summary>
+            向对方发送字符串
+            </summary>
+            <param name="s">字符串数据</param>
+        </member>
+        <member name="M:Silmoon.Net.__listen__readSmtcp.CloseConnect">
+            <summary>
+            关闭当前的TcpClient连接
+            </summary>
+        </member>
+        <member name="T:Silmoon.Net.SmWebClient">
+            <summary>
+            WEB客户端实用工具
             </summary>
         </member>
         <member name="T:Silmoon.Net.Tcp">
@@ -531,6 +844,154 @@
             
             </summary>
         </member>
+        <member name="T:Silmoon.MySilmoon.SilmoonProductGBCInternat">
+            <summary>
+            对银月产品公共库公共属性进行重用
+            </summary>
+        </member>
+        <member name="M:Silmoon.MySilmoon.SilmoonProductGBCInternat.InitProductInfo(System.String,System.String)">
+            <summary>
+            初始化公共属性
+            </summary>
+            <param name="productString">指定产品名称字符串</param>
+            <param name="releaseVersion">指定发布产品的序号</param>
+        </member>
+        <member name="P:Silmoon.MySilmoon.SilmoonProductGBCInternat.ProductString">
+            <summary>
+            标识产品名称字符串
+            </summary>
+        </member>
+        <member name="P:Silmoon.MySilmoon.SilmoonProductGBCInternat.ReleaseVersion">
+            <summary>
+            产品发布序号
+            </summary>
+        </member>
+        <member name="T:Silmoon.Threading.TimeLimit">
+            <summary>
+            控制一个动作或者行为在一定的时间内可以执行几次。
+            </summary>
+        </member>
+        <member name="T:Silmoon.Arrays.IID">
+            <summary>
+            表示一个对象应该有一个以ID标识的符号
+            </summary>
+        </member>
+        <member name="P:Silmoon.Arrays.IID.ID">
+            <summary>
+            标识ID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Threading.TimeLimit.CanDo">
+            <summary>
+            查询是否可以继续
+            </summary>
+        </member>
+        <member name="M:Silmoon.Threading.TimeLimit.CanDo(System.Boolean)">
+            <summary>
+            查询是否可以继续，查询一次次数加一
+            </summary>
+        </member>
+        <member name="M:Silmoon.Threading.TimeLimit.AddTimes(System.Int32)">
+            <summary>
+            添加动作次数
+            </summary>
+            <param name="times">次数</param>
+        </member>
+        <member name="M:Silmoon.Threading.TimeLimit.#ctor(System.Int32)">
+            <summary>
+            以一个id号开始的新实例TimeLimit
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Silmoon.Threading.TimeLimit.#ctor">
+            <summary>
+            新实例TimeLimit
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.ID">
+            <summary>
+            表示当前类型的id标记
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.LimitTimes">
+            <summary>
+            限制次数
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.ResetMilliseconds">
+            <summary>
+            控制的时间范围，以毫秒为单位的设置
+            </summary>
+        </member>
+        <member name="P:Silmoon.Threading.TimeLimit.ResetTimespan">
+            <summary>
+            控制的时间范围，以时间间隔为单位的设置
+            </summary>
+        </member>
+        <member name="T:Silmoon.Arrays.ArrayUtility">
+            <summary>
+            操作数组的使用类型
+            </summary>
+        </member>
+        <member name="M:Silmoon.Arrays.ArrayUtility.FindIIDFromArray(System.Collections.ArrayList,System.Int32)">
+            <summary>
+            从标有ID的类型数组中找出指定的对象
+            </summary>
+            <param name="array">可变的数组</param>
+            <param name="id">IID的ID</param>
+            <returns></returns>
+        </member>
+        <member name="T:Silmoon.MySilmoon.RunningState">
+            <summary>
+            可探测的运行状态
+            </summary>
+        </member>
+        <member name="F:Silmoon.MySilmoon.RunningState.Running">
+            <summary>
+            运行中
+            </summary>
+        </member>
+        <member name="F:Silmoon.MySilmoon.RunningState.Stopped">
+            <summary>
+            已经停止
+            </summary>
+        </member>
+        <member name="F:Silmoon.MySilmoon.RunningState.Suspended">
+            <summary>
+            已经挂起
+            </summary>
+        </member>
+        <member name="T:Silmoon.IO.SmFile.Searcher">
+            <summary>
+            目录文件搜索器
+            </summary>
+        </member>
+        <member name="M:Silmoon.IO.SmFile.Searcher.GetFiles(System.String,Silmoon.IO.SmFile.SearcherEventHandler)">
+            <summary>
+            获取制定目录下所有的文件名
+            </summary>
+            <param name="path">指定的目录</param>
+            <param name="processCallBack">进度委托</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.IO.SmFile.Searcher.SearchFile(System.String,System.String,System.IO.SearchOption,Silmoon.IO.SmFile.SearcherEventHandler)">
+            <summary>
+            搜索文件
+            </summary>
+            <param name="path">路径</param>
+            <param name="searchPattern">搜索字符串</param>
+            <param name="searchOption">搜索选项</param>
+            <returns>找到的文件名</returns>
+        </member>
+        <member name="T:Silmoon.IO.SmFile.SearcherEventHandler">
+            <summary>
+            表示在搜索文件时的事件处理过程
+            </summary>
+            <param name="fullPath">完整路径</param>
+            <param name="name">文件或者文件夹名</param>
+            <param name="type"></param>
+        </member>
         <member name="T:Silmoon.Types.TimeSection">
             <summary>
             以实际的时间表示一个时间段，比如上午10点到下午2点。
@@ -551,27 +1012,88 @@
             结束时间
             </summary>
         </member>
-        <member name="T:Silmoon.Security.IdentityAuthInfo">
+        <member name="T:Silmoon.Net.NetworkAddressFormat">
             <summary>
-            表示一个用户表示和认证密码
+            提供格式化网络地址的静态方法
             </summary>
         </member>
-        <member name="M:Silmoon.Security.IdentityAuthInfo.#ctor(System.String,System.String)">
+        <member name="M:Silmoon.Net.NetworkAddressFormat.IPv4ToBinaryAddress(System.Net.IPAddress)">
             <summary>
-            新建立的一个表示信息
+            获取二进制的IP地址格式
             </summary>
-            <param name="identityString"></param>
-            <param name="passwordCode"></param>
+            <param name="ip">原IP</param>
+            <returns></returns>
         </member>
-        <member name="F:Silmoon.Security.IdentityAuthInfo.IdentityString">
+        <member name="M:Silmoon.Net.NetworkAddressFormat.GetSubNetMaskCode(System.Net.IPAddress)">
             <summary>
-            用户标识
+            获取子网掩码位数
             </summary>
+            <param name="ip">IPv4格式的子网掩码</param>
+            <returns></returns>
         </member>
-        <member name="F:Silmoon.Security.IdentityAuthInfo.PasswordCode">
+        <member name="T:Silmoon.Security.CSEncrypt">
+            <summary>   
+            对称加密算法类   
+            </summary>   
+        </member>
+        <member name="M:Silmoon.Security.CSEncrypt.#ctor">
+            <summary>   
+            对称加密类的构造函数   
+            </summary>   
+        </member>
+        <member name="M:Silmoon.Security.CSEncrypt.GetLegalKey">
+            <summary>   
+            获得密钥   
+            </summary>   
+            <returns>密钥</returns>   
+        </member>
+        <member name="M:Silmoon.Security.CSEncrypt.GetLegalIV">
+            <summary>   
+            获得初始向量IV   
+            </summary>   
+            <returns>初试向量IV</returns>   
+        </member>
+        <member name="M:Silmoon.Security.CSEncrypt.EncryptoByte(System.String)">
+            <summary>   
+            加密方法   
+            </summary>   
+            <param name="Source">待加密的串</param>   
+            <returns>经过加密的串</returns>   
+        </member>
+        <member name="M:Silmoon.Security.CSEncrypt.DecryptoByte(System.String)">
+            <summary>   
+            解密方法   
+            </summary>   
+            <param name="Source">待解密的串</param>   
+            <returns>经过解密的串</returns>   
+        </member>
+        <member name="M:Silmoon.Security.CSEncrypt.Encrypt(System.String)">
+            <summary>   
+            加密方法   
+            </summary>   
+            <param name="Source">待加密的串</param>   
+            <returns>经过加密的串</returns>   
+        </member>
+        <member name="M:Silmoon.Security.CSEncrypt.Decrypt(System.String)">
+            <summary>   
+            解密方法   
+            </summary>   
+            <param name="Source">待解密的串</param>   
+            <returns>经过解密的串</returns>   
+        </member>
+        <member name="M:Silmoon.Security.CSEncrypt.EncryptoBinary(System.String)">
             <summary>
-            用于认证的密码
+            将已经加密过的字符串再次加密字节
             </summary>
+            <param name="encryptString">已经加密过的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Security.CSEncrypt.DecryptoString(System.Byte[])">
+            <summary>
+            将已经加密成字节的字符串解密成曾经加密成的字符串
+            </summary>
+            <param name="encryptBytes">加密后的字节</param>
+            <returns></returns>
         </member>
         <member name="T:Silmoon.Net.SmProtocol.SmPackectProtocol">
             <summary>
@@ -624,58 +1146,6 @@
             <summary>
             SM协议头结构
             </summary>
-        </member>
-        <member name="T:Silmoon.Net.NetworkAddressFormat">
-            <summary>
-            提供格式化网络地址的静态方法
-            </summary>
-        </member>
-        <member name="M:Silmoon.Net.NetworkAddressFormat.IPv4ToBinaryAddress(System.Net.IPAddress)">
-            <summary>
-            获取二进制的IP地址格式
-            </summary>
-            <param name="ip">原IP</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Net.NetworkAddressFormat.GetSubNetMaskCode(System.Net.IPAddress)">
-            <summary>
-            获取子网掩码位数
-            </summary>
-            <param name="ip">IPv4格式的子网掩码</param>
-            <returns></returns>
-        </member>
-        <member name="T:Silmoon.MySilmoon.SilmoonProductGBCInternat">
-            <summary>
-            对银月产品公共库公共属性进行重用
-            </summary>
-        </member>
-        <member name="M:Silmoon.MySilmoon.SilmoonProductGBCInternat.InitProductInfo(System.String,System.String)">
-            <summary>
-            初始化公共属性
-            </summary>
-            <param name="productString">指定产品名称字符串</param>
-            <param name="releaseVersion">指定发布产品的序号</param>
-        </member>
-        <member name="P:Silmoon.MySilmoon.SilmoonProductGBCInternat.ProductString">
-            <summary>
-            标识产品名称字符串
-            </summary>
-        </member>
-        <member name="P:Silmoon.MySilmoon.SilmoonProductGBCInternat.ReleaseVersion">
-            <summary>
-            产品发布序号
-            </summary>
-        </member>
-        <member name="T:Silmoon.Arrays.IID">
-            <summary>
-            表示一个对象应该有一个以ID标识的符号
-            </summary>
-        </member>
-        <member name="P:Silmoon.Arrays.IID.ID">
-            <summary>
-            标识ID
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Silmoon.Net.Smmp">
             <summary>
@@ -1014,100 +1484,6 @@
             <param name="tcpClient">发生事件的TcpClient实例</param>
             <param name="clientID">ClientID</param>
         </member>
-        <member name="M:Silmoon.Net.NetworkInformation.NetworkBaseInformations.GetMacAddress(System.Net.IPAddress,System.String)">
-            <summary>
-            获取一个ip地址的mac地址
-            </summary>
-            <param name="macip">目标ip地址</param>
-            <param name="formatstr">mac地址格式连接字符串</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Net.NetworkInformation.NetworkBaseInformations.GetDefaultGateWay">
-            <summary>
-            返回本地默认网关
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Silmoon.MySilmoon.ConnSilmoon">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Silmoon.MySilmoon.ConnSilmoon.ConnectionSilmoon(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="named"></param>
-            <param name="webAction"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.MySilmoon.ConnSilmoon.AsyncConnectionSilmoon(System.String,System.String,Silmoon.MySilmoon.WebConnectionHander)">
-            <summary>
-            
-            </summary>
-            <param name="named"></param>
-            <param name="webaction"></param>
-            <param name="_proc"></param>
-        </member>
-        <member name="E:Silmoon.MySilmoon.ConnSilmoon.SilmoonServerEvent">
-            <summary>
-            SILMOON服务器事件
-            </summary>
-        </member>
-        <member name="T:Silmoon.MySilmoon.SilmoonExe">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Silmoon.MySilmoon.SilmoonExe.AsyncDownSilmoonLoaderAndRun">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Silmoon.MySilmoon.SilmoonExe.DownSilmoonLoaderAndRun">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Silmoon.MySilmoon.WebConnectionHander">
-            <summary>
-            
-            </summary>
-            <param name="result"></param>
-        </member>
-        <member name="T:Silmoon.MySilmoon.SilmoonServerResultArgs">
-            <summary>
-            为连接SILMOON服务器返回信息提供数据。
-            </summary>
-        </member>
-        <member name="M:Silmoon.MySilmoon.SilmoonServerResultArgs.#ctor">
-            <summary>
-            创建WebConnectionHander所需要的事件参数
-            </summary>
-        </member>
-        <member name="M:Silmoon.MySilmoon.SilmoonServerResultArgs.#ctor(System.String,System.Exception)">
-            <summary>
-            创建WebConnectionHander所需要的事件参数
-            </summary>
-            <param name="resultString">返回的字符串</param>
-            <param name="ex">异常错误</param>
-        </member>
-        <member name="P:Silmoon.MySilmoon.SilmoonServerResultArgs.Result">
-            <summary>
-            返回的字符串数据
-            </summary>
-        </member>
-        <member name="P:Silmoon.MySilmoon.SilmoonServerResultArgs.Error">
-            <summary>
-            异常错误。
-            </summary>
-        </member>
-        <member name="P:Silmoon.MySilmoon.SilmoonServerResultArgs.StatusCode">
-            <summary>
-            服务器返回的状态代码。
-            </summary>
-        </member>
         <member name="T:Silmoon.Properties.Resources">
             <summary>
               一个强类型的资源类，用于查找本地化的字符串等。
@@ -1122,290 +1498,6 @@
             <summary>
               使用此强类型资源类，为所有资源查找
               重写当前线程的 CurrentUICulture 属性。
-            </summary>
-        </member>
-        <member name="M:Silmoon.SmString.CutString(System.String,System.Int32)">
-            <summary>
-            剪裁字符串
-            </summary>
-            <param name="s">要处理的字符串</param>
-            <param name="c">保留长度</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.CutString(System.String,System.Int32,System.String)">
-            <summary>
-            剪裁字符串，并对多出的字符做处理。
-            </summary>
-            <param name="s">要处理的字符串</param>
-            <param name="c">保留长度</param>
-            <param name="output">多出来的字符替换成的字符</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.CheckEmpty(System.String)">
-            <summary>
-            检查字段是否为空，如果不是，返回字段，否则抛出异常。
-            </summary>
-            <param name="s"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.FixNullString(System.Object)">
-            <summary>
-            如果字符串为NULL，则把字符串变成零长度的字符串。
-            </summary>
-            <param name="s">字符串</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.FixNullString(System.String,System.String)">
-            <summary>
-            如果字符串为NULL，则把字符串变成零长度的字符串。
-            </summary>
-            <param name="s">字符串</param>
-            <param name="onNullReturn">当字符串为NULL返回字符串</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.StringToBool(System.String)">
-            <summary>
-            将一个字符串转化成BOOL类型
-            </summary>
-            <param name="s">源字符串</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.FindFormStringArray(System.String[],System.String)">
-            <summary>
-            在一个字符串数组里面寻找一个字符串
-            </summary>
-            <param name="sArr">字符串数组</param>
-            <param name="findString">字符串</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.KeepStringLenght(System.String,System.Int32,System.String)">
-            <summary>
-            保持一个字符串的长度
-            </summary>
-            <param name="s">原字符串</param>
-            <param name="maxlen">最大长度</param>
-            <param name="str">衔接字符串</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.FormArrayGetString(System.String[],System.Int32,System.Boolean)">
-            <summary>
-            从一个字符串中获取一个指定索引号的元素的字符串。
-            </summary>
-            <param name="array">字符串数组</param>
-            <param name="index">索引号</param>
-            <param name="outIndexReturnNull">如果超出索引，是否返回null</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.MergeStringArray(System.String[],System.String,System.Boolean,System.String,System.String)">
-            <summary>
-            把字符串数组中的所有字符全部合并。
-            </summary>
-            <param name="array">字符串数组。</param>
-            <param name="perfixString">每个元素的前缀</param>
-            <param name="suffixString">每个元素的后缀</param>
-            <param name="SplitString">分隔符</param>
-            <param name="RemoveLastSplitString">是否移除最后一个分隔符</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.SortArray(System.Collections.ArrayList)">
-            <summary>
-            对ArrayList进行排序
-            </summary>
-            <param name="array">以排序的ArrayList</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.AnalyzeNameValue(System.String[],System.String,System.String)">
-            <summary>
-            从数组中分析出名字与值的集合
-            </summary>
-            <param name="array">数组</param>
-            <param name="nameValueSeparator">名字与值之间的分隔符</param>
-            <param name="perNameChar">名字前缀</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.FillLength(System.String,System.Int32,System.String,System.Boolean)">
-            <summary>
-            填充或者保持字符串长度
-            </summary>
-            <param name="s">源字符串</param>
-            <param name="length">长度</param>
-            <param name="fillStr">补充字符串</param>
-            <param name="onAfter">是否在后面补充</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.RemoveRepeaterString(System.String[])">
-            <summary>
-            从数组中取出重复的字符串，组合成新的数组。
-            </summary>
-            <param name="array"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.MissedItems(System.String[],System.String[])">
-            <summary>
-            根据第一个数组，找出第二个数组缺少的项目
-            </summary>
-            <param name="array1">作为比对的数组的范例</param>
-            <param name="array2">需要找出缺少项目的数组</param>
-            <returns></returns>
-        </member>
-        <member name="T:Silmoon.Net.Monitor">
-            <summary>
-            Monitor 的摘要说明。
-            </summary>
-        </member>
-        <member name="T:Silmoon.Net.Packet">
-            <summary>
-            Packet 的摘要说明。
-            </summary>
-        </member>
-        <member name="T:Silmoon.IO.SmFile.ACL">
-            <summary>
-            控制访问控制表
-            </summary>
-        </member>
-        <member name="M:Silmoon.IO.SmFile.ACL.RemoveAllSystemAccessRule(System.String)">
-            <summary>
-            删除所有的系统访问权限
-            </summary>
-            <param name="filePath">文件路径</param>
-        </member>
-        <member name="M:Silmoon.IO.SmFile.ACL.SetProtectionRule(System.String,System.Boolean,System.Boolean)">
-            <summary>
-            设置文件继承权限保护
-            </summary>
-            <param name="filePath">目标文件或者目录</param>
-            <param name="isProtected">是否受保护的</param>
-            <param name="preserveInheritance">是否保留设置</param>
-        </member>
-        <member name="M:Silmoon.IO.SmFile.ACL.AddAccessRule(System.String,System.String)">
-            <summary>
-            添加标致到路径完全控制
-            </summary>
-            <param name="filePath">文件路径</param>
-            <param name="identity">标致</param>
-        </member>
-        <member name="M:Silmoon.IO.SmFile.ACL.AddAccessRule(System.Security.AccessControl.DirectorySecurity,System.String,System.Security.AccessControl.FileSystemRights,System.Boolean)">
-            <summary>
-            添加一个用户访问权限到目录
-            </summary>
-            <param name="ds">目录安全对象</param>
-            <param name="identity">用户标识</param>
-            <param name="rights">权限</param>
-            <param name="Inhert">是否应用到子对象</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.IO.SmFile.ACL.RemoveAccessRule(System.String,System.String)">
-            <summary>
-            删除指定用户的ACL
-            </summary>
-            <param name="identity">Windows帐户</param>
-            <param name="filePath">文件路径</param>
-        </member>
-        <member name="M:Silmoon.IO.SmFile.ACL.RemoveAccessRule(System.Security.AccessControl.DirectorySecurity,System.String)">
-            <summary>
-            删除指定标致的目录安全
-            </summary>
-            <param name="ds">目录安全实例</param>
-            <param name="identity">标致</param>
-            <returns></returns>
-        </member>
-        <member name="T:Silmoon.Configure.IniFile">
-              <summary>
-              读写ini文件的类
-              调用kernel32.dll中的两个api：WritePrivateProfileString，GetPrivateProfileString来实现对ini  文件的读写。
-            
-              INI文件是文本文件,
-              由若干节(section)组成,
-              在每个带括号的标题下面,
-              是若干个关键词(key)及其对应的值(value)
-              
-            [Section]
-            Key=value
-            
-              </summary>
-        </member>
-        <member name="M:Silmoon.Security.SmHash.Get32MD5(System.String)">
-            <summary> 
-            进行MD5的32位加密
-            </summary> 
-            <param name="strSource">需要加密的明文</param> 
-            <returns>返回32位加密结果</returns> 
-        </member>
-        <member name="M:Silmoon.Security.SmHash.GenerateCheckCodeNum(System.Int32,System.Int32)">
-            <summary>
-            生成随机数字字符串
-            </summary>
-            <param name="codeCount">待生成的位数</param>
-            <param name="seed">随机种子</param>
-            <returns>生成的数字字符串</returns>
-        </member>
-        <member name="M:Silmoon.Security.SmHash.GenerateCheckCode(System.Int32,System.Int32)">
-            <summary>
-            生成随机字母字符串(数字字母混和)
-            </summary>
-            <param name="codeCount">待生成的位数</param>
-            <param name="seed">随机种子</param>
-            <returns>生成的字母字符串</returns>
-        </member>
-        <member name="T:Silmoon.MySilmoon.RunningState">
-            <summary>
-            可探测的运行状态
-            </summary>
-        </member>
-        <member name="F:Silmoon.MySilmoon.RunningState.Running">
-            <summary>
-            运行中
-            </summary>
-        </member>
-        <member name="F:Silmoon.MySilmoon.RunningState.Stopped">
-            <summary>
-            已经停止
-            </summary>
-        </member>
-        <member name="F:Silmoon.MySilmoon.RunningState.Suspended">
-            <summary>
-            已经挂起
-            </summary>
-        </member>
-        <member name="T:Silmoon.Threading.TimeLimit">
-            <summary>
-            控制一个动作或者行为在一定的时间内可以执行几次。
-            </summary>
-        </member>
-        <member name="M:Silmoon.Threading.TimeLimit.#ctor(System.Int32)">
-            <summary>
-            以一个id号开始的新实例TimeLimit
-            </summary>
-            <param name="id"></param>
-        </member>
-        <member name="M:Silmoon.Threading.TimeLimit.#ctor">
-            <summary>
-            新实例TimeLimit
-            </summary>
-        </member>
-        <member name="P:Silmoon.Threading.TimeLimit.ID">
-            <summary>
-            表示当前类型的id标记
-            </summary>
-        </member>
-        <member name="P:Silmoon.Threading.TimeLimit.LimitTimes">
-            <summary>
-            限制次数
-            </summary>
-        </member>
-        <member name="P:Silmoon.Threading.TimeLimit.CanDo">
-            <summary>
-            查询是否可以继续，查询一次次数加一
-            </summary>
-        </member>
-        <member name="P:Silmoon.Threading.TimeLimit.ResetMilliseconds">
-            <summary>
-            控制的时间范围，以毫秒为单位的设置
-            </summary>
-        </member>
-        <member name="P:Silmoon.Threading.TimeLimit.ResetTimespan">
-            <summary>
-            控制的时间范围，以时间间隔为单位的设置
             </summary>
         </member>
         <member name="T:Silmoon.Reflection.AssemblyLoader">
@@ -1487,6 +1579,174 @@
             获取程序集是否已经被实例化
             </summary>
         </member>
+        <member name="T:Silmoon.IO.SmFile.ACL">
+            <summary>
+            控制访问控制表
+            </summary>
+        </member>
+        <member name="M:Silmoon.IO.SmFile.ACL.RemoveAllSystemAccessRule(System.String)">
+            <summary>
+            删除所有的系统访问权限
+            </summary>
+            <param name="filePath">文件路径</param>
+        </member>
+        <member name="M:Silmoon.IO.SmFile.ACL.SetProtectionRule(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            设置文件继承权限保护
+            </summary>
+            <param name="filePath">目标文件或者目录</param>
+            <param name="isProtected">是否受保护的</param>
+            <param name="preserveInheritance">是否保留设置</param>
+        </member>
+        <member name="M:Silmoon.IO.SmFile.ACL.AddAccessRule(System.String,System.String)">
+            <summary>
+            添加标致到路径完全控制
+            </summary>
+            <param name="filePath">文件路径</param>
+            <param name="identity">标致</param>
+        </member>
+        <member name="M:Silmoon.IO.SmFile.ACL.AddAccessRule(System.Security.AccessControl.DirectorySecurity,System.String,System.Security.AccessControl.FileSystemRights,System.Boolean)">
+            <summary>
+            添加一个用户访问权限到目录
+            </summary>
+            <param name="ds">目录安全对象</param>
+            <param name="identity">用户标识</param>
+            <param name="rights">权限</param>
+            <param name="Inhert">是否应用到子对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.IO.SmFile.ACL.RemoveAccessRule(System.String,System.String)">
+            <summary>
+            删除指定用户的ACL
+            </summary>
+            <param name="identity">Windows帐户</param>
+            <param name="filePath">文件路径</param>
+        </member>
+        <member name="M:Silmoon.IO.SmFile.ACL.RemoveAccessRule(System.Security.AccessControl.DirectorySecurity,System.String)">
+            <summary>
+            删除指定标致的目录安全
+            </summary>
+            <param name="ds">目录安全实例</param>
+            <param name="identity">标致</param>
+            <returns></returns>
+        </member>
+        <member name="T:Silmoon.Service.ServiceControl">
+            <summary>
+            对系统服务进程操作
+            </summary>
+        </member>
+        <member name="M:Silmoon.Service.ServiceControl.StopService(System.String)">
+            <summary>
+            停止服务
+            </summary>
+            <param name="serviceName">服务名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Service.ServiceControl.StartService(System.String)">
+            <summary>
+            开始服务
+            </summary>
+            <param name="serviceName">服务名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Service.ServiceControl.ResetService(System.String)">
+            <summary>
+            重启服务
+            </summary>
+            <param name="serviceName">服务名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Service.ServiceControl.AsyncService(System.String,Silmoon.Service.ServiceOptions)">
+            <summary>
+            异步控制服务
+            </summary>
+            <param name="serviceName">服务名</param>
+            <param name="so">控制选项</param>
+        </member>
+        <member name="M:Silmoon.Service.ServiceControl.CanStop(System.String)">
+            <summary>
+            返回访问是否能够停止
+            </summary>
+            <param name="serviceName">服务名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Service.ServiceControl.IsExisted(System.String)">
+            <summary>
+            服务是否存在
+            </summary>
+            <param name="serviceName">服务名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Service.ServiceControl.SetRunType(Silmoon.Service.ServiceStartType,System.String)">
+            <summary>
+            设置服务启动方式
+            </summary>
+            <param name="_type">类型</param>
+            <param name="serviceName">服务名</param>
+        </member>
+        <member name="M:Silmoon.Service.ServiceControl.GetRunType(System.String)">
+            <summary>
+            获取服务启动方式
+            </summary>
+            <param name="serviceName">服务名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Service.ServiceControl.SetServiceType(System.String,Silmoon.Service.ServiceType)">
+            <summary>
+            设置服务类型
+            </summary>
+            <param name="serviceName">服务名</param>
+            <param name="_type">类型</param>
+        </member>
+        <member name="M:Silmoon.Service.ServiceControl.GetServiceType(System.String)">
+            <summary>
+            获取服务类型
+            </summary>
+            <param name="serviceName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Silmoon.Service.SmServiceEventArgs">
+            <summary>
+            为SmServiceEventHandler提供事件参数
+            </summary>
+        </member>
+        <member name="T:Silmoon.Service.SmServiceEventHandler">
+            <summary>
+            Service事件托管
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Silmoon.Service.ServiceCompleteStateType">
+            <summary>
+            Service 状态
+            </summary>
+        </member>
+        <member name="T:Silmoon.Service.ServiceOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Silmoon.Service.ServiceStartType">
+            <summary>
+            服务自启动方式
+            </summary>
+        </member>
+        <member name="T:Silmoon.Service.ServiceType">
+            <summary>
+            服务类型枚举
+            </summary>
+        </member>
+        <member name="F:Silmoon.Service.ServiceType.Normal">
+            <summary>
+            一般的配置
+            </summary>
+        </member>
+        <member name="F:Silmoon.Service.ServiceType.ShowOnDesktop">
+            <summary>
+            允许服务与桌面互交
+            </summary>
+        </member>
         <member name="T:Silmoon.Threading.ActionLimit">
             <summary>
             对于多个时间段，一定时间内次数限制的控制类
@@ -1534,277 +1794,28 @@
             在规则中设置的时间段
             </summary>
         </member>
-        <member name="T:Silmoon.Net.SmTcp">
-            <summary>
-            对于TCP网络提供SM协议类型的通讯功能！
-            </summary>
+        <member name="M:Silmoon.Security.SmHash.Get32MD5(System.String)">
+            <summary> 
+            进行MD5的32位加密
+            </summary> 
+            <param name="strSource">需要加密的明文</param> 
+            <returns>返回32位加密结果</returns> 
         </member>
-        <member name="M:Silmoon.Net.SmTcp.#ctor">
+        <member name="M:Silmoon.Security.SmHash.GenerateCheckCodeNum(System.Int32,System.Int32)">
             <summary>
-            构建SMTCP新实例
+            生成随机数字字符串
             </summary>
+            <param name="codeCount">待生成的位数</param>
+            <param name="seed">随机种子</param>
+            <returns>生成的数字字符串</returns>
         </member>
-        <member name="M:Silmoon.Net.SmTcp.StartListen(System.Net.IPAddress,System.Int32)">
+        <member name="M:Silmoon.Security.SmHash.GenerateCheckCode(System.Int32,System.Int32)">
             <summary>
-            在指定的端口开始监听网络
+            生成随机字母字符串(数字字母混和)
             </summary>
-            <param name="ip">指定远程的计算机IP</param>
-            <param name="port">指定远程计算机端口</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.StartListen(Silmoon.Net.TcpStruct)">
-            <summary>
-            在指定的端口开始监听网络
-            </summary>
-            <param name="tstr">指定远程的计算机Tcp结构</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.AsyncStartListen(System.Net.IPAddress,System.Int32)">
-            <summary>
-            异步在指定的端口开始监听网络
-            </summary>
-            <param name="ip">指定远程的计算机IP</param>
-            <param name="port">指定远程计算机端口</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.AsyncConnectTo(System.Net.IPEndPoint)">
-            <summary>
-            异步连接到远程服务器
-            </summary>
-            <param name="endPoint">远程终结点</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.AsyncConnectTo(System.Net.IPAddress,System.Int32)">
-            <summary>
-            异步连接到一个支持SM协议的计算机端口
-            </summary>
-            <param name="ip">目标IP</param>
-            <param name="port">目标端口</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.AsyncConnectTo(Silmoon.Net.TcpStruct)">
-            <summary>
-            异步连接到一个支持SM协议的计算机端口
-            </summary>
-            <param name="tstr">远程TcpStruct</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.StopListen(System.Boolean)">
-            <summary>
-            停止在本机的监听
-            </summary>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.ConnectTo(System.Net.IPEndPoint)">
-            <summary>
-            连接到一个远程服务器
-            </summary>
-            <param name="endPoint">远程终结点</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.ConnectTo(System.Net.IPAddress,System.Int32)">
-            <summary>
-            连接到一个支持SM协议的计算机端口
-            </summary>
-            <param name="ip">目标IP</param>
-            <param name="port">目标端口</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.ConnectTo(Silmoon.Net.TcpStruct)">
-            <summary>
-            连接到一个支持SM协议的计算机端口
-            </summary>
-            <param name="tstr">指定远程的计算机Tcp结构</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.SendData(System.Byte[])">
-            <summary>
-            向对方发送数据，用于客户端连接
-            </summary>
-            <param name="byteData">数据内容</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.SendData(System.Byte[],System.Int32)">
-            <summary>
-            向对方发送数据
-            </summary>
-            <param name="byteData">数据内容</param>
-            <param name="clientID">连接标识</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.SendString(System.String)">
-            <summary>
-            向对方发送字符串，用于客户端连接
-            </summary>
-            <param name="s">字符串数据</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.SendString(System.String,System.Int32)">
-            <summary>
-            向对方发送字符串
-            </summary>
-            <param name="s">字符串数据</param>
-            <param name="clientID">连接标识</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.GetListenClient(System.Int32)">
-            <summary>
-            获取从来自监听的处理连接
-            </summary>
-            <param name="clientID">连接ID</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.CloseConnect">
-            <summary>
-            关闭当前的TcpClient连接，如果是监听模式，会关闭所有链接
-            </summary>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.CloseConnect(System.Int32)">
-            <summary>
-            关闭从监听创建的连接
-            </summary>
-            <param name="clientID"></param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.Read">
-            <summary>
-            在使用阻断模式的时候读取列队和缓存中的所有数据。
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.Read(System.Int32,System.Int32)">
-            <summary>
-            在使用阻断模式的时候读取列队和缓存中的所有数据。
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.FormatIPStringToTcpStruct(System.String,Silmoon.Net.TcpStruct@)">
-            <summary>
-            把一个标准EndPoint字符串填充到TcpStruct里面
-            </summary>
-            <param name="ipstring">标准的EndPoint字符串</param>
-            <param name="tstr">TcpStruct地址传入</param>
-        </member>
-        <member name="M:Silmoon.Net.SmTcp.Dispose">
-            <summary>
-            释放SmTcp使用的所有资源
-            </summary>
-        </member>
-        <member name="P:Silmoon.Net.SmTcp.UseBlockRead">
-            <summary>
-            是否使用阻断的方法从服务器读取数据。
-            </summary>
-        </member>
-        <member name="E:Silmoon.Net.SmTcp.OnTcpEvents">
-            <summary>
-            当发生TCP事件
-            </summary>
-        </member>
-        <member name="E:Silmoon.Net.SmTcp.OnReceivedData">
-            <summary>
-            当接收到数据
-            </summary>
-        </member>
-        <member name="E:Silmoon.Net.SmTcp.OnError">
-            <summary>
-            当发生错误的时候，多数用于异步异常处理
-            </summary>
-        </member>
-        <member name="E:Silmoon.Net.SmTcp.OnConnectionEvent">
-            <summary>
-            当发生连接事件时的指定处理
-            </summary>
-        </member>
-        <member name="P:Silmoon.Net.SmTcp.DataEncoding">
-            <summary>
-            获取或设置当前传输使用的编码方式
-            </summary>
-        </member>
-        <member name="P:Silmoon.Net.SmTcp.LocalTcpStruct">
-            <summary>
-            获取本地Tcp信息
-            </summary>
-        </member>
-        <member name="P:Silmoon.Net.SmTcp.RemoteTcpStruct">
-            <summary>
-            获取远程Tcp信息
-            </summary>
-        </member>
-        <member name="P:Silmoon.Net.SmTcp.Listenning">
-            <summary>
-            获取当前是否为监听端口状态
-            </summary>
-        </member>
-        <member name="P:Silmoon.Net.SmTcp.Connected">
-            <summary>
-            获取当前是否已经连接到远程计算机
-            </summary>
-        </member>
-        <member name="P:Silmoon.Net.SmTcp.TcpMode">
-            <summary>
-            当前工作的TCP模式
-            </summary>
-        </member>
-        <member name="P:Silmoon.Net.SmTcp.Connections">
-            <summary>
-            获取所有连接用户
-            </summary>
-        </member>
-        <member name="T:Silmoon.Net.__listen__readSmtcp">
-            <summary>
-            从SmTcp中的监听循环获取处理
-            </summary>
-        </member>
-        <member name="M:Silmoon.Net.__listen__readSmtcp.SendData(System.Byte[])">
-            <summary>
-            向对方发送数据
-            </summary>
-            <param name="byteData">数据内容</param>
-        </member>
-        <member name="M:Silmoon.Net.__listen__readSmtcp.SendString(System.String)">
-            <summary>
-            向对方发送字符串
-            </summary>
-            <param name="s">字符串数据</param>
-        </member>
-        <member name="M:Silmoon.Net.__listen__readSmtcp.CloseConnect">
-            <summary>
-            关闭当前的TcpClient连接
-            </summary>
-        </member>
-        <member name="T:Silmoon.Net.SmWebClient">
-            <summary>
-            WEB客户端实用工具
-            </summary>
-        </member>
-        <member name="T:Silmoon.Arrays.ArrayUtility">
-            <summary>
-            操作数组的使用类型
-            </summary>
-        </member>
-        <member name="M:Silmoon.Arrays.ArrayUtility.FindIIDFromArray(System.Collections.ArrayList,System.Int32)">
-            <summary>
-            从标有ID的类型数组中找出指定的对象
-            </summary>
-            <param name="array">可变的数组</param>
-            <param name="id">IID的ID</param>
-            <returns></returns>
-        </member>
-        <member name="T:Silmoon.IO.SmFile.Searcher">
-            <summary>
-            目录文件搜索器
-            </summary>
-        </member>
-        <member name="M:Silmoon.IO.SmFile.Searcher.GetFiles(System.String,Silmoon.IO.SmFile.SearcherEventHandler)">
-            <summary>
-            获取制定目录下所有的文件名
-            </summary>
-            <param name="path">指定的目录</param>
-            <param name="processCallBack">进度委托</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.IO.SmFile.Searcher.SearchFile(System.String,System.String,System.IO.SearchOption,Silmoon.IO.SmFile.SearcherEventHandler)">
-            <summary>
-            搜索文件
-            </summary>
-            <param name="path">路径</param>
-            <param name="searchPattern">搜索字符串</param>
-            <param name="searchOption">搜索选项</param>
-            <returns>找到的文件名</returns>
-        </member>
-        <member name="T:Silmoon.IO.SmFile.SearcherEventHandler">
-            <summary>
-            表示在搜索文件时的事件处理过程
-            </summary>
-            <param name="fullPath">完整路径</param>
-            <param name="name">文件或者文件夹名</param>
-            <param name="type"></param>
+            <param name="codeCount">待生成的位数</param>
+            <param name="seed">随机种子</param>
+            <returns>生成的字母字符串</returns>
         </member>
     </members>
 </doc>

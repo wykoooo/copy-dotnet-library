@@ -103,13 +103,13 @@ namespace Silmoon.Memory
         }
 
 
-        public static void MemCpy(ref byte[] dArray1, ref byte[] sArray2)
+        public static void MemCpy(ref byte[] destByte, ref byte[] scrByte)
         {
-            if (dArray1 == null || dArray1.Length == 0) return;
-            if (sArray2 == null || sArray2.Length == 0) return;
+            if (destByte == null || destByte.Length == 0) return;
+            if (scrByte == null || scrByte.Length == 0) return;
 
-            for (int i = 0; i < dArray1.Length; i++)
-                dArray1[i] = sArray2[i];
+            for (int i = 0; i < destByte.Length; i++)
+                destByte[i] = scrByte[i];
         }
         
 

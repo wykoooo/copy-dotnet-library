@@ -137,6 +137,24 @@ namespace Silmoon
                     return true;
                 case "disabled":
                     return false;
+                case "open":
+                    return true;
+                case "close":
+                    return false;
+                case "openning":
+                    return true;
+                case "opening":
+                    return true;
+                case "closed":
+                    return false;
+                case "start":
+                    return true;
+                case "stop":
+                    return false;
+                case "started":
+                    return true;
+                case "stoped":
+                    return false;
                 default:
                     return false;
             }

@@ -8,7 +8,7 @@ using System.Security;
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Silmoon")]
-[assembly: AssemblyDescription("Build 110207")]
+[assembly: AssemblyDescription("Build 110421")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Silmoon Inc.")]
 [assembly: AssemblyProduct("银月(SILMOON)通用类型库")]

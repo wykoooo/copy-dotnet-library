@@ -170,4 +170,3 @@ D:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.dll
 D:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.pdb
 L:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.XML
 E:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.XML
-L:\DotNet工程1\SilmoonClassLib\SilmoonClassLib\bin\Debug\Silmoon.XML

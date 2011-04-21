@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -35,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.ctlDoButton = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.switchButton1 = new Silmoon.Windows.Controls.SwitchButton();
             this.SuspendLayout();
             // 
             // listBox1
@@ -104,11 +107,32 @@
             this.ctlDoButton.UseVisualStyleBackColor = true;
             this.ctlDoButton.Click += new System.EventHandler(this.ctlDoButton_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(356, 102);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(78, 16);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // switchButton1
+            // 
+            this.switchButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("switchButton1.BackgroundImage")));
+            this.switchButton1.Location = new System.Drawing.Point(356, 153);
+            this.switchButton1.Name = "switchButton1";
+            this.switchButton1.Size = new System.Drawing.Size(60, 20);
+            this.switchButton1.SwitchState = Silmoon.Windows.Controls.SwitchButton.SwitchStateType.Off;
+            this.switchButton1.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 316);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.switchButton1);
             this.Controls.Add(this.ctlDoButton);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label1);
@@ -133,6 +157,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button ctlDoButton;
+        private Silmoon.Windows.Controls.SwitchButton switchButton1;
+        private System.Windows.Forms.CheckBox checkBox1;
 
     }
 }

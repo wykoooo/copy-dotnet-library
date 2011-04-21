@@ -1825,5 +1825,13 @@
             <param name="seed">随机种子</param>
             <returns>生成的字母字符串</returns>
         </member>
+        <member name="M:Silmoon.Arrays.ArrayUtility.ToNameValueCollection(System.Data.DataRow,System.Data.DataColumnCollection)">
+            <summary>
+            将一个数据行的所有键值关系复制到NameValueCollection中。
+            </summary>
+            <param name="row">一个数据行</param>
+            <param name="columns">要使用和引用的数据字段集合</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

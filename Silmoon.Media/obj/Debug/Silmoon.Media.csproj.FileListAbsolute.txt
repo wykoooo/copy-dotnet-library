@@ -78,7 +78,6 @@ I:\DotNet工程1\SilmoonClassLib\Silmoon.Media\obj\Debug\GenerateResource-ResGen
 I:\DotNet工程1\SilmoonClassLib\Silmoon.Media\obj\Debug\GenerateResource-ResGen.write.1.tlog
 L:\DotNet工程1\SilmoonClassLib\Silmoon.Media\obj\Debug\GenerateResource-ResGen.read.1.tlog
 L:\DotNet工程1\SilmoonClassLib\Silmoon.Media\obj\Debug\GenerateResource-ResGen.write.1.tlog
-L:\DotNet工程1\SilmoonClassLib\Silmoon.Media\bin\Debug\Silmoon.pdb
 I:\DotNet工程1\SilmoonClassLib\Silmoon.Media\bin\Debug\Silmoon.dll
 E:\DotNet\SilmoonClassLib\Silmoon.Media\bin\Debug\Silmoon.Media.dll
 E:\DotNet\SilmoonClassLib\Silmoon.Media\bin\Debug\Silmoon.Media.pdb
@@ -235,3 +234,4 @@ D:\ServerCodes\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResGen.write.1.tlo
 D:\ServerCodes\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.dll
 D:\ServerCodes\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.pdb
 L:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.pdb
+L:\DotNet工程1\SilmoonClassLib\Silmoon.Media\bin\Debug\Silmoon.pdb

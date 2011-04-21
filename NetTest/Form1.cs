@@ -36,7 +36,7 @@ namespace NetTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            checkBox1.Checked = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -58,7 +58,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -96,6 +98,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Silmoon.Windows\Silmoon.Windows.csproj">
+      <Project>{46A25DB6-96C7-48C5-B73D-24F8EBC1102D}</Project>
+      <Name>Silmoon.Windows</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SilmoonClassLib\SilmoonClassLib.csproj">
       <Project>{C827A65D-CC9E-444B-908A-7BA70D6E6C11}</Project>
       <Name>SilmoonClassLib</Name>

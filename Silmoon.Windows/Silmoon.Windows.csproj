@@ -78,6 +78,12 @@
     <Compile Include="Controls\ProcessWaitingBar.Designer.cs">
       <DependentUpon>ProcessWaitingBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SwitchButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SwitchButton.Designer.cs">
+      <DependentUpon>SwitchButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Desktops\Desktop.cs" />
     <Compile Include="Forms\OkConfirmDialog.cs">
       <SubType>Form</SubType>
@@ -129,6 +135,9 @@
       <DependentUpon>ProcessWaitingBar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SwitchButton.resx">
+      <DependentUpon>SwitchButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\OkConfirmDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>OkConfirmDialog.cs</DependentUpon>
@@ -148,7 +157,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WindowsResource.resx">
       <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WindowsResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
@@ -186,7 +195,18 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\SwitchButton_BackImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SwitchButton_ButtonDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SwitchButton_ButtonUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SwitchButton_BackImg_Off.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

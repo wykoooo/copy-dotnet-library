@@ -176,3 +176,6 @@ D:\ServerCodes\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.
 D:\ServerCodes\silmoon-dotnet-library\NetTest\obj\Debug\ResGen.read.1.tlog
 D:\ServerCodes\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.write.1.tlog
 D:\ServerCodes\silmoon-dotnet-library\NetTest\obj\Debug\ResGen.write.1.tlog
+L:\DotNet工程1\SilmoonClassLib\NetTest\bin\Debug\Silmoon.Windows.dll
+L:\DotNet工程1\SilmoonClassLib\NetTest\bin\Debug\Silmoon.Windows.pdb
+L:\DotNet工程1\SilmoonClassLib\NetTest\bin\Debug\Silmoon.Windows.xml

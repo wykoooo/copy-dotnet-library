@@ -169,3 +169,4 @@ D:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.write.1.t
 D:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.dll
 D:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.pdb
 L:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.XML
+E:\ServerCodes\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.XML

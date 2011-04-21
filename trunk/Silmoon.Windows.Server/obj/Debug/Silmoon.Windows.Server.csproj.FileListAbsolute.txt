@@ -115,4 +115,3 @@ D:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\Silmoon.W
 D:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\obj\Debug\Silmoon.Windows.Server.pdb
 L:\svn\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.Windows.Server.XML
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows.Server\bin\Debug\Silmoon.Windows.Server.XML
-L:\DotNet工程1\SilmoonClassLib\Silmoon.Windows.Server\bin\Debug\Silmoon.Windows.Server.XML

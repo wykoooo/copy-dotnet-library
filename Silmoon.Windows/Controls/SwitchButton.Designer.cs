@@ -58,6 +58,7 @@
             this.ctlDisableBIMG.Size = new System.Drawing.Size(60, 20);
             this.ctlDisableBIMG.TabIndex = 1;
             this.ctlDisableBIMG.TabStop = false;
+            this.ctlDisableBIMG.Click += new System.EventHandler(this.ctlDisableBIMG_Click);
             // 
             // ctlEnableBIMG
             // 
@@ -67,6 +68,7 @@
             this.ctlEnableBIMG.Size = new System.Drawing.Size(60, 20);
             this.ctlEnableBIMG.TabIndex = 2;
             this.ctlEnableBIMG.TabStop = false;
+            this.ctlEnableBIMG.Click += new System.EventHandler(this.ctlEnableBIMG_Click);
             // 
             // SwitchButton
             // 

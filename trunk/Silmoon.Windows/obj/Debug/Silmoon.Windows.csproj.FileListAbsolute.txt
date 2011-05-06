@@ -198,3 +198,4 @@ D:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.
 L:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.XML
 E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.XML
 L:\DotNet工程1\SilmoonClassLib\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls.SwitchButton.resources
+J:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls.SwitchButton.resources

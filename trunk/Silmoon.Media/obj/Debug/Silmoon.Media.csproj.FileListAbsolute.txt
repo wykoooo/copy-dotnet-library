@@ -235,3 +235,5 @@ D:\ServerCodes\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.dll
 D:\ServerCodes\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.pdb
 L:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.pdb
 L:\DotNet工程1\SilmoonClassLib\Silmoon.Media\bin\Debug\Silmoon.pdb
+J:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\GenerateResource.read.259.tlog
+J:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\GenerateResource.write.259.tlog

@@ -73,19 +73,41 @@ namespace Silmoon.Windows.Controls
         {
             for (int i = 0; i < 31; i++)
             {
-                pictureBox1.Location = new Point(i, 0);
-                ctlEnableBIMG.Location = new Point(-30 + i, 0);
-                ctlDisableBIMG.Location = new Point(0 + i, 0);
+                try
+                {
+                    pictureBox1.Location = new Point(i, 0);
+                    ctlEnableBIMG.Location = new Point(-30 + i, 0);
+                    ctlDisableBIMG.Location = new Point(0 + i, 0);
+                }
+                catch { }
             }
         }
         void _tOff()
         {
             for (int i = 0; i < 31; i++)
             {
-                pictureBox1.Location = new Point(30 - i, 0);
-                ctlEnableBIMG.Location = new Point(0 - i, 0);
-                ctlDisableBIMG.Location = new Point(30 - i, 0);
+                try
+                {
+                    pictureBox1.Location = new Point(30 - i, 0);
+                    ctlEnableBIMG.Location = new Point(0 - i, 0);
+                    ctlDisableBIMG.Location = new Point(30 - i, 0);
+                }
+                catch { }
             }
+        }
+
+        private void ctlDisableBIMG_Click(object sender, EventArgs e)
+        {
+            if (SwitchState == SwitchStateType.Off)
+                SwitchState = SwitchStateType.On;
+            else SwitchState = SwitchStateType.Off;
+        }
+
+        private void ctlEnableBIMG_Click(object sender, EventArgs e)
+        {
+            if (SwitchState == SwitchStateType.Off)
+                SwitchState = SwitchStateType.On;
+            else SwitchState = SwitchStateType.Off;
         }
     }
 }

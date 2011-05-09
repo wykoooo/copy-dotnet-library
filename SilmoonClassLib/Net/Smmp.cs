@@ -749,7 +749,7 @@ namespace Silmoon.Net
                 SmmpPacket packet = _protocol.ReadFormSmProtocol(ref _byteCache, ref _savedHeaderInfo);
                 if (packet != null)
                 {
-                    onReceivedData(_tcp._localTcpStruct, _remoteTcpStruct, packet);
+                    onReceivedData(_tcp._localTcpStruct, _remoteTcpStruct, packet, (byte[])_byteCache.ToArray(typeof(byte)));
                     _protocol.Received = false;
                     _byteCache.Clear();
                 }
@@ -785,7 +785,7 @@ namespace Silmoon.Net
             SendData(packet);
         }
 
-        private void onReceivedData(TcpStruct localTcpInfo, TcpStruct remoteTcpInfo, SmmpPacket packet)
+        private void onReceivedData(TcpStruct localTcpInfo, TcpStruct remoteTcpInfo, SmmpPacket packet, byte[] rawData)
         {
             if (OnReceivedData != null) OnReceivedData(localTcpInfo, remoteTcpInfo, packet, this);
             _tcp.onReceivedData(_tcp._localTcpStruct, _remoteTcpStruct, packet, this);
@@ -893,6 +893,7 @@ namespace Silmoon.Net
 
         public byte[] StartMakeup()
         {
+
             if (Messages == null) Messages = new NameValueCollection();
             if (ContentBuffer != null)
             {
@@ -913,7 +914,7 @@ namespace Silmoon.Net
             }
 
             ArrayList Data = new ArrayList();
-            byte[] headerBytes = Encoding.Default.GetBytes("SMMP\r\n" + MessageID + "\r\n" + ResponseID + "\r\n" + MessagesBytes + "\r\n");
+            byte[] headerBytes = Encoding.Default.GetBytes("SMMP\r\n" + MessageID + "\r\n" + ResponseID + "\r\n" + Encoding.Default.GetBytes(messageStringSave).Length + "\r\n");
 
             for (int i = 0; i < headerBytes.Length; i++)
                 Data.Add(headerBytes[i]);
@@ -944,6 +945,7 @@ namespace Silmoon.Net
             SmmpPacket packet = new SmmpPacket(ID, fromRecv.MessageID, true);
             return packet;
         }
+        public byte[] RawData = null;
     }
 
     /// <summary>
@@ -1050,6 +1052,7 @@ namespace Silmoon.Net
                         return null;
                 }
                 Received = false;
+                packet.RawData = bytes;
                 return packet;
             }
             else if (bytes.Length >= contentLength && contentLength > 0)
@@ -1062,6 +1065,7 @@ namespace Silmoon.Net
                 packetBuffer.Clear();
                 Received = false;
                 contentLength = 0;
+                packet.RawData = bytes;
                 return packet;
             }
             return null;

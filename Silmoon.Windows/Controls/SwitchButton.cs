@@ -26,6 +26,7 @@ namespace Silmoon.Windows.Controls
             }
             set
             {
+                if (switchState == value) return;
                 switchState = value;
                 _switch(value == SwitchStateType.On);
             }

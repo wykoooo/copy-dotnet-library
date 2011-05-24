@@ -38,6 +38,7 @@
             this.ctlDoButton = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.switchButton1 = new Silmoon.Windows.Controls.SwitchButton();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -126,11 +127,22 @@
             this.switchButton1.SwitchState = Silmoon.Windows.Controls.SwitchButton.SwitchStateType.Off;
             this.switchButton1.TabIndex = 7;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(298, 217);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 316);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.switchButton1);
             this.Controls.Add(this.ctlDoButton);
@@ -159,6 +171,7 @@
         private System.Windows.Forms.Button ctlDoButton;
         private Silmoon.Windows.Controls.SwitchButton switchButton1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button5;
 
     }
 }

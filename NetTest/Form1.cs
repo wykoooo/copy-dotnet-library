@@ -15,7 +15,7 @@ using Silmoon.Threading;
 
 namespace NetTest
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Silmoon.Windows.Forms.ScrollForm
     {
         ArrayList arraylist = new ArrayList();
         System.Windows.Forms.Timer tmr = new System.Windows.Forms.Timer();
@@ -88,6 +88,11 @@ namespace NetTest
                 listBox1.Items.Insert(0, DateTime.Now.ToString());
             else
                 listBox1.Items.Insert(0, "NO");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SetHeightEx(1000);
         }
     }
 }

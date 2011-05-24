@@ -24,7 +24,10 @@ namespace Silmoon.Windows.Forms
             showTimer.Tick += new EventHandler(showTimer_Tick);
             hideTimer.Interval = 1;
             hideTimer.Tick += new EventHandler(hideTimer_Tick);
+            extTimer.Interval = 1;
+            extTimer.Tick += new EventHandler(extTimer_Tick);
         }
+
 
         void closeScrollTimer_Tick(object sender, EventArgs e)
         {
@@ -85,10 +88,41 @@ namespace Silmoon.Windows.Forms
             }
         }
 
+        int extToW = 0;
+        bool extCenter = false;
+        void extTimer_Tick(object sender, EventArgs e)
+        {
+            if (this.Height - extToW < 0)
+            {
+                this.Height = this.Height + 10;
+                if (this.Height > extToW)
+                {
+                    this.Height = extToW;
+                    extTimer.Stop();
+                }
+                if (extCenter)
+                    this.Location = new Point(this.Location.X, this.Location.Y - 5);
+            }
+            else
+            {
+                int abs = Math.Abs(extToW);
+                this.Height = this.Height - 10;
+                if (this.Height < abs)
+                {
+                    this.Height = abs;
+                    extTimer.Stop();
+                }
+                if (extCenter)
+                    this.Location = new Point(this.Location.X, this.Location.Y + 5);
+            }
+        }
+
+
         Timer closeScrollTimer = new Timer();
         Timer showTimer = new Timer();
         Timer startScrollTimer = new Timer();
         Timer hideTimer = new Timer();
+        Timer extTimer = new Timer();
         FormClosingEventArgs closeArgs;
 
         protected override void OnLoad(EventArgs e)
@@ -131,6 +165,16 @@ namespace Silmoon.Windows.Forms
         {
             refreshStateParam();
             hideTimer.Start();
+        }
+        public void SetHeightEx(int newHeight)
+        {
+            SetHeightEx(newHeight, false);
+        }
+        public void SetHeightEx(int newHeight, bool center)
+        {
+            extToW = newHeight;
+            extCenter = center;
+            extTimer.Start();
         }
 
         void refreshStateParam()

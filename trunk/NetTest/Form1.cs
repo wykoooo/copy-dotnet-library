@@ -92,7 +92,12 @@ namespace NetTest
 
         private void button5_Click(object sender, EventArgs e)
         {
-            SetHeightEx(1000);
+            SetHeightEx(800, true);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            SetHeightEx(300, true);
         }
     }
 }

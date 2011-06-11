@@ -111,6 +111,27 @@ namespace Silmoon.Memory
             for (int i = 0; i < destByte.Length; i++)
                 destByte[i] = scrByte[i];
         }
+        /// <summary>
+        /// 复制byte数组到另一个数组中
+        /// </summary>
+        /// <param name="destByte">目标byte数组</param>
+        /// <param name="scrByte">源byte数组</param>
+        /// <param name="destIndex">目标数组开始位置</param>
+        /// <param name="scrIndex">源数组开始位置</param>
+        /// <param name="offset">复制长度，如果超出了源和目标数组，复制将会失败</param>
+        public static bool MemCpy(ref byte[] destByte, ref byte[] scrByte,int destIndex, int scrIndex, int offset)
+        {
+            if (destByte == null || destByte.Length == 0) return false;
+            if (scrByte == null || scrByte.Length == 0) return false;
+            if (scrByte.Length < scrIndex + offset) return false;
+            if (destByte.Length < destIndex + offset) return false;
+
+            for (int i = 0; i < offset; i++)
+            {
+                destByte[i + destIndex] = scrByte[i + scrIndex];
+            }
+            return true;
+        }
         
 
         public static int Find(ref ArrayList dArray1, ref object fObject)

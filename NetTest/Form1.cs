@@ -12,10 +12,11 @@ using System.Collections;
 using Silmoon;
 using System.Threading;
 using Silmoon.Threading;
+using System.Security.Cryptography;
 
 namespace NetTest
 {
-    public partial class Form1 : Silmoon.Windows.Forms.ScrollForm
+    public partial class Form1 : Silmoon.Windows.Forms.GenieForm
     {
         ArrayList arraylist = new ArrayList();
         System.Windows.Forms.Timer tmr = new System.Windows.Forms.Timer();
@@ -31,6 +32,7 @@ namespace NetTest
 
         void tmr_Tick(object sender, EventArgs e)
         {
+            
             label1.Text = DateTime.Now.ToString();
         }
 
@@ -92,12 +94,36 @@ namespace NetTest
 
         private void button5_Click(object sender, EventArgs e)
         {
-            SetHeightEx(800, true);
+            SetHeightEx(500, true);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            SetHeightEx(300, true);
+            SetHeightEx(400, true);
         }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            if (panel1 != null)
+                panel1.Height = this.Height - 17;
+            base.OnSizeChanged(e);
+        }
+        protected override void OnShown(EventArgs e)
+        {
+            ShowEx();
+            base.OnShown(e);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(1024);
+            byte[] hello = Encoding.Default.GetBytes("hello world.");
+            byte[] eb = rsa.Encrypt(hello, false);
+            byte[] ob = rsa.Decrypt(eb, false);
+            MessageBox.Show(Encoding.Default.GetString(ob));
+
+            string s = rsa.ToXmlString(false);
+        }
+
     }
 }

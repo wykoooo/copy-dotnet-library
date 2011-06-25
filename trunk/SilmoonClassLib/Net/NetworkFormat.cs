@@ -62,5 +62,9 @@ namespace Silmoon.Net
         {
             return tcpStruct.IP + ":" + tcpStruct.Port;
         }
+        public static uint GetNetmaskSubnetHostTotal(int mask)
+        {
+            return ~(0xffffffff << (int)(32 - mask));
+        }
     }
 }

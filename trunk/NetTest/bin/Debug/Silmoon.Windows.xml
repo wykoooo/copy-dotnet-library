@@ -80,6 +80,40 @@
             内存信息结构
             </summary>
         </member>
+        <member name="F:Silmoon.Windows.Forms.ScrollForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Silmoon.Windows.Forms.ScrollForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Silmoon.Windows.Forms.ScrollForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Silmoon.Windows.Forms.GenieForm.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:Silmoon.Windows.Forms.GenieForm.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:Silmoon.Windows.Forms.GenieForm.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
         <member name="T:Silmoon.Windows.WindowsResource">
             <summary>
               一个强类型的资源类，用于查找本地化的字符串等。
@@ -227,23 +261,6 @@
             <param name="WParam">参数1</param>
             <param name="LParam">参数2</param>
             <returns></returns>
-        </member>
-        <member name="F:Silmoon.Windows.Forms.ScrollForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:Silmoon.Windows.Forms.ScrollForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:Silmoon.Windows.Forms.ScrollForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
         </member>
         <member name="T:Silmoon.Windows.SAM">
             <summary>

@@ -215,3 +215,5 @@ N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.dll
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.GenieForm.resources
+N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.read.1.tlog
+N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.write.1.tlog

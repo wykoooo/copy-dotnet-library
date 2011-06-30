@@ -105,6 +105,10 @@ namespace Silmoon
                     return true;
                 case "no":
                     return false;
+                case "ok":
+                    return true;
+                case "not":
+                    return true;
                 case "on":
                     return true;
                 case "off":

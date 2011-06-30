@@ -186,3 +186,5 @@ N:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\GenerateResource-ResGen.read
 N:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\GenerateResource-ResGen.write.1.tlog
 N:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.dll
 N:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.pdb
+N:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResGen.read.1.tlog
+N:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResGen.write.1.tlog

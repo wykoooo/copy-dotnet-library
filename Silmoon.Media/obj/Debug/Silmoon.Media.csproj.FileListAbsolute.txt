@@ -256,3 +256,5 @@ N:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\GenerateResource-ResGen.wr
 N:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\GenerateResource.write.259.tlog
 N:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.dll
 N:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.pdb
+N:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResGen.read.1.tlog
+N:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResGen.write.1.tlog

@@ -252,3 +252,5 @@ N:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\GenerateResource
 N:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\GenerateResource-ResGen.write.1.tlog
 N:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\Silmoon.Media.PlayerApp.exe
 N:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\Silmoon.Media.PlayerApp.pdb
+N:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\ResGen.read.1.tlog
+N:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\ResGen.write.1.tlog

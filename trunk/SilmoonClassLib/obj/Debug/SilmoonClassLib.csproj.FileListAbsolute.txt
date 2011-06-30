@@ -182,3 +182,5 @@ N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.
 N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.write.1.tlog
 N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.dll
 N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.pdb
+N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.read.1.tlog
+N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.write.1.tlog

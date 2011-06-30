@@ -162,3 +162,5 @@ N:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\GenerateResource-ResGen.
 N:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\GenerateResource-ResGen.write.1.tlog
 N:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\Silmoon.Utility.dll
 N:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\Silmoon.Utility.pdb
+N:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\ResGen.read.1.tlog
+N:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\ResGen.write.1.tlog

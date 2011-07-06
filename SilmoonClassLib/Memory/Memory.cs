@@ -101,7 +101,15 @@ namespace Silmoon.Memory
 
             dArray1 = (byte[])array.ToArray(typeof(byte));
         }
-
+        public static bool MemCat(ref ArrayList dArray1, ref byte[] scrData, int scrIndex, int offset)
+        {
+            if (scrData.Length < scrIndex + offset) return false;
+            for (int i = 0; i < offset; i++)
+            {
+                dArray1.Add(scrData[scrIndex + i]);
+            }
+            return true;
+        }
 
         public static void MemCpy(ref byte[] destByte, ref byte[] scrByte)
         {
@@ -132,7 +140,20 @@ namespace Silmoon.Memory
             }
             return true;
         }
-        
+        public static void MemSet(byte[] data, byte byt)
+        {
+            for (int i = 0; i < data.Length; i++)
+            {
+                data[i] = byt;
+            }
+        }
+        public static void MemSet(ArrayList array, object obj)
+        {
+            for (int i = 0; i < array.Count; i++)
+            {
+                array[i] = obj;
+            }
+        }
 
         public static int Find(ref ArrayList dArray1, ref object fObject)
         {

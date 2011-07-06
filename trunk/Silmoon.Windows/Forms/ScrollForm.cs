@@ -152,7 +152,7 @@ namespace Silmoon.Windows.Forms
             base.OnShown(e);
         }
 
-        public void ShowEx()
+        public virtual void ShowEx()
         {
             this.Show();
             this.Opacity = 0;
@@ -161,7 +161,7 @@ namespace Silmoon.Windows.Forms
             showTimer.Start();
             startScrollTimer.Start();
         }
-        public void HideEx()
+        public virtual void HideEx()
         {
             refreshStateParam();
             hideTimer.Start();

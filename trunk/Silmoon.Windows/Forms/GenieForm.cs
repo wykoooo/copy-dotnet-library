@@ -52,7 +52,8 @@ namespace Silmoon.Windows.Forms
         protected override void OnSizeChanged(EventArgs e)
         {
             //panel1.Height = this.Height - 17;
-            ctlClosePanelButton.Location = new Point(this.Width - 17, 0);
+            if (ctlClosePanelButton != null)
+                ctlClosePanelButton.Location = new Point(this.Width - 17, 0);
             base.OnSizeChanged(e);
         }
 

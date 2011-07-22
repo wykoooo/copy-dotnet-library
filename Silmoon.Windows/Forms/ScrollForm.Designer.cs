@@ -32,7 +32,6 @@
             // 
             // ScrollForm
             // 
-            this.ClientSize = new System.Drawing.Size(284, 262);
             this.Name = "ScrollForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ScrollForm_FormClosed);
             this.ResumeLayout(false);

@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
+using Silmoon.Threading;
 
 namespace Silmoon.Windows.Forms
 {
@@ -13,118 +15,243 @@ namespace Silmoon.Windows.Forms
         int fromW = 0;
         int fromH = 0;
         Point location = new Point(0, 0);
+        bool realClose = false;
+        bool extCenter = false;
+        int extToW = 0;
+        int extToH = 0;
+
+        ThreadStart closeProc = null;
+        ThreadStart hideProc = null;
+
         public ScrollForm()
         {
             InitializeComponent();
-            closeScrollTimer.Interval = 1;
-            closeScrollTimer.Tick += new EventHandler(closeScrollTimer_Tick);
-            startScrollTimer.Interval = 1;
-            startScrollTimer.Tick += new EventHandler(startScrollTimer_Tick);
-            showTimer.Interval = 1;
-            showTimer.Tick += new EventHandler(showTimer_Tick);
-            hideTimer.Interval = 1;
-            hideTimer.Tick += new EventHandler(hideTimer_Tick);
-            extTimer.Interval = 1;
-            extTimer.Tick += new EventHandler(extTimer_Tick);
+            closeProc = _close_mix_thread_proc;
+            hideProc = _close_mix_thread_proc;
         }
 
-
-        void closeScrollTimer_Tick(object sender, EventArgs e)
+        public WindowCloseStyle CloseStyle
         {
-            if (this.Height > 50)
+            get
             {
-                this.Size = new Size(this.Width, this.Height - 18);
-                this.Location = new Point(this.Location.X, this.Location.Y + 9);
-                Opacity = Opacity - 0.05;
+                if (closeProc == _close_max_thread_proc)
+                    return WindowCloseStyle.MaxStyleExt;
+                else if (closeProc == _close_mix_thread_proc)
+                    return WindowCloseStyle.MixStyleExt;
+                else
+                    return WindowCloseStyle.Undefined;
             }
-            else if (this.Width > 150)
+            set
             {
-                this.Size = new Size(this.Width - 18, this.Height);
-                this.Location = new Point(this.Location.X + 9, this.Location.Y);
-                Opacity = Opacity - 0.05;
-            }
-            else
-            {
-                closeScrollTimer.Stop();
-                Close();
-            }
-        }
-        void showTimer_Tick(object sender, EventArgs e)
-        {
-            this.Opacity += 0.02;
-            if (this.Opacity == 1) showTimer.Stop();
-        }
-        void startScrollTimer_Tick(object sender, EventArgs e)
-        {
-            this.Width += 40;
-
-            if (this.Width >= fromW)
-            {
-                this.Width = fromW;
-                startScrollTimer.Stop();
-            }
-        }
-        void hideTimer_Tick(object sender, EventArgs e)
-        {
-            if (this.Height > 50)
-            {
-                this.Size = new Size(this.Width, this.Height - 18);
-                this.Location = new Point(this.Location.X, this.Location.Y + 9);
-                Opacity = Opacity - 0.05;
-            }
-            else if (this.Width > 150)
-            {
-                this.Size = new Size(this.Width - 18, this.Height);
-                this.Location = new Point(this.Location.X + 9, this.Location.Y);
-                Opacity = Opacity - 0.05;
-            }
-            else
-            {
-                hideTimer.Stop();
-                this.Visible = false;
-                this.Width = fromW;
-                this.Height = fromH;
-                this.Location = new Point(location.X, location.Y);
-            }
-        }
-
-        int extToW = 0;
-        bool extCenter = false;
-        void extTimer_Tick(object sender, EventArgs e)
-        {
-            if (this.Height - extToW < 0)
-            {
-                this.Height = this.Height + 10;
-                if (this.Height > extToW)
+                switch (value)
                 {
-                    this.Height = extToW;
-                    extTimer.Stop();
+                    case WindowCloseStyle.MaxStyleExt:
+                        closeProc = _close_max_thread_proc;
+                        break;
+                    case WindowCloseStyle.MixStyleExt:
+                        closeProc = _close_mix_thread_proc;
+                        break;
+                    default:
+                        break;
                 }
-                if (extCenter)
-                    this.Location = new Point(this.Location.X, this.Location.Y - 5);
             }
-            else
+        }
+        public WindowCloseStyle HideStyle
+        {
+            get
             {
-                int abs = Math.Abs(extToW);
-                this.Height = this.Height - 10;
-                if (this.Height < abs)
+                if (hideProc == _close_max_thread_proc)
+                    return WindowCloseStyle.MaxStyleExt;
+                else if (hideProc == _close_mix_thread_proc)
+                    return WindowCloseStyle.MixStyleExt;
+                else
+                    return WindowCloseStyle.Undefined;
+            }
+            set
+            {
+                switch (value)
                 {
-                    this.Height = abs;
-                    extTimer.Stop();
+                    case WindowCloseStyle.MaxStyleExt:
+                        hideProc = _close_max_thread_proc;
+                        break;
+                    case WindowCloseStyle.MixStyleExt:
+                        hideProc = _close_mix_thread_proc;
+                        break;
+                    default:
+                        break;
                 }
-                if (extCenter)
-                    this.Location = new Point(this.Location.X, this.Location.Y + 5);
             }
         }
 
+        void _close_mix_thread_proc()
+        {
+            bool complate = false;
+            while (!complate)
+            {
+                this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+                {
+                    if (this.Height > 50)
+                    {
+                        this.Size = new Size(this.Width, this.Height - 18);
+                        this.Location = new Point(this.Location.X, this.Location.Y + 9);
+                        Opacity = Opacity - 0.03;
+                    }
+                    else if (this.Width > 150)
+                    {
+                        this.Size = new Size(this.Width - 18, this.Height);
+                        this.Location = new Point(this.Location.X + 9, this.Location.Y);
+                        Opacity = Opacity - 0.05;
+                    }
+                    else complate = true;
+                }));
+                Thread.Sleep(3);
+            }
+            Close();
+        }
+        void _close_max_thread_proc()
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+                {
+                    this.Size = new Size(this.Width + 18, this.Height + 18);
+                    this.Location = new Point(this.Location.X - 9, this.Location.Y - 9);
+                    Opacity = Opacity - 0.05;
+                }));
+            }
+            Close();
+        }
 
-        Timer closeScrollTimer = new Timer();
-        Timer showTimer = new Timer();
-        Timer startScrollTimer = new Timer();
-        Timer hideTimer = new Timer();
-        Timer extTimer = new Timer();
+        void _start_scroll_thread_proc()
+        {
+            bool complate1 = false;
+            bool complate2 = false;
+
+            while (!(complate1 && complate2))
+            {
+                this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+                {
+                    if (this.Width < fromW)
+                        this.Width += 40;
+                    else complate1 = true;
+
+                    if (this.Opacity != 1)
+                        this.Opacity += 0.02;
+                    else complate2 = true;
+                }));
+                Thread.Sleep(5);
+            }
+        }
+
+        void _hide_mix_thread_proc()
+        {
+            bool complate = false;
+            while (!complate)
+            {
+                this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+                {
+                    if (this.Height > 50)
+                    {
+                        this.Size = new Size(this.Width, this.Height - 18);
+                        this.Location = new Point(this.Location.X, this.Location.Y + 9);
+                        Opacity = Opacity - 0.03;
+                    }
+                    else if (this.Width > 150)
+                    {
+                        this.Size = new Size(this.Width - 18, this.Height);
+                        this.Location = new Point(this.Location.X + 9, this.Location.Y);
+                        Opacity = Opacity - 0.05;
+                    }
+                    else complate = true;
+                }));
+                Thread.Sleep(3);
+            }
+        }
+        void _hide_max_thread_proc()
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+                {
+                    this.Size = new Size(this.Width + 18, this.Height + 18);
+                    this.Location = new Point(this.Location.X - 9, this.Location.Y - 9);
+                    Opacity = Opacity - 0.05;
+                }));
+            }
+        }
+
+        void _resizeW_scroll_thread_proc()
+        {
+            bool complate = false;
+            while (!complate)
+            {
+                if (this.Height == extToW) return;
+                this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+                {
+                    if (this.Height - extToW < 0)
+                    {
+                        this.Height = this.Height + 10;
+                        if (this.Height > extToW)
+                        {
+                            this.Height = extToW;
+                            complate = true;
+                        }
+                        if (extCenter)
+                            this.Location = new Point(this.Location.X, this.Location.Y - 5);
+                    }
+                    else
+                    {
+                        int abs = Math.Abs(extToW);
+                        this.Height = this.Height - 10;
+                        if (this.Height < abs)
+                        {
+                            this.Height = abs;
+                            complate = true;
+                        }
+                        if (extCenter)
+                            this.Location = new Point(this.Location.X, this.Location.Y + 5);
+                    }
+                }));
+            }
+        }
+        void _resizeH_scroll_thread_proc()
+        {
+            bool complate = false;
+            while (!complate)
+            {
+                if (this.Width == extToH) return;
+                this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+                {
+
+                    if (this.Width - extToH < 0)
+                    {
+                        this.Width = this.Width + 10;
+                        if (this.Width > extToH)
+                        {
+                            this.Width = extToH;
+                            complate = true;
+                        }
+                        if (extCenter)
+                            this.Location = new Point(this.Location.X - 5, this.Location.Y);
+                    }
+                    else
+                    {
+                        int abs = Math.Abs(extToH);
+                        this.Width = this.Width - 10;
+                        if (this.Width < abs)
+                        {
+                            this.Width = abs;
+                            complate = true;
+                        }
+                        if (extCenter)
+                            this.Location = new Point(this.Location.X + 5, this.Location.Y);
+                    }
+                }));
+            }
+        }
+
         FormClosingEventArgs closeArgs;
-
+        
         protected override void OnLoad(EventArgs e)
         {
             refreshStateParam();
@@ -132,13 +259,14 @@ namespace Silmoon.Windows.Forms
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
+            if (!realClose)
             {
+                realClose = !realClose;
                 if (this.Height > 50)
                 {
                     closeArgs = e;
                     e.Cancel = true;
-                    closeScrollTimer.Start();
+                    Threads.ExecAsync(closeProc);
                     this.Text = "";
                     if (this.WindowState == FormWindowState.Maximized)
                         this.WindowState = FormWindowState.Normal;
@@ -158,13 +286,12 @@ namespace Silmoon.Windows.Forms
             this.Opacity = 0;
             this.Width = 1;
             this.Visible = true;
-            showTimer.Start();
-            startScrollTimer.Start();
+            Threads.ExecAsync(_start_scroll_thread_proc);
         }
         public virtual void HideEx()
         {
             refreshStateParam();
-            hideTimer.Start();
+            Threads.ExecAsync(hideProc);
         }
         public void SetHeightEx(int newHeight)
         {
@@ -174,7 +301,17 @@ namespace Silmoon.Windows.Forms
         {
             extToW = newHeight;
             extCenter = center;
-            extTimer.Start();
+            Threads.ExecAsync(_resizeW_scroll_thread_proc);
+        }
+        public void SetWidthEx(int newWidth)
+        {
+            SetWidthEx(newWidth, false);
+        }
+        public void SetWidthEx(int newWidth, bool center)
+        {
+            extToH = newWidth;
+            extCenter = center;
+            Threads.ExecAsync(_resizeH_scroll_thread_proc);
         }
 
         void refreshStateParam()
@@ -186,15 +323,11 @@ namespace Silmoon.Windows.Forms
 
         private void ScrollForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            startScrollTimer.Stop();
-            closeScrollTimer.Stop();
-            showTimer.Stop();
-            hideTimer.Stop();
+        }
 
-            startScrollTimer.Dispose();
-            closeScrollTimer.Dispose();
-            showTimer.Dispose();
-            hideTimer.Dispose();
+        public enum WindowCloseStyle
+        {
+            MaxStyleExt,MixStyleExt,Undefined
         }
     }
 }

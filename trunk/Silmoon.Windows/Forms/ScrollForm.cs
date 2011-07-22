@@ -27,7 +27,7 @@ namespace Silmoon.Windows.Forms
         {
             InitializeComponent();
             closeProc = _close_mix_thread_proc;
-            hideProc = _close_mix_thread_proc;
+            hideProc = _hide_mix_thread_proc;
         }
 
         public WindowCloseStyle CloseStyle
@@ -106,7 +106,10 @@ namespace Silmoon.Windows.Forms
                 }));
                 Thread.Sleep(3);
             }
-            Close();
+            this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+            {
+                Close();
+            }));
         }
         void _close_max_thread_proc()
         {
@@ -119,14 +122,16 @@ namespace Silmoon.Windows.Forms
                     Opacity = Opacity - 0.05;
                 }));
             }
-            Close();
+            this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+            {
+                Close();
+            }));
         }
 
         void _start_scroll_thread_proc()
         {
             bool complate1 = false;
             bool complate2 = false;
-
             while (!(complate1 && complate2))
             {
                 this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
@@ -166,6 +171,11 @@ namespace Silmoon.Windows.Forms
                 }));
                 Thread.Sleep(3);
             }
+            this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+            {
+                this.Opacity = 0;
+                Hide();
+            }));
         }
         void _hide_max_thread_proc()
         {
@@ -178,6 +188,11 @@ namespace Silmoon.Windows.Forms
                     Opacity = Opacity - 0.05;
                 }));
             }
+            this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+            {
+                this.Opacity = 0;
+                Hide();
+            }));
         }
 
         void _resizeW_scroll_thread_proc()
@@ -274,6 +289,7 @@ namespace Silmoon.Windows.Forms
                 else
                     e.Cancel = false;
             }
+            base.OnFormClosing(e);
         }
         protected override void OnShown(EventArgs e)
         {

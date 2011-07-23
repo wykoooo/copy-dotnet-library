@@ -85,6 +85,8 @@ namespace Silmoon.Windows.Forms
 
         void _close_mix_thread_proc()
         {
+            if (this.IsDisposed) return;
+
             bool complate = false;
             while (!complate)
             {
@@ -102,7 +104,13 @@ namespace Silmoon.Windows.Forms
                         this.Location = new Point(this.Location.X + 9, this.Location.Y);
                         Opacity = Opacity - 0.05;
                     }
-                    else complate = true;
+                    else
+                    {
+                        this.Width = fromW;
+                        this.Height = fromH;
+                        this.Location = new Point(location.X, location.Y);
+                        complate = true;
+                    }
                 }));
                 Thread.Sleep(3);
             }
@@ -113,6 +121,7 @@ namespace Silmoon.Windows.Forms
         }
         void _close_max_thread_proc()
         {
+            if (this.IsDisposed) return;
             for (int i = 0; i < 50; i++)
             {
                 this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
@@ -122,6 +131,10 @@ namespace Silmoon.Windows.Forms
                     Opacity = Opacity - 0.05;
                 }));
             }
+            this.Width = fromW;
+            this.Height = fromH;
+            this.Location = new Point(location.X, location.Y);
+
             this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
             {
                 Close();
@@ -138,8 +151,11 @@ namespace Silmoon.Windows.Forms
                 {
                     if (this.Width < fromW)
                         this.Width += 40;
-                    else complate1 = true;
-
+                    else
+                    {
+                        this.Width = fromW;
+                        complate1 = true;
+                    }
                     if (this.Opacity != 1)
                         this.Opacity += 0.02;
                     else complate2 = true;
@@ -150,6 +166,8 @@ namespace Silmoon.Windows.Forms
 
         void _hide_mix_thread_proc()
         {
+            if (this.IsDisposed) return;
+
             bool complate = false;
             while (!complate)
             {
@@ -167,7 +185,13 @@ namespace Silmoon.Windows.Forms
                         this.Location = new Point(this.Location.X + 9, this.Location.Y);
                         Opacity = Opacity - 0.05;
                     }
-                    else complate = true;
+                    else
+                    {
+                        this.Width = fromW;
+                        this.Height = fromH;
+                        this.Location = new Point(location.X, location.Y);
+                        complate = true;
+                    }
                 }));
                 Thread.Sleep(3);
             }
@@ -179,6 +203,8 @@ namespace Silmoon.Windows.Forms
         }
         void _hide_max_thread_proc()
         {
+            if (this.IsDisposed) return;
+
             for (int i = 0; i < 50; i++)
             {
                 this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
@@ -188,6 +214,10 @@ namespace Silmoon.Windows.Forms
                     Opacity = Opacity - 0.05;
                 }));
             }
+            this.Width = fromW;
+            this.Height = fromH;
+            this.Location = new Point(location.X, location.Y);
+
             this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
             {
                 this.Opacity = 0;

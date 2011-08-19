@@ -398,5 +398,11 @@
             启用了双缓冲和优化缓冲等方法减少闪烁的ListView
             </summary>
         </member>
+        <member name="M:Silmoon.Windows.Controls.Extension.GenieExtension.#ctor(System.Windows.Forms.Control)">
+            <summary>
+            处理特效的控件的父控件
+            </summary>
+            <param name="control"></param>
+        </member>
     </members>
 </doc>

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Silmoon.Data")]
-[assembly: AssemblyDescription("Build 110207")]
+[assembly: AssemblyDescription("Build 110820")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Silmoon Inc.")]
 [assembly: AssemblyProduct("银月(SILMOON)通用类型库")]

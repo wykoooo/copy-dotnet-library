@@ -33,7 +33,6 @@
             // ScrollForm
             // 
             this.Name = "ScrollForm";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ScrollForm_FormClosed);
             this.ResumeLayout(false);
 
         }

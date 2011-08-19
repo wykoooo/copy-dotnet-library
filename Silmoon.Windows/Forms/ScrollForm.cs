@@ -367,10 +367,6 @@ namespace Silmoon.Windows.Forms
             location = new Point(this.Location.X, this.Location.Y);
         }
 
-        private void ScrollForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-        }
-
         public enum WindowCloseStyle
         {
             MaxStyleExt,MixStyleExt,Undefined

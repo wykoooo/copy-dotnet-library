@@ -72,6 +72,7 @@
     <Compile Include="Controls\DoubleBufferListView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Extension\GenieExtension.cs" />
     <Compile Include="Controls\ProcessWaitingBar.cs">
       <SubType>UserControl</SubType>
     </Compile>

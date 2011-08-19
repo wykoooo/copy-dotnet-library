@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Silmoon.Windows.Controls.Extension
 {
-    class GenieExtension
+    public class GenieExtension
     {
         Control control = null;
         /// <summary>

@@ -131,12 +131,13 @@ namespace Silmoon.Windows.Forms
                     Opacity = Opacity - 0.05;
                 }));
             }
-            this.Width = fromW;
-            this.Height = fromH;
-            this.Location = new Point(location.X, location.Y);
 
             this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
             {
+                this.Width = fromW;
+                this.Height = fromH;
+                this.Location = new Point(location.X, location.Y);
+
                 Close();
             }));
         }

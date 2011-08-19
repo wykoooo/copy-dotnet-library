@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.Drawing;
+using Silmoon.Threading;
 
 namespace Silmoon.Windows.Controls.Extension
 {
@@ -18,18 +19,27 @@ namespace Silmoon.Windows.Controls.Extension
         {
             this.control = control;
         }
-        public void ShowPanel(Control panel)
+        public void ShowControl(Control control)
         {
-            Thread thread = new Thread(colorProc);
-            thread.IsBackground = true;
-            thread.Start(panel);
-            Thread thread2 = new Thread(scrollProc);
-            thread2.IsBackground = true;
-            thread2.Start(panel);
+            ShowControl(control, true, 0);
+        }
+        public void ShowControl(Control control, bool changColor)
+        {
+            ShowControl(control, changColor, 0);
+        }
+        public void ShowControl(Control control, bool changColor, int afterStart)
+        {
+            if (changColor)
+                Threads.ExecAsync(colorProc, new object[] { control, afterStart }, null);
+            Threads.ExecAsync(scrollProc, new object[] { control, afterStart }, null);
         }
         void colorProc(object obj)
         {
-            Control panel = obj as Control;
+            object[] o = obj as object[];
+            Control panel = o[0] as Control;
+            int after = (int)o[1];
+            Thread.Sleep(after);
+
             int a, r, g, b;
             a = panel.BackColor.A;
             r = panel.BackColor.R;
@@ -48,31 +58,49 @@ namespace Silmoon.Windows.Controls.Extension
                 Color newColor = Color.Empty;
                 int na = 0, nr = 0, ng = 0, nb = 0;
 
-                if (panel.BackColor.A != a)
-                    na = beforeColor.A - 1;
+                if (panel.BackColor.A > a)
+                {
+                    na = beforeColor.A - 3;
+                    if (na < 0) na = 0;
+                }
                 else na = beforeColor.A;
 
-                if (panel.BackColor.R != r)
-                    nr = beforeColor.R - 1;
-                else na = beforeColor.R;
+                if (panel.BackColor.R > r)
+                {
+                    nr = beforeColor.R - 3;
+                    if (nr < 0) nr = 0;
+                }
+                else nr = beforeColor.R;
 
-                if (panel.BackColor.G != g)
-                    ng = beforeColor.G - 1;
-                else na = beforeColor.G;
+                if (panel.BackColor.G > g)
+                {
+                    ng = beforeColor.G - 3;
+                    if (ng < 0) ng = 0;
+                }
+                else ng = beforeColor.G;
 
-                if (panel.BackColor.B != b)
-                    nb = beforeColor.B - 1;
-                else na = beforeColor.B;
-
+                if (panel.BackColor.B > b)
+                {
+                    nb = beforeColor.B - 3;
+                    if (nb < 0) nb = 0;
+                }
+                else nb = beforeColor.B;
 
                 newColor = Color.FromArgb(na, nr, ng, nb);
+
+                if (control.IsDisposed) return;
                 control.Invoke(new Action<int>(delegate(int i) { panel.BackColor = newColor; }), 0);
-                Thread.Sleep(100);
+                Thread.Sleep(30);
             }
         }
         void scrollProc(object obj)
         {
-            Control panel = obj as Control;
+            if (control.IsDisposed) return;
+
+            object[] o = obj as object[];
+            Control panel = o[0] as Control;
+            int after = (int)o[1];
+            Thread.Sleep(after);
 
             int w = panel.Width;
             int h = panel.Height;
@@ -84,18 +112,23 @@ namespace Silmoon.Windows.Controls.Extension
                 panel.Height = 20;
             }), 0);
 
-            while (panel.Width != w)
+            while (panel.Width < w)
             {
-                control.Invoke(new Action<int>(delegate(int i) { panel.Width += 1; }), 0);
-                Thread.Sleep(1);
+                if (control.IsDisposed) return;
+                control.Invoke(new Action<int>(delegate(int i) { panel.Width += 5; }), 0);
+                Thread.Sleep(4);
             }
+            control.Invoke(new Action<int>(delegate(int i) { if (panel.Width > w) panel.Width = w; }), 0);
 
             control.Invoke(new Action<int>(delegate(int i) { panel.Height = 1; }), 0);
-            while (panel.Height != h)
+            while (panel.Height < h)
             {
-                control.Invoke(new Action<int>(delegate(int i) { panel.Height += 1; }), 0);
-                Thread.Sleep(1);
+                if (control.IsDisposed) return;
+                control.Invoke(new Action<int>(delegate(int i) { panel.Height += 5; }), 0);
+                Thread.Sleep(5);
             }
+            control.Invoke(new Action<int>(delegate(int i) { if (panel.Height > w) panel.Height = h; }), 0);
+
         }
     }
 }

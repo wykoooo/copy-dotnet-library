@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using Silmoon.Threading;
+using Silmoon.Windows.Controls.Extension;
 
 namespace Silmoon.Windows.Forms
 {
@@ -22,12 +23,14 @@ namespace Silmoon.Windows.Forms
 
         ThreadStart closeProc = null;
         ThreadStart hideProc = null;
+        public GenieExtension FormGenieExtension = null;
 
         public ScrollForm()
         {
             InitializeComponent();
             closeProc = _close_mix_thread_proc;
             hideProc = _hide_mix_thread_proc;
+            FormGenieExtension = new GenieExtension(this);
         }
 
         public WindowCloseStyle CloseStyle
@@ -144,6 +147,7 @@ namespace Silmoon.Windows.Forms
 
         void _start_scroll_thread_proc()
         {
+            Thread.Sleep(10);
             bool complate1 = false;
             bool complate2 = false;
             while (!(complate1 && complate2))
@@ -161,7 +165,7 @@ namespace Silmoon.Windows.Forms
                         this.Opacity += 0.02;
                     else complate2 = true;
                 }));
-                Thread.Sleep(5);
+                Thread.Sleep(10);
             }
         }
 
@@ -258,6 +262,7 @@ namespace Silmoon.Windows.Forms
                             this.Location = new Point(this.Location.X, this.Location.Y + 5);
                     }
                 }));
+                Thread.Sleep(5);
             }
         }
         void _resizeH_scroll_thread_proc()
@@ -268,7 +273,6 @@ namespace Silmoon.Windows.Forms
                 if (this.Width == extToH) return;
                 this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
                 {
-
                     if (this.Width - extToH < 0)
                     {
                         this.Width = this.Width + 10;
@@ -293,6 +297,7 @@ namespace Silmoon.Windows.Forms
                             this.Location = new Point(this.Location.X + 5, this.Location.Y);
                     }
                 }));
+                Thread.Sleep(5);
             }
         }
 
@@ -321,10 +326,6 @@ namespace Silmoon.Windows.Forms
                     e.Cancel = false;
             }
             base.OnFormClosing(e);
-        }
-        protected override void OnShown(EventArgs e)
-        {
-            base.OnShown(e);
         }
 
         public virtual void ShowEx()

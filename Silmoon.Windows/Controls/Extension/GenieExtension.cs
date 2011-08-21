@@ -116,7 +116,7 @@ namespace Silmoon.Windows.Controls.Extension
             {
                 if (control.IsDisposed) return;
                 control.Invoke(new Action<int>(delegate(int i) { panel.Width += 5; }), 0);
-                Thread.Sleep(4);
+                Thread.Sleep(5);
             }
             control.Invoke(new Action<int>(delegate(int i) { if (panel.Width > w) panel.Width = w; }), 0);
 

@@ -8,7 +8,7 @@ namespace Silmoon.MySilmoon
     /// <summary>
     /// 对银月产品公共库公共属性进行重用
     /// </summary>
-    public class SilmoonProductGBCInternat : ISilmoonProductGBCInternat
+    public class SilmoonProductGBCInternat :RunningAble, ISilmoonProductGBCInternat
     {
         private string _productString = "NULL";
         private string _releaseVersion = "0.0.0.0";
@@ -36,6 +36,10 @@ namespace Silmoon.MySilmoon
             set { _releaseVersion = value; }
         }
 
+        public SilmoonProductGBCInternat()
+        {
+            
+        }
 
         public void onOutputText(string message)
         {
@@ -75,11 +79,7 @@ namespace Silmoon.MySilmoon
                 return false;
         }
 
-        public RunningState RunningState
-        {
-            get { return _runningState; }
-            set { _runningState = value; }
-        }
+
     }
     public delegate void OutputTextMessageHandler(string message, int flag);
 }

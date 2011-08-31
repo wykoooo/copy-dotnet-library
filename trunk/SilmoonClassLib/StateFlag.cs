@@ -9,7 +9,7 @@ namespace Silmoon
     public class StateFlag : IStateFlag
     {
         int _id = -1;
-        bool _doubleStateFlag = false;
+        bool _booleanFlag = false;
         int _intStateFlag = -1;
         object _objectRef = null;
         string _message = string.Empty;
@@ -26,10 +26,10 @@ namespace Silmoon
             get { return _id; }
             set { _id = value; }
         }
-        public bool DoubleStateFlag
+        public bool BooleanFlag
         {
-            get { return _doubleStateFlag; }
-            set { _doubleStateFlag = value; }
+            get { return _booleanFlag; }
+            set { _booleanFlag = value; }
         }
         public string StringFlag
         {
@@ -55,7 +55,7 @@ namespace Silmoon
 
         #region IStateFlag 成员
 
-        public int IntFlag
+        public int Code
         {
             get
             {
@@ -67,7 +67,7 @@ namespace Silmoon
             }
         }
 
-        public bool Error
+        public bool Success
         {
             get
             {
@@ -79,7 +79,7 @@ namespace Silmoon
             }
         }
 
-        public object ObjectReferer
+        public object UserState
         {
             get { return _objectRef; }
             set { _objectRef = value; }

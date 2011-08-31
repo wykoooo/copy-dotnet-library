@@ -26,37 +26,22 @@ namespace Silmoon
     {
         public static bool ChkIntLengthMin(int sint, int minlen)
         {
-            bool rebool = true;
-            int sintlen = Convert.ToString(sint).Length;
-            if (sintlen < minlen)
-            {
-                rebool = false;
-            }
-            return rebool;
+            int slen = sint.ToString().Length;
+            return (sint >= minlen);
         }
         public static bool ChkIntLengthMax(int sint, int maxlen)
         {
-            bool rebool = true;
-            int sintlen = Convert.ToString(sint).Length;
-            if (sintlen > maxlen)
-            {
-                rebool = false;
-            }
-            return rebool;
+            int slen = sint.ToString().Length;
+            return (sint <= maxlen);
         }
         public static bool ChkIntLength(int sint, int minlen, int maxlen)
         {
-            bool rebool = true;
-            int sintlen = Convert.ToString(sint).Length;
-            if (sintlen > maxlen || sintlen < minlen)
-            {
-                rebool = false;
-            }
-            return rebool;
+            int sintlen = sint.ToString().Length;
+            return (sintlen <= maxlen && sintlen >= minlen);
         }
         public static int ChkIntLengthMinThrowEx(int sint, int minlen)
         {
-            int sintlen = Convert.ToString(sint).Length;
+            int sintlen = sint.ToString().Length;
             if (sintlen < minlen)
             {
                 throw new Exception("sint length(min) reject");
@@ -65,7 +50,7 @@ namespace Silmoon
         }
         public static int ChkIntLengthMaxThrowEx(int sint, int maxlen)
         {
-            int sintlen = Convert.ToString(sint).Length;
+            int sintlen = sint.ToString().Length;
             if (sintlen > maxlen)
             {
                 throw new Exception("sint length(max) reject");
@@ -74,59 +59,61 @@ namespace Silmoon
         }
         public static int ChkIntLengthThrowEx(int sint, int minlen, int maxlen)
         {
-            int sintlen = Convert.ToString(sint).Length;
+            int sintlen = sint.ToString().Length;
             if (sintlen > maxlen || sintlen < minlen)
             {
                 throw new Exception("sint length reject");
             }
             return sint;
         }
+
         public static bool ChkIntValue(int sint, int min, int max)
         {
-            if (sint < min || sint > max) return false; else return true;
+            return (sint >= min && sint <= max);
         }
         public static int CheckIntValue(int sint, int min, int max, bool throwException)
         {
             if (sint < min)
             {
-                if (throwException) throw new ArgumentException("参数 数字 应大于！" + min.ToString());
+                if (throwException) throw new ArgumentException("参数 数字 应大于等于！" + min.ToString());
                 sint = min;
             }
             else if (sint > max)
             {
-                if (throwException) throw new ArgumentException("参数 数字 应小于！" + max.ToString());
+                if (throwException) throw new ArgumentException("参数 数字 应小于等于！" + max.ToString());
                 sint = max;
             }
             return sint;
         }
         public static int CheckIntValueMin(int sint, int min)
         {
-            int reint = sint;
-            if (sint < min) { reint = min; }
-            return reint;
+            if (sint < min) { sint = min; }
+            return sint;
         }
         public static int CheckIntValueMax(int sint, int max)
         {
-            int reint = sint;
-            if (sint > max) { reint = max; }
-            return reint;
+            if (sint > max) { sint = max; }
+            return sint;
         }
-        public static int BoolInt(int sint, int NoBoolToInt)
-        {
-            int reint = sint;
-            if (sint != 1 && sint != 0) { reint = NoBoolToInt; }
-            return reint;
-        }
-        public static int BoolIntThrowEx(int sint)
-        {
-            int reint = sint;
-            if (sint != 1 && sint != 0) { throw new Exception("Parameter reject"); }
-            return reint;
-        }
+
         public static int BoolToInt(bool b)
         {
             if (b) return 1;
             else return 0;
+        }
+        public static bool IsNumber(string s)
+        {
+            int i = 0;
+            return int.TryParse(s, out i);
+        }
+        public static bool ChkStringToIntValue(string s, int min, int max)
+        {
+            if (IsNumber(s))
+            {
+                int sint = int.Parse(s);
+                return (sint >= min && sint <= max);
+            }
+            return false;
         }
     }
 

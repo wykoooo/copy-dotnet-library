@@ -210,8 +210,6 @@ N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.Sc
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Properties.Resources.resources
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls.SmTrackBar.resources
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.WindowsResource.resources
-N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.read.1.tlog
-N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.write.1.tlog
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.dll
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.GenieForm.resources

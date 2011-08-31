@@ -178,8 +178,6 @@ N:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.Windows.xml
 N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResolveAssemblyReference.cache
 N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.Base.SmBase.resources
 N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.Properties.Resources.resources
-N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.read.1.tlog
-N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\GenerateResource-ResGen.write.1.tlog
 N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.dll
 N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.pdb
 N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.read.1.tlog

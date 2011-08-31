@@ -11,17 +11,17 @@ namespace Silmoon
             get;
             set;
         }
-        int IntFlag
+        int Code
         {
             get;
             set;
         }
-        bool Error
+        bool Success
         {
             get;
             set;
         }
-        object ObjectReferer
+        object UserState
         {
             get;
             set;

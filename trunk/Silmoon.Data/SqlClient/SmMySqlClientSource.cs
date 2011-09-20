@@ -1,33 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MySql.Data.MySqlClient;
 
 namespace Silmoon.Data.SqlClient
 {
     public class SmMySqlClientSource : IDisposable
     {
-        SmMySqlClient _ssc;
-        /// <summary>
-        /// 设置或获取数据源
-        /// </summary>
+        MySqlConnection conn = new MySqlConnection();
+        SmMySqlClient source = new SmMySqlClient();
+
         public SmMySqlClient DataSource
         {
-            get { return _ssc; }
-            set { _ssc = value; }
+            get { return source; }
+            set { source = value; }
         }
-        /// <summary>
-        /// 关闭数据连接
-        /// </summary>
-        public void Close()
+        public MySqlConnection Connection
         {
-            _ssc.Close();
+            get { return conn; }
+            set { conn = value; }
+        }
+
+        public SmMySqlClientSource()
+        {
+            source.Connection = conn;
         }
 
         #region IDisposable 成员
 
         public void Dispose()
         {
-            _ssc.Dispose();
+            Close();
+            conn = null;
         }
 
         #endregion
@@ -39,8 +43,20 @@ namespace Silmoon.Data.SqlClient
         /// <param name="conStr">指定连接数据库的数据库连接字符串</param>
         public void InitData(bool open, string conStr)
         {
-            _ssc = new SmMySqlClient(conStr);
-            if (open) { _ssc.Open(); }
+            conn.ConnectionString = conStr;
+            if (open) Open();
+        }
+        public bool Open()
+        {
+            if (conn.State == System.Data.ConnectionState.Open) return false;
+            conn.Open();
+            return true;
+        }
+        public bool Close()
+        {
+            if (conn.State == System.Data.ConnectionState.Closed) return false;
+            conn.Close();
+            return true;
         }
     }
 }

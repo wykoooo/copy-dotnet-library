@@ -63,7 +63,7 @@ namespace Silmoon.MySilmoon
 
         #region IDisposable 成员
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             try
             { OnStop(true); }

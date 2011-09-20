@@ -6,11 +6,12 @@ using System.Data;
 
 namespace Silmoon.Data.Odbc
 {
-    public class SmOdbcClient:SqlCommonTemplate,IDisposable,ISMSQL
+    public class SmOdbcClient : SqlCommonTemplate,IDisposable,ISMSQL
     {
         OdbcConnection con = new OdbcConnection();
         string conStr;
         bool isConnect;
+        int selectCommandTimeout = 30;
 
         /// <summary>
         /// 获取对象是否已经创建数据库对象。
@@ -72,7 +73,19 @@ namespace Silmoon.Data.Odbc
                 isConnect = true;
             }
         }
-
+        /// <summary>
+        /// 在使用数据适配器的时候，执行SELECT查询的超时时间。
+        /// </summary>
+        public int SelectCommandTimeout
+        {
+            get { return selectCommandTimeout; }
+            set { selectCommandTimeout = value; }
+        }
+        public string Connectionstring
+        {
+            get { return conStr; }
+            set { conStr = value; }
+        }
         /// <summary>
         /// 执行一个没有返回或不需要返回的SQL，并且返回相应行数
         /// </summary>
@@ -138,6 +151,7 @@ namespace Silmoon.Data.Odbc
         {
             DataTable dt = new DataTable();
             OdbcDataAdapter da = (OdbcDataAdapter)GetDataAdapter(sqlcommand);
+            da.SelectCommand.CommandTimeout = selectCommandTimeout;
             da.Fill(dt);
             da.Dispose();
             return dt;

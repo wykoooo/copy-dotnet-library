@@ -11,11 +11,11 @@ using System.Web;
 
 namespace Silmoon.Data.SqlClient
 {
-    public sealed class SmMSSQLClient : SqlCommonTemplate,IDisposable,ISMSQL
+    public class SmMSSQLClient : SqlCommonTemplate,IDisposable,ISMSQL
     {
-        SqlConnection con = new SqlConnection();
+        SqlConnection con = null;
+
         string conStr;
-        bool isConnect;
         int selectCommandTimeout = 30;
 
         /// <summary>
@@ -25,6 +25,16 @@ namespace Silmoon.Data.SqlClient
         {
             get { return selectCommandTimeout; }
             set { selectCommandTimeout = value; }
+        }
+        public string Connectionstring
+        {
+            get { return conStr; }
+            set { conStr = value; }
+        }
+        public SqlConnection Connection
+        {
+            get { return con; }
+            set { con = value; }
         }
 
         /// <summary>
@@ -39,17 +49,28 @@ namespace Silmoon.Data.SqlClient
         /// 创建MS SQL数据源的实例
         /// </summary>
         /// <param name="constr">连接字符串</param>
+        public SmMSSQLClient()
+        {
+            con = new SqlConnection();
+        }
+        /// <summary>
+        /// 创建MS SQL数据源的实例
+        /// </summary>
+        /// <param name="constr">连接字符串</param>
         public SmMSSQLClient(string constr)
         {
-            isConnect = false;
+            con = new SqlConnection();
             conStr = constr;
-            InitClass();
         }
-
-        private void InitClass()
+        /// <summary>
+        /// 创建MS SQL数据源的实例
+        /// </summary>
+        /// <param name="constr">连接字符串</param>
+        public SmMSSQLClient(SqlConnection conn)
         {
-
+            con = conn;
         }
+
 
         /// <summary>
         /// 关闭数据库连接并且释放连接对象。
@@ -59,7 +80,6 @@ namespace Silmoon.Data.SqlClient
             if (State != ConnectionState.Closed)
             {
                 con.Close();
-                isConnect = false;
             }
         }
         /// <summary>
@@ -71,7 +91,6 @@ namespace Silmoon.Data.SqlClient
             {
                 con.ConnectionString = conStr;
                 con.Open();
-                isConnect = true;
             }
         }
 
@@ -82,14 +101,9 @@ namespace Silmoon.Data.SqlClient
         public int ExecNonQuery(string sqlcommand)
         {
             int reint = 0;
-            if (isConnect)
-            {
-                SqlCommand myCmd = new SqlCommand(__chkSqlstr(sqlcommand), con);
-                reint = myCmd.ExecuteNonQuery();
-                myCmd.Dispose();
-            }
-            else
-            { throw new DbStateException("数据库没有连接", DbStateFlag.NotConnection); }
+            SqlCommand myCmd = new SqlCommand(__chkSqlstr(sqlcommand), con);
+            reint = myCmd.ExecuteNonQuery();
+            myCmd.Dispose();
             return reint;
         }
         /// <summary>

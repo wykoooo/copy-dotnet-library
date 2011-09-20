@@ -7,12 +7,11 @@ using System.Data;
 
 namespace Silmoon.Data.SqlClient
 {
-    public sealed class SmMySqlClient : SqlCommonTemplate, IDisposable, ISMSQL
+    public class SmMySqlClient : SqlCommonTemplate, IDisposable, ISMSQL
     {
-        MySqlConnection con = new MySqlConnection();
+        MySqlConnection con = null;
 
         string conStr;
-        bool isConnect;
         int selectCommandTimeout = 30;
 
         /// <summary>
@@ -23,17 +22,29 @@ namespace Silmoon.Data.SqlClient
             get { return selectCommandTimeout; }
             set { selectCommandTimeout = value; }
         }
-
-        public SmMySqlClient(string conStr)
+        public string Connectionstring
         {
-            isConnect = false;
-            this.conStr = conStr;
-            InitClass();
+            get { return conStr; }
+            set { conStr = value; }
+        }
+        public MySqlConnection Connection
+        {
+            get { return con; }
+            set { con = value; }
         }
 
-        private void InitClass()
+        public SmMySqlClient()
         {
 
+        }
+        public SmMySqlClient(string conStr)
+        {
+
+            this.conStr = conStr;
+        }
+        public SmMySqlClient(MySqlConnection conn)
+        {
+            con = conn;
         }
 
         #region ISMSQL 成员
@@ -47,7 +58,6 @@ namespace Silmoon.Data.SqlClient
             {
                 con.ConnectionString = conStr;
                 con.Open();
-                isConnect = true;
             }
         }
         public void Close()
@@ -55,20 +65,14 @@ namespace Silmoon.Data.SqlClient
             if (State != ConnectionState.Closed)
             {
                 con.Close();
-                isConnect = false;
             }
         }
         public int ExecNonQuery(string sqlcommand)
         {
             int reint = 0;
-            if (isConnect)
-            {
-                MySqlCommand myCmd = new MySqlCommand(__chkSqlstr(sqlcommand), con);
-                reint = myCmd.ExecuteNonQuery();
-                myCmd.Dispose();
-            }
-            else
-            { throw new DbStateException("数据库没有连接", DbStateFlag.NotConnection); }
+            MySqlCommand myCmd = new MySqlCommand(__chkSqlstr(sqlcommand), con);
+            reint = myCmd.ExecuteNonQuery();
+            myCmd.Dispose();
             return reint;
         }
         public int GetRecordCount(string sqlcommand)

@@ -11,6 +11,8 @@ namespace Silmoon.Data
         ConnectionState State { get; }
         void Open();
         void Close();
+        int SelectCommandTimeout { get; set; }
+        string Connectionstring { get; set; }
         int ExecNonQuery(string sqlcommand);
         int GetRecordCount(string sqlcommand);
         object GetDataReader(string sqlcommand);

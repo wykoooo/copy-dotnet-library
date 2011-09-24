@@ -77,8 +77,10 @@
     <Compile Include="base.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="BigInteger.cs" />
     <Compile Include="IStateFlag.cs" />
     <Compile Include="MySilmoon\RunningAble.cs" />
+    <Compile Include="Security\RSAPrivateKeyCrypto.cs" />
     <Compile Include="Silmoon.cs">
     </Compile>
     <Compile Include="Net\SmTcp.cs">

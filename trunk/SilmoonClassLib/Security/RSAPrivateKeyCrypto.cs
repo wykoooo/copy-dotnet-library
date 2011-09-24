@@ -36,7 +36,7 @@ namespace Silmoon.Security
                 BigInteger biEnText = biText.modPow(d, n);
 
                 byte[] b = biEnText.getBytes();
-                Silmoon.Memory.Memory.MemCat(ref temp, ref b, 0, b.Length);
+                temp.AddRange(b);
                 len -= blockLen;
             }
             return (byte[])temp.ToArray(typeof(byte));
@@ -65,7 +65,7 @@ namespace Silmoon.Security
                 BigInteger biEnText = biText.modPow(e, n);
 
                 byte[] b = biEnText.getBytes();
-                Silmoon.Memory.Memory.MemCat(ref temp, ref b, 0, b.Length);
+                temp.AddRange(b);
                 len -= blockLen;
             }
             return (byte[])temp.ToArray(typeof(byte));

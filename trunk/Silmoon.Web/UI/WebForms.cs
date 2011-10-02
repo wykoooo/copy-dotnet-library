@@ -57,5 +57,10 @@ namespace Silmoon.Web.UI
         {
             HttpContext.Current.Response.Write("<script language=\"javascript\" type=\"text/javascript\">window.opener=null;window.open('','_self');window.close();</script>");
         }
+
+        public static void RefreshParentWindow()
+        {
+            HttpContext.Current.Response.Write("<script language=\"javascript\" type=\"text/javascript\">window.opener.location.reload();</script>");
+        }
     }
 }

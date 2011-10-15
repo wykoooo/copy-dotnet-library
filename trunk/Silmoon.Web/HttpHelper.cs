@@ -127,5 +127,10 @@ namespace Silmoon.Web
             }
             return (char)((n - 10) + 0x61);
         }
+        public static void Redirect(string url)
+        {
+            HttpContext.Current.Response.StatusCode = 302;
+            HttpContext.Current.Response.Headers.Add("Location", url);
+        }
     }
 }

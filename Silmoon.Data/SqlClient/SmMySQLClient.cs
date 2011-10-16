@@ -50,10 +50,14 @@ namespace Silmoon.Data.SqlClient
         #region ISMSQL 成员
         public System.Data.ConnectionState State
         {
-            get { return con.State; }
+            get
+            {
+                return con.State;
+            }
         }
         public void Open()
         {
+            if (con == null) con = new MySqlConnection();
             if (State == ConnectionState.Closed)
             {
                 con.ConnectionString = conStr;

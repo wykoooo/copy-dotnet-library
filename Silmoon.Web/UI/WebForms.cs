@@ -69,27 +69,27 @@ namespace Silmoon.Web.UI
             Message = Message.Replace("\r", "\\r");
             Message = Message.Replace("\n", "\\n");
             Message = Message.Replace("\"", "\"\"\"\"");
-            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script type=\"text/javascript\">alert('" + Message + "');</script>");
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), new Random().Next().ToString(), "alert('" + Message + "');", true);
         }
         public static void ScriptRedirect(System.Web.UI.Page page, string URL)
         {
-            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script type=\"text/javascript\">location.href='" + URL + "';</script>"); ;
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), new Random().Next().ToString(), "location.href='" + URL + "';", true);
         }
         public static void OpenWindow(System.Web.UI.Page page, string URL)
         {
-            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script type=\"text/javascript\">window.open('" + URL + "');</script>");
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), new Random().Next().ToString(), "window.open('" + URL + "');", true);
         }
         public static void RefreshPage(System.Web.UI.Page page)
         {
-            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script type=\"text/javascript\">location.reload(location.href);</script>"); ;
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), new Random().Next().ToString(), "location.reload(location.href);", true);
         }
         public static void ClosePage(System.Web.UI.Page page)
         {
-            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script language=\"javascript\" type=\"text/javascript\">window.opener=null;window.open('','_self');window.close();</script>");
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), new Random().Next().ToString(), "window.opener=null;window.open('','_self');\r\nwindow.close();", true);
         }
         public static void RefreshParentWindow(System.Web.UI.Page page)
         {
-            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script language=\"javascript\" type=\"text/javascript\">window.opener.location.reload();</script>");
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), new Random().Next().ToString(), "window.opener.location.reload();", true);
         }
     }
 }

@@ -62,5 +62,34 @@ namespace Silmoon.Web.UI
         {
             HttpContext.Current.Response.Write("<script language=\"javascript\" type=\"text/javascript\">window.opener.location.reload();</script>");
         }
+
+
+        public static void MessageBox(System.Web.UI.Page page, string Message)
+        {
+            Message = Message.Replace("\r", "\\r");
+            Message = Message.Replace("\n", "\\n");
+            Message = Message.Replace("\"", "\"\"\"\"");
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script type=\"text/javascript\">alert('" + Message + "');</script>");
+        }
+        public static void ScriptRedirect(System.Web.UI.Page page, string URL)
+        {
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script type=\"text/javascript\">location.href='" + URL + "';</script>"); ;
+        }
+        public static void OpenWindow(System.Web.UI.Page page, string URL)
+        {
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script type=\"text/javascript\">window.open('" + URL + "');</script>");
+        }
+        public static void RefreshPage(System.Web.UI.Page page)
+        {
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script type=\"text/javascript\">location.reload(location.href);</script>"); ;
+        }
+        public static void ClosePage(System.Web.UI.Page page)
+        {
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script language=\"javascript\" type=\"text/javascript\">window.opener=null;window.open('','_self');window.close();</script>");
+        }
+        public static void RefreshParentWindow(System.Web.UI.Page page)
+        {
+            page.ClientScript.RegisterClientScriptBlock(typeof(System.Web.UI.Page), "", "<script language=\"javascript\" type=\"text/javascript\">window.opener.location.reload();</script>");
+        }
     }
 }

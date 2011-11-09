@@ -176,8 +176,6 @@ H:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Windows.xml
 H:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.xml
 H:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResolveAssemblyReference.cache
 H:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.Controls.VideoControl.resources
-H:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\GenerateResource-ResGen.read.1.tlog
-H:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\GenerateResource-ResGen.write.1.tlog
 H:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.dll
 H:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.pdb
 H:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.pdb
@@ -258,3 +256,5 @@ N:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.dll
 N:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.pdb
 N:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResGen.read.1.tlog
 N:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResGen.write.1.tlog
+H:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResGen.read.1.tlog
+H:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResGen.write.1.tlog

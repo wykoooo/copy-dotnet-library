@@ -178,8 +178,6 @@ H:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\bin\Debug\Silmoon.Windows.
 H:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\ResolveAssemblyReference.cache
 H:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\Silmoon.Media.Video.Player.Form1.resources
 H:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\Silmoon.Media.PlayerApp.Properties.Resources.resources
-H:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\GenerateResource-ResGen.read.1.tlog
-H:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\GenerateResource-ResGen.write.1.tlog
 H:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\Silmoon.Media.PlayerApp.exe
 H:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\Silmoon.Media.PlayerApp.pdb
 L:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\bin\Debug\Silmoon.Media.PlayerApp.exe
@@ -255,3 +253,6 @@ N:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\Silmoon.Media.Pl
 N:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\ResGen.read.1.tlog
 N:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\ResGen.write.1.tlog
 N:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\bin\Debug\Silmoon.dll
+H:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\bin\Debug\Silmoon.dll
+H:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\ResGen.read.1.tlog
+H:\svn\silmoon-dotnet-library\Silmoon.Media.PlayerApp\obj\Debug\ResGen.write.1.tlog

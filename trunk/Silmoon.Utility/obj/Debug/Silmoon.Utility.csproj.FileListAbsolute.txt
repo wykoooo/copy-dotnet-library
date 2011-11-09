@@ -110,8 +110,6 @@ H:\svn\silmoon-dotnet-library\Silmoon.Utility\bin\Debug\Silmoon.dll
 H:\svn\silmoon-dotnet-library\Silmoon.Utility\bin\Debug\Silmoon.xml
 H:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\ResolveAssemblyReference.cache
 H:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\Silmoon.Utility.Properties.Resources.resources
-H:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\GenerateResource-ResGen.read.1.tlog
-H:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\GenerateResource-ResGen.write.1.tlog
 H:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\Silmoon.Utility.dll
 H:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\Silmoon.Utility.pdb
 H:\svn\silmoon-dotnet-library\Silmoon.Utility\bin\Debug\Silmoon.pdb
@@ -164,3 +162,5 @@ N:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\Silmoon.Utility.dll
 N:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\Silmoon.Utility.pdb
 N:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\ResGen.read.1.tlog
 N:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\ResGen.write.1.tlog
+H:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\ResGen.read.1.tlog
+H:\svn\silmoon-dotnet-library\Silmoon.Utility\obj\Debug\ResGen.write.1.tlog

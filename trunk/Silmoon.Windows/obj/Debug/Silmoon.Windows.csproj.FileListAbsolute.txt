@@ -147,8 +147,6 @@ H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.Sc
 H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Properties.Resources.resources
 H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls.SmTrackBar.resources
 H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.WindowsResource.resources
-H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.read.1.tlog
-H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\GenerateResource-ResGen.write.1.tlog
 H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.dll
 H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb
 L:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.dll
@@ -215,3 +213,7 @@ N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.GenieForm.resources
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.read.1.tlog
 N:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.write.1.tlog
+H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls.SwitchButton.resources
+H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.GenieForm.resources
+H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.read.1.tlog
+H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.write.1.tlog

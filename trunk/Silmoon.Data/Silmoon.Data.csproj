@@ -60,6 +60,7 @@
     <Compile Include="SqlClient\SmMSSQLClientSource.cs" />
     <Compile Include="SqlClient\SmMySqlClient.cs" />
     <Compile Include="SqlClient\SmMySqlClientSource.cs" />
+    <Compile Include="SqlCommandBuilder.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="DbStateException.cs" />
     <Compile Include="SqlTemplate.cs" />

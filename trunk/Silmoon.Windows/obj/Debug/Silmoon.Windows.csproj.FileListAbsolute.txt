@@ -217,3 +217,4 @@ H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls
 H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.GenieForm.resources
 H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.read.1.tlog
 H:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.write.1.tlog
+H:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.XML

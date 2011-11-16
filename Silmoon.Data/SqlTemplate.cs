@@ -37,6 +37,7 @@ namespace Silmoon.Data
         /// <returns></returns>
         public string InjectFieldReplace(string sqlString)
         {
+            if (sqlString == null) return sqlString;
             return sqlString.Replace("'", "''");
         }
     }

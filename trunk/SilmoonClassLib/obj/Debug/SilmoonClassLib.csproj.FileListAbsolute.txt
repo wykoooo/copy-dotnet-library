@@ -182,4 +182,3 @@ N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.read.1.tlog
 N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.write.1.tlog
 H:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.read.1.tlog
 H:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.write.1.tlog
-H:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.XML

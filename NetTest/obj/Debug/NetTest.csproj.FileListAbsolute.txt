@@ -193,8 +193,6 @@ N:\svn\silmoon-dotnet-library\NetTest\bin\Debug\Silmoon.xml
 N:\svn\silmoon-dotnet-library\NetTest\obj\Debug\ResolveAssemblyReference.cache
 N:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.Form1.resources
 N:\svn\silmoon-dotnet-library\NetTest\obj\Debug\NetTest.Properties.Resources.resources
-N:\svn\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.read.1.tlog
-N:\svn\silmoon-dotnet-library\NetTest\obj\Debug\GenerateResource-ResGen.write.1.tlog
 N:\svn\silmoon-dotnet-library\NetTest\obj\Debug\ResGen.read.1.tlog
 N:\svn\silmoon-dotnet-library\NetTest\obj\Debug\ResGen.write.1.tlog
 H:\svn\silmoon-dotnet-library\NetTest\bin\Debug\Silmoon.Windows.dll

@@ -88,8 +88,6 @@ namespace Silmoon.Windows.Forms
 
         void _close_mix_thread_proc()
         {
-            if (this.IsDisposed) return;
-
             bool complate = false;
             while (!complate)
             {
@@ -124,9 +122,9 @@ namespace Silmoon.Windows.Forms
         }
         void _close_max_thread_proc()
         {
-            if (this.IsDisposed) return;
             for (int i = 0; i < 50; i++)
             {
+                if (this.IsDisposed) break;
                 this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
                 {
                     this.Size = new Size(this.Width + 18, this.Height + 18);
@@ -134,7 +132,6 @@ namespace Silmoon.Windows.Forms
                     Opacity = Opacity - 0.05;
                 }));
             }
-
             this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
             {
                 this.Width = fromW;
@@ -150,21 +147,25 @@ namespace Silmoon.Windows.Forms
             Thread.Sleep(10);
             bool complate1 = false;
             bool complate2 = false;
-            while (!(complate1 && complate2))
+            while (!(complate1 && complate2) && !this.IsDisposed)
             {
-                this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
+                try
                 {
-                    if (this.Width < fromW)
-                        this.Width += 40;
-                    else
+                    this.Invoke(new EventHandler(delegate(object sender1, EventArgs e1)
                     {
-                        this.Width = fromW;
-                        complate1 = true;
-                    }
-                    if (this.Opacity != 1)
-                        this.Opacity += 0.02;
-                    else complate2 = true;
-                }));
+                        if (this.Width < fromW)
+                            this.Width += 40;
+                        else
+                        {
+                            this.Width = fromW;
+                            complate1 = true;
+                        }
+                        if (this.Opacity != 1)
+                            this.Opacity += 0.02;
+                        else complate2 = true;
+                    }));
+                }
+                catch { return; }
                 Thread.Sleep(10);
             }
         }

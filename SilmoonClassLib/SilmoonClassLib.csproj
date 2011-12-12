@@ -78,6 +78,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="BigInteger.cs" />
+    <Compile Include="Text\Punycode.cs" />
     <Compile Include="IStateFlag.cs" />
     <Compile Include="MySilmoon\RunningAble.cs" />
     <Compile Include="Security\RSAPrivateKeyCrypto.cs" />

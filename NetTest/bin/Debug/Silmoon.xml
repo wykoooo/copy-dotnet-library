@@ -1843,5 +1843,10 @@
             <param name="identity">标致</param>
             <returns></returns>
         </member>
+        <member name="T:Silmoon.Text.Punycode">
+            <summary>
+            Punycode IDN编码操作
+            </summary>
+        </member>
     </members>
 </doc>

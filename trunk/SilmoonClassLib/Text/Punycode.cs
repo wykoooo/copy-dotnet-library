@@ -19,6 +19,46 @@ namespace Silmoon.Text
         static int SKEW = 38;
         static char DELIMITER = '-';
 
+
+        public static string EncodingDomain(string domain)
+        {
+            domain = domain.Replace("。", ".");
+            string[] domainArray = domain.Split(new string[] { "." }, StringSplitOptions.None);
+            string result = "";
+            foreach (string item in domainArray)
+            {
+                if (item == "")
+                {
+                    result += ".";
+                    continue;
+                }
+                result += "xn--" + Encode(item) + ".";
+            }
+            if (result[result.Length - 1] == '.') result = result.Substring(0, result.Length - 1);
+            return result;
+        }
+        public static string DecodingDomain(string domain)
+        {
+            domain = domain.Replace("。", ".");
+            string[] domainArray = domain.Split(new string[] { "." }, StringSplitOptions.None);
+            string result = "";
+            foreach (string item in domainArray)
+            {
+                if (item == "")
+                {
+                    result += ".";
+                    continue;
+                }
+                string item2 = item;
+                if (item2.Length > 4 && item2.Substring(0, 4) == "xn--")
+                {
+                    result += Decode(item2.Substring(4, item2.Length - 4)) + ".";
+                }
+
+            }
+            if (result[result.Length - 1] == '.') result = result.Substring(0, result.Length - 1);
+            return result;
+        }
         public static string Encode(string input)
         {
             int n = INITIAL_N;

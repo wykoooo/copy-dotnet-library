@@ -16,7 +16,7 @@ namespace Silmoon.Net
         private Socket m_Monitor;
         private IPAddress m_Ip;
         private byte[] m_Buffer = new byte[65535];
-        private const System.Int32 IOC_VENDOR = 0x18000000;
+        private const int IOC_VENDOR = 0x18000000;
         private const int IOC_IN = -2147483648;
         private const int SIO_RCVALL = IOC_IN ^ IOC_VENDOR ^ 1;
         private const int SECURITY_BUILTIN_DOMAIN_RID = 0x20;

@@ -955,6 +955,11 @@
             
               </summary>
         </member>
+        <member name="T:Silmoon.Text.Punycode">
+            <summary>
+            Punycode IDN编码操作
+            </summary>
+        </member>
         <member name="T:Silmoon.Security.IdentityAuthInfo">
             <summary>
             表示一个用户表示和认证密码
@@ -1842,11 +1847,6 @@
             <param name="ds">目录安全实例</param>
             <param name="identity">标致</param>
             <returns></returns>
-        </member>
-        <member name="T:Silmoon.Text.Punycode">
-            <summary>
-            Punycode IDN编码操作
-            </summary>
         </member>
     </members>
 </doc>

@@ -27,12 +27,19 @@ namespace Silmoon.Text
             string result = "";
             foreach (string item in domainArray)
             {
-                if (item == "")
+                if (isIDN(item))
                 {
-                    result += ".";
-                    continue;
+                    if (item == "")
+                    {
+                        result += ".";
+                        continue;
+                    }
+                    result += "xn--" + Encode(item) + ".";
                 }
-                result += "xn--" + Encode(item) + ".";
+                else
+                {
+                    result += item + ".";
+                }
             }
             if (result[result.Length - 1] == '.') result = result.Substring(0, result.Length - 1);
             return result;
@@ -54,7 +61,10 @@ namespace Silmoon.Text
                 {
                     result += Decode(item2.Substring(4, item2.Length - 4)) + ".";
                 }
-
+                else
+                {
+                    result += item + ".";
+                }
             }
             if (result[result.Length - 1] == '.') result = result.Substring(0, result.Length - 1);
             return result;
@@ -275,6 +285,17 @@ namespace Silmoon.Text
             {
                 throw new Exception("BAD_INPUT");
             }
+        }
+        internal static bool isIDN(string s)
+        {
+            foreach (char item in s)
+            {
+                if ((int)item > 256)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

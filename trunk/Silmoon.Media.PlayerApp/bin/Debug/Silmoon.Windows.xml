@@ -119,7 +119,7 @@
             <summary>
             处理特效的控件的父控件
             </summary>
-            <param name="control"></param>
+            <param name="parentControl"></param>
         </member>
         <member name="F:Silmoon.Windows.Forms.OpenForm.components">
             <summary>

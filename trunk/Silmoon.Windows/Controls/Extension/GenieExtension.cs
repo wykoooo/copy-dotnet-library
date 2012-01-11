@@ -14,10 +14,10 @@ namespace Silmoon.Windows.Controls.Extension
         /// <summary>
         /// 处理特效的控件的父控件
         /// </summary>
-        /// <param name="control"></param>
-        public GenieExtension(Control control)
+        /// <param name="parentControl"></param>
+        public GenieExtension(Control parentControl)
         {
-            this.control = control;
+            this.control = parentControl;
         }
         public void ShowControl(Control control)
         {
@@ -33,6 +33,53 @@ namespace Silmoon.Windows.Controls.Extension
                 Threads.ExecAsync(colorProc, new object[] { control, afterStart }, null);
             Threads.ExecAsync(scrollProc, new object[] { control, afterStart }, null);
         }
+
+        public void FocusSlide(Control control, int maxSize, int minSize)
+        {
+            FocusSlide(control, maxSize, minSize, 5);
+        }
+        public void FocusSlide(Control control, int maxSize, int minSize, int sleep)
+        {
+            object obj = (object)new object[] { control, maxSize, minSize, sleep };
+            control.GotFocus += new EventHandler(delegate(object sender, EventArgs e)
+            {
+                Threads.ExecAsync(gotFocus, obj, null);
+            });
+            control.LostFocus += new EventHandler(delegate(object sender, EventArgs e)
+            {
+                Threads.ExecAsync(lostFocus, obj, null);
+            });
+        }
+
+        void gotFocus(object obj)
+        {
+            Control control = (Control)((object[])obj)[0];
+            int max = (int)((object[])obj)[1];
+            int sleep = (int)((object[])obj)[3];
+            while (control.Width < max)
+            {
+                this.control.Invoke(new EventHandler(delegate(object sender, EventArgs e)
+                {
+                    control.Width = control.Width + 5;
+                }));
+                Thread.Sleep(sleep);
+            }
+        }
+        void lostFocus(object obj)
+        {
+            Control control = (Control)((object[])obj)[0];
+            int min = (int)((object[])obj)[2];
+            int sleep = (int)((object[])obj)[3];
+            while (control.Width > min)
+            {
+                this.control.Invoke(new EventHandler(delegate(object sender, EventArgs e)
+                {
+                    control.Width = control.Width - 5;
+                    Thread.Sleep(sleep);
+                }));
+            }
+        }
+
         void colorProc(object obj)
         {
             object[] o = obj as object[];
@@ -128,7 +175,6 @@ namespace Silmoon.Windows.Controls.Extension
                 Thread.Sleep(5);
             }
             control.Invoke(new Action<int>(delegate(int i) { if (panel.Height > w) panel.Height = h; }), 0);
-
         }
     }
 }

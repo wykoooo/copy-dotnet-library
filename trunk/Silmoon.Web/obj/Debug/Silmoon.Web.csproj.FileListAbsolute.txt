@@ -186,3 +186,16 @@ N:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResGen.read.1.tlog
 N:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResGen.write.1.tlog
 H:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResGen.read.1.tlog
 H:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResGen.write.1.tlog
+M:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResolveAssemblyReference.cache
+M:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.Properties.Resources.resources
+M:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResGen.read.1.tlog
+M:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResGen.write.1.tlog
+M:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.dll
+M:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.pdb
+M:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Resources\SecureException.html
+M:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Resources\SessionTimeout.html
+M:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.Web.dll
+M:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.Web.pdb
+M:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.dll
+M:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.pdb
+M:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.xml

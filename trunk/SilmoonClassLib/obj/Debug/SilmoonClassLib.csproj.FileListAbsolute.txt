@@ -182,3 +182,15 @@ N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.read.1.tlog
 N:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.write.1.tlog
 H:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.read.1.tlog
 H:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.write.1.tlog
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.dll
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.pdb
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.Windows.dll
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.Windows.pdb
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\bin\Debug\Silmoon.Windows.xml
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResolveAssemblyReference.cache
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.Base.SmBase.resources
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.Properties.Resources.resources
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.read.1.tlog
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\ResGen.write.1.tlog
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.dll
+M:\svn\silmoon-dotnet-library\SilmoonClassLib\obj\Debug\Silmoon.pdb

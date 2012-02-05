@@ -55,6 +55,11 @@ namespace Silmoon.Windows.Systems
         {
             get
             {
+                if (File.Exists("/proc/stat"))
+                {
+                    return new int[0];
+                }
+
                 ArrayList cpuLoadArr = new ArrayList();
                 if (searcher == null) searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_Processor");
                 foreach (ManagementObject queryObj in searcher.Get())
@@ -72,18 +77,14 @@ namespace Silmoon.Windows.Systems
         {
             get
             {
-                if (File.Exists("/proc/stat"))
+                int[] result = CPUsLoadPercentage;
+                int c = result.Length;
+                int d = 0;
+                for (int i = 0; i < c; i++)
                 {
-                    return 0;
+                    d += result[i];
                 }
-                if (cpuTimePc == null)
-                {
-                    cpuTimePc = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-                    cpuTimePc.NextValue();
-                }
-                try { return (int)cpuTimePc.NextValue(); }
-                catch { return 0; }
-
+                return (d / c);
             }
         }
 

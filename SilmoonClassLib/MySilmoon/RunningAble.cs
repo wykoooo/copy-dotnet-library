@@ -30,8 +30,8 @@ namespace Silmoon.MySilmoon
         {
             bool success = RunningState == MySilmoon.RunningState.Stopped;
             RunningState = MySilmoon.RunningState.Running;
-            bool success2 = OnStart(success);
-            if (!success2 || !success) RunningState = RunningState.Stopped;
+            OnStart(ref success);
+            if (!success) RunningState = RunningState.Stopped;
             return success;
         }
         public bool Stop()
@@ -39,24 +39,24 @@ namespace Silmoon.MySilmoon
             MySilmoon.RunningState runstate = RunningState;
             bool success = RunningState != MySilmoon.RunningState.Stopped;
             RunningState = MySilmoon.RunningState.Stopped;
-            bool success2 = OnStop(success);
-            if (!success2 || !success) RunningState = runstate;
+            OnStop(ref success);
+            if (!success) RunningState = runstate;
             return success;
         }
         public bool Suspend()
         {
             bool success = RunningState == MySilmoon.RunningState.Running;
             RunningState = MySilmoon.RunningState.Suspended;
-            bool success2 = OnSuspend(success);
-            if (!success2 || !success) RunningState = RunningState.Running;
+            OnSuspend(ref success);
+            if (!success) RunningState = RunningState.Running;
             return success;
         }
         public bool Resume()
         {
             bool success = RunningState == MySilmoon.RunningState.Suspended;
             RunningState = MySilmoon.RunningState.Running;
-            bool success2 = OnResume(success);
-            if (!success2 || !success) RunningState = RunningState.Suspended;
+            OnResume(ref success);
+            if (!success) RunningState = RunningState.Suspended;
             return success;
         }
         #endregion
@@ -66,13 +66,14 @@ namespace Silmoon.MySilmoon
         public virtual void Dispose()
         {
             try
-            { OnStop(true); }
+            {
+                Stop();
+            }
             catch { }
-            Stop();
         }
 
         #endregion
 
-        public delegate bool OperateHandler(bool success);
+        public delegate void OperateHandler(ref bool success);
     }
 }

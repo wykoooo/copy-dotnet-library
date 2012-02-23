@@ -55,10 +55,7 @@ namespace Silmoon.Windows.Systems
         {
             get
             {
-                if (File.Exists("/proc/stat"))
-                {
-                    return new int[0];
-                }
+                if (File.Exists("/proc/stat")) return new int[0];
 
                 ArrayList cpuLoadArr = new ArrayList();
                 if (searcher == null) searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_Processor");

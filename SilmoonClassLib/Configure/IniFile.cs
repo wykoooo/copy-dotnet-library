@@ -7,16 +7,6 @@ namespace Silmoon.Configure
 {
     ///  <summary>
     ///  读写ini文件的类
-    ///  调用kernel32.dll中的两个api：WritePrivateProfileString，GetPrivateProfileString来实现对ini  文件的读写。
-    ///
-    ///  INI文件是文本文件,
-    ///  由若干节(section)组成,
-    ///  在每个带括号的标题下面,
-    ///  是若干个关键词(key)及其对应的值(value)
-    ///  
-    ///[Section]
-    ///Key=value
-    ///
     ///  </summary>
     public sealed class IniFile : MarshalByRefObject
     {
@@ -45,9 +35,9 @@ namespace Silmoon.Configure
             int num = GetPrivateProfileString(Section, Key, "", retVal, this.stringBufferSize, this.FilePath);
             return retVal.ToString();
         }
-        public void WriteInivalue(string Section, string Key, string value)
+        public long WriteInivalue(string Section, string Key, string value)
         {
-            WritePrivateProfileString(Section, Key, value, this.FilePath);
+            return WritePrivateProfileString(Section, Key, value, this.FilePath);
         }
 
 

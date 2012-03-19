@@ -110,6 +110,15 @@ namespace Silmoon.Memory
             }
             return true;
         }
+        public static bool MemCat(ref List<byte> dArray1, ref byte[] scrData, int scrIndex, int offset)
+        {
+            if (scrData.Length < scrIndex + offset) return false;
+            for (int i = 0; i < offset; i++)
+            {
+                dArray1.Add(scrData[scrIndex + i]);
+            }
+            return true;
+        }
 
         public static void MemCpy(ref byte[] destByte, ref byte[] scrByte)
         {

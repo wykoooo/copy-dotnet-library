@@ -78,6 +78,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="BigInteger.cs" />
+    <Compile Include="Net\Icmp.cs" />
+    <Compile Include="Net\Protocol\SDFlags.cs" />
+    <Compile Include="Net\Protocol\SDPacket.cs" />
+    <Compile Include="Net\Protocol\SDProtocol.cs" />
     <Compile Include="Text\Punycode.cs" />
     <Compile Include="IStateFlag.cs" />
     <Compile Include="MySilmoon\RunningAble.cs" />

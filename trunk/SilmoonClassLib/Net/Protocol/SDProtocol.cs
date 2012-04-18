@@ -42,8 +42,11 @@ namespace Silmoon.Net.Protocol
             packet.ServiceID = serviceID;
             packet.Flags = flags;
             packet.StateID = stateID;
-            packet.Length = (uint)data.Length;
-            packet.Data = data;
+            if (data != null)
+            {
+                packet.Length = (uint)data.Length;
+                packet.Data = data;
+            }
             return packet;
         }
 
@@ -54,7 +57,7 @@ namespace Silmoon.Net.Protocol
             if (rawData.Length < 20 + dataLen) return null;
 
             SDPacket packet = new SDPacket();
-            packet.Data = new byte[packet.Length];
+            packet.Data = new byte[dataLen];
 
             packet.PacketID = BitConverter.ToUInt16(rawData, 0);
             packet.ServiceID = BitConverter.ToUInt16(rawData, 4);
@@ -108,10 +111,11 @@ namespace Silmoon.Net.Protocol
             Array.Copy(BitConverter.GetBytes(serviceID), 0, result, 4, 4);
             Array.Copy(BitConverter.GetBytes((int)flags), 0, result, 8, 4);
             Array.Copy(BitConverter.GetBytes(stateID), 0, result, 12, 4);
-            Array.Copy(BitConverter.GetBytes(data.Length), 0, result, 16, 4);
-
-            Array.Copy(data, 0, result, 20, data.Length);
-
+            if (data != null)
+            {
+                Array.Copy(BitConverter.GetBytes(data.Length), 0, result, 16, 4);
+                Array.Copy(data, 0, result, 20, data.Length);
+            }
             return result;
         }
         public SDPacket? FromSocketReceivePacket(Socket socket)
@@ -137,6 +141,14 @@ namespace Silmoon.Net.Protocol
             while (!recvPacket.HasValue);
 
             return recvPacket.Value;
+        }
+
+        public SDPacket DeriveNewPacket(SDPacket packet)
+        {
+            SDPacket newPacket = new SDPacket();
+            newPacket.PacketID = packet.PacketID;
+            newPacket.ServiceID = packet.ServiceID;
+            return newPacket;
         }
     }
 }

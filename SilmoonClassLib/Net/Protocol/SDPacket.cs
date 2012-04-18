@@ -9,6 +9,7 @@ namespace Silmoon.Net.Protocol
         public uint PacketID;
         public uint ServiceID;
         public SDFlags Flags;
+        public int StateID;
         public uint Length;
         public byte[] Data;
     }

@@ -15,9 +15,17 @@ namespace Silmoon.Net.Protocol
         {
             return NewPacket(data, 0, 0);
         }
+        public SDPacket NewPacket(byte[] data, int stateID)
+        {
+            return NewPacket(data, 0, stateID, 0);
+        }
         public SDPacket NewPacket(byte[] data, SDFlags flags)
         {
             return NewPacket(data, 0, flags);
+        }
+        public SDPacket NewPacket(byte[] data, SDFlags flags, int stateID)
+        {
+            return NewPacket(data, 0, stateID, flags);
         }
         public SDPacket NewPacket(byte[] data, uint serviceID)
         {
@@ -25,10 +33,15 @@ namespace Silmoon.Net.Protocol
         }
         public SDPacket NewPacket(byte[] data, uint serviceID, SDFlags flags)
         {
+            return NewPacket(data, serviceID, 0, flags);
+        }
+        public SDPacket NewPacket(byte[] data, uint serviceID, int stateID, SDFlags flags)
+        {
             SDPacket packet = new SDPacket();
             packet.PacketID = 0;
             packet.ServiceID = serviceID;
             packet.Flags = flags;
+            packet.StateID = stateID;
             packet.Length = (uint)data.Length;
             packet.Data = data;
             return packet;
@@ -36,40 +49,50 @@ namespace Silmoon.Net.Protocol
 
         public SDPacket? ReadPacket(byte[] rawData)
         {
-            if (rawData.Length < 16) return null;
-            uint dataLen = BitConverter.ToUInt16(rawData, 12);
-            if (rawData.Length < 16 + dataLen) return null;
+            if (rawData.Length < 20) return null;
+            uint dataLen = BitConverter.ToUInt16(rawData, 16);
+            if (rawData.Length < 20 + dataLen) return null;
 
             SDPacket packet = new SDPacket();
+            packet.Data = new byte[packet.Length];
+
             packet.PacketID = BitConverter.ToUInt16(rawData, 0);
             packet.ServiceID = BitConverter.ToUInt16(rawData, 4);
             packet.Flags = (SDFlags)BitConverter.ToUInt16(rawData, 8);
+            packet.StateID = BitConverter.ToUInt16(rawData, 12);
             packet.Length = dataLen;
-            packet.Data = new byte[packet.Length];
-
-            Array.Copy(rawData, 16, packet.Data, 0, packet.Length);
+            Array.Copy(rawData, 20, packet.Data, 0, packet.Length);
 
             return packet;
         }
 
         public byte[] GetBytes(SDPacket packet)
         {
-            byte[] data = new byte[16 + packet.Length];
+            byte[] data = new byte[20 + packet.Length];
             Array.Copy(BitConverter.GetBytes(packet.ServiceID), 0, data, 0, 4);
             Array.Copy(BitConverter.GetBytes(packet.PacketID), 0, data, 4, 4);
             Array.Copy(BitConverter.GetBytes((uint)packet.Flags), 0, data, 8, 4);
-            Array.Copy(BitConverter.GetBytes((uint)packet.Length), 0, data, 12, 4);
-            Array.Copy(packet.Data, 0, data, 16, packet.Length);
+            Array.Copy(BitConverter.GetBytes(packet.Length), 0, data, 12, 4);
+            Array.Copy(BitConverter.GetBytes(packet.StateID), 0, data, 16, 4);
+            Array.Copy(packet.Data, 0, data, 20, packet.Length);
             return data;
         }
 
         public byte[] GetPacketBytes(byte[] data)
         {
-            return GetPacketBytes(data, 0, 0);
+            return GetPacketBytes(data, 0, 0, 0);
+        }
+        public byte[] GetPacketBytes(byte[] data, int stateID)
+        {
+            return GetPacketBytes(data, 0, stateID, 0);
         }
         public byte[] GetPacketBytes(byte[] data, SDFlags flags)
         {
             return GetPacketBytes(data, 0, flags);
+        }
+        public byte[] GetPacketBytes(byte[] data, SDFlags flags, int stateID)
+        {
+            return GetPacketBytes(data, 0, stateID, flags);
         }
         public byte[] GetPacketBytes(byte[] data, uint serviceID)
         {
@@ -77,12 +100,17 @@ namespace Silmoon.Net.Protocol
         }
         public byte[] GetPacketBytes(byte[] data, uint serviceID, SDFlags flags)
         {
-            byte[] result = new byte[16 + data.Length];
+            return GetPacketBytes(data, serviceID, 0, flags);
+        }
+        public byte[] GetPacketBytes(byte[] data, uint serviceID, int stateID, SDFlags flags)
+        {
+            byte[] result = new byte[20 + data.Length];
             Array.Copy(BitConverter.GetBytes(serviceID), 0, result, 4, 4);
             Array.Copy(BitConverter.GetBytes((int)flags), 0, result, 8, 4);
-            Array.Copy(BitConverter.GetBytes(data.Length), 0, result, 12, 4);
+            Array.Copy(BitConverter.GetBytes(stateID), 0, result, 12, 4);
+            Array.Copy(BitConverter.GetBytes(data.Length), 0, result, 16, 4);
 
-            Array.Copy(data, 0, result, 16, data.Length);
+            Array.Copy(data, 0, result, 20, data.Length);
 
             return result;
         }

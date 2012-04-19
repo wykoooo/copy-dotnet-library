@@ -1781,6 +1781,21 @@
              读写ini文件的类
              </summary>
         </member>
+        <member name="P:Silmoon.Net.Protocol.HttpLikePacket.TitleLine">
+            <summary>
+            数据的第一行标题栏
+            </summary>
+        </member>
+        <member name="P:Silmoon.Net.Protocol.HttpLikePacket.Message">
+            <summary>
+            数据的消息集合
+            </summary>
+        </member>
+        <member name="P:Silmoon.Net.Protocol.HttpLikePacket.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
         <member name="T:Silmoon.Service.SystemService.ServiceEnvironment">
             <summary>
             系统服务环境

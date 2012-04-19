@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="BigInteger.cs" />
     <Compile Include="Net\Icmp.cs" />
+    <Compile Include="Net\Protocol\HttpLikePacket.cs" />
     <Compile Include="Net\Protocol\SDFlags.cs" />
     <Compile Include="Net\Protocol\SDPacket.cs" />
     <Compile Include="Net\Protocol\SDProtocol.cs" />

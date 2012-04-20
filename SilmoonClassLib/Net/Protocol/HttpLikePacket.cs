@@ -92,5 +92,11 @@ namespace Silmoon.Net.Protocol
             Message.Clear();
             Data = new byte[0];
         }
+        public void Clear(string title)
+        {
+            TitleLine = title;
+            Message.Clear();
+            Data = new byte[0];
+        }
     }
 }

@@ -269,6 +269,12 @@
             系统信息
             </summary>
         </member>
+        <member name="M:Silmoon.Windows.Systems.SystemInfo.GetLogonUserList">
+            <summary>
+            获取TS用户回话列表
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:Silmoon.Windows.Systems.SystemInfo.GetMemoryInfo">
             <summary>
             获取内存信息
@@ -402,6 +408,21 @@
         <member name="T:Silmoon.Windows.IdentityType">
             <summary>
             标识类型
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.LogonUser.SessionType">
+            <summary>
+            会话类型
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.LogonUser.ClientUserName">
+            <summary>
+            客户端名
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.LogonUser.UserName">
+            <summary>
+            登录用户名
             </summary>
         </member>
     </members>

@@ -41,7 +41,7 @@ namespace Silmoon.Security
                 sTemp = sTemp.Substring(0, KeyLength);
             else if (sTemp.Length < KeyLength)
                 sTemp = sTemp.PadRight(KeyLength, ' ');
-            return ASCIIEncoding.ASCII.GetBytes(sTemp);
+            return ASCIIEncoding.UTF8.GetBytes(sTemp);
         }
         /// <summary>   
         /// 获得初始向量IV   
@@ -57,7 +57,7 @@ namespace Silmoon.Security
                 sTemp = sTemp.Substring(0, IVLength);
             else if (sTemp.Length < IVLength)
                 sTemp = sTemp.PadRight(IVLength, ' ');
-            return ASCIIEncoding.ASCII.GetBytes(sTemp);
+            return ASCIIEncoding.UTF8.GetBytes(sTemp);
         }
         /// <summary>   
         /// 加密方法   
@@ -149,6 +149,8 @@ namespace Silmoon.Security
         /// <returns>经过加密的串</returns>   
         public byte[] Encrypt(byte[] Source)
         {
+            string s = Convert.ToBase64String(Source);
+            Source = Encoding.ASCII.GetBytes(s);
             byte[] bytIn = Source;
             MemoryStream ms = new MemoryStream();
             mobjCryptoService.Key = GetLegalKey();
@@ -182,7 +184,12 @@ namespace Silmoon.Security
                 {
                     list.Add((byte)sr.Read());
                 }
-                return list.ToArray();
+                byte[] bytOut = list.ToArray();
+
+                string s = Encoding.ASCII.GetString(bytOut);
+                bytOut = Convert.FromBase64String(s);
+
+                return bytOut;
             }
             catch { return null; }
         }

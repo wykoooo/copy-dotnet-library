@@ -48,16 +48,13 @@ namespace NetTest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string s = "hello";
-            byte[] d = Encoding.UTF8.GetBytes(s);
-
             Silmoon.Security.CSEncrypt c = new Silmoon.Security.CSEncrypt();
+            byte[] d = { 129 };
             d = c.Encrypt(d);
             d = c.Decrypt(d);
 
-            s = Encoding.UTF8.GetString(d);
 
-            MessageBox.Show(s.ToString());
+            MessageBox.Show(d[0].ToString());
         }
     }
 }

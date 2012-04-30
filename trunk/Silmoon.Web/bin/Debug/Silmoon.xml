@@ -142,19 +142,25 @@
             <param name="Source">待解密的串</param>   
             <returns>经过解密的串</returns>   
         </member>
-        <member name="M:Silmoon.Security.CSEncrypt.EncryptoBinary(System.String)">
-            <summary>
-            将已经加密过的字符串再次加密字节
-            </summary>
-            <param name="encryptString">已经加密过的字符串</param>
-            <returns></returns>
+        <member name="M:Silmoon.Security.CSEncrypt.Encrypt(System.Byte[])">
+            <summary>   
+            加密方法   
+            </summary>   
+            <param name="Source">待加密的串</param>   
+            <returns>经过加密的串</returns>   
         </member>
-        <member name="M:Silmoon.Security.CSEncrypt.DecryptoString(System.Byte[])">
+        <member name="M:Silmoon.Security.CSEncrypt.Decrypt(System.Byte[])">
+            <summary>   
+            解密方法   
+            </summary>   
+            <param name="Source">待解密的串</param>   
+            <returns>经过解密的串</returns>   
+        </member>
+        <member name="M:Silmoon.Security.CSEncrypt.Setkey(System.String)">
             <summary>
-            将已经加密成字节的字符串解密成曾经加密成的字符串
+            重新设置一个哈希关键值
             </summary>
-            <param name="encryptBytes">加密后的字节</param>
-            <returns></returns>
+            <param name="key"></param>
         </member>
         <member name="T:Silmoon.Net.Smmp">
             <summary>

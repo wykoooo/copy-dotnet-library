@@ -140,33 +140,55 @@ namespace Silmoon.Security
             }
             catch { return ""; }
         }
-
-        /// <summary>
-        /// 将已经加密过的字符串再次加密字节
-        /// </summary>
-        /// <param name="encryptString">已经加密过的字符串</param>
-        /// <returns></returns>
-        public byte[] EncryptoBinary(string encryptString)
+        /// <summary>   
+        /// 加密方法   
+        /// </summary>   
+        /// <param name="Source">待加密的串</param>   
+        /// <returns>经过加密的串</returns>   
+        public byte[] Encrypt(byte[] Source)
         {
-            string[] sinta = encryptString.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-
-            byte[] data = new byte[sinta.Length];
-
-            for (int i = 0; i < data.Length; i++)
-                data[i] = (byte)int.Parse(sinta[i]);
-            return data;
+            byte[] bytIn = Source;
+            MemoryStream ms = new MemoryStream();
+            mobjCryptoService.Key = GetLegalKey();
+            mobjCryptoService.IV = GetLegalIV();
+            ICryptoTransform encrypto = mobjCryptoService.CreateEncryptor();
+            CryptoStream cs = new CryptoStream(ms, encrypto, CryptoStreamMode.Write);
+            cs.Write(bytIn, 0, bytIn.Length);
+            cs.FlushFinalBlock();
+            ms.Close();
+            byte[] bytOut = ms.ToArray();
+            return bytOut;
+        }
+        /// <summary>   
+        /// 解密方法   
+        /// </summary>   
+        /// <param name="Source">待解密的串</param>   
+        /// <returns>经过解密的串</returns>   
+        public byte[] Decrypt(byte[] Source)
+        {
+            try
+            {
+                byte[] bytIn = Source;
+                MemoryStream ms = new MemoryStream(bytIn, 0, bytIn.Length);
+                mobjCryptoService.Key = GetLegalKey();
+                mobjCryptoService.IV = GetLegalIV();
+                ICryptoTransform encrypto = mobjCryptoService.CreateDecryptor();
+                CryptoStream cs = new CryptoStream(ms, encrypto, CryptoStreamMode.Read);
+                StreamReader sr = new StreamReader(cs);
+                cs.Position = 0;
+                byte[] result = new byte[cs.Length];
+                cs.Read(result, 0, result.Length);
+                return result;
+            }
+            catch { return null; }
         }
         /// <summary>
-        /// 将已经加密成字节的字符串解密成曾经加密成的字符串
+        /// 重新设置一个哈希关键值
         /// </summary>
-        /// <param name="encryptBytes">加密后的字节</param>
-        /// <returns></returns>
-        public string DecryptoString(byte[] encryptBytes)
+        /// <param name="key"></param>
+        public void Setkey(string key)
         {
-            string s = "";
-            foreach (byte item in encryptBytes)
-                s += ((int)item).ToString();
-            return s;
+            this.Key = key;
         }
 
         #region IDisposable 成员

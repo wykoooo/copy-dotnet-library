@@ -3,6 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 
 using System.Text;
+using System.Collections.Generic;
 
 namespace Silmoon.Security
 {
@@ -140,6 +141,7 @@ namespace Silmoon.Security
             }
             catch { return ""; }
         }
+
         /// <summary>   
         /// º”√‹∑Ω∑®   
         /// </summary>   
@@ -175,10 +177,12 @@ namespace Silmoon.Security
                 ICryptoTransform encrypto = mobjCryptoService.CreateDecryptor();
                 CryptoStream cs = new CryptoStream(ms, encrypto, CryptoStreamMode.Read);
                 StreamReader sr = new StreamReader(cs);
-                cs.Position = 0;
-                byte[] result = new byte[cs.Length];
-                cs.Read(result, 0, result.Length);
-                return result;
+                List<byte> list = new List<byte>();
+                while (!sr.EndOfStream)
+                {
+                    list.Add((byte)sr.Read());
+                }
+                return list.ToArray();
             }
             catch { return null; }
         }

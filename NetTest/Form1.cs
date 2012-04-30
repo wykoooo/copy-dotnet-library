@@ -45,5 +45,19 @@ namespace NetTest
             ShowEx();
             base.OnShown(e);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string s = "hello";
+            byte[] d = Encoding.UTF8.GetBytes(s);
+
+            Silmoon.Security.CSEncrypt c = new Silmoon.Security.CSEncrypt();
+            d = c.Encrypt(d);
+            d = c.Decrypt(d);
+
+            s = Encoding.UTF8.GetString(d);
+
+            MessageBox.Show(s.ToString());
+        }
     }
 }

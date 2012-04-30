@@ -24,13 +24,28 @@ namespace Silmoon.Net.Protocol
 
         public HttpLikePacket()
         {
-            Encoding = Encoding.UTF8;
-            Message = new NameValueCollection();
-            if (Data == null) Data = new byte[0];
+            Init();
         }
         public HttpLikePacket(Encoding encoding)
         {
+            Init();
             Encoding = encoding;
+        }
+        public HttpLikePacket(byte[] data)
+        {
+            Init();
+            ReadFromBytes(data);
+        }
+        public HttpLikePacket(byte[] data, Encoding encoding)
+        {
+            Init();
+            ReadFromBytes(data);
+            Encoding = encoding;
+        }
+
+        void Init()
+        {
+            Encoding = Encoding.UTF8;
             Message = new NameValueCollection();
             if (Data == null) Data = new byte[0];
         }

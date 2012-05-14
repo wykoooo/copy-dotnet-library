@@ -72,11 +72,11 @@ namespace Silmoon.Net.Protocol
         public byte[] GetBytes(SDPacket packet)
         {
             byte[] data = new byte[20 + packet.Length];
-            Array.Copy(BitConverter.GetBytes(packet.ServiceID), 0, data, 0, 4);
-            Array.Copy(BitConverter.GetBytes(packet.PacketID), 0, data, 4, 4);
+            Array.Copy(BitConverter.GetBytes(packet.PacketID), 0, data, 0, 4);
+            Array.Copy(BitConverter.GetBytes(packet.ServiceID), 0, data, 4, 4);
             Array.Copy(BitConverter.GetBytes((uint)packet.Flags), 0, data, 8, 4);
-            Array.Copy(BitConverter.GetBytes(packet.Length), 0, data, 12, 4);
-            Array.Copy(BitConverter.GetBytes(packet.StateID), 0, data, 16, 4);
+            Array.Copy(BitConverter.GetBytes(packet.StateID), 0, data, 12, 4);
+            Array.Copy(BitConverter.GetBytes(packet.Length), 0, data, 16, 4);
             Array.Copy(packet.Data, 0, data, 20, packet.Length);
             return data;
         }

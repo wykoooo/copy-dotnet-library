@@ -13,7 +13,7 @@ namespace Silmoon.Web.Controls
         int _userLevel = -1;
         LoginState _state;
         UserLimit _userLimit;
-        int _sessionTimeout = 10;
+        int _sessionTimeout = 20;
 
         public int SessionTimeout
         {
@@ -212,17 +212,5 @@ namespace Silmoon.Web.Controls
             return o;
         }
 
-    }
-    public interface IObjectWithText
-    {
-        string Text { get; set; }
-    }
-    public class SmControl
-    {
-        public static Control FindControl(Control obj, string id)
-        {
-            obj.FindControl(id);
-            return obj;
-        }
     }
 }

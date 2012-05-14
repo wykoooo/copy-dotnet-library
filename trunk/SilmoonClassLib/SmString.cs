@@ -194,6 +194,21 @@ namespace Silmoon
             return false;
         }
         /// <summary>
+        /// 在一个字符串数组里面寻找一个字符串
+        /// </summary>
+        /// <param name="sArr">字符串数组</param>
+        /// <param name="findString">字符串</param>
+        /// <returns></returns>
+        public static bool FindFormStringArray(List<string> sArr, string findString)
+        {
+            foreach (string s in sArr)
+            {
+                if (s == findString)
+                    return true;
+            }
+            return false;
+        }
+        /// <summary>
         /// 保持一个字符串的长度
         /// </summary>
         /// <param name="s">原字符串</param>

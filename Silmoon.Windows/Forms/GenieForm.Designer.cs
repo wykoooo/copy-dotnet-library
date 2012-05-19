@@ -74,6 +74,7 @@
             // GenieForm
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(134)))), ((int)(((byte)(216)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.ctlTitleLabel);
             this.Controls.Add(this.ctlClosePanelButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

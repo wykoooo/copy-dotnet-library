@@ -210,6 +210,19 @@ namespace Silmoon.Data.SqlUtility
             return i;
         }
         /// <summary>
+        /// 设置用户密码
+        /// </summary>
+        /// <param name="username">目标用户</param>
+        /// <param name="string">主机</param>
+        /// <param name="password">密码</param>
+        /// <returns></returns>
+        public int SetPassword(string username, string host, string password)
+        {
+            int i = _odbc.ExecNonQuery("UPDATE mysql.user SET PASSWORD = PASSWORD('" + _odbc.InjectFieldReplace(password) + "') WHERE USER = '" + _odbc.InjectFieldReplace(username) + "' AND HOST = '" + _odbc.InjectFieldReplace(host) + "'");
+            Refresh();
+            return i;
+        }
+        /// <summary>
         /// 创建一个连接MySQL ODBC 3.51驱动所连接数据源的连接字符串
         /// </summary>
         /// <param name="server">主机名</param>

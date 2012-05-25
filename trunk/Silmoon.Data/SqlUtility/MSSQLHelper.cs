@@ -160,6 +160,42 @@ namespace Silmoon.Data.SqlUtility
         {
             return "DRIVER={MySQL ODBC 3.51 Driver};SERVER=" + hostname + ";DATABASE=" + database + ";UID=" + username + ";PASSWORD=" + password + ";";
         }
+        /// <summary>
+        /// 获取所有数据库
+        /// </summary>
+        /// <returns></returns>
+        public string[] GetDatabases()
+        {
+            List<string> list = new List<string>();
+            try
+            {
+                DataTable dt = _mssql.GetDataTable("Select Name FROM Master.dbo.SysDatabases ORDER BY Name");
+                foreach (DataRow item in dt.Rows)
+                {
+                    list.Add(item[0].ToString());
+                }
+            }
+            catch { }
+            return list.ToArray();
+        }
+        /// <summary>
+        /// 获取所有用户
+        /// </summary>
+        /// <returns></returns>
+        public string[] GetUsers()
+        {
+            List<string> list = new List<string>();
+            try
+            {
+                DataTable dt = _mssql.GetDataTable("select Name from syslogins where isntname=0");
+                foreach (DataRow item in dt.Rows)
+                {
+                    list.Add(item[0].ToString());
+                }
+            }
+            catch { }
+            return list.ToArray();
+        }
     }
     /// <summary>
     /// 表示MySQL异常

@@ -239,6 +239,43 @@ namespace Silmoon.Data.SqlUtility
         {
             return "DRIVER={" + odbcDriverName + "};SERVER=" + hostname + ";DATABASE=" + database + ";UID=" + username + ";PASSWORD=" + password + ";";
         }
+        /// <summary>
+        /// 获取所有数据库
+        /// </summary>
+        /// <returns></returns>
+        public string[] GetDatabases()
+        {
+            List<string> list = new List<string>();
+            try
+            {
+                DataTable dt = _odbc.GetDataTable("show databases");
+                foreach (DataRow item in dt.Rows)
+                {
+                    list.Add(item[0].ToString());
+                }
+            }
+            catch { }
+            return list.ToArray();
+        }
+        /// <summary>
+        /// 获取所有用户
+        /// </summary>
+        /// <returns></returns>
+        public string[] GetUsers()
+        {
+            List<string> list = new List<string>();
+            try
+            {
+                DataTable dt = _odbc.GetDataTable("select * from mysql.user");
+                foreach (DataRow item in dt.Rows)
+                {
+                    list.Add(item["user"] + "@" + item["host"]);
+                }
+            }
+            catch { }
+            return list.ToArray();
+        }
+
     }
     /// <summary>
     /// 表示MySQL异常

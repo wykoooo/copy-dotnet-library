@@ -52,6 +52,7 @@ namespace Silmoon.Net.Protocol
 
         public SDPacket? ReadPacket(byte[] rawData)
         {
+            if (rawData == null) return null;
             if (rawData.Length < 20) return null;
             uint dataLen = BitConverter.ToUInt16(rawData, 16);
             if (rawData.Length < 20 + dataLen) return null;

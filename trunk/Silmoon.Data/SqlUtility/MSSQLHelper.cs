@@ -167,15 +167,13 @@ namespace Silmoon.Data.SqlUtility
         public string[] GetDatabases()
         {
             List<string> list = new List<string>();
-            try
+            using (DataTable dt = _mssql.GetDataTable("Select Name FROM Master.dbo.SysDatabases ORDER BY Name"))
             {
-                DataTable dt = _mssql.GetDataTable("Select Name FROM Master.dbo.SysDatabases ORDER BY Name");
                 foreach (DataRow item in dt.Rows)
                 {
                     list.Add(item[0].ToString());
                 }
             }
-            catch { }
             return list.ToArray();
         }
         /// <summary>
@@ -185,15 +183,46 @@ namespace Silmoon.Data.SqlUtility
         public string[] GetUsers()
         {
             List<string> list = new List<string>();
-            try
+            using (DataTable dt = _mssql.GetDataTable("select Name from syslogins where isntname=0"))
             {
-                DataTable dt = _mssql.GetDataTable("select Name from syslogins where isntname=0");
                 foreach (DataRow item in dt.Rows)
                 {
                     list.Add(item[0].ToString());
                 }
             }
-            catch { }
+            return list.ToArray();
+        }
+
+        public string[] GetUserDatabases(string username)
+        {
+            List<string> list = new List<string>();
+
+            using (DataTable namedt = _mssql.GetDataTable("Select Name FROM Master.dbo.SysDatabases ORDER BY Name"))
+            {
+                foreach (DataRow row in namedt.Rows)
+                {
+                    using (DataTable dt = _mssql.GetDataTable("use " + row["Name"].ToString() + ";select Name from sysusers where islogin=1;use master"))
+                    {
+                        foreach (DataRow namesrow in dt.Rows)
+                            if (namesrow["Name"].ToString() == username)
+                                list.Add(row["Name"].ToString());
+                    }
+                }
+            }
+            return list.ToArray();
+        }
+
+        public string[] GetDatabaseUsers(string database)
+        {
+            List<string> list = new List<string>();
+
+            using (DataTable dt = _mssql.GetDataTable("use " + database + ";select Name from sysusers where islogin=1;use master"))
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    list.Add(row["Name"].ToString());
+                }
+            }
             return list.ToArray();
         }
     }

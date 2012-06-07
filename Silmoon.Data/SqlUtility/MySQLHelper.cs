@@ -259,15 +259,13 @@ namespace Silmoon.Data.SqlUtility
         public string[] GetDatabases()
         {
             List<string> list = new List<string>();
-            try
+            using (DataTable dt = _odbc.GetDataTable("show databases"))
             {
-                DataTable dt = _odbc.GetDataTable("show databases");
                 foreach (DataRow item in dt.Rows)
                 {
                     list.Add(item[0].ToString());
                 }
             }
-            catch { }
             return list.ToArray();
         }
         /// <summary>
@@ -277,18 +275,40 @@ namespace Silmoon.Data.SqlUtility
         public string[] GetUsers()
         {
             List<string> list = new List<string>();
-            try
+            using (DataTable dt = _odbc.GetDataTable("select * from mysql.user"))
             {
-                DataTable dt = _odbc.GetDataTable("select * from mysql.user");
                 foreach (DataRow item in dt.Rows)
                 {
                     list.Add(item["user"] + "@" + item["host"]);
                 }
             }
-            catch { }
             return list.ToArray();
         }
 
+        public string[] GetUserDatabases(string username, string host)
+        {
+            List<string> list = new List<string>();
+            using (DataTable dt = _odbc.GetDataTable("select db from mysql.db where user = '" + _odbc.InjectFieldReplace(username) + "' and host  = '" + _odbc.InjectFieldReplace(host) + "'"))
+            {
+                foreach (DataRow item in dt.Rows)
+                {
+                    list.Add(item["db"].ToString());
+                }
+            }
+            return list.ToArray();
+        }
+
+        public string[] GetDatabaseUsers(string database)
+        {
+            List<string> list = new List<string>();
+            DataTable dt = _odbc.GetDataTable("select user,host from mysql.db where db = '" + database + "'");
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(row["user"] + "@" + row["host"]);
+            }
+
+            return list.ToArray();
+        }
     }
     /// <summary>
     /// ±Ì æMySQL“Ï≥£

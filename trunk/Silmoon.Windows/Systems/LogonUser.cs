@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Silmoon.Windows.Win32.API.APIStructs;
 
 namespace Silmoon.Windows.Systems
 {
@@ -10,7 +11,16 @@ namespace Silmoon.Windows.Systems
         private string userName;
         private string clientUserName;
         private string sessionType;
+        private WTS_CONNECTSTATE_CLASS connectState;
 
+        /// <summary>
+        /// 连接状态
+        /// </summary>
+        public WTS_CONNECTSTATE_CLASS ConnectState
+        {
+            get { return connectState; }
+            set { connectState = value; }
+        }
         /// <summary>
         /// 会话类型
         /// </summary>
@@ -35,6 +45,8 @@ namespace Silmoon.Windows.Systems
             get { return userName; }
             set { userName = value; }
         }
+
+
         #endregion
     }
 }

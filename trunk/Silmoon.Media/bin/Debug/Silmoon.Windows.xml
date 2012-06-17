@@ -264,6 +264,11 @@
               重写当前线程的 CurrentUICulture 属性。
             </summary>
         </member>
+        <member name="P:Silmoon.Windows.Systems.LogonUser.ConnectState">
+            <summary>
+            连接状态
+            </summary>
+        </member>
         <member name="P:Silmoon.Windows.Systems.LogonUser.SessionType">
             <summary>
             会话类型

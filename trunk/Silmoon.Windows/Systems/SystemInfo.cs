@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Management;
 using System.Collections;
 using System.IO;
+using Silmoon.Windows.Win32.API.APIStructs;
+using Silmoon.Windows.Win32.API.APIEnum;
 
 namespace Silmoon.Windows.Systems
 {
@@ -115,7 +117,7 @@ namespace Silmoon.Windows.Systems
         {
             List<LogonUser> LogonUsers = null;
             #region 查询代码
-            TSControl.WTS_SESSION_INFO[] pSessionInfo = TSControl.SessionEnumeration();
+            WTS_SESSION_INFO[] pSessionInfo = TSControl.SessionEnumeration();
             LogonUser cum = null;
             LogonUsers = new System.Collections.Generic.List<LogonUser>();
             for (int i = 0; i < pSessionInfo.Length; i++)
@@ -129,20 +131,27 @@ namespace Silmoon.Windows.Systems
                         StringBuilder userName = new StringBuilder();           // 用户名
                         StringBuilder clientUser = new StringBuilder();         // 客户端名
                         StringBuilder stateType = new StringBuilder();          // 会话类型
+                        byte[] connState = new byte[4];
 
-                        bool userNameBool = TSControl.WTSQuerySessionInformation(IntPtr.Zero, pSessionInfo[i].SessionID, TSControl.WTSInfoClass.WTSUserName, out userName, out count);
-                        bool clientUserBool = TSControl.WTSQuerySessionInformation(IntPtr.Zero, pSessionInfo[i].SessionID, TSControl.WTSInfoClass.WTSClientName, out clientUser, out count);
-                        bool stateTypeBool = TSControl.WTSQuerySessionInformation(IntPtr.Zero, pSessionInfo[i].SessionID, TSControl.WTSInfoClass.WTSWinStationName, out stateType, out count);
-                        if (userNameBool && clientUserBool && stateTypeBool)
+                        bool userNameBool = TSControl.WTSQuerySessionInformation(IntPtr.Zero, pSessionInfo[i].SessionID, WTSInfoClass.WTSUserName, out userName, out count);
+                        bool clientUserBool = TSControl.WTSQuerySessionInformation(IntPtr.Zero, pSessionInfo[i].SessionID, WTSInfoClass.WTSClientName, out clientUser, out count);
+                        bool stateTypeBool = TSControl.WTSQuerySessionInformation(IntPtr.Zero, pSessionInfo[i].SessionID, WTSInfoClass.WTSWinStationName, out stateType, out count);
+                        bool connStateBool = TSControl.WTSQuerySessionInformation(IntPtr.Zero, pSessionInfo[i].SessionID, WTSInfoClass.WTSConnectState, out connState, out count);
+                        if (userNameBool && clientUserBool && stateTypeBool & connStateBool)
                         {
                             cum = new LogonUser();
                             cum.UserName = userName.ToString();
                             cum.ClientUserName = clientUser.ToString();
                             cum.SessionType = stateType.ToString();
+                            cum.ConnectState = (WTS_CONNECTSTATE_CLASS)BitConverter.ToInt32(connState, 0);
+
                         }
                         LogonUsers.Add(cum);
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                    }
                 }
             }
             #endregion
@@ -191,6 +200,7 @@ namespace Silmoon.Windows.Systems
         public uint dwTotalVirtual;
         public uint dwAvailVirtual;
     }
+
     #region 本机连接用户信息API封装
     public class TSControl
     {
@@ -203,47 +213,8 @@ namespace Silmoon.Windows.Systems
         public static extern bool WTSLogoffSession(int hServer, long SessionId, bool bWait);
         [DllImport("Wtsapi32.dll")]
         public static extern bool WTSQuerySessionInformation(System.IntPtr hServer, int sessionId, WTSInfoClass wtsInfoClass, out StringBuilder ppBuffer, out int pBytesReturned);
-        public enum WTSInfoClass
-        {
-            WTSInitialProgram,
-            WTSApplicationName,
-            WTSWorkingDirectory,
-            WTSOEMId,
-            WTSSessionId,
-            WTSUserName,
-            WTSWinStationName,
-            WTSDomainName,
-            WTSConnectState,
-            WTSClientBuildNumber,
-            WTSClientName,
-            WTSClientDirectory,
-            WTSClientProductId,
-            WTSClientHardwareId,
-            WTSClientAddress,
-            WTSClientDisplay,
-            WTSClientProtocolType
-        }
-        public enum WTS_CONNECTSTATE_CLASS
-        {
-            WTSActive,
-            WTSConnected,
-            WTSConnectQuery,
-            WTSShadow,
-            WTSDisconnected,
-            WTSIdle,
-            WTSListen,
-            WTSReset,
-            WTSDown,
-            WTSInit,
-        }
-
-        public struct WTS_SESSION_INFO
-        {
-            public int SessionID;
-            [MarshalAs(UnmanagedType.LPTStr)]
-            public string pWinStationName;
-            public WTS_CONNECTSTATE_CLASS state;
-        }
+        [DllImport("Wtsapi32.dll")]
+        public static extern bool WTSQuerySessionInformation(System.IntPtr hServer, int sessionId, WTSInfoClass wtsInfoClass, out byte[] ppBuffer, out int pBytesReturned);
 
         public static WTS_SESSION_INFO[] SessionEnumeration()
         {

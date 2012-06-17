@@ -116,8 +116,6 @@ E:\ServerCodes\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Media.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Media.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Interop.WMPLib.dll
-I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Microsoft.DirectX.AudioVideoPlayback.dll
-I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Microsoft.DirectX.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Windows.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Windows.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Windows.xml

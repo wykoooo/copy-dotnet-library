@@ -131,7 +131,7 @@ namespace Silmoon.Windows.Systems
                         StringBuilder userName = new StringBuilder();           // 用户名
                         StringBuilder clientUser = new StringBuilder();         // 客户端名
                         StringBuilder stateType = new StringBuilder();          // 会话类型
-                        byte[] connState = new byte[4];
+                        byte[] connState = new byte[1];
 
                         bool userNameBool = TSControl.WTSQuerySessionInformation(IntPtr.Zero, pSessionInfo[i].SessionID, WTSInfoClass.WTSUserName, out userName, out count);
                         bool clientUserBool = TSControl.WTSQuerySessionInformation(IntPtr.Zero, pSessionInfo[i].SessionID, WTSInfoClass.WTSClientName, out clientUser, out count);
@@ -143,7 +143,7 @@ namespace Silmoon.Windows.Systems
                             cum.UserName = userName.ToString();
                             cum.ClientUserName = clientUser.ToString();
                             cum.SessionType = stateType.ToString();
-                            cum.ConnectState = (WTS_CONNECTSTATE_CLASS)BitConverter.ToInt32(connState, 0);
+                            cum.ConnectState = (WTS_CONNECTSTATE_CLASS)connState[0];
 
                         }
                         LogonUsers.Add(cum);

@@ -97,7 +97,6 @@ E:\ServerCodes\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.dll
-I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResolveAssemblyReference.cache
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls.ProcessWaitingBar.resources
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.OkConfirmDialog.resources
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.ScrollForm.resources
@@ -233,5 +232,6 @@ M:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.dll
 M:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Controls.SwitchButton.resources
 I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.Forms.GenieForm.resources
-I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.read.1.tlog
-I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\ResGen.write.1.tlog
+I:\svn\silmoon-dotnet-library\Silmoon.Windows\bin\Debug\Silmoon.Windows.XML
+I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.csproj.GenerateResource.Cache
+I:\svn\silmoon-dotnet-library\Silmoon.Windows\obj\Debug\Silmoon.Windows.csprojResolveAssemblyReference.cache

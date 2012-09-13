@@ -4,61 +4,6 @@
         <name>Silmoon.Windows</name>
     </assembly>
     <members>
-        <member name="M:Silmoon.Windows.Win32.API.USER32.setWindowTextW(System.IntPtr,System.String)">
-            <summary>
-            设置指定句柄的窗口的标题
-            </summary>
-            <param name="hWnd">句柄</param>
-            <param name="text">标题</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Windows.Win32.API.USER32.getWindowTextW(System.IntPtr,System.Text.StringBuilder,System.Int32)">
-            <summary>
-            获取指定句柄的窗口的标题
-            </summary>
-            <param name="hWnd">标题</param>
-            <param name="sbuilder">已有缓冲区的StringBuilder</param>
-            <param name="reffCount">返回长度</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Windows.Win32.API.USER32.getClassNameW(System.IntPtr,System.Text.StringBuilder,System.Int32)">
-            <summary>
-            返回指定窗口的类信息
-            </summary>
-            <param name="hWnd">句柄</param>
-            <param name="sbuilder">已有缓冲区的StringBuilder</param>
-            <param name="reffCount">返回长度</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Windows.Win32.API.USER32.getForegroundWindow">
-            <summary>
-            获取当前活动窗口的句柄
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Windows.Win32.API.USER32.setForegroundWindow(System.IntPtr)">
-            <summary>
-            设置当前的活动窗口
-            </summary>
-            <param name="hWnd">窗口句柄</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Windows.Win32.API.USER32.enumWindows">
-            <summary>
-            枚举当前桌面所有的句柄！
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.Windows.Win32.API.USER32.sendMessage(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            向指定的句柄窗口发送消息
-            </summary>
-            <param name="hWnd">目标句柄</param>
-            <param name="mSg">消息ID</param>
-            <param name="WParam">参数1</param>
-            <param name="LParam">参数2</param>
-            <returns></returns>
-        </member>
         <member name="F:Silmoon.Windows.ControlsHelper.ListViewColumnSorter.ColumnToSort">
             <summary>
             Specifies the column to be sorted
@@ -102,49 +47,16 @@
             Gets or sets the order of sorting to apply (for example, 'Ascending' or 'Descending').
             </summary>
         </member>
+        <member name="T:Silmoon.Windows.Controls.DoubleBufferListView">
+            <summary>
+            启用了双缓冲和优化缓冲等方法减少闪烁的ListView
+            </summary>
+        </member>
         <member name="M:Silmoon.Windows.Controls.Extension.GenieExtension.#ctor(System.Windows.Forms.Control)">
             <summary>
             处理特效的控件的父控件
             </summary>
             <param name="parentControl"></param>
-        </member>
-        <member name="T:Silmoon.Windows.Win32.Hooking.GlobalKeyBoardHook">
-            <summary> 
-            这个类可以让你得到一个在运行中程序的所有键盘事件 
-            并且引发一个带KeyEventArgs和MouseEventArgs参数的.NET事件以便你很容易使用这些信息 
-            </summary> 
-        </member>
-        <member name="M:Silmoon.Windows.Win32.Hooking.GlobalKeyBoardHook.#ctor">
-            <summary> 
-            墨认的构造函数构造当前类的实例并自动的运行起来. 
-            </summary> 
-        </member>
-        <member name="P:Silmoon.Windows.Systems.Processes.ProcessCount">
-            <summary>
-            获取进程数量
-            </summary>
-        </member>
-        <member name="T:Silmoon.Windows.Systems.ProcessInfoUnit">
-            <summary>
-            进程信息单元
-            </summary>
-        </member>
-        <member name="F:Silmoon.Windows.Forms.OkConfirmDialog.components">
-            <summary>
-            必需的设计器变量。
-            </summary>
-        </member>
-        <member name="M:Silmoon.Windows.Forms.OkConfirmDialog.Dispose(System.Boolean)">
-            <summary>
-            清理所有正在使用的资源。
-            </summary>
-            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-        </member>
-        <member name="M:Silmoon.Windows.Forms.OkConfirmDialog.InitializeComponent">
-            <summary>
-            设计器支持所需的方法 - 不要
-            使用代码编辑器修改此方法的内容。
-            </summary>
         </member>
         <member name="F:Silmoon.Windows.Controls.ProcessWaitingBar.components">
             <summary>
@@ -176,40 +88,6 @@
         </member>
         <member name="M:Silmoon.Windows.Controls.SwitchButton.InitializeComponent">
             <summary> 
-            设计器支持所需的方法 - 不要
-            使用代码编辑器修改此方法的内容。
-            </summary>
-        </member>
-        <member name="F:Silmoon.Windows.Controls.SmTrackBar.components">
-            <summary> 
-            必需的设计器变量。
-            </summary>
-        </member>
-        <member name="M:Silmoon.Windows.Controls.SmTrackBar.Dispose(System.Boolean)">
-            <summary> 
-            清理所有正在使用的资源。
-            </summary>
-            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-        </member>
-        <member name="M:Silmoon.Windows.Controls.SmTrackBar.InitializeComponent">
-            <summary> 
-            设计器支持所需的方法 - 不要
-            使用代码编辑器修改此方法的内容。
-            </summary>
-        </member>
-        <member name="F:Silmoon.Windows.Forms.OpenForm.components">
-            <summary>
-            必需的设计器变量。
-            </summary>
-        </member>
-        <member name="M:Silmoon.Windows.Forms.OpenForm.Dispose(System.Boolean)">
-            <summary>
-            清理所有正在使用的资源。
-            </summary>
-            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-        </member>
-        <member name="M:Silmoon.Windows.Forms.OpenForm.InitializeComponent">
-            <summary>
             设计器支持所需的方法 - 不要
             使用代码编辑器修改此方法的内容。
             </summary>
@@ -248,88 +126,38 @@
             使用代码编辑器修改此方法的内容。
             </summary>
         </member>
-        <member name="T:Silmoon.Windows.WindowsResource">
+        <member name="F:Silmoon.Windows.Forms.OkConfirmDialog.components">
             <summary>
-              一个强类型的资源类，用于查找本地化的字符串等。
+            必需的设计器变量。
             </summary>
         </member>
-        <member name="P:Silmoon.Windows.WindowsResource.ResourceManager">
+        <member name="M:Silmoon.Windows.Forms.OkConfirmDialog.Dispose(System.Boolean)">
             <summary>
-              返回此类使用的缓存的 ResourceManager 实例。
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:Silmoon.Windows.Forms.OkConfirmDialog.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
             </summary>
         </member>
-        <member name="P:Silmoon.Windows.WindowsResource.Culture">
+        <member name="F:Silmoon.Windows.Forms.OpenForm.components">
             <summary>
-              使用此强类型资源类，为所有资源查找
-              重写当前线程的 CurrentUICulture 属性。
+            必需的设计器变量。
             </summary>
         </member>
-        <member name="P:Silmoon.Windows.Systems.LogonUser.ConnectState">
+        <member name="M:Silmoon.Windows.Forms.OpenForm.Dispose(System.Boolean)">
             <summary>
-            连接状态
+            清理所有正在使用的资源。
             </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
         </member>
-        <member name="P:Silmoon.Windows.Systems.LogonUser.SessionType">
+        <member name="M:Silmoon.Windows.Forms.OpenForm.InitializeComponent">
             <summary>
-            会话类型
-            </summary>
-        </member>
-        <member name="P:Silmoon.Windows.Systems.LogonUser.ClientUserName">
-            <summary>
-            客户端名
-            </summary>
-        </member>
-        <member name="P:Silmoon.Windows.Systems.LogonUser.UserName">
-            <summary>
-            登录用户名
-            </summary>
-        </member>
-        <member name="T:Silmoon.Windows.Systems.SystemInfo">
-            <summary>
-            系统信息
-            </summary>
-        </member>
-        <member name="M:Silmoon.Windows.Systems.SystemInfo.GetLogonUserList">
-            <summary>
-            获取TS用户回话列表
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Silmoon.Windows.Systems.SystemInfo.GetMemoryInfo">
-            <summary>
-            获取内存信息
-            </summary>
-        </member>
-        <member name="P:Silmoon.Windows.Systems.SystemInfo.GetCPUInfo">
-            <summary>
-            返回CPU信息
-            </summary>
-        </member>
-        <member name="P:Silmoon.Windows.Systems.SystemInfo.CPUsLoadPercentage">
-            <summary>
-            获取当前多个CPU时间百分比数组
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Silmoon.Windows.Systems.SystemInfo.CPULoadPercentage">
-            <summary>
-            获取当前CPU时间百分比
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Silmoon.Windows.Systems.SystemInfo.SystemAddressWidth">
-            <summary>
-            获取系统地址宽度位数
-            </summary>
-        </member>
-        <member name="T:Silmoon.Windows.Systems.CPU_INFO">
-            <summary>
-            CPU信息结构
-            </summary>
-        </member>
-        <member name="T:Silmoon.Windows.Systems.MEMORY_INFO">
-            <summary>
-            内存信息结构
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
             </summary>
         </member>
         <member name="T:Silmoon.Windows.Properties.Resources">
@@ -346,11 +174,6 @@
             <summary>
               使用此强类型资源类，为所有资源查找
               重写当前线程的 CurrentUICulture 属性。
-            </summary>
-        </member>
-        <member name="T:Silmoon.Windows.Controls.DoubleBufferListView">
-            <summary>
-            启用了双缓冲和优化缓冲等方法减少闪烁的ListView
             </summary>
         </member>
         <member name="T:Silmoon.Windows.SAM">
@@ -428,6 +251,183 @@
         <member name="T:Silmoon.Windows.IdentityType">
             <summary>
             标识类型
+            </summary>
+        </member>
+        <member name="F:Silmoon.Windows.Controls.SmTrackBar.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:Silmoon.Windows.Controls.SmTrackBar.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:Silmoon.Windows.Controls.SmTrackBar.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.LogonUser.ConnectState">
+            <summary>
+            连接状态
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.LogonUser.SessionType">
+            <summary>
+            会话类型
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.LogonUser.ClientUserName">
+            <summary>
+            客户端名
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.LogonUser.UserName">
+            <summary>
+            登录用户名
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.Processes.ProcessCount">
+            <summary>
+            获取进程数量
+            </summary>
+        </member>
+        <member name="T:Silmoon.Windows.Systems.ProcessInfoUnit">
+            <summary>
+            进程信息单元
+            </summary>
+        </member>
+        <member name="T:Silmoon.Windows.Systems.SystemInfo">
+            <summary>
+            系统信息
+            </summary>
+        </member>
+        <member name="M:Silmoon.Windows.Systems.SystemInfo.GetLogonUserList">
+            <summary>
+            获取TS用户回话列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.SystemInfo.GetMemoryInfo">
+            <summary>
+            获取内存信息
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.SystemInfo.GetCPUInfo">
+            <summary>
+            返回CPU信息
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.SystemInfo.CPUsLoadPercentage">
+            <summary>
+            获取当前多个CPU时间百分比数组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.SystemInfo.CPULoadPercentage">
+            <summary>
+            获取当前CPU时间百分比
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Silmoon.Windows.Systems.SystemInfo.SystemAddressWidth">
+            <summary>
+            获取系统地址宽度位数
+            </summary>
+        </member>
+        <member name="T:Silmoon.Windows.Systems.CPU_INFO">
+            <summary>
+            CPU信息结构
+            </summary>
+        </member>
+        <member name="T:Silmoon.Windows.Systems.MEMORY_INFO">
+            <summary>
+            内存信息结构
+            </summary>
+        </member>
+        <member name="T:Silmoon.Windows.Win32.Hooking.GlobalKeyBoardHook">
+            <summary> 
+            这个类可以让你得到一个在运行中程序的所有键盘事件 
+            并且引发一个带KeyEventArgs和MouseEventArgs参数的.NET事件以便你很容易使用这些信息 
+            </summary> 
+        </member>
+        <member name="M:Silmoon.Windows.Win32.Hooking.GlobalKeyBoardHook.#ctor">
+            <summary> 
+            墨认的构造函数构造当前类的实例并自动的运行起来. 
+            </summary> 
+        </member>
+        <member name="M:Silmoon.Windows.Win32.API.USER32.setWindowTextW(System.IntPtr,System.String)">
+            <summary>
+            设置指定句柄的窗口的标题
+            </summary>
+            <param name="hWnd">句柄</param>
+            <param name="text">标题</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Windows.Win32.API.USER32.getWindowTextW(System.IntPtr,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            获取指定句柄的窗口的标题
+            </summary>
+            <param name="hWnd">标题</param>
+            <param name="sbuilder">已有缓冲区的StringBuilder</param>
+            <param name="reffCount">返回长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Windows.Win32.API.USER32.getClassNameW(System.IntPtr,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            返回指定窗口的类信息
+            </summary>
+            <param name="hWnd">句柄</param>
+            <param name="sbuilder">已有缓冲区的StringBuilder</param>
+            <param name="reffCount">返回长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Windows.Win32.API.USER32.getForegroundWindow">
+            <summary>
+            获取当前活动窗口的句柄
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Windows.Win32.API.USER32.setForegroundWindow(System.IntPtr)">
+            <summary>
+            设置当前的活动窗口
+            </summary>
+            <param name="hWnd">窗口句柄</param>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Windows.Win32.API.USER32.enumWindows">
+            <summary>
+            枚举当前桌面所有的句柄！
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Silmoon.Windows.Win32.API.USER32.sendMessage(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            向指定的句柄窗口发送消息
+            </summary>
+            <param name="hWnd">目标句柄</param>
+            <param name="mSg">消息ID</param>
+            <param name="WParam">参数1</param>
+            <param name="LParam">参数2</param>
+            <returns></returns>
+        </member>
+        <member name="T:Silmoon.Windows.WindowsResource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.WindowsResource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Silmoon.Windows.WindowsResource.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
             </summary>
         </member>
     </members>

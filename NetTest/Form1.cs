@@ -29,7 +29,7 @@ namespace NetTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CloseStyle = WindowCloseStyle.MaxStyleExt;
+            CloseStyle = WindowCloseStyle.MixStyleExt;
             checkBox1.Checked = false;
             ge.FocusSlide(textBox1, 150, 100, 10);
         }
@@ -55,6 +55,21 @@ namespace NetTest
 
 
             MessageBox.Show(d[0].ToString());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("项目", typeof(System.String));
+            dt.Columns.Add("耗值", typeof(System.Int32));
+            //dt.Rows.Add("学车", 40);
+            dt.Rows.Add("情感(现在)", 30);
+            dt.Rows.Add("情感(回忆)", 10);
+            dt.Rows.Add("个人工作", 30);
+            dt.Rows.Add("路途颠簸", 20);
+            dt.Rows.Add("其他", 10);
+            Bitmap graph = Silmoon.Imaging.ChartUtil.GetPieGraph("2012年9月8日 个人内耗列表", 600, 500, 100, 40, dt);
+            pictureBox1.Image = graph;
         }
     }
 }

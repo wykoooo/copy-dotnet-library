@@ -48,6 +48,8 @@ namespace Silmoon.Data.SqlUtility
         /// <returns></returns>
         public int DropDatabase(string database)
         {
+            _odbc.ExecNonQuery("DELETE FROM mysql.db WHERE db='" + database + "'");
+
             if (database.ToLower() == "mysql") throw new MySQLException(null, "系统数据库无法删除");
             if (!IsExistDatabase(database)) throw new MySQLException(null, "指定了一个不存在的数据库");
             return _odbc.ExecNonQuery("DROP DATABASE " + database);

@@ -119,7 +119,6 @@ I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Interop.WMPLib.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Windows.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Windows.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Media\bin\Debug\Silmoon.Windows.xml
-I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResolveAssemblyReference.cache
 I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.Controls.VideoControl.resources
 I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.pdb
@@ -265,5 +264,5 @@ M:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResGen.read.1.tlog
 M:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResGen.write.1.tlog
 M:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.dll
 M:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.pdb
-I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResGen.read.1.tlog
-I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\ResGen.write.1.tlog
+I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.csprojResolveAssemblyReference.cache
+I:\svn\silmoon-dotnet-library\Silmoon.Media\obj\Debug\Silmoon.Media.csproj.GenerateResource.Cache

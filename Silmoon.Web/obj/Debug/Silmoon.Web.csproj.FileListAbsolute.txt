@@ -85,7 +85,6 @@ I:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.Web.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.pdb
 I:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.xml
-I:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResolveAssemblyReference.cache
 I:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.Properties.Resources.resources
 I:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.dll
 I:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.pdb
@@ -197,5 +196,5 @@ M:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.Web.pdb
 M:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.dll
 M:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.pdb
 M:\svn\silmoon-dotnet-library\Silmoon.Web\bin\Debug\Silmoon.xml
-I:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResGen.read.1.tlog
-I:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\ResGen.write.1.tlog
+I:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.csprojResolveAssemblyReference.cache
+I:\svn\silmoon-dotnet-library\Silmoon.Web\obj\Debug\Silmoon.Web.csproj.GenerateResource.Cache

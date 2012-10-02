@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Silmoon.Windows.Systems;
 
 namespace NetTest
 {
@@ -12,9 +13,20 @@ namespace NetTest
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1());
+
+            var users = RDController.GetLogonUserList();
+
+            foreach (var item in users)
+            {
+                Console.WriteLine(item.UserName + "("+ item.SessionId + ")");
+                Console.WriteLine(item.ProtocalType.ToString());
+                Console.WriteLine();
+            }
+
+            RDController.Disconnect(1, true);
         }
     }
 }

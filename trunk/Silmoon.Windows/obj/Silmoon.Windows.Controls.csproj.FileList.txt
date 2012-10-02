@@ -1,7 +1,0 @@
-bin\Debug\Silmoon.Windows.Controls.dll
-bin\Debug\Silmoon.Windows.Controls.pdb
-obj\Debug\ResolveAssemblyReference.cache
-obj\Debug\Silmoon.Windows.Controls.SmTraceBar.resources
-obj\Debug\Silmoon.Windows.Controls.csproj.GenerateResource.Cache
-obj\Debug\Silmoon.Windows.Controls.dll
-obj\Debug\Silmoon.Windows.Controls.pdb

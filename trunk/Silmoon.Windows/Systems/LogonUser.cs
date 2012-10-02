@@ -8,11 +8,19 @@ namespace Silmoon.Windows.Systems
     public class LogonUser
     {
         #region 用户信息字段
+        private int sessionId;
+
         private string userName;
         private string clientUserName;
         private string sessionType;
+        private ClientProtocalType protocalType;
         private WTS_CONNECTSTATE_CLASS connectState;
 
+        public int SessionId
+        {
+            get { return sessionId; }
+            set { sessionId = value; }
+        }
         /// <summary>
         /// 连接状态
         /// </summary>
@@ -45,8 +53,18 @@ namespace Silmoon.Windows.Systems
             get { return userName; }
             set { userName = value; }
         }
-
+        public ClientProtocalType ProtocalType
+        {
+            get { return protocalType; }
+            set { protocalType = value; }
+        }
 
         #endregion
+
+        public enum ClientProtocalType{
+            Console = 0,
+            Other = 1,
+            RDP = 2,
+        }
     }
 }

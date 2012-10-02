@@ -300,16 +300,16 @@
             进程信息单元
             </summary>
         </member>
-        <member name="T:Silmoon.Windows.Systems.SystemInfo">
-            <summary>
-            系统信息
-            </summary>
-        </member>
-        <member name="M:Silmoon.Windows.Systems.SystemInfo.GetLogonUserList">
+        <member name="M:Silmoon.Windows.Systems.RDController.GetLogonUserList">
             <summary>
             获取TS用户回话列表
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Silmoon.Windows.Systems.SystemInfo">
+            <summary>
+            系统信息
+            </summary>
         </member>
         <member name="P:Silmoon.Windows.Systems.SystemInfo.GetMemoryInfo">
             <summary>

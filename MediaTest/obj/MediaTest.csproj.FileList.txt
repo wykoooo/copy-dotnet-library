@@ -1,7 +1,0 @@
-obj\Debug\ResolveAssemblyReference.cache
-bin\Debug\MediaTest.dll
-bin\Debug\MediaTest.pdb
-bin\Debug\AxInterop.WMPLib.dll
-bin\Debug\Interop.WMPLib.dll
-obj\Debug\MediaTest.dll
-obj\Debug\MediaTest.pdb

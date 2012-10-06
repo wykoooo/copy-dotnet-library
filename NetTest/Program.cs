@@ -13,6 +13,7 @@ namespace NetTest
         [STAThread]
         static void Main()
         {
+            return;
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());

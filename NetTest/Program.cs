@@ -13,10 +13,10 @@ namespace NetTest
         [STAThread]
         static void Main()
         {
-            return;
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
+            RDController rdc = new RDController();
 
             var users = RDController.GetLogonUserList();
 
@@ -27,7 +27,7 @@ namespace NetTest
                 Console.WriteLine();
             }
 
-            RDController.Disconnect(1, true);
+            rdc.Disconnect(1, true);
         }
     }
 }

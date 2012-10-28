@@ -128,6 +128,7 @@
     <Compile Include="Systems\Processes.cs" />
     <Compile Include="Systems\RDController.cs" />
     <Compile Include="Systems\SystemInfo.cs" />
+    <Compile Include="Win32\API\APIEnum\WM_WTSSESSION_CHANGE.cs" />
     <Compile Include="Win32\API\APIEnum\WTSInfoClass.cs" />
     <Compile Include="Win32\API\APIStructs\WTS_CLIENT_ADDRESS.cs" />
     <Compile Include="Win32\API\APIStructs\WTS_CONNECTSTATE_CLASS.cs" />

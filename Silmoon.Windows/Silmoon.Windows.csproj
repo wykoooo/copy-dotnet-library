@@ -131,7 +131,7 @@
     <Compile Include="Win32\API\APIEnum\WM_WTSSESSION_CHANGE.cs" />
     <Compile Include="Win32\API\APIEnum\WTSInfoClass.cs" />
     <Compile Include="Win32\API\APIStructs\WTS_CLIENT_ADDRESS.cs" />
-    <Compile Include="Win32\API\APIStructs\WTS_CONNECTSTATE_CLASS.cs" />
+    <Compile Include="Win32\API\APIEnum\WTS_CONNECTSTATE_CLASS.cs" />
     <Compile Include="Win32\API\APIStructs\WTS_SESSION_INFO.cs" />
     <Compile Include="Win32\Hooking\Hooking.cs" />
     <Compile Include="Systems\SystemController.cs" />

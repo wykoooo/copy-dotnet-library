@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Silmoon.Windows.Win32.API.APIEnum;
 using Silmoon.Windows.Win32.API.APIStructs;
 
 namespace Silmoon.Windows.Systems

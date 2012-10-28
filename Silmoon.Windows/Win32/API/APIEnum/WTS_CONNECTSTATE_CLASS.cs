@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Silmoon.Windows.Win32.API.APIStructs
+namespace Silmoon.Windows.Win32.API.APIEnum
 {
     public enum WTS_CONNECTSTATE_CLASS
     {

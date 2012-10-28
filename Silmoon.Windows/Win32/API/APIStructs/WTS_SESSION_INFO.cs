@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
+using Silmoon.Windows.Win32.API.APIEnum;
 
 namespace Silmoon.Windows.Win32.API.APIStructs
 {

@@ -185,27 +185,56 @@ namespace Silmoon.Web.Controls
                 return false;
             }
         }
+        bool TokenLogin(string token)
+        {
+            try
+            {
+                byte[] data = Convert.FromBase64String(token);
+                data = rsa.Decrypt(data, true);
+                string username = Encoding.Default.GetString(data, 2, BitConverter.ToInt16(data, 0));
+                string password = Encoding.Default.GetString(data, BitConverter.ToInt16(data, 0) + 4, data[BitConverter.ToInt16(data, 0) + 2]);
+                bool result = TokenLogin(username, password);
+                return result;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
-        public abstract bool CookieRelogin(string username, string password);
-        public abstract bool CrossLogin(string username, string password);
+        public virtual bool CookieRelogin(string username, string password)
+        {
+            return false;
+        }
+        public virtual bool CrossLogin(string username, string password)
+        {
+            return false;
+        }
+        public virtual bool TokenLogin(string username, string password)
+        {
+            return false;
+        }
+
+        public string GetUserToken()
+        {
+            byte[] usernameData = Encoding.Default.GetBytes(_userName);
+            byte[] passwordData = Encoding.Default.GetBytes(_password);
+            byte[] data = new byte[4 + usernameData.Length + passwordData.Length];
+
+            Array.Copy(BitConverter.GetBytes((short)usernameData.Length), 0, data, 0, 2);
+            Array.Copy(usernameData, 0, data, 2, usernameData.Length);
+            Array.Copy(BitConverter.GetBytes((short)passwordData.Length), 0, data, usernameData.Length + 2, 2);
+            Array.Copy(passwordData, 0, data, usernameData.Length + 4, passwordData.Length);
+
+            data = rsa.Encrypt(data, true);
+            return Convert.ToBase64String(data);
+        }
 
         public void WriteCookie()
         {
             if (rsa != null)
             {
-                byte[] usernameData = Encoding.Default.GetBytes(_userName);
-                byte[] passwordData = Encoding.Default.GetBytes(_password);
-                byte[] data = new byte[4 + usernameData.Length + passwordData.Length];
-
-                Array.Copy(BitConverter.GetBytes((short)usernameData.Length), 0, data, 0, 2);
-                Array.Copy(usernameData, 0, data, 2, usernameData.Length);
-                Array.Copy(BitConverter.GetBytes((short)passwordData.Length), 0, data, usernameData.Length + 2, 2);
-                Array.Copy(passwordData, 0, data, usernameData.Length + 4, passwordData.Length);
-
-                data = rsa.Encrypt(data, true);
-
-                string sessionInfo = Convert.ToBase64String(data);
-                HttpContext.Current.Response.Cookies["___silmoon_user_session"].Value = sessionInfo;
+                HttpContext.Current.Response.Cookies["___silmoon_user_session"].Value = GetUserToken();
                 if (loginStateDomain != null)
                     HttpContext.Current.Response.Cookies["___silmoon_user_session"].Domain = loginStateDomain;
                 HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = loginStateTimeout;
@@ -227,8 +256,8 @@ namespace Silmoon.Web.Controls
                 data = rsa.Encrypt(data, true);
 
                 string sessionInfo = Convert.ToBase64String(data);
-                HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Value = sessionInfo;
-                if (domain != null)
+                HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Value = GetUserToken();
+                if (!string.IsNullOrEmpty(domain))
                     HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Domain = domain;
                 HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Expires = DateTime.Now.AddSeconds(5);
             }

@@ -124,11 +124,20 @@ namespace Silmoon.Web.Controls
             }
             else
             {
-                if (!LoginByCookie())
+                if (!LoginFromCookie())
                     _state = LoginState.None;
             }
         }
-        bool LoginByCookie()
+        public object ReadSession(string field)
+        {
+            return HttpContext.Current.Session[field];
+        }
+        public void WriteSession(string field, string value)
+        {
+            HttpContext.Current.Session[field] = value;
+        }
+
+        bool LoginFromCookie()
         {
             if (HttpContext.Current.Request.Cookies["___silmoon_user_session"] != null && !string.IsNullOrEmpty(HttpContext.Current.Request.Cookies["___silmoon_user_session"].Value))
             {
@@ -138,8 +147,7 @@ namespace Silmoon.Web.Controls
                     data = rsa.Decrypt(data, true);
                     string username = Encoding.Default.GetString(data, 2, BitConverter.ToInt16(data, 0));
                     string password = Encoding.Default.GetString(data, BitConverter.ToInt16(data, 0) + 4, data[BitConverter.ToInt16(data, 0) + 2]);
-                    CookieRelogin(username, password);
-                    return true;
+                    return CookieRelogin(username, password);
                 }
                 catch
                 {
@@ -152,14 +160,35 @@ namespace Silmoon.Web.Controls
                 return false;
             }
         }
-        public virtual bool CookieRelogin(string username, string password)
+        bool LoginCrossLoginCookie()
         {
-            return false;
+            if (HttpContext.Current.Request.Cookies["___silmoon_cross_session"] != null && !string.IsNullOrEmpty(HttpContext.Current.Request.Cookies["___silmoon_cross_session"].Value))
+            {
+                try
+                {
+                    byte[] data = Convert.FromBase64String(HttpContext.Current.Request.Cookies["___silmoon_cross_session"].Value);
+                    data = rsa.Decrypt(data, true);
+                    string username = Encoding.Default.GetString(data, 2, BitConverter.ToInt16(data, 0));
+                    string password = Encoding.Default.GetString(data, BitConverter.ToInt16(data, 0) + 4, data[BitConverter.ToInt16(data, 0) + 2]);
+                    bool result = CrossLogin(username, password);
+                    HttpContext.Current.Response.Cookies.Remove("___silmoon_cross_session");
+                    return result;
+                }
+                catch
+                {
+                    HttpContext.Current.Response.Cookies.Remove("___silmoon_cross_session");
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
-        public object ReadSession(string field)
-        {
-            return HttpContext.Current.Session[field];
-        }
+
+        public abstract bool CookieRelogin(string username, string password);
+        public abstract bool CrossLogin(string username, string password);
+
         public void WriteCookie()
         {
             if (rsa != null)
@@ -182,10 +211,29 @@ namespace Silmoon.Web.Controls
                 HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = loginStateTimeout;
             }
         }
-        public void WriteSession(string field, string value)
+        public void WriteCrossLoginCookie(string domain = null)
         {
-            HttpContext.Current.Session[field] = value;
+            if (rsa != null)
+            {
+                byte[] usernameData = Encoding.Default.GetBytes(_userName);
+                byte[] passwordData = Encoding.Default.GetBytes(_password);
+                byte[] data = new byte[4 + usernameData.Length + passwordData.Length];
+
+                Array.Copy(BitConverter.GetBytes((short)usernameData.Length), 0, data, 0, 2);
+                Array.Copy(usernameData, 0, data, 2, usernameData.Length);
+                Array.Copy(BitConverter.GetBytes((short)passwordData.Length), 0, data, usernameData.Length + 2, 2);
+                Array.Copy(passwordData, 0, data, usernameData.Length + 4, passwordData.Length);
+
+                data = rsa.Encrypt(data, true);
+
+                string sessionInfo = Convert.ToBase64String(data);
+                HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Value = sessionInfo;
+                if (domain != null)
+                    HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Domain = domain;
+                HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Expires = DateTime.Now.AddSeconds(5);
+            }
         }
+
         public void DoLogin(string username, string password, int userLevel)
         {
             HttpContext.Current.Session.Timeout = _sessionTimeout;

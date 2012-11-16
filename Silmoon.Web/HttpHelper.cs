@@ -35,6 +35,15 @@ namespace Silmoon.Web
         {
             get { return HttpRuntime.AppDomainAppPath; }
         }
+        public static string GetWebRootUri()
+        {
+            string http = "http";
+            if (HttpContext.Current.Request.ServerVariables["HTTPS"] != null && SmString.StringToBool(HttpContext.Current.Request.ServerVariables["HTTPS"]))
+                http = "https";
+
+            http = http + "://" + HttpContext.Current.Request.ServerVariables["HTTP_HOST"] + HttpHelper.WebRoot;
+            return http;
+        }
         public static IPAddress GetClientIPAddress()
         {
             IPAddress result = null;
@@ -132,5 +141,6 @@ namespace Silmoon.Web
             HttpContext.Current.Response.StatusCode = 302;
             HttpContext.Current.Response.Headers.Add("Location", url);
         }
+
     }
 }

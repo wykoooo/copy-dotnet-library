@@ -137,7 +137,7 @@ namespace Silmoon.Web.Controls
             HttpContext.Current.Session[field] = value;
         }
 
-        bool LoginFromCookie()
+        public bool LoginFromCookie()
         {
             if (HttpContext.Current.Request.Cookies["___silmoon_user_session"] != null && !string.IsNullOrEmpty(HttpContext.Current.Request.Cookies["___silmoon_user_session"].Value))
             {
@@ -160,7 +160,7 @@ namespace Silmoon.Web.Controls
                 return false;
             }
         }
-        bool LoginCrossLoginCookie()
+        public bool LoginCrossLoginCookie()
         {
             if (HttpContext.Current.Request.Cookies["___silmoon_cross_session"] != null && !string.IsNullOrEmpty(HttpContext.Current.Request.Cookies["___silmoon_cross_session"].Value))
             {
@@ -185,7 +185,7 @@ namespace Silmoon.Web.Controls
                 return false;
             }
         }
-        bool TokenLogin(string token)
+        public bool LoginFormToken(string token)
         {
             try
             {
@@ -259,7 +259,7 @@ namespace Silmoon.Web.Controls
                 HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Value = GetUserToken();
                 if (!string.IsNullOrEmpty(domain))
                     HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Domain = domain;
-                HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Expires = DateTime.Now.AddSeconds(5);
+                HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Expires = DateTime.Now.AddDays(1);
             }
         }
 

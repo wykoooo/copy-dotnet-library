@@ -7,77 +7,111 @@ using System.Web.UI;
 
 namespace Silmoon.Web.Controls
 {
-    public abstract class SingleUserLoginSessionControl
+    public abstract class SingleUserLoginSessionControl<T>
     {
-        string _userName;
-        string _password;
-        int _userLevel = -1;
-        LoginState _state;
-        UserLimit _userLimit;
-        int _sessionTimeout = 20;
         RSACryptoServiceProvider rsa = null;
         string loginStateDomain = null;
         DateTime loginStateTimeout = new DateTime();
 
         public int SessionTimeout
         {
-            get { return _sessionTimeout; }
-            set { _sessionTimeout = value; }
+            get { return HttpContext.Current.Session.Timeout; }
+            set { HttpContext.Current.Session.Timeout = value; }
         }
         public event EventHandler UserLogin;
         public event EventHandler UserLogout;
 
-        public string UserName
+        public string Username
         {
-            get { return _userName; }
+            get
+            {
+                if (HttpContext.Current.Session["___silmoon_username"] != null)
+                    return HttpContext.Current.Session["___silmoon_username"].ToString();
+                else return null;
+            }
             set
             {
                 HttpContext.Current.Session["___silmoon_username"] = value;
-                _userName = value;
             }
         }
         public string Password
         {
-            get { return _password; }
+            get
+            {
+                if (HttpContext.Current.Session["___silmoon_password"] != null)
+                    return HttpContext.Current.Session["___silmoon_password"].ToString();
+                else return null;
+            }
             set
             {
                 HttpContext.Current.Session["___silmoon_password"] = value;
-                _password = value;
             }
         }
         public int UserLevel
         {
-            get { return _userLevel; }
+            get
+            {
+                if (HttpContext.Current.Session["___silmoon_level"] != null)
+                {
+                    int result = -1;
+                    int.TryParse(HttpContext.Current.Session["___silmoon_level"].ToString(), out result);
+                    return result;
+                }
+                else return -1;
+            }
             set
             {
                 HttpContext.Current.Session["___silmoon_level"] = value;
-                _userLevel = value;
             }
         }
         public LoginState State
         {
-            get { return _state; }
+            get
+            {
+                if (HttpContext.Current.Session["___silmoon_state"] != null)
+                {
+                    int result = (int)LoginState.None;
+                    int.TryParse(HttpContext.Current.Session["___silmoon_state"].ToString(), out result);
+                    return (LoginState)result;
+                }
+                else return LoginState.None;
+            }
             set
             {
-                HttpContext.Current.Session["___silmoon_state"] = Convert.ToInt32(value);
-                _state = value;
+                HttpContext.Current.Session["___silmoon_state"] = (int)value;
             }
-        }
-        public UserLimit UserLevelLimit
-        {
-            get { return _userLimit; }
-            set { _userLimit = value; }
         }
         public StateFlag UserFlag
         {
-            get { return (StateFlag)HttpContext.Current.Session["___silmoon_userflag"]; }
+            get
+            {
+                if (HttpContext.Current.Session["___silmoon_userflag"] != null)
+                    return (StateFlag)HttpContext.Current.Session["___silmoon_userflag"];
+                else return null;
+            }
             set { HttpContext.Current.Session["___silmoon_userflag"] = value; }
         }
         public object UserObject
         {
-            get { return HttpContext.Current.Session["___silmoon_object"]; }
+            get
+            {
+                if (HttpContext.Current.Session["___silmoon_object"] != null)
+                    return HttpContext.Current.Session["___silmoon_object"];
+                else return null;
+            }
             set { HttpContext.Current.Session["___silmoon_object"] = value; }
         }
+        public T User
+        {
+            get
+            {
+                if (HttpContext.Current.Session["___silmoon_user"] != null)
+                    return (T)HttpContext.Current.Session["___silmoon_user"];
+                else return default(T);
+            }
+            set { HttpContext.Current.Session["___silmoon_user"] = value; }
+        }
+
         public RSACryptoServiceProvider RSACookiesCrypto
         {
             get { return rsa; }
@@ -94,43 +128,27 @@ namespace Silmoon.Web.Controls
             set { loginStateTimeout = value; }
         }
 
-
         public SingleUserLoginSessionControl()
         {
-            InitClass();
-        }
-        private void InitClass()
-        {
-            _state = LoginState.None;
-            _userLimit = new UserLimit(_userName, _password);
+
         }
         private void check_sessionOfLogin()
         {
-            if (_state != LoginState.Login)
+            if (State != LoginState.Login)
             {
                 throw new Exception("获取会话信息错误，用户没有登陆，或者会话已经无效！");
             }
         }
 
-        public void ReadSession()
-        {
-            if (HttpContext.Current.Session["___silmoon_login_session"] != null && SmString.StringToBool(HttpContext.Current.Session["___silmoon_login_session"].ToString()))
-            {
-                _userName = (string)HttpContext.Current.Session["___silmoon_username"];
-                _password = (string)HttpContext.Current.Session["___silmoon_password"];
-                _userLevel = (int)HttpContext.Current.Session["___silmoon_level"];
-                _state = (LoginState)HttpContext.Current.Session["___silmoon_state"];
-                _userLimit = (UserLimit)HttpContext.Current.Session["___silmoon_userlimit"];
-            }
-            else
-            {
-                if (!LoginFromCookie())
-                    _state = LoginState.None;
-            }
-        }
         public object ReadSession(string field)
         {
             return HttpContext.Current.Session[field];
+        }
+        public void ReadSession()
+        {
+            if (State != LoginState.Login)
+                if (LoginFromCookie())
+                    State = LoginState.Login;
         }
         public void WriteSession(string field, string value)
         {
@@ -141,19 +159,11 @@ namespace Silmoon.Web.Controls
         {
             if (HttpContext.Current.Request.Cookies["___silmoon_user_session"] != null && !string.IsNullOrEmpty(HttpContext.Current.Request.Cookies["___silmoon_user_session"].Value))
             {
-                try
-                {
-                    byte[] data = Convert.FromBase64String(HttpContext.Current.Request.Cookies["___silmoon_user_session"].Value);
-                    data = rsa.Decrypt(data, true);
-                    string username = Encoding.Default.GetString(data, 2, BitConverter.ToInt16(data, 0));
-                    string password = Encoding.Default.GetString(data, BitConverter.ToInt16(data, 0) + 4, data[BitConverter.ToInt16(data, 0) + 2]);
-                    return CookieRelogin(username, password);
-                }
-                catch
-                {
-                    HttpContext.Current.Response.Cookies.Remove("___silmoon_user_session");
-                    return false;
-                }
+                byte[] data = Convert.FromBase64String(HttpContext.Current.Request.Cookies["___silmoon_user_session"].Value);
+                data = rsa.Decrypt(data, true);
+                string username = Encoding.Default.GetString(data, 2, BitConverter.ToInt16(data, 0));
+                string password = Encoding.Default.GetString(data, BitConverter.ToInt16(data, 0) + 4, data[BitConverter.ToInt16(data, 0) + 2]);
+                return CookieRelogin(username, password);
             }
             else
             {
@@ -164,21 +174,13 @@ namespace Silmoon.Web.Controls
         {
             if (HttpContext.Current.Request.Cookies["___silmoon_cross_session"] != null && !string.IsNullOrEmpty(HttpContext.Current.Request.Cookies["___silmoon_cross_session"].Value))
             {
-                try
-                {
-                    byte[] data = Convert.FromBase64String(HttpContext.Current.Request.Cookies["___silmoon_cross_session"].Value);
-                    data = rsa.Decrypt(data, true);
-                    string username = Encoding.Default.GetString(data, 2, BitConverter.ToInt16(data, 0));
-                    string password = Encoding.Default.GetString(data, BitConverter.ToInt16(data, 0) + 4, data[BitConverter.ToInt16(data, 0) + 2]);
-                    bool result = CrossLogin(username, password);
-                    HttpContext.Current.Response.Cookies.Remove("___silmoon_cross_session");
-                    return result;
-                }
-                catch
-                {
-                    HttpContext.Current.Response.Cookies.Remove("___silmoon_cross_session");
-                    return false;
-                }
+                byte[] data = Convert.FromBase64String(HttpContext.Current.Request.Cookies["___silmoon_cross_session"].Value);
+                data = rsa.Decrypt(data, true);
+                string username = Encoding.Default.GetString(data, 2, BitConverter.ToInt16(data, 0));
+                string password = Encoding.Default.GetString(data, BitConverter.ToInt16(data, 0) + 4, data[BitConverter.ToInt16(data, 0) + 2]);
+                bool result = CrossLogin(username, password);
+                HttpContext.Current.Response.Cookies.Remove("___silmoon_cross_session");
+                return result;
             }
             else
             {
@@ -187,19 +189,12 @@ namespace Silmoon.Web.Controls
         }
         public bool LoginFormToken(string token)
         {
-            try
-            {
-                byte[] data = Convert.FromBase64String(token);
-                data = rsa.Decrypt(data, true);
-                string username = Encoding.Default.GetString(data, 2, BitConverter.ToInt16(data, 0));
-                string password = Encoding.Default.GetString(data, BitConverter.ToInt16(data, 0) + 4, data[BitConverter.ToInt16(data, 0) + 2]);
-                bool result = TokenLogin(username, password);
-                return result;
-            }
-            catch
-            {
-                return false;
-            }
+            byte[] data = Convert.FromBase64String(token);
+            data = rsa.Decrypt(data, true);
+            string username = Encoding.Default.GetString(data, 2, BitConverter.ToInt16(data, 0));
+            string password = Encoding.Default.GetString(data, BitConverter.ToInt16(data, 0) + 4, data[BitConverter.ToInt16(data, 0) + 2]);
+            bool result = TokenLogin(username, password);
+            return result;
         }
 
         public virtual bool CookieRelogin(string username, string password)
@@ -217,8 +212,8 @@ namespace Silmoon.Web.Controls
 
         public string GetUserToken()
         {
-            byte[] usernameData = Encoding.Default.GetBytes(_userName);
-            byte[] passwordData = Encoding.Default.GetBytes(_password);
+            byte[] usernameData = Encoding.Default.GetBytes(Username);
+            byte[] passwordData = Encoding.Default.GetBytes(Password);
             byte[] data = new byte[4 + usernameData.Length + passwordData.Length];
 
             Array.Copy(BitConverter.GetBytes((short)usernameData.Length), 0, data, 0, 2);
@@ -244,8 +239,8 @@ namespace Silmoon.Web.Controls
         {
             if (rsa != null)
             {
-                byte[] usernameData = Encoding.Default.GetBytes(_userName);
-                byte[] passwordData = Encoding.Default.GetBytes(_password);
+                byte[] usernameData = Encoding.Default.GetBytes(Username);
+                byte[] passwordData = Encoding.Default.GetBytes(Password);
                 byte[] data = new byte[4 + usernameData.Length + passwordData.Length];
 
                 Array.Copy(BitConverter.GetBytes((short)usernameData.Length), 0, data, 0, 2);
@@ -263,49 +258,40 @@ namespace Silmoon.Web.Controls
             }
         }
 
-        public void DoLogin(string username, string password, int userLevel)
+        public virtual void DoLogin(string username, string password, T user)
         {
-            HttpContext.Current.Session.Timeout = _sessionTimeout;
-            _userName = username;
-            _password = password;
-            _userLevel = userLevel;
-            HttpContext.Current.Session["___silmoon_username"] = username;
-            HttpContext.Current.Session["___silmoon_password"] = password;
-            HttpContext.Current.Session["___silmoon_level"] = userLevel;
-            HttpContext.Current.Session["___silmoon_state"] = (int)LoginState.Login;
-            HttpContext.Current.Session["___silmoon_login_session"] = true;
-            _state = LoginState.Login;
+            DoLogin(username, password, 0, user);
+        }
+        public virtual void DoLogin(string username, string password, int userLevel)
+        {
+            DoLogin(username, password, UserLevel, default(T));
+        }
+        public virtual void DoLogin(string username, string password, int userLevel, T user)
+        {
+            Username = username;
+            Password = password;
+            UserLevel = userLevel;
+            User = user;
+            State = LoginState.Login;
 
             if (UserLogin != null) UserLogin(this, EventArgs.Empty);
         }
-        public void DoLogin()
+        public virtual void DoLogout()
         {
-            DoLogin(_userName, _password, _userLevel);
-        }
-        public void DoLogout()
-        {
-
-            _state = LoginState.Logout;
-            HttpContext.Current.Session["___silmoon_password"] = null;
-            HttpContext.Current.Session["___silmoon_level"] = -1;
-            HttpContext.Current.Session["___silmoon_state"] = Convert.ToInt32(LoginState.Logout);
-            HttpContext.Current.Session["___silmoon_userlimit"] = null;
-            HttpContext.Current.Session["___silmoon_login_session"] = null;
-
-            if (UserLogout != null) UserLogout(this, EventArgs.Empty);
-        }
-        public void Clear()
-        {
-            HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = DateTime.Now.AddYears(-10);
-
+            State = LoginState.Logout;
             HttpContext.Current.Session.Remove("___silmoon_username");
             HttpContext.Current.Session.Remove("___silmoon_password");
             HttpContext.Current.Session.Remove("___silmoon_level");
-            HttpContext.Current.Session.Remove("___silmoon_state");
-            HttpContext.Current.Session.Remove("___silmoon_userlimit");
             HttpContext.Current.Session.Remove("___silmoon_userflag");
             HttpContext.Current.Session.Remove("___silmoon_object");
-            HttpContext.Current.Session.Remove("___silmoon_login_session");
+            HttpContext.Current.Session.Remove("___silmoon_user");
+
+            if (UserLogout != null) UserLogout(this, EventArgs.Empty);
+        }
+        public virtual void Clear()
+        {
+            HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = DateTime.Now.AddYears(-10);
+            DoLogout();
         }
     }
     [Serializable]
@@ -314,49 +300,5 @@ namespace Silmoon.Web.Controls
         None=0,
         Login=1,
         Logout=-1,
-    }
-    [Serializable]
-    public class UserLimit
-    {
-        string _userLevelString;
-        string _username;
-        string _password;
-
-        public string UserName
-        {
-            get { return _username; }
-            set { _username = value; }
-        }
-        public string Password
-        {
-            get { return _password; }
-            set { _password = value; }
-        }
-        public string UserLevelString
-        {
-            get { return _userLevelString; }
-            set { _userLevelString = value; }
-        }
-
-        public UserLimit()
-        {
-
-        }
-        public UserLimit(string username, string password)
-        {
-            _username = username;
-            _password = password;
-        }
-        public void Clear()
-        {
-            HttpContext.Current.Session["SmUserLimit"] = null;
-        }
-
-        public object GetUserLevelStringArrayItem(int i)
-        {
-            object o = (object)_userLevelString.Split(new string[] { "|" }, StringSplitOptions.None)[i];
-            return o;
-        }
-
     }
 }

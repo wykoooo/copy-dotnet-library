@@ -10,8 +10,8 @@ namespace Silmoon.Web.Controls
     public abstract class SingleUserLoginSessionControl<T>
     {
         RSACryptoServiceProvider rsa = null;
-        string loginStateDomain = null;
-        DateTime loginStateTimeout = default(DateTime);
+        string cookieDomain = null;
+        DateTime cookieExpires = default(DateTime);
 
         public int SessionTimeout
         {
@@ -117,20 +117,21 @@ namespace Silmoon.Web.Controls
             get { return rsa; }
             set { rsa = value; }
         }
-        public string LoginStateDomain
+        public string CookieDomain
         {
-            get { return loginStateDomain; }
-            set { loginStateDomain = value; }
+            get { return cookieDomain; }
+            set { cookieDomain = value; }
         }
-        public DateTime LoginStateTimeout
+        public DateTime CookieExpires
         {
-            get { return loginStateTimeout; }
-            set { loginStateTimeout = value; }
+            get { return cookieExpires; }
+            set { cookieExpires = value; }
         }
 
-        public SingleUserLoginSessionControl()
+        public SingleUserLoginSessionControl() : this(null) { }
+        public SingleUserLoginSessionControl(string cookieDomain)
         {
-
+            this.cookieDomain = cookieDomain;
         }
         private void check_sessionOfLogin()
         {
@@ -144,11 +145,12 @@ namespace Silmoon.Web.Controls
         {
             return HttpContext.Current.Session[field];
         }
-        public void ReadSession()
+        public void ReadSession(bool readCookies = true)
         {
             if (State != LoginState.Login)
-                if (LoginFromCookie())
-                    State = LoginState.Login;
+                if (readCookies)
+                    if (LoginFromCookie())
+                        State = LoginState.Login;
         }
         public void WriteSession(string field, string value)
         {
@@ -229,17 +231,15 @@ namespace Silmoon.Web.Controls
         {
             if (rsa != null)
             {
+                if (Expires != default(DateTime)) cookieExpires = Expires;
+
+                if (cookieDomain != null)
+                    HttpContext.Current.Response.Cookies["___silmoon_user_session"].Domain = cookieDomain;
+
+                if (CookieExpires != default(DateTime))
+                    HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = cookieExpires;
+
                 HttpContext.Current.Response.Cookies["___silmoon_user_session"].Value = GetUserToken();
-
-                if (loginStateDomain != null)
-                    HttpContext.Current.Response.Cookies["___silmoon_user_session"].Domain = loginStateDomain;
-
-                if (Expires != default(DateTime))
-                    HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = Expires;
-                else
-                    if (LoginStateTimeout != default(DateTime))
-                        HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = loginStateTimeout;
-
             }
         }
         public void WriteCrossLoginCookie(string domain = null)
@@ -295,9 +295,26 @@ namespace Silmoon.Web.Controls
 
             if (UserLogout != null) UserLogout(this, EventArgs.Empty);
         }
+
+        public void ClearCrossCookie()
+        {
+            if (HttpContext.Current.Request.Cookies["___silmoon_cross_session"] != null)
+            {
+                if (cookieDomain != null)
+                    HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Domain = cookieDomain;
+                HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Expires = DateTime.Now.AddYears(-10);
+            }
+        }
+        public void ClearUserCookie()
+        {
+            if (cookieDomain != null)
+                HttpContext.Current.Response.Cookies["___silmoon_user_session"].Domain = cookieDomain;
+            HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = DateTime.Now.AddYears(-10);
+        }
         public virtual void Clear()
         {
-            HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = DateTime.Now.AddYears(-10);
+            ClearUserCookie();
+            ClearCrossCookie();
             DoLogout();
         }
     }

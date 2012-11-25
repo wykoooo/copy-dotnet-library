@@ -11,7 +11,7 @@ namespace Silmoon.Web.Controls
     {
         RSACryptoServiceProvider rsa = null;
         string loginStateDomain = null;
-        DateTime loginStateTimeout = new DateTime();
+        DateTime loginStateTimeout = default(DateTime);
 
         public int SessionTimeout
         {
@@ -225,14 +225,21 @@ namespace Silmoon.Web.Controls
             return Convert.ToBase64String(data);
         }
 
-        public void WriteCookie()
+        public void WriteCookie(DateTime Expires = default(DateTime))
         {
             if (rsa != null)
             {
                 HttpContext.Current.Response.Cookies["___silmoon_user_session"].Value = GetUserToken();
+
                 if (loginStateDomain != null)
                     HttpContext.Current.Response.Cookies["___silmoon_user_session"].Domain = loginStateDomain;
-                HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = loginStateTimeout;
+
+                if (Expires != default(DateTime))
+                    HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = Expires;
+                else
+                    if (LoginStateTimeout != default(DateTime))
+                        HttpContext.Current.Response.Cookies["___silmoon_user_session"].Expires = loginStateTimeout;
+
             }
         }
         public void WriteCrossLoginCookie(string domain = null)

@@ -4,15 +4,16 @@ using System.Text;
 
 namespace Silmoon
 {
-    public class StateSet
+    public class StateSet<T>
     {
-        public int Code { get; set; }
+        public T State { get; set; }
         public string Message { get; set; }
-        public StateSet Set(int code, string message)
+        public StateSet<T> Set(T state, string message)
         {
-            Code = code;
+            State = state;
             Message = message;
             return this;
         }
     }
+
 }

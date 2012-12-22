@@ -14,6 +14,7 @@ using System.Threading;
 using Silmoon.Threading;
 using System.Security.Cryptography;
 using Silmoon.Windows.Controls.Extension;
+using Silmoon.Data.SqlClient;
 
 namespace NetTest
 {
@@ -71,5 +72,6 @@ namespace NetTest
             Bitmap graph = Silmoon.Imaging.ChartUtil.GetPieGraph("2012年9月8日 个人内耗列表", 600, 500, 100, 40, dt);
             pictureBox1.Image = graph;
         }
+
     }
 }

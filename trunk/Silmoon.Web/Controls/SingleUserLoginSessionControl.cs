@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.SessionState;
 using System.Web.UI;
 
 namespace Silmoon.Web.Controls
 {
-    public abstract class SingleUserLoginSessionControl<T>
+    public abstract class SingleUserLoginSessionControl<T> : System.Web.SessionState.IRequiresSessionState
     {
         RSACryptoServiceProvider rsa = null;
         string cookieDomain = null;
         DateTime cookieExpires = default(DateTime);
+        //public HttpSessionState Session
+        //{
+        //    get;
+        //    set;
+        //}
 
         public int SessionTimeout
         {
@@ -148,9 +154,16 @@ namespace Silmoon.Web.Controls
         public void ReadSession(bool readCookies = true)
         {
             if (State != LoginState.Login)
-                if (readCookies)
-                    if (LoginFromCookie())
-                        State = LoginState.Login;
+            {
+                if (readCookies && LoginFromCookie())
+                {
+                    State = LoginState.Login;
+                }
+            }
+            else
+            {
+
+            }
         }
         public void WriteSession(string field, string value)
         {
@@ -159,6 +172,7 @@ namespace Silmoon.Web.Controls
 
         public bool LoginFromCookie()
         {
+            if (rsa == null) return false;
             if (HttpContext.Current.Request.Cookies["___silmoon_user_session"] != null && !string.IsNullOrEmpty(HttpContext.Current.Request.Cookies["___silmoon_user_session"].Value))
             {
                 byte[] data = Convert.FromBase64String(HttpContext.Current.Request.Cookies["___silmoon_user_session"].Value);
@@ -174,6 +188,7 @@ namespace Silmoon.Web.Controls
         }
         public bool LoginCrossLoginCookie()
         {
+            if (rsa == null) return false;
             if (HttpContext.Current.Request.Cookies["___silmoon_cross_session"] != null && !string.IsNullOrEmpty(HttpContext.Current.Request.Cookies["___silmoon_cross_session"].Value))
             {
                 byte[] data = Convert.FromBase64String(HttpContext.Current.Request.Cookies["___silmoon_cross_session"].Value);
@@ -191,6 +206,7 @@ namespace Silmoon.Web.Controls
         }
         public bool LoginFormToken(string token)
         {
+            if (rsa == null) return false;
             byte[] data = Convert.FromBase64String(token);
             data = rsa.Decrypt(data, true);
             string username = Encoding.Default.GetString(data, 2, BitConverter.ToInt16(data, 0));
@@ -214,6 +230,8 @@ namespace Silmoon.Web.Controls
 
         public string GetUserToken()
         {
+            if (rsa == null) return "";
+
             byte[] usernameData = Encoding.Default.GetBytes(Username);
             byte[] passwordData = Encoding.Default.GetBytes(Password);
             byte[] data = new byte[4 + usernameData.Length + passwordData.Length];
@@ -271,7 +289,7 @@ namespace Silmoon.Web.Controls
         }
         public virtual void DoLogin(string username, string password, int userLevel)
         {
-            DoLogin(username, password, UserLevel, default(T));
+            DoLogin(username, password, userLevel, default(T));
         }
         public virtual void DoLogin(string username, string password, int userLevel, T user)
         {

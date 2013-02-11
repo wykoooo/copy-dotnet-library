@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
-using System.Web.SessionState;
-using System.Web.UI;
 
 namespace Silmoon.Web.Controls
 {
@@ -13,11 +10,6 @@ namespace Silmoon.Web.Controls
         RSACryptoServiceProvider rsa = null;
         string cookieDomain = null;
         DateTime cookieExpires = default(DateTime);
-        //public HttpSessionState Session
-        //{
-        //    get;
-        //    set;
-        //}
 
         public int SessionTimeout
         {
@@ -264,18 +256,6 @@ namespace Silmoon.Web.Controls
         {
             if (rsa != null)
             {
-                byte[] usernameData = Encoding.Default.GetBytes(Username);
-                byte[] passwordData = Encoding.Default.GetBytes(Password);
-                byte[] data = new byte[4 + usernameData.Length + passwordData.Length];
-
-                Array.Copy(BitConverter.GetBytes((short)usernameData.Length), 0, data, 0, 2);
-                Array.Copy(usernameData, 0, data, 2, usernameData.Length);
-                Array.Copy(BitConverter.GetBytes((short)passwordData.Length), 0, data, usernameData.Length + 2, 2);
-                Array.Copy(passwordData, 0, data, usernameData.Length + 4, passwordData.Length);
-
-                data = rsa.Encrypt(data, true);
-
-                string sessionInfo = Convert.ToBase64String(data);
                 HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Value = GetUserToken();
                 if (!string.IsNullOrEmpty(domain))
                     HttpContext.Current.Response.Cookies["___silmoon_cross_session"].Domain = domain;

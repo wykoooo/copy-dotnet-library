@@ -55,6 +55,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.DirectX.AudioVideoPlayback, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\Microsoft.DirectX.AudioVideoPlayback.dll</HintPath>
+    </Reference>
     <Reference Include="Silmoon.Data">
       <HintPath>..\Silmoon.Data\bin\Debug\Silmoon.Data.dll</HintPath>
     </Reference>
@@ -101,6 +105,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Silmoon.Media\Silmoon.Media.csproj">
+      <Project>{1631b051-29b4-4d13-8aa3-325abe41a307}</Project>
+      <Name>Silmoon.Media</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Silmoon.Windows\Silmoon.Windows.csproj">
       <Project>{46A25DB6-96C7-48C5-B73D-24F8EBC1102D}</Project>
       <Name>Silmoon.Windows</Name>

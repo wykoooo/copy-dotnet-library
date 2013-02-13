@@ -41,6 +41,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -107,7 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Silmoon.Media\Silmoon.Media.csproj">
-      <Project>{1631B051-29B4-4D13-8AA3-325ABE41A307}</Project>
+      <Project>{1631b051-29b4-4d13-8aa3-325abe41a307}</Project>
       <Name>Silmoon.Media</Name>
     </ProjectReference>
     <ProjectReference Include="..\Silmoon.Windows\Silmoon.Windows.csproj">

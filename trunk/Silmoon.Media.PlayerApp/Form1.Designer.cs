@@ -29,6 +29,7 @@ namespace Silmoon.Media.Video.Player
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.smTraceBar1 = new Silmoon.Windows.Controls.SmTrackBar();
             this.ToolMenu = new System.Windows.Forms.ToolStrip();
             this.Tool_WMPOpenButton = new System.Windows.Forms.ToolStripButton();
@@ -55,6 +56,7 @@ namespace Silmoon.Media.Video.Player
             this.smTraceBar1.Size = new System.Drawing.Size(585, 11);
             this.smTraceBar1.TabIndex = 1;
             this.smTraceBar1.Value = 0D;
+            this.smTraceBar1.Visible = false;
             // 
             // ToolMenu
             // 

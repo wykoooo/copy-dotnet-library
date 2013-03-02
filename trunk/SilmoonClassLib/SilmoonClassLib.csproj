@@ -84,6 +84,7 @@
     <Compile Include="Net\Protocol\SDFlags.cs" />
     <Compile Include="Net\Protocol\SDPacket.cs" />
     <Compile Include="Net\Protocol\SDProtocol.cs" />
+    <Compile Include="Reflection\NameObjectCollectionT.cs" />
     <Compile Include="Text\Punycode.cs" />
     <Compile Include="IStateFlag.cs" />
     <Compile Include="MySilmoon\RunningAble.cs" />

@@ -62,6 +62,11 @@ namespace Silmoon.MySilmoon
             if (OnThreadException != null) OnThreadException(sender, e);
         }
 
+        public void ValidateLicense()
+        {
+            
+        }
+
         /// <summary>
         /// 初始化公共属性
         /// </summary>

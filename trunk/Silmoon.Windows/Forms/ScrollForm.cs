@@ -33,6 +33,7 @@ namespace Silmoon.Windows.Forms
             FormGenieExtension = new GenieExtension(this);
         }
 
+        [Browsable(true)]
         public WindowCloseStyle CloseStyle
         {
             get
@@ -59,6 +60,8 @@ namespace Silmoon.Windows.Forms
                 }
             }
         }
+
+        [Browsable(true)]
         public WindowCloseStyle HideStyle
         {
             get

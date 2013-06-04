@@ -79,7 +79,7 @@
     </Compile>
     <Compile Include="BigInteger.cs" />
     <Compile Include="Imaging\ChartUtil.cs" />
-    <Compile Include="MySilmoon\Instance\VersionLicense.cs" />
+    <Compile Include="MySilmoon\Instance\ValidateResult.cs" />
     <Compile Include="Net\Icmp.cs" />
     <Compile Include="Net\Protocol\HttpLikePacket.cs" />
     <Compile Include="Net\Protocol\SDFlags.cs" />

@@ -79,7 +79,9 @@
     </Compile>
     <Compile Include="BigInteger.cs" />
     <Compile Include="Imaging\ChartUtil.cs" />
+    <Compile Include="MySilmoon\Instance\LicenseResult.cs" />
     <Compile Include="MySilmoon\Instance\ValidateResult.cs" />
+    <Compile Include="MySilmoon\MyConfigure.cs" />
     <Compile Include="Net\Icmp.cs" />
     <Compile Include="Net\Protocol\HttpLikePacket.cs" />
     <Compile Include="Net\Protocol\SDFlags.cs" />
@@ -165,9 +167,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Net\IpWatchHelper\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

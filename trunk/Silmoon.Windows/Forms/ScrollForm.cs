@@ -314,20 +314,23 @@ namespace Silmoon.Windows.Forms
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (!realClose)
+            if (CloseStyle == WindowCloseStyle.Undefined)
             {
-                realClose = !realClose;
-                if (this.Height > 50)
+                if (!realClose)
                 {
-                    closeArgs = e;
-                    e.Cancel = true;
-                    Threads.ExecAsync(closeProc);
-                    this.Text = "";
-                    if (this.WindowState == FormWindowState.Maximized)
-                        this.WindowState = FormWindowState.Normal;
+                    realClose = !realClose;
+                    if (this.Height > 50)
+                    {
+                        closeArgs = e;
+                        e.Cancel = true;
+                        Threads.ExecAsync(closeProc);
+                        this.Text = "";
+                        if (this.WindowState == FormWindowState.Maximized)
+                            this.WindowState = FormWindowState.Normal;
+                    }
+                    else
+                        e.Cancel = false;
                 }
-                else
-                    e.Cancel = false;
             }
             base.OnFormClosing(e);
         }
@@ -347,20 +350,24 @@ namespace Silmoon.Windows.Forms
         }
         public void SetHeightEx(int newHeight)
         {
+            if (Height == newHeight) return;
             SetHeightEx(newHeight, false);
         }
         public void SetHeightEx(int newHeight, bool center)
         {
+            if (Height == newHeight) return;
             extToW = newHeight;
             extCenter = center;
             Threads.ExecAsync(_resizeW_scroll_thread_proc);
         }
         public void SetWidthEx(int newWidth)
         {
+            if (Width == newWidth) return;
             SetWidthEx(newWidth, false);
         }
         public void SetWidthEx(int newWidth, bool center)
         {
+            if (Width == newWidth) return;
             extToH = newWidth;
             extCenter = center;
             Threads.ExecAsync(_resizeH_scroll_thread_proc);

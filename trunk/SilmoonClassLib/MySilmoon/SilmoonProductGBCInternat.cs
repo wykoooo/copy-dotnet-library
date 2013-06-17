@@ -12,7 +12,7 @@ namespace Silmoon.MySilmoon
     /// <summary>
     /// 对银月产品公共库公共属性进行重用
     /// </summary>
-    public class SilmoonProductGBCInternat :RunningAble, ISilmoonProductGBCInternat
+    public class SilmoonProductGBCInternat : RunningAble, ISilmoonProductGBCInternat
     {
         private string _productString = "NULL";
         private int _revision = 0;
@@ -22,7 +22,7 @@ namespace Silmoon.MySilmoon
         public event OutputTextMessageHandler OnOutputTextMessage;
         public event OutputTextMessageHandler OnInputTextMessage;
         public event ThreadExceptionEventHandler OnThreadException;
-        public event Action<ValidateResult> OnValidateLicense;
+        public event Action<VersionResult> OnValidateLicense;
 
         /// <summary>
         /// 标识产品名称字符串
@@ -43,7 +43,7 @@ namespace Silmoon.MySilmoon
 
         public SilmoonProductGBCInternat()
         {
-            
+
         }
 
         public void onOutputText(string message)
@@ -73,26 +73,12 @@ namespace Silmoon.MySilmoon
             {
                 if (OnValidateLicense != null)
                 {
-                    ValidateResult result = new ValidateResult();
-                    try
-                    {
-                        string url = "https://encrypted.silmoon.com/apps/apis/config?appName=" + _productString + "&configName=_version&outType=text/xml";
-
-                        XmlDocument xml = new XmlDocument();
-                        xml.Load(url);
-                        result.min_exit_version = int.Parse(xml["version"]["version_config_1"]["min_version"]["exit_version"].InnerText);
-                        result.min_pop_version = int.Parse(xml["version"]["version_config_1"]["min_version"]["pop_version"].InnerText);
-                        result.latest_version = int.Parse(xml["version"]["version_config_1"]["latest_version"].InnerText);
-                    }
-                    catch (Exception ex)
-                    {
-                        result.Error = ex;
-                    }
+                    var result = MyConfigure.GetVersion(_productString);
                     OnValidateLicense(result);
                 }
             });
         }
-        
+
 
         /// <summary>
         /// 初始化公共属性

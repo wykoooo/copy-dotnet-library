@@ -16,6 +16,7 @@ namespace Silmoon.MySilmoon
     {
         private string _productString = "NULL";
         private int _revision = 0;
+        private string _releaseVersion = "0";
         private RunningState _runningState = RunningState.Stopped;
         private bool _initProduceInfo = false;
 
@@ -39,6 +40,14 @@ namespace Silmoon.MySilmoon
         {
             get { return _revision; }
             set { _revision = value; }
+        }
+        /// <summary>
+        /// 版本号
+        /// </summary>
+        public string ReleaseVersion
+        {
+            get { return _releaseVersion; }
+            set { _releaseVersion = value; }
         }
 
         public SilmoonProductGBCInternat()
@@ -85,12 +94,14 @@ namespace Silmoon.MySilmoon
         /// </summary>
         /// <param name="productString">指定产品名称字符串</param>
         /// <param name="revision">指定发布产品的序号</param>
-        public bool InitProductInfo(string productString, int revision)
+        public bool InitProductInfo(string productString, int revision, string releaseVersion = "0")
         {
             if (!_initProduceInfo)
             {
                 _productString = productString;
                 _revision = revision;
+                _releaseVersion = releaseVersion;
+                _initProduceInfo = true;
                 return true;
             }
             else

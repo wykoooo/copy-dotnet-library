@@ -693,7 +693,7 @@
             对银月产品公共库公共属性进行重用
             </summary>
         </member>
-        <member name="M:Silmoon.MySilmoon.SilmoonProductGBCInternat.InitProductInfo(System.String,System.Int32)">
+        <member name="M:Silmoon.MySilmoon.SilmoonProductGBCInternat.InitProductInfo(System.String,System.Int32,System.String)">
             <summary>
             初始化公共属性
             </summary>
@@ -708,6 +708,11 @@
         <member name="P:Silmoon.MySilmoon.SilmoonProductGBCInternat.Revision">
             <summary>
             产品发布序号
+            </summary>
+        </member>
+        <member name="P:Silmoon.MySilmoon.SilmoonProductGBCInternat.ReleaseVersion">
+            <summary>
+            版本号
             </summary>
         </member>
         <member name="T:Silmoon.MySilmoon.ConnSilmoon">

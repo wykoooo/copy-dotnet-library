@@ -16,8 +16,12 @@ namespace Silmoon.MySilmoon
             get;
             set;
         }
-        bool InitProductInfo(string productString, int revision);
-        void onOutputText(string message);
+        string ReleaseVersion
+        {
+            get;
+            set;
+        }
+        bool InitProductInfo(string productString, int revision, string releaseVersion = "0");
         void onOutputText(string message, int flag);
 
         void onInputText(string message);

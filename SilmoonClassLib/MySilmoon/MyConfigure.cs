@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -11,7 +12,8 @@ namespace Silmoon.MySilmoon
 {
     public class MyConfigure
     {
-        public static VersionResult GetVersion(string productString)
+        static string LicenseEncryptedString = "";
+        public static VersionResult GetRemoteVersion(string productString)
         {
             VersionResult result = new VersionResult();
             try
@@ -30,7 +32,7 @@ namespace Silmoon.MySilmoon
             }
             return result;
         }
-        public static LicenseResult GetLicense(string productString)
+        public static LicenseResult GetRemoteLicense(string productString)
         {
             LicenseResult result = new LicenseResult();
             try
@@ -48,17 +50,21 @@ namespace Silmoon.MySilmoon
             }
             return result;
         }
-        public static int GetLicenseLevelCodeV1(string productString)
+
+        public static string GetLicenseEncryptedString(string productString, bool force = false)
         {
-            string licol = Environment.GetFolderPath(Environment.SpecialFolder.System) + "\\slf.dat";
+            if (force) LicenseEncryptedString = "";
+            if (!string.IsNullOrEmpty(LicenseEncryptedString)) return LicenseEncryptedString;
+
+            string sysDatFile = Environment.GetFolderPath(Environment.SpecialFolder.System) + "\\slf.dat";
             string appendKey = "";
             string keyFileContent = "";
 
-            if (File.Exists(licol))
+            if (File.Exists(sysDatFile))
             {
                 if (File.Exists(Application.StartupPath + "\\license.slf") && (keyFileContent = File.ReadAllText(Application.StartupPath + "\\license.slf")) != "")
                 {
-                    string[] lines = File.ReadAllLines(licol);
+                    string[] lines = File.ReadAllLines(sysDatFile);
                     foreach (var item in lines)
                     {
                         string[] lineArr = item.Split('\0');
@@ -79,23 +85,47 @@ namespace Silmoon.MySilmoon
                             try
                             {
                                 string s = enc.Decrypt(keyFileContent);
-                                int level = int.Parse(s);
-                                return level;
+                                LicenseEncryptedString = s;
+                                return LicenseEncryptedString;
                             }
                             catch
                             {
-                                return 0;
+                                return null;
                             }
                         }
                     }
                     else
-                        return 0;
+                        return null;
                 }
                 else
-                    return 0;
+                    return null;
             }
             else
-                return 0;
+                return null;
+        }
+        public static NameValueCollection GetLicenseEncryptedConfigure(string productString)
+        {
+            NameValueCollection result = new NameValueCollection();
+            string s = GetLicenseEncryptedString(productString);
+            if (!string.IsNullOrEmpty(s))
+            {
+                result = SmString.AnalyzeNameValue(s.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries), "=", "!");
+            }
+            return result;
+        }
+        public static int GetLicenseLevelCodeV1(string productString)
+        {
+            NameValueCollection values = GetLicenseEncryptedConfigure(productString);
+            string levelCodeString = values["levelCodeV1"];
+            int levelCode = 0;
+            int.TryParse(levelCodeString, out levelCode);
+            return levelCode;
+        }
+        public static string GetLicenseClientIDV1(string productString)
+        {
+            NameValueCollection values = GetLicenseEncryptedConfigure(productString);
+            string clientString = values["clientIDV1"];
+            return SmString.FixNullString(clientString);
         }
     }
 }

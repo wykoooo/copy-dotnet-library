@@ -82,7 +82,7 @@ namespace Silmoon.MySilmoon
             {
                 if (OnValidateLicense != null)
                 {
-                    var result = MyConfigure.GetVersion(_productString);
+                    var result = MyConfigure.GetRemoteVersion(_productString);
                     OnValidateLicense(result);
                 }
             });

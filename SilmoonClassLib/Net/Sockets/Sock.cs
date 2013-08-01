@@ -14,15 +14,16 @@ namespace Silmoon.Net.Sockets
             byte[] IPHeader = new byte[20];
             Array.Copy(ipTcpHeader, IPHeader, 20);
             byte[] TCPHeader = null;
-
             if (offset % 2 != 0)
             {
                 TCPHeader = new byte[offset - 19];
                 Array.Copy(ipTcpHeader, 20, TCPHeader, 0, TCPHeader.Length - 1);
             }
             else
+            {
                 TCPHeader = new byte[offset - 20];
-
+                Array.Copy(ipTcpHeader, 20, TCPHeader, 0, TCPHeader.Length);
+            }
 
 
             uint sum = 0;

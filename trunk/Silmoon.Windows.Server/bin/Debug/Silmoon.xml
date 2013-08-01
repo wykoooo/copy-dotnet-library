@@ -63,6 +63,11 @@
             数据
             </summary>
         </member>
+        <member name="F:Silmoon.Net.Sockets.Tcp.doff">
+            <summary>
+            len up to 2bit
+            </summary>
+        </member>
         <member name="T:Silmoon.Text.Punycode">
             <summary>
             Punycode IDN编码操作

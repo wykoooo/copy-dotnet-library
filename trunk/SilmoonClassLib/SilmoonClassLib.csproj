@@ -87,6 +87,11 @@
     <Compile Include="Net\Protocol\SDFlags.cs" />
     <Compile Include="Net\Protocol\SDPacket.cs" />
     <Compile Include="Net\Protocol\SDProtocol.cs" />
+    <Compile Include="Net\Sockets\IP.cs" />
+    <Compile Include="Net\Sockets\IPFlags.cs" />
+    <Compile Include="Net\Sockets\Sock.cs" />
+    <Compile Include="Net\Sockets\Tcp.cs" />
+    <Compile Include="Net\Sockets\TcpFlags.cs" />
     <Compile Include="Reflection\NameObjectCollectionT.cs" />
     <Compile Include="Text\Punycode.cs" />
     <Compile Include="IStateFlag.cs" />

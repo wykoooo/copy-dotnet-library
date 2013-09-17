@@ -25,6 +25,14 @@
             <param name="columns">要使用和引用的数据字段集合</param>
             <returns></returns>
         </member>
+        <member name="M:Silmoon.Arrays.ArrayUtility.GroupData(System.Byte[],System.Int32)">
+            <summary>
+            分组数据，将一段数据按照指定的长度进行分割，最后不足的长度将不会冲零。
+            </summary>
+            <param name="data">需要分组的数据</param>
+            <param name="slen">每段数据的长度</param>
+            <returns></returns>
+        </member>
         <member name="T:Silmoon.Arrays.IID">
             <summary>
             表示一个对象应该有一个以ID标识的符号
@@ -1704,7 +1712,7 @@
             <summary>   
             解密方法   
             </summary>   
-            <param name="Source">待解密的串</param>   
+            <param name="Source">待解密的串</param>
             <returns>经过解密的串</returns>   
         </member>
         <member name="M:Silmoon.Security.CSEncrypt.Setkey(System.String)">

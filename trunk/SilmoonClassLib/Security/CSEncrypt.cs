@@ -166,7 +166,7 @@ namespace Silmoon.Security
         /// <summary>   
         /// 解密方法   
         /// </summary>   
-        /// <param name="Source">待解密的串</param>   
+        /// <param name="Source">待解密的串</param>
         /// <returns>经过解密的串</returns>   
         public byte[] Decrypt(byte[] Source)
         {

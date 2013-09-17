@@ -319,8 +319,8 @@ namespace Silmoon.Web.Controls
     [Serializable]
     public enum LoginState
     {
-        None=0,
-        Login=1,
-        Logout=-1,
+        None = 0,
+        Login = 1,
+        Logout = -1,
     }
 }

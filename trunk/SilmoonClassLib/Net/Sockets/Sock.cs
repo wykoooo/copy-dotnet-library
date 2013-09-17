@@ -9,8 +9,6 @@ namespace Silmoon.Net.Sockets
     {
         public static ushort getNetCheckSum(byte[] ipTcpHeader, int index, int offset)
         {
-            int app = 0;
-
             byte[] IPHeader = new byte[20];
             Array.Copy(ipTcpHeader, IPHeader, 20);
             byte[] TCPHeader = null;

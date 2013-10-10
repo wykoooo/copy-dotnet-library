@@ -1811,22 +1811,6 @@
             <param name="findString">字符串</param>
             <returns></returns>
         </member>
-        <member name="M:Silmoon.SmString.FindFormStringArray(System.Collections.ArrayList,System.String)">
-            <summary>
-            在一个字符串数组里面寻找一个字符串
-            </summary>
-            <param name="sArr">字符串数组</param>
-            <param name="findString">字符串</param>
-            <returns></returns>
-        </member>
-        <member name="M:Silmoon.SmString.FindFormStringArray(System.Collections.Generic.List{System.String},System.String)">
-            <summary>
-            在一个字符串数组里面寻找一个字符串
-            </summary>
-            <param name="sArr">字符串数组</param>
-            <param name="findString">字符串</param>
-            <returns></returns>
-        </member>
         <member name="M:Silmoon.SmString.KeepStringLenght(System.String,System.Int32,System.String)">
             <summary>
             保持一个字符串的长度

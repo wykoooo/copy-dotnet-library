@@ -92,14 +92,14 @@ namespace Silmoon.Memory
             if (dArray1 == null || dArray1.Length == 0) return;
             if (sArray2 == null || sArray2.Length == 0) return;
 
-            ArrayList array = new ArrayList();
+            List<byte> array = new List<byte>();
             for (int i = 0; i < dArray1.Length; i++)
-                array.Add(dArray1.GetValue(i));
+                array.Add(dArray1[i]);
 
             for (int i = 0; i < sArray2.Length; i++)
-                array.Add(sArray2.GetValue(i));
+                array.Add(sArray2[i]);
 
-            dArray1 = (byte[])array.ToArray(typeof(byte));
+            dArray1 = array.ToArray();
         }
         public static bool MemCat(ref ArrayList dArray1, ref byte[] scrData, int scrIndex, int offset)
         {

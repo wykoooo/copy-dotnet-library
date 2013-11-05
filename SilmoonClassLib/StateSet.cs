@@ -25,6 +25,13 @@ namespace Silmoon
             UserState = userState;
             return this;
         }
+        public new StateSet<T, TO> Set(T state, string message)
+        {
+            State = state;
+            Message = message;
+            UserState = default(TO);
+            return this;
+        }
 
     }
 }

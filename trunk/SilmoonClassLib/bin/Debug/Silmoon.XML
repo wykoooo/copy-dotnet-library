@@ -1887,5 +1887,12 @@
             <param name="array2">需要找出缺少项目的数组</param>
             <returns></returns>
         </member>
+        <member name="M:Silmoon.SpecialConverter.UNIX_TIMESTAMP(System.DateTime)">
+            <summary>
+            将制定的时间转换成时间戳
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

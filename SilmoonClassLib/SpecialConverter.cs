@@ -48,9 +48,15 @@ namespace Silmoon
             return dateTime.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
+
+        /// <summary>
+        /// 将制定的时间转换成时间戳
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
         public static long UNIX_TIMESTAMP(DateTime dateTime)
         {
-            return (dateTime.Ticks - DateTime.Parse("1970-01-01 00:00:00").Ticks) / 10000000;
+            return (dateTime.Ticks - 621355968000000000) / 10000000;
         }
     }
 }

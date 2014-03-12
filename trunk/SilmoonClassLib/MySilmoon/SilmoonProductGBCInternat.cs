@@ -21,6 +21,7 @@ namespace Silmoon.MySilmoon
         private string _releaseVersion = "0";
         private RunningState _runningState = RunningState.Stopped;
         private bool _initProduceInfo = false;
+        private string _userIdentity = "#undefined";
 
         public event OutputTextMessageHandler OnOutputTextMessage;
         public event OutputTextMessageHandler OnInputTextMessage;
@@ -50,6 +51,11 @@ namespace Silmoon.MySilmoon
         {
             get { return _releaseVersion; }
             set { _releaseVersion = value; }
+        }
+        public string UserIdentity
+        {
+            get { return _userIdentity; }
+            set { _userIdentity = value; }
         }
 
         public SilmoonProductGBCInternat()
@@ -84,7 +90,7 @@ namespace Silmoon.MySilmoon
             {
                 if (OnValidateLicense != null)
                 {
-                    var result = MyConfigure.GetRemoteVersion(_productString);
+                    var result = MyConfigure.GetRemoteVersion(_productString, _userIdentity);
                     OnValidateLicense(result);
                 }
             });

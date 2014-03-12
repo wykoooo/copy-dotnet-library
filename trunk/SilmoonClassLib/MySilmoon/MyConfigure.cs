@@ -13,12 +13,12 @@ namespace Silmoon.MySilmoon
     public class MyConfigure
     {
         static string LicenseEncryptedString = "";
-        public static VersionResult GetRemoteVersion(string productString)
+        public static VersionResult GetRemoteVersion(string productString, string userIdentity)
         {
             VersionResult result = new VersionResult();
             try
             {
-                string url = "https://encrypted.silmoon.com/apps/apis/config?appName=" + productString + "&configName=_version&outType=text/xml";
+                string url = "https://encrypted.silmoon.com/apps/apis/config?appName=" + productString + "&userIdentity=" + userIdentity + "&configName=_version&outType=text/xml";
 
                 XmlDocument xml = new XmlDocument();
                 xml.Load(url);

@@ -6,6 +6,8 @@ namespace Silmoon
 {
     public class SpecialConverter
     {
+        public static readonly DateTime SqlDefaultDateTime = DateTime.Parse("1/1/1753 0:00:00");
+
         public static long ToTimeStamp(System.DateTime time)
         {
             long intResult = 0;

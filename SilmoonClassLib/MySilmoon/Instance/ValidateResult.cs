@@ -7,9 +7,11 @@ namespace Silmoon.MySilmoon.Instance
     public class VersionResult
     {
         public Exception Error;
-        public int min_exit_version;
-        public int min_pop_version;
-        public int latest_version;
+        public int UserIdentityStateCode = -1;
+        public string UserIdentityStateMessage = "#unknown";
+        public int ExpiredVersion = -1;
+        public int NotificationVersion = -1;
+        public int LatestVersion = -1;
 
         public VersionResult()
         {

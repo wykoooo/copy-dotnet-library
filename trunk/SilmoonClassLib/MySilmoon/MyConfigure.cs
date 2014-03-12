@@ -13,18 +13,25 @@ namespace Silmoon.MySilmoon
     public class MyConfigure
     {
         static string LicenseEncryptedString = "";
-        public static VersionResult GetRemoteVersion(string productString, string userIdentity)
+
+        public static void ClearCache()
+        {
+            LicenseEncryptedString = "";
+        }
+        public static VersionResult GetRemoteVersion(string productString, string userIdentity = "")
         {
             VersionResult result = new VersionResult();
             try
             {
-                string url = "https://encrypted.silmoon.com/apps/apis/config?appName=" + productString + "&userIdentity=" + userIdentity + "&configName=_version&outType=text/xml";
+                string url = "https://encrypted.silmoon.com/apps/apis/config?appName=" + productString + "&userIdentity=" + userIdentity + "&configName=_validation&outType=text/xml";
 
                 XmlDocument xml = new XmlDocument();
                 xml.Load(url);
-                result.min_exit_version = int.Parse(xml["version"]["version_config_1"]["min_version"]["exit_version"].InnerText);
-                result.min_pop_version = int.Parse(xml["version"]["version_config_1"]["min_version"]["pop_version"].InnerText);
-                result.latest_version = int.Parse(xml["version"]["version_config_1"]["latest_version"].InnerText);
+                result.ExpiredVersion = int.Parse(xml["validationResult"]["version"].Attributes["expiredVersion"].Value);
+                result.NotificationVersion = int.Parse(xml["validationResult"]["version"].Attributes["notificationVersion"].Value);
+                result.LatestVersion = int.Parse(xml["validationResult"]["version"].Attributes["latestVersion"].Value);
+                result.UserIdentityStateCode = int.Parse(xml["validationResult"]["userIdentity"].Attributes["stateCode"].Value);
+                result.UserIdentityStateMessage = xml["validationResult"]["userIdentity"].Attributes["stateMessage"].Value;
             }
             catch (Exception ex)
             {
@@ -103,28 +110,33 @@ namespace Silmoon.MySilmoon
             else
                 return null;
         }
+        /// <summary>
+        /// 获取加密授权配置中的一个配置项目
+        /// </summary>
+        /// <param name="productString">当前产品的标识名称</param>
+        /// <returns></returns>
         public static NameValueCollection GetLicenseEncryptedConfigure(string productString)
         {
             NameValueCollection result = new NameValueCollection();
             string s = GetLicenseEncryptedString(productString);
             if (!string.IsNullOrEmpty(s))
             {
-                result = SmString.AnalyzeNameValue(s.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries), "=", "!");
+                result = SmString.AnalyzeNameValue(s.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries), "=");
             }
             return result;
         }
-        public static int GetLicenseLevelCodeV1(string productString)
+        public static int GetLicenseLevelCode(string productString)
         {
             NameValueCollection values = GetLicenseEncryptedConfigure(productString);
-            string levelCodeString = values["levelCodeV1"];
+            string levelCodeString = values["levelCode"];
             int levelCode = 0;
             int.TryParse(levelCodeString, out levelCode);
             return levelCode;
         }
-        public static string GetLicenseClientIDV1(string productString)
+        public static string GetLicenseUserIdentity(string productString)
         {
             NameValueCollection values = GetLicenseEncryptedConfigure(productString);
-            string clientString = values["clientIDV1"];
+            string clientString = values["userIdentity"];
             return SmString.FixNullString(clientString);
         }
     }

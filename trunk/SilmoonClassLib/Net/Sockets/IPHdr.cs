@@ -6,7 +6,7 @@ using System.Text;
 namespace Silmoon.Net.Sockets
 {
     [StructLayout(LayoutKind.Explicit)]
-    public struct IP
+    public struct IPHdr
     {
         [FieldOffset(0)]
         public byte ip_verlen;        //I4位首部长度+4位IP版本号

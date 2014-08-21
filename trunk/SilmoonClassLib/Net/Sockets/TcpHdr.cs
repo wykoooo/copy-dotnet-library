@@ -6,7 +6,7 @@ using System.Text;
 namespace Silmoon.Net.Sockets
 {
     [StructLayout(LayoutKind.Explicit)]
-    public struct Tcp
+    public struct TcpHdr
     {
         [FieldOffset(0)]
         public ushort source;

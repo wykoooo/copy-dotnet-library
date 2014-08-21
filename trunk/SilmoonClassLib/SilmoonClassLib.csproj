@@ -58,6 +58,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -87,11 +88,14 @@
     <Compile Include="Net\Protocol\SDFlags.cs" />
     <Compile Include="Net\Protocol\SDPacket.cs" />
     <Compile Include="Net\Protocol\SDProtocol.cs" />
-    <Compile Include="Net\Sockets\IP.cs" />
+    <Compile Include="Net\Sockets\EthHdr.cs" />
+    <Compile Include="Net\Sockets\IPHdr.cs" />
     <Compile Include="Net\Sockets\IPFlags.cs" />
+    <Compile Include="Net\Sockets\MacAddress.cs" />
     <Compile Include="Net\Sockets\Sock.cs" />
-    <Compile Include="Net\Sockets\Tcp.cs" />
+    <Compile Include="Net\Sockets\TcpHdr.cs" />
     <Compile Include="Net\Sockets\TcpFlags.cs" />
+    <Compile Include="Net\Sockets\UdpHdr.cs" />
     <Compile Include="Reflection\AssemblyUtil.cs" />
     <Compile Include="Reflection\NameObjectCollectionT.cs" />
     <Compile Include="Text\Punycode.cs" />

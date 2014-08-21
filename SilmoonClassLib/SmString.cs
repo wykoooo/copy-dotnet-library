@@ -327,5 +327,20 @@ namespace Silmoon
             }
             return (string[])list2.ToArray(typeof(string));
         }
+        /// <summary>
+        /// 重复某个字符串N次。
+        /// </summary>
+        /// <param name="str">字符串</param>
+        /// <param name="repeateTimes">次数N</param>
+        /// <returns></returns>
+        public static string RepeaterString(string str, int repeateTimes)
+        {
+            string s = "";
+            for (int i = 0; i < repeateTimes; i++)
+            {
+                s += str;
+            }
+            return s;
+        }
     }
 }

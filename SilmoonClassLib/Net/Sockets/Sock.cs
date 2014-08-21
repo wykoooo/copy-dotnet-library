@@ -9,57 +9,47 @@ namespace Silmoon.Net.Sockets
     {
         public static ushort getNetCheckSum(byte[] ipTcpHeader, int index, int offset)
         {
-            byte[] IPHeader = new byte[20];
-            Array.Copy(ipTcpHeader, IPHeader, 20);
-            byte[] TCPHeader = null;
-            if (offset % 2 != 0)
-            {
-                TCPHeader = new byte[offset - 19];
-                Array.Copy(ipTcpHeader, 20, TCPHeader, 0, TCPHeader.Length - 1);
-            }
-            else
-            {
-                TCPHeader = new byte[offset - 20];
-                Array.Copy(ipTcpHeader, 20, TCPHeader, 0, TCPHeader.Length);
-            }
-
-
             uint sum = 0;
-            // TCP Header
-            for (int x = 0; x < TCPHeader.Length; x += 2)
-                sum += ntoh(BitConverter.ToUInt16(TCPHeader, x));
+
+            int tindex = index + 20;
+            offset = offset - 20;
+
+            while (offset > 1)
+            {
+                sum += ntoh(BitConverter.ToUInt16(ipTcpHeader, tindex));
+                tindex += 2;
+                offset -= 2;
+            }
+            if (offset == 1) sum += ntoh(BitConverter.ToUInt16(new byte[] { ipTcpHeader[tindex], 0 }, 0));
 
             // Pseudo header - Source Address 
-            sum += ntoh(BitConverter.ToUInt16(IPHeader, 12));
-            sum += ntoh(BitConverter.ToUInt16(IPHeader, 14));
+            sum += ntoh(BitConverter.ToUInt16(ipTcpHeader, 12 + index));
+            sum += ntoh(BitConverter.ToUInt16(ipTcpHeader, 14 + index));
             // Pseudo header - Dest Address 
-            sum += ntoh(BitConverter.ToUInt16(IPHeader, 16));
-            sum += ntoh(BitConverter.ToUInt16(IPHeader, 18));
+            sum += ntoh(BitConverter.ToUInt16(ipTcpHeader, 16 + index));
+            sum += ntoh(BitConverter.ToUInt16(ipTcpHeader, 18 + index));
             // Pseudo header - Protocol 
-            sum += ntoh(BitConverter.ToUInt16(new byte[] { 0, IPHeader[9] }, 0));
+            sum += ntoh(BitConverter.ToUInt16(new byte[] { 0, ipTcpHeader[9 + index] }, 0));
             // Pseudo header - TCP Header length 
-            sum += (uint)(ipTcpHeader.Length - 20);
-            // 16 bit 1's compliment 
-            while ((sum >> 16) != 0) { sum = ((sum & 0xFFFF) + (sum >> 16)); }
-            sum = ~sum;
-            return (ushort)ntoh((UInt16)sum);
+            sum += (uint)(ipTcpHeader.Length - 20 - index);
+
+            sum = ~((sum & 0xFFFF) + (sum >> 16));
+            return ntoh((ushort)sum);
         }
-        public static ushort getIpCheckSum(byte[] data, int len = 20)
+        public static ushort getIpCheckSum(byte[] buffer, int index = 0, int offset = 20)
         {
-            int sum = 0;
-            for (int i = 0; i < len; i = i + 2)
+            uint sum = 0;
+            while (offset > 1)
             {
-                if (i == 10)
-                    continue;
-                sum += BitConverter.ToUInt16(makeInt16Data(BitConverter.ToUInt16(data, i)), 0);
+                sum += ntoh(BitConverter.ToUInt16(buffer, index));
+                index += 2;
+                offset -= 2;
             }
-            if (sum > 0xffff)
-            {
-                int u = sum >> 16;
-                sum = (ushort)sum;
-                sum = sum + u;
-            }
-            return (ushort)~sum;
+            if (offset == 1) sum += ntoh(BitConverter.ToUInt16(new byte[] { buffer[index - 1], 0 }, 0));
+
+
+            sum = ~((sum & 0xFFFF) + (sum >> 16));
+            return ntoh((ushort)sum);
         }
         private static ushort ntoh(UInt16 In)
         {

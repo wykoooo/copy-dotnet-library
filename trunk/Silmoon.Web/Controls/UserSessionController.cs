@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Silmoon.Web.Controls
 {
-    public abstract class SingleUserLoginSessionControl<T> : System.Web.SessionState.IRequiresSessionState
+    public abstract class UserSessionController<T> : System.Web.SessionState.IRequiresSessionState
     {
         RSACryptoServiceProvider rsa = null;
         string cookieDomain = null;
@@ -126,8 +126,8 @@ namespace Silmoon.Web.Controls
             set { cookieExpires = value; }
         }
 
-        public SingleUserLoginSessionControl() : this(null) { }
-        public SingleUserLoginSessionControl(string cookieDomain)
+        public UserSessionController() : this(null) { }
+        public UserSessionController(string cookieDomain)
         {
             this.cookieDomain = cookieDomain;
         }

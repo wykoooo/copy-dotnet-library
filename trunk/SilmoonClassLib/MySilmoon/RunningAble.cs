@@ -30,7 +30,7 @@ namespace Silmoon.MySilmoon
         {
             bool success = RunningState == MySilmoon.RunningState.Stopped;
             RunningState = MySilmoon.RunningState.Running;
-            OnStart(ref success);
+            if (OnStart != null) OnStart(ref success);
             if (!success) RunningState = RunningState.Stopped;
             return success;
         }
@@ -39,7 +39,7 @@ namespace Silmoon.MySilmoon
             MySilmoon.RunningState runstate = RunningState;
             bool success = RunningState != MySilmoon.RunningState.Stopped;
             RunningState = MySilmoon.RunningState.Stopped;
-            OnStop(ref success);
+            if (OnStop != null) OnStop(ref success);
             if (!success) RunningState = runstate;
             return success;
         }

@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\SessionRSAManager.cs" />
     <Compile Include="Page\RewriteMasterPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -93,7 +94,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UI\WebForms.cs" />
-    <Compile Include="Controls\SingleUserLoginSessionControl.cs" />
+    <Compile Include="Controls\UserSessionController.cs" />
     <None Include="sn.snk" />
   </ItemGroup>
   <ItemGroup>
